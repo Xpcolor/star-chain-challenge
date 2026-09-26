@@ -19,7 +19,8 @@
   "realRecordsMigrated": false,
   "accessTeam": "red-wave-aa94",
   "accessLoginChallenge": true,
-  "workerAccessVarsConfigured": false,
+  "accessLoginMethod": "cloudflare-account",
+  "workerAccessVarsConfigured": true,
   "actionsDeployEnabled": false,
-  "nextTask": "重新完成 Wrangler 登录，写入 ACCESS_ISSUER 与应用 AUD 后再次部署，再由玩家用邮箱验证码验收记录。"
+  "nextTask": "用 Cloudflare 账号打开记录登录并完成一局同步验收。若要改成邮箱验证码，需要在 Zero Trust 中更换身份提供商。旧站记录仍待导出后导入。"
 }

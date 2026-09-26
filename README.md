@@ -10,7 +10,7 @@
 | GitHub 仓库 | https://github.com/Xpcolor/star-chain-challenge （公开，仅 Xpcolor 可写） |
 | 独立正式游戏 | https://star-chain-challenge.star-chain-challenge.workers.dev |
 | 正式版本 | `1.0.0`，提交 `401312ef33ddae3016ed0c183994313c527dbce4` |
-| 记录登录 | https://star-chain-challenge.star-chain-challenge.workers.dev/login 已出现 Access 登录；Worker 尚未写入身份配置，记录同步仍待验收 |
+| 记录登录 | https://star-chain-challenge.star-chain-challenge.workers.dev/login ，当前只有 Cloudflare 账号登录；邮箱验证码尚未启用 |
 | 已合并预览 | PR #2：https://star-chain-pr-2.star-chain-challenge.workers.dev |
 | 稳定源码基线 | `83a5badcb2121204c8bcf9bddcf9441be6b5f646` |
 
