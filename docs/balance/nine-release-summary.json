@@ -1,0 +1,490 @@
+{
+  "rulesVersion": "flight-records-1",
+  "configId": "nine-calibrated-20260926",
+  "baseSeed": 8104573,
+  "uniqueGames": 5184,
+  "scenarioCount": 144,
+  "initiativeSwaps": true,
+  "sourceSHA256": {
+    "engine.mjs": "b59508fe9b6166be3a1d16e650fe74f14af36709f371cbbb923d65f4a435e24c",
+    "difficulty.mjs": "d5337746a973d53d9314303b6a1e89c6201a70fea2063e571abdfde12407a4de",
+    "tactics.mjs": "77813aa7df30732672f0f72c524f3f0bd726fed73f3c9c21dc97fc9d2ce7e363",
+    "challenges.mjs": "499e83f444aac53895a5d2d9ca88df14d4412f211f51a404d1dab8f1c5b72bfa"
+  },
+  "profiles": [
+    {
+      "temperature": 1.9,
+      "attention": 5,
+      "allowWild": false,
+      "allowAccel": false,
+      "defence": 0,
+      "beam": 0,
+      "samples": 0,
+      "follow": 0,
+      "supplyTemperature": 3.8,
+      "denial": 0
+    },
+    {
+      "temperature": 1.45,
+      "attention": 7,
+      "allowWild": true,
+      "allowAccel": false,
+      "defence": 0,
+      "beam": 0,
+      "samples": 0,
+      "follow": 0,
+      "supplyTemperature": 2.8,
+      "denial": 0
+    },
+    {
+      "temperature": 1.18,
+      "attention": 8,
+      "allowWild": true,
+      "allowAccel": true,
+      "defence": 0,
+      "beam": 0,
+      "samples": 0,
+      "follow": 0,
+      "supplyTemperature": 1.8,
+      "denial": 0
+    },
+    {
+      "temperature": 1.1,
+      "attention": 10,
+      "allowWild": true,
+      "allowAccel": true,
+      "defence": 0,
+      "beam": 0,
+      "samples": 0,
+      "follow": 0,
+      "supplyTemperature": 1.55,
+      "denial": 0
+    },
+    {
+      "temperature": 1.0,
+      "attention": 12,
+      "allowWild": true,
+      "allowAccel": true,
+      "defence": 0,
+      "beam": 0,
+      "samples": 0,
+      "follow": 0,
+      "supplyTemperature": 1.3,
+      "denial": 0
+    },
+    {
+      "temperature": 0.9,
+      "attention": 15,
+      "allowWild": true,
+      "allowAccel": true,
+      "defence": 0.05,
+      "beam": 15,
+      "samples": 2,
+      "follow": 0,
+      "supplyTemperature": 1.05,
+      "denial": 0
+    },
+    {
+      "temperature": 0.78,
+      "attention": 18,
+      "allowWild": true,
+      "allowAccel": true,
+      "defence": 0.1,
+      "beam": 18,
+      "samples": 2,
+      "follow": 0,
+      "supplyTemperature": 0.8,
+      "denial": 0
+    },
+    {
+      "temperature": 0.7,
+      "attention": 22,
+      "allowWild": true,
+      "allowAccel": true,
+      "defence": 0.17,
+      "beam": 22,
+      "samples": 2,
+      "follow": 0,
+      "supplyTemperature": 0.6,
+      "denial": 0.1
+    },
+    {
+      "temperature": 0.54,
+      "attention": 28,
+      "allowWild": true,
+      "allowAccel": true,
+      "defence": 0.25,
+      "beam": 28,
+      "samples": 2,
+      "follow": 0,
+      "supplyTemperature": 0.45,
+      "denial": 0.1
+    }
+  ],
+  "curves": {
+    "8": [
+      {
+        "level": 1,
+        "games": 288,
+        "wins": 265,
+        "draws": 5,
+        "scorePercent": 92.88,
+        "cluster95CI": [
+          90.1,
+          95.49
+        ]
+      },
+      {
+        "level": 2,
+        "games": 288,
+        "wins": 215,
+        "draws": 4,
+        "scorePercent": 75.35,
+        "cluster95CI": [
+          69.62,
+          80.38
+        ]
+      },
+      {
+        "level": 3,
+        "games": 288,
+        "wins": 183,
+        "draws": 4,
+        "scorePercent": 64.24,
+        "cluster95CI": [
+          58.51,
+          69.97
+        ]
+      },
+      {
+        "level": 4,
+        "games": 288,
+        "wins": 134,
+        "draws": 6,
+        "scorePercent": 47.57,
+        "cluster95CI": [
+          41.32,
+          53.47
+        ]
+      },
+      {
+        "level": 5,
+        "games": 288,
+        "wins": 105,
+        "draws": 5,
+        "scorePercent": 37.33,
+        "cluster95CI": [
+          31.42,
+          43.23
+        ]
+      },
+      {
+        "level": 6,
+        "games": 288,
+        "wins": 70,
+        "draws": 3,
+        "scorePercent": 24.83,
+        "cluster95CI": [
+          20.49,
+          29.51
+        ]
+      },
+      {
+        "level": 7,
+        "games": 288,
+        "wins": 53,
+        "draws": 1,
+        "scorePercent": 18.58,
+        "cluster95CI": [
+          14.24,
+          22.92
+        ]
+      },
+      {
+        "level": 8,
+        "games": 288,
+        "wins": 29,
+        "draws": 0,
+        "scorePercent": 10.07,
+        "cluster95CI": [
+          6.6,
+          13.89
+        ]
+      },
+      {
+        "level": 9,
+        "games": 288,
+        "wins": 14,
+        "draws": 0,
+        "scorePercent": 4.86,
+        "cluster95CI": [
+          2.78,
+          7.29
+        ]
+      }
+    ],
+    "24": [
+      {
+        "level": 1,
+        "games": 288,
+        "wins": 288,
+        "draws": 0,
+        "scorePercent": 100.0,
+        "cluster95CI": [
+          100.0,
+          100.0
+        ]
+      },
+      {
+        "level": 2,
+        "games": 288,
+        "wins": 285,
+        "draws": 0,
+        "scorePercent": 98.96,
+        "cluster95CI": [
+          97.57,
+          100.0
+        ]
+      },
+      {
+        "level": 3,
+        "games": 288,
+        "wins": 285,
+        "draws": 0,
+        "scorePercent": 98.96,
+        "cluster95CI": [
+          97.57,
+          100.0
+        ]
+      },
+      {
+        "level": 4,
+        "games": 288,
+        "wins": 272,
+        "draws": 1,
+        "scorePercent": 94.62,
+        "cluster95CI": [
+          91.84,
+          97.05
+        ]
+      },
+      {
+        "level": 5,
+        "games": 288,
+        "wins": 261,
+        "draws": 0,
+        "scorePercent": 90.62,
+        "cluster95CI": [
+          87.15,
+          93.75
+        ]
+      },
+      {
+        "level": 6,
+        "games": 288,
+        "wins": 228,
+        "draws": 0,
+        "scorePercent": 79.17,
+        "cluster95CI": [
+          74.31,
+          83.68
+        ]
+      },
+      {
+        "level": 7,
+        "games": 288,
+        "wins": 215,
+        "draws": 0,
+        "scorePercent": 74.65,
+        "cluster95CI": [
+          69.1,
+          79.86
+        ]
+      },
+      {
+        "level": 8,
+        "games": 288,
+        "wins": 179,
+        "draws": 0,
+        "scorePercent": 62.15,
+        "cluster95CI": [
+          56.6,
+          67.71
+        ]
+      },
+      {
+        "level": 9,
+        "games": 288,
+        "wins": 154,
+        "draws": 0,
+        "scorePercent": 53.47,
+        "cluster95CI": [
+          47.57,
+          59.38
+        ]
+      }
+    ]
+  },
+  "adjacentDrops": {
+    "8": [
+      {
+        "fromLevel": 1,
+        "toLevel": 2,
+        "percentagePoints": 17.53,
+        "paired95CI": [
+          11.98,
+          23.61
+        ]
+      },
+      {
+        "fromLevel": 2,
+        "toLevel": 3,
+        "percentagePoints": 11.11,
+        "paired95CI": [
+          3.65,
+          18.4
+        ]
+      },
+      {
+        "fromLevel": 3,
+        "toLevel": 4,
+        "percentagePoints": 16.67,
+        "paired95CI": [
+          10.24,
+          23.26
+        ]
+      },
+      {
+        "fromLevel": 4,
+        "toLevel": 5,
+        "percentagePoints": 10.24,
+        "paired95CI": [
+          2.95,
+          17.36
+        ]
+      },
+      {
+        "fromLevel": 5,
+        "toLevel": 6,
+        "percentagePoints": 12.5,
+        "paired95CI": [
+          5.56,
+          19.27
+        ]
+      },
+      {
+        "fromLevel": 6,
+        "toLevel": 7,
+        "percentagePoints": 6.25,
+        "paired95CI": [
+          0.52,
+          12.33
+        ]
+      },
+      {
+        "fromLevel": 7,
+        "toLevel": 8,
+        "percentagePoints": 8.51,
+        "paired95CI": [
+          3.47,
+          13.54
+        ]
+      },
+      {
+        "fromLevel": 8,
+        "toLevel": 9,
+        "percentagePoints": 5.21,
+        "paired95CI": [
+          1.74,
+          8.68
+        ]
+      }
+    ],
+    "24": [
+      {
+        "fromLevel": 1,
+        "toLevel": 2,
+        "percentagePoints": 1.04,
+        "paired95CI": [
+          0.0,
+          2.43
+        ]
+      },
+      {
+        "fromLevel": 2,
+        "toLevel": 3,
+        "percentagePoints": 0.0,
+        "paired95CI": [
+          -1.39,
+          1.39
+        ]
+      },
+      {
+        "fromLevel": 3,
+        "toLevel": 4,
+        "percentagePoints": 4.34,
+        "paired95CI": [
+          1.74,
+          7.12
+        ]
+      },
+      {
+        "fromLevel": 4,
+        "toLevel": 5,
+        "percentagePoints": 3.99,
+        "paired95CI": [
+          0.17,
+          7.81
+        ]
+      },
+      {
+        "fromLevel": 5,
+        "toLevel": 6,
+        "percentagePoints": 11.46,
+        "paired95CI": [
+          6.25,
+          17.01
+        ]
+      },
+      {
+        "fromLevel": 6,
+        "toLevel": 7,
+        "percentagePoints": 4.51,
+        "paired95CI": [
+          -1.04,
+          9.72
+        ]
+      },
+      {
+        "fromLevel": 7,
+        "toLevel": 8,
+        "percentagePoints": 12.5,
+        "paired95CI": [
+          5.9,
+          18.75
+        ]
+      },
+      {
+        "fromLevel": 8,
+        "toLevel": 9,
+        "percentagePoints": 8.68,
+        "paired95CI": [
+          1.74,
+          15.62
+        ]
+      }
+    ]
+  },
+  "firstPlayerScorePercent": 47.54,
+  "averageRounds": 8.69,
+  "previewChecks": 87894,
+  "recapChecks": 10368,
+  "warpPlays": 3344,
+  "method": "Fixed sampled reference policies (8 or 24 distinct actions), 144 seeds with balanced module pairs and six starfields; both initiative assignments. CIs use 3000 paired cluster bootstraps over the 144 scenarios, holding module/sector pairing with its seed. Score=win+0.5draw. New seed bank after tuning, same reference policies.",
+  "limitations": [
+    "These are synthetic policy scores, not human win rates or retention predictions.",
+    "Some early levels saturate the stronger reference; equal scores cannot prove equal difficulty.",
+    "The largest point-estimate adjacent drop is still 17.5pp for the weaker reference; monitor human records.",
+    "There is no claim of perfectly equal initiative: first-player score is47.54% in this sample."
+  ]
+}

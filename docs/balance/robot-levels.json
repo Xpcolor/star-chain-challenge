@@ -1,0 +1,71 @@
+{
+  "note": "Same reference policy across all levels; sampled results are not human win-rate estimates.",
+  "rows": [
+    {
+      "level": 1,
+      "name": "小启",
+      "matches": 60,
+      "robotWins": 14,
+      "draws": 1,
+      "robotWinRate": 0.233,
+      "averageMargin": -6.15,
+      "averageDecisionMs": 0.4,
+      "maxDecisionMs": 6
+    },
+    {
+      "level": 2,
+      "name": "星芽",
+      "matches": 60,
+      "robotWins": 28,
+      "draws": 3,
+      "robotWinRate": 0.467,
+      "averageMargin": 0.05,
+      "averageDecisionMs": 0.5,
+      "maxDecisionMs": 2.2
+    },
+    {
+      "level": 3,
+      "name": "巡航者",
+      "matches": 60,
+      "robotWins": 37,
+      "draws": 1,
+      "robotWinRate": 0.617,
+      "averageMargin": 3.42,
+      "averageDecisionMs": 0.7,
+      "maxDecisionMs": 5.4
+    },
+    {
+      "level": 4,
+      "name": "守望者",
+      "matches": 60,
+      "robotWins": 52,
+      "draws": 0,
+      "robotWinRate": 0.867,
+      "averageMargin": 10.37,
+      "averageDecisionMs": 11.4,
+      "maxDecisionMs": 177.6
+    },
+    {
+      "level": 5,
+      "name": "织星者",
+      "matches": 60,
+      "robotWins": 60,
+      "draws": 0,
+      "robotWinRate": 1,
+      "averageMargin": 15.3,
+      "averageDecisionMs": 12.3,
+      "maxDecisionMs": 153.5
+    },
+    {
+      "level": 6,
+      "name": "星航师",
+      "matches": 60,
+      "robotWins": 59,
+      "draws": 0,
+      "robotWinRate": 0.983,
+      "averageMargin": 14.02,
+      "averageDecisionMs": 18.8,
+      "maxDecisionMs": 54.6
+    }
+  ]
+}

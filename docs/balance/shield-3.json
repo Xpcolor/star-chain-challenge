@@ -1,0 +1,139 @@
+{
+  "seed": 488021,
+  "policy": "greedy",
+  "shield": 3,
+  "samples": 12,
+  "matches": 5184,
+  "player0ScoreRate": 0.5259452160493827,
+  "modules": {
+    "focus": {
+      "matches": 1440,
+      "wins": 735,
+      "draws": 0,
+      "margin": 260,
+      "bonus": 3507,
+      "uses": 3507,
+      "scoreRate": 0.5104,
+      "averageMargin": 0.18,
+      "averageBonus": 2.44,
+      "averageUses": 2.44
+    },
+    "circuit": {
+      "matches": 1440,
+      "wins": 745,
+      "draws": 0,
+      "margin": 242,
+      "bonus": 4004,
+      "uses": 2002,
+      "scoreRate": 0.5174,
+      "averageMargin": 0.17,
+      "averageBonus": 2.78,
+      "averageUses": 1.39
+    },
+    "precision": {
+      "matches": 1440,
+      "wins": 707,
+      "draws": 0,
+      "margin": -519,
+      "bonus": 3299,
+      "uses": 3299,
+      "scoreRate": 0.491,
+      "averageMargin": -0.36,
+      "averageBonus": 2.29,
+      "averageUses": 2.29
+    },
+    "edge": {
+      "matches": 1440,
+      "wins": 696,
+      "draws": 0,
+      "margin": -48,
+      "bonus": 3419,
+      "uses": 3419,
+      "scoreRate": 0.4833,
+      "averageMargin": -0.03,
+      "averageBonus": 2.37,
+      "averageUses": 2.37
+    },
+    "engineer": {
+      "matches": 1440,
+      "wins": 760,
+      "draws": 0,
+      "margin": 778,
+      "bonus": 4260,
+      "uses": 4260,
+      "scoreRate": 0.5278,
+      "averageMargin": 0.54,
+      "averageBonus": 2.96,
+      "averageUses": 2.96
+    },
+    "reverse": {
+      "matches": 1440,
+      "wins": 677,
+      "draws": 0,
+      "margin": -713,
+      "bonus": 2870,
+      "uses": 2870,
+      "scoreRate": 0.4701,
+      "averageMargin": -0.5,
+      "averageBonus": 1.99,
+      "averageUses": 1.99
+    }
+  },
+  "sectors": {
+    "tide-0": {
+      "matches": 864,
+      "firstWins": 403,
+      "draws": 0,
+      "knockouts": 860,
+      "rounds": 6246,
+      "firstScoreRate": 0.4664351851851852,
+      "averageRounds": 7.229166666666667
+    },
+    "tide-1": {
+      "matches": 864,
+      "firstWins": 484,
+      "draws": 0,
+      "knockouts": 864,
+      "rounds": 6206,
+      "firstScoreRate": 0.5601851851851852,
+      "averageRounds": 7.18287037037037
+    },
+    "tide-2": {
+      "matches": 864,
+      "firstWins": 455,
+      "draws": 1,
+      "knockouts": 860,
+      "rounds": 6120,
+      "firstScoreRate": 0.5271990740740741,
+      "averageRounds": 7.083333333333333
+    },
+    "roving": {
+      "matches": 864,
+      "firstWins": 420,
+      "draws": 0,
+      "knockouts": 864,
+      "rounds": 6200,
+      "firstScoreRate": 0.4861111111111111,
+      "averageRounds": 7.175925925925926
+    },
+    "repair": {
+      "matches": 864,
+      "firstWins": 425,
+      "draws": 0,
+      "knockouts": 859,
+      "rounds": 6013,
+      "firstScoreRate": 0.49189814814814814,
+      "averageRounds": 6.9594907407407405
+    },
+    "long": {
+      "matches": 864,
+      "firstWins": 390,
+      "draws": 0,
+      "knockouts": 849,
+      "rounds": 6721,
+      "firstScoreRate": 0.4513888888888889,
+      "averageRounds": 7.778935185185185
+    }
+  },
+  "note": "Same policy on both sides; paired first-player swaps. Module statistics exclude identical-module games. Scenario seeds repeat across module pairs; these are diagnostic comparisons, not independent human trials."
+}

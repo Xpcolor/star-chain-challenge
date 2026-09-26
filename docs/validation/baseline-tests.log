@@ -1,0 +1,68 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> star-chain-challenge@1.0.0 test
+> node --test tests/*.test.mjs
+
+{"reviews":48,"kinds":{"repair":24,"module":12,"supply":11,"alternative":1}}
+✔ every opponent has a unique name and visible motion/color signature, with existing assets (7.84643ms)
+✔ 48 independent match reviews are pure, replayable, public-information counterfactuals or exact factual summaries (3001.577963ms)
+✔ missed finishing move advice proves an immediate win from the actual public position (344.434123ms)
+records-api /api/profile database is not open
+✔ authenticated records are owner scoped, seed hidden during play, duplicates/out-of-order writes are idempotent (373.380456ms)
+✔ real replays lower cumulative assistance past two levels, settings reset future support without mutating history (718.985131ms)
+✔ pagination keeps equal-timestamp games, validation bounds settings and database failures are retryable (188.729052ms)
+✔ decline is durable, never downgrades, accepts only a fresh offer and duplicate choices are idempotent (536.247047ms)
+✔ nine-grade accounts and records retain unlocks and history without silently retaining automatic support (19.662209ms)
+✔ initial screen has fleet, both hands,63 numbered ticks,3 shared repairs and random draw (49.342428ms)
+✔ opening roll locks interaction then disappears permanently during the match (151.781405ms)
+✔ human confirm locks animation, updates HP once and supports public and random refill (74.819227ms)
+✔ rest chooses0–2 cards and a goal, then shares the same refill flow (67.107121ms)
+✔ restarting during combat cancels all pending callbacks and opens fresh initiative (70.671462ms)
+✔ complete game settles result and saves unlocks without duplicate match records (461.288547ms)
+✔ all robot selections retain public hands and run a full human/bot exchange (1883.592738ms)
+✔ wild selector accepts every1–9 value; choice and preview survive chain/op changes (56.258347ms)
+✔ cloud support keeps chosen robot identity, displays support name and freezes active difficulty (29.546054ms)
+✔ warp card shows from/to preview, cannot set arithmetic, and plays the previewed reflection (34.805403ms)
+✔ two real losses offer a choice; closing/refusing retains strength, accepting starts only the next game lower (1662.397532ms)
+✔ opening pool has two 1HP and one 2HP repair, distinct and rotating across games (8.088814ms)
+✔ single and multiple claims replace exactly their slots and reset both players only there (3.010112ms)
+✔ preview is pure and awards once; incoming replacements do not inherit old actions (1.861978ms)
+✔ progress is separate, rest breaks own streak only, healing-only does not extend attacks (0.814538ms)
+✔ each of the12 repair definitions is achievable in at most two suitable plays (1.592046ms)
+{"matches":80,"minRounds":6,"maxRounds":12,"meanRounds":10.325,"knockouts":52,"healing":1599}
+✔ opening dice alone decides initiative, ties reroll, both begin with 18 HP (361.705898ms)
+✔ public observations copy both hands and repairs without private draws (1.453165ms)
+✔ wild, acceleration intermediate steps and card identities follow arithmetic rules (2.719007ms)
+✔ one confirmation auto-selects at most two goals, previews are pure and failures atomic (13.341403ms)
+✔ damage and healing apply once together, HP exceeds 18 and fresh repairs get no retroactive credit (7.962662ms)
+✔ zero HP ends immediately for either actor and turn order, with no reply or refill (20.247203ms)
+✔ round12 skips refills and compares remaining HP only after both actions (9.023937ms)
+✔ rest and both supply sources preserve cards; acceleration recycles trail midway (1.163914ms)
+✔ 80 full matches across all bot levels: legal actions, exact previews, bounded length and conserved HP/cards (21328.674431ms)
+✔ six-card trial deck has W3 A3 J2; warp uses reflection without arithmetic credit (5.009113ms)
+✔ legacy three-level, six-level and challenge saves retain unlocks in HP mode (3.825698ms)
+✔ invalid saved values are bounded and irrelevant fields never become HP (5.943703ms)
+✔ two losses offer support; only explicit acceptance lowers it; refusal clears this offer (8.618933ms)
+✔ derived progress replays completed games and consent chronologically, deduplicates, and ignores old support epochs (6.234765ms)
+✔ record replays opening, dice, hands, combat and outcome; active seed stays private (303.666191ms)
+✔ actual nine-level release records retain their original shield and full replay (24.639238ms)
+✔ profile validation caps future tuning and engine copies the selected parameters (3.257811ms)
+✔ offline writes survive retry and reload; completed flight is not reclassified as abandoned (150.259611ms)
+✔ upload acknowledgment cannot remove a newer pending snapshot (228.571286ms)
+✔ offline consent survives reload and uploads between the loss that offered it and the supported game (75.560377ms)
+✔ second-player compensation is fixed by actual grade, disclosed before rolling and symmetric for either player (42.187468ms)
+✔ draft offers three distinct shared choices; robot precommits; choice changes neither dice nor decks (337.747391ms)
+✔ initiative shield absorbs across hits once, never heals or regenerates, and breaking it has AI value (17.932912ms)
+✔ all modules award exactly once per action, obey their limits, and do not mutate previews (4.51164ms)
+✔ focus and roving require consecutive attacks; rests preserve only circuit collection (0.515727ms)
+✔ sectors only add one damage to an existing attack; repairs/bonuses never recursively create attacks (0.392488ms)
+✔ combined module/sector/repair previews settle atomically, including bonus-driven lethal damage (7.9463ms)
+✔ 36 mirrored full games preserve exact player symmetry across all modules, sectors and all AI policies (17983.022798ms)
+ℹ tests 52
+ℹ suites 0
+ℹ pass 52
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22619.204067

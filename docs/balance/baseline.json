@@ -1,0 +1,9 @@
+{
+  "baseline": true,
+  "seed": 98869,
+  "policy": "greedy",
+  "matches": 240,
+  "firstScoreRate": 0.6479166666666667,
+  "averageRounds": 8.766666666666667,
+  "knockouts": 230
+}

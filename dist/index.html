@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101925">
+  <meta name="description" content="星链算式：操控三条星链，触发攻击、争抢维修补给，与16级飞船对手展开明牌对决。">
+  <title>星链算式 · 星舰对战</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23101925'/%3E%3Cpath d='M32 9l6.8 14.1 15.5 2.2-11.2 10.9 2.6 15.4L32 44.3l-13.7 7.3 2.6-15.4L9.7 25.3l15.5-2.2z' fill='%23ffcf6f'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css?v=flight-records-2">
+  <script type="module" src="./app.mjs?v=flight-records-2"></script>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+  <div id="app"><div class="loading">星链算式 · 正在准备启航…</div></div>
+  <div id="announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <dialog id="modal" aria-labelledby="modal-title"></dialog>
+  <noscript>请开启浏览器的 JavaScript 来试玩星链算式。</noscript>
+</body>
+</html>

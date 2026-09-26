@@ -1,0 +1,865 @@
+{
+  "configId": "gradient-16-20260926",
+  "games": 13824,
+  "referenceAttention": [
+    8,
+    24
+  ],
+  "scenarioBanks": [
+    57108419,
+    2381707,
+    99174013
+  ],
+  "scenariosPerBank": 72,
+  "initiativePerScenario": [
+    0,
+    1
+  ],
+  "gamesPerReferenceAndLevel": 432,
+  "method": "Matched scenarios and initiative swaps. Reference score = win + 0.5 draw; not human win rates. Confidence intervals cluster the two initiative variants by seed; normal approximation.",
+  "curves": {
+    "8": {
+      "levels": [
+        {
+          "level": 1,
+          "games": 432,
+          "referenceWins": 402,
+          "draws": 6,
+          "referenceScorePct": 93.75,
+          "approx95ClusterCI": [
+            91.56,
+            95.94
+          ],
+          "referenceFirstScorePct": 94.91,
+          "referenceSecondScorePct": 92.59
+        },
+        {
+          "level": 2,
+          "games": 432,
+          "referenceWins": 368,
+          "draws": 6,
+          "referenceScorePct": 85.88,
+          "approx95ClusterCI": [
+            82.72,
+            89.04
+          ],
+          "referenceFirstScorePct": 86.34,
+          "referenceSecondScorePct": 85.42
+        },
+        {
+          "level": 3,
+          "games": 432,
+          "referenceWins": 322,
+          "draws": 10,
+          "referenceScorePct": 75.69,
+          "approx95ClusterCI": [
+            71.96,
+            79.43
+          ],
+          "referenceFirstScorePct": 80.32,
+          "referenceSecondScorePct": 71.06
+        },
+        {
+          "level": 4,
+          "games": 432,
+          "referenceWins": 296,
+          "draws": 13,
+          "referenceScorePct": 70.02,
+          "approx95ClusterCI": [
+            65.53,
+            74.52
+          ],
+          "referenceFirstScorePct": 74.07,
+          "referenceSecondScorePct": 65.97
+        },
+        {
+          "level": 5,
+          "games": 432,
+          "referenceWins": 288,
+          "draws": 3,
+          "referenceScorePct": 67.01,
+          "approx95ClusterCI": [
+            62.66,
+            71.37
+          ],
+          "referenceFirstScorePct": 66.67,
+          "referenceSecondScorePct": 67.36
+        },
+        {
+          "level": 6,
+          "games": 432,
+          "referenceWins": 248,
+          "draws": 11,
+          "referenceScorePct": 58.68,
+          "approx95ClusterCI": [
+            53.91,
+            63.46
+          ],
+          "referenceFirstScorePct": 59.03,
+          "referenceSecondScorePct": 58.33
+        },
+        {
+          "level": 7,
+          "games": 432,
+          "referenceWins": 225,
+          "draws": 11,
+          "referenceScorePct": 53.36,
+          "approx95ClusterCI": [
+            48.64,
+            58.08
+          ],
+          "referenceFirstScorePct": 52.55,
+          "referenceSecondScorePct": 54.17
+        },
+        {
+          "level": 8,
+          "games": 432,
+          "referenceWins": 201,
+          "draws": 9,
+          "referenceScorePct": 47.57,
+          "approx95ClusterCI": [
+            42.78,
+            52.35
+          ],
+          "referenceFirstScorePct": 45.83,
+          "referenceSecondScorePct": 49.31
+        },
+        {
+          "level": 9,
+          "games": 432,
+          "referenceWins": 174,
+          "draws": 7,
+          "referenceScorePct": 41.09,
+          "approx95ClusterCI": [
+            36.54,
+            45.63
+          ],
+          "referenceFirstScorePct": 38.43,
+          "referenceSecondScorePct": 43.75
+        },
+        {
+          "level": 10,
+          "games": 432,
+          "referenceWins": 151,
+          "draws": 5,
+          "referenceScorePct": 35.53,
+          "approx95ClusterCI": [
+            31.1,
+            39.97
+          ],
+          "referenceFirstScorePct": 35.19,
+          "referenceSecondScorePct": 35.88
+        },
+        {
+          "level": 11,
+          "games": 432,
+          "referenceWins": 138,
+          "draws": 8,
+          "referenceScorePct": 32.87,
+          "approx95ClusterCI": [
+            28.59,
+            37.15
+          ],
+          "referenceFirstScorePct": 34.26,
+          "referenceSecondScorePct": 31.48
+        },
+        {
+          "level": 12,
+          "games": 432,
+          "referenceWins": 128,
+          "draws": 2,
+          "referenceScorePct": 29.86,
+          "approx95ClusterCI": [
+            25.56,
+            34.16
+          ],
+          "referenceFirstScorePct": 31.48,
+          "referenceSecondScorePct": 28.24
+        },
+        {
+          "level": 13,
+          "games": 432,
+          "referenceWins": 85,
+          "draws": 5,
+          "referenceScorePct": 20.25,
+          "approx95ClusterCI": [
+            16.48,
+            24.03
+          ],
+          "referenceFirstScorePct": 18.75,
+          "referenceSecondScorePct": 21.76
+        },
+        {
+          "level": 14,
+          "games": 432,
+          "referenceWins": 53,
+          "draws": 2,
+          "referenceScorePct": 12.5,
+          "approx95ClusterCI": [
+            9.28,
+            15.72
+          ],
+          "referenceFirstScorePct": 11.81,
+          "referenceSecondScorePct": 13.19
+        },
+        {
+          "level": 15,
+          "games": 432,
+          "referenceWins": 56,
+          "draws": 1,
+          "referenceScorePct": 13.08,
+          "approx95ClusterCI": [
+            9.69,
+            16.47
+          ],
+          "referenceFirstScorePct": 10.88,
+          "referenceSecondScorePct": 15.28
+        },
+        {
+          "level": 16,
+          "games": 432,
+          "referenceWins": 30,
+          "draws": 1,
+          "referenceScorePct": 7.06,
+          "approx95ClusterCI": [
+            4.66,
+            9.46
+          ],
+          "referenceFirstScorePct": 5.56,
+          "referenceSecondScorePct": 8.56
+        }
+      ],
+      "adjacentDrops": [
+        {
+          "from": 1,
+          "to": 2,
+          "dropPP": 7.87,
+          "approx95ClusterCI": [
+            4.42,
+            11.32
+          ]
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "dropPP": 10.19,
+          "approx95ClusterCI": [
+            5.8,
+            14.57
+          ]
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "dropPP": 5.67,
+          "approx95ClusterCI": [
+            0.47,
+            10.88
+          ]
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "dropPP": 3.01,
+          "approx95ClusterCI": [
+            -1.57,
+            7.58
+          ]
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "dropPP": 8.33,
+          "approx95ClusterCI": [
+            3.17,
+            13.5
+          ]
+        },
+        {
+          "from": 6,
+          "to": 7,
+          "dropPP": 5.32,
+          "approx95ClusterCI": [
+            0.16,
+            10.49
+          ]
+        },
+        {
+          "from": 7,
+          "to": 8,
+          "dropPP": 5.79,
+          "approx95ClusterCI": [
+            0.11,
+            11.46
+          ]
+        },
+        {
+          "from": 8,
+          "to": 9,
+          "dropPP": 6.48,
+          "approx95ClusterCI": [
+            1.33,
+            11.63
+          ]
+        },
+        {
+          "from": 9,
+          "to": 10,
+          "dropPP": 5.56,
+          "approx95ClusterCI": [
+            -0.4,
+            11.51
+          ]
+        },
+        {
+          "from": 10,
+          "to": 11,
+          "dropPP": 2.66,
+          "approx95ClusterCI": [
+            -2.1,
+            7.42
+          ]
+        },
+        {
+          "from": 11,
+          "to": 12,
+          "dropPP": 3.01,
+          "approx95ClusterCI": [
+            -1.83,
+            7.85
+          ]
+        },
+        {
+          "from": 12,
+          "to": 13,
+          "dropPP": 9.61,
+          "approx95ClusterCI": [
+            4.63,
+            14.58
+          ]
+        },
+        {
+          "from": 13,
+          "to": 14,
+          "dropPP": 7.75,
+          "approx95ClusterCI": [
+            3.52,
+            11.99
+          ]
+        },
+        {
+          "from": 14,
+          "to": 15,
+          "dropPP": -0.58,
+          "approx95ClusterCI": [
+            -4.46,
+            3.3
+          ]
+        },
+        {
+          "from": 15,
+          "to": 16,
+          "dropPP": 6.02,
+          "approx95ClusterCI": [
+            2.07,
+            9.97
+          ]
+        }
+      ],
+      "maxDropPP": 10.19,
+      "largestReversalPP": 0.58,
+      "banks": {
+        "A": [
+          94.44,
+          87.85,
+          72.92,
+          73.26,
+          70.14,
+          63.89,
+          59.38,
+          48.26,
+          45.83,
+          35.42,
+          34.72,
+          34.38,
+          15.97,
+          11.81,
+          10.07,
+          6.94
+        ],
+        "B": [
+          92.71,
+          84.72,
+          74.31,
+          67.36,
+          64.24,
+          51.74,
+          47.57,
+          44.79,
+          42.36,
+          42.01,
+          28.82,
+          21.88,
+          25.69,
+          12.85,
+          15.28,
+          5.9
+        ],
+        "C": [
+          94.1,
+          85.07,
+          79.86,
+          69.44,
+          66.67,
+          60.42,
+          53.12,
+          49.65,
+          35.07,
+          29.17,
+          35.07,
+          33.33,
+          19.1,
+          12.85,
+          13.89,
+          8.33
+        ]
+      }
+    },
+    "24": {
+      "levels": [
+        {
+          "level": 1,
+          "games": 432,
+          "referenceWins": 432,
+          "draws": 0,
+          "referenceScorePct": 100.0,
+          "approx95ClusterCI": [
+            100.0,
+            100
+          ],
+          "referenceFirstScorePct": 100,
+          "referenceSecondScorePct": 100
+        },
+        {
+          "level": 2,
+          "games": 432,
+          "referenceWins": 428,
+          "draws": 0,
+          "referenceScorePct": 99.07,
+          "approx95ClusterCI": [
+            98.17,
+            99.98
+          ],
+          "referenceFirstScorePct": 99.54,
+          "referenceSecondScorePct": 98.61
+        },
+        {
+          "level": 3,
+          "games": 432,
+          "referenceWins": 424,
+          "draws": 0,
+          "referenceScorePct": 98.15,
+          "approx95ClusterCI": [
+            96.89,
+            99.41
+          ],
+          "referenceFirstScorePct": 100,
+          "referenceSecondScorePct": 96.3
+        },
+        {
+          "level": 4,
+          "games": 432,
+          "referenceWins": 418,
+          "draws": 0,
+          "referenceScorePct": 96.76,
+          "approx95ClusterCI": [
+            95.11,
+            98.4
+          ],
+          "referenceFirstScorePct": 99.54,
+          "referenceSecondScorePct": 93.98
+        },
+        {
+          "level": 5,
+          "games": 432,
+          "referenceWins": 426,
+          "draws": 0,
+          "referenceScorePct": 98.61,
+          "approx95ClusterCI": [
+            97.51,
+            99.71
+          ],
+          "referenceFirstScorePct": 100,
+          "referenceSecondScorePct": 97.22
+        },
+        {
+          "level": 6,
+          "games": 432,
+          "referenceWins": 420,
+          "draws": 0,
+          "referenceScorePct": 97.22,
+          "approx95ClusterCI": [
+            95.69,
+            98.75
+          ],
+          "referenceFirstScorePct": 100,
+          "referenceSecondScorePct": 94.44
+        },
+        {
+          "level": 7,
+          "games": 432,
+          "referenceWins": 406,
+          "draws": 0,
+          "referenceScorePct": 93.98,
+          "approx95ClusterCI": [
+            91.71,
+            96.25
+          ],
+          "referenceFirstScorePct": 95.83,
+          "referenceSecondScorePct": 92.13
+        },
+        {
+          "level": 8,
+          "games": 432,
+          "referenceWins": 398,
+          "draws": 0,
+          "referenceScorePct": 92.13,
+          "approx95ClusterCI": [
+            89.7,
+            94.56
+          ],
+          "referenceFirstScorePct": 94.91,
+          "referenceSecondScorePct": 89.35
+        },
+        {
+          "level": 9,
+          "games": 432,
+          "referenceWins": 387,
+          "draws": 0,
+          "referenceScorePct": 89.58,
+          "approx95ClusterCI": [
+            86.79,
+            92.37
+          ],
+          "referenceFirstScorePct": 90.28,
+          "referenceSecondScorePct": 88.89
+        },
+        {
+          "level": 10,
+          "games": 432,
+          "referenceWins": 387,
+          "draws": 0,
+          "referenceScorePct": 89.58,
+          "approx95ClusterCI": [
+            86.72,
+            92.45
+          ],
+          "referenceFirstScorePct": 92.59,
+          "referenceSecondScorePct": 86.57
+        },
+        {
+          "level": 11,
+          "games": 432,
+          "referenceWins": 375,
+          "draws": 0,
+          "referenceScorePct": 86.81,
+          "approx95ClusterCI": [
+            83.53,
+            90.08
+          ],
+          "referenceFirstScorePct": 91.67,
+          "referenceSecondScorePct": 81.94
+        },
+        {
+          "level": 12,
+          "games": 432,
+          "referenceWins": 376,
+          "draws": 1,
+          "referenceScorePct": 87.15,
+          "approx95ClusterCI": [
+            83.87,
+            90.43
+          ],
+          "referenceFirstScorePct": 91.67,
+          "referenceSecondScorePct": 82.64
+        },
+        {
+          "level": 13,
+          "games": 432,
+          "referenceWins": 333,
+          "draws": 1,
+          "referenceScorePct": 77.2,
+          "approx95ClusterCI": [
+            73.36,
+            81.04
+          ],
+          "referenceFirstScorePct": 76.62,
+          "referenceSecondScorePct": 77.78
+        },
+        {
+          "level": 14,
+          "games": 432,
+          "referenceWins": 310,
+          "draws": 0,
+          "referenceScorePct": 71.76,
+          "approx95ClusterCI": [
+            67.47,
+            76.05
+          ],
+          "referenceFirstScorePct": 72.69,
+          "referenceSecondScorePct": 70.83
+        },
+        {
+          "level": 15,
+          "games": 432,
+          "referenceWins": 287,
+          "draws": 0,
+          "referenceScorePct": 66.44,
+          "approx95ClusterCI": [
+            62.03,
+            70.84
+          ],
+          "referenceFirstScorePct": 68.98,
+          "referenceSecondScorePct": 63.89
+        },
+        {
+          "level": 16,
+          "games": 432,
+          "referenceWins": 245,
+          "draws": 1,
+          "referenceScorePct": 56.83,
+          "approx95ClusterCI": [
+            52.44,
+            61.22
+          ],
+          "referenceFirstScorePct": 56.71,
+          "referenceSecondScorePct": 56.94
+        }
+      ],
+      "adjacentDrops": [
+        {
+          "from": 1,
+          "to": 2,
+          "dropPP": 0.93,
+          "approx95ClusterCI": [
+            0.02,
+            1.83
+          ]
+        },
+        {
+          "from": 2,
+          "to": 3,
+          "dropPP": 0.93,
+          "approx95ClusterCI": [
+            -0.51,
+            2.36
+          ]
+        },
+        {
+          "from": 3,
+          "to": 4,
+          "dropPP": 1.39,
+          "approx95ClusterCI": [
+            -0.42,
+            3.2
+          ]
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "dropPP": -1.85,
+          "approx95ClusterCI": [
+            -3.41,
+            -0.3
+          ]
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "dropPP": 1.39,
+          "approx95ClusterCI": [
+            -0.04,
+            2.81
+          ]
+        },
+        {
+          "from": 6,
+          "to": 7,
+          "dropPP": 3.24,
+          "approx95ClusterCI": [
+            0.7,
+            5.78
+          ]
+        },
+        {
+          "from": 7,
+          "to": 8,
+          "dropPP": 1.85,
+          "approx95ClusterCI": [
+            -0.63,
+            4.33
+          ]
+        },
+        {
+          "from": 8,
+          "to": 9,
+          "dropPP": 2.55,
+          "approx95ClusterCI": [
+            -0.42,
+            5.51
+          ]
+        },
+        {
+          "from": 9,
+          "to": 10,
+          "dropPP": 0.0,
+          "approx95ClusterCI": [
+            -3.8,
+            3.8
+          ]
+        },
+        {
+          "from": 10,
+          "to": 11,
+          "dropPP": 2.78,
+          "approx95ClusterCI": [
+            0.15,
+            5.4
+          ]
+        },
+        {
+          "from": 11,
+          "to": 12,
+          "dropPP": -0.35,
+          "approx95ClusterCI": [
+            -3.34,
+            2.64
+          ]
+        },
+        {
+          "from": 12,
+          "to": 13,
+          "dropPP": 9.95,
+          "approx95ClusterCI": [
+            5.74,
+            14.17
+          ]
+        },
+        {
+          "from": 13,
+          "to": 14,
+          "dropPP": 5.44,
+          "approx95ClusterCI": [
+            0.94,
+            9.93
+          ]
+        },
+        {
+          "from": 14,
+          "to": 15,
+          "dropPP": 5.32,
+          "approx95ClusterCI": [
+            1.14,
+            9.51
+          ]
+        },
+        {
+          "from": 15,
+          "to": 16,
+          "dropPP": 9.61,
+          "approx95ClusterCI": [
+            4.52,
+            14.7
+          ]
+        }
+      ],
+      "maxDropPP": 9.95,
+      "largestReversalPP": 1.85,
+      "banks": {
+        "A": [
+          100,
+          99.31,
+          99.31,
+          95.83,
+          97.92,
+          95.83,
+          95.14,
+          90.97,
+          90.97,
+          89.58,
+          87.5,
+          89.58,
+          75.69,
+          70.14,
+          60.42,
+          57.64
+        ],
+        "B": [
+          100,
+          97.92,
+          97.92,
+          96.53,
+          97.92,
+          96.53,
+          93.06,
+          91.67,
+          85.42,
+          89.58,
+          87.5,
+          84.38,
+          73.61,
+          70.14,
+          64.58,
+          55.56
+        ],
+        "C": [
+          100,
+          100,
+          97.22,
+          97.92,
+          100,
+          99.31,
+          93.75,
+          93.75,
+          92.36,
+          89.58,
+          85.42,
+          87.5,
+          82.29,
+          75.0,
+          74.31,
+          57.29
+        ]
+      }
+    }
+  },
+  "checks": {
+    "previewSettlementComparisons": 231582,
+    "recapComparisons": 27648,
+    "fullGameInvariants": 13824,
+    "featureCardUses": {
+      "W": 26556,
+      "A": 24732,
+      "J": 9057
+    },
+    "maxRounds": 12
+  },
+  "hashes": {
+    "engine.mjs": "901b797930e0e6c964eb72797c7ec9b4cb6ff9b262d997a5bbe7a0916cb8f4e2",
+    "difficulty.mjs": "3743272fb8adae8d4b6037a5b14016475916371826c0cbc0c66e5f733b85b83c",
+    "tactics.mjs": "77813aa7df30732672f0f72c524f3f0bd726fed73f3c9c21dc97fc9d2ce7e363",
+    "challenges.mjs": "499e83f444aac53895a5d2d9ca88df14d4412f211f51a404d1dab8f1c5b72bfa",
+    "advice.mjs": "4eb38f296bf96ffdfb11ceff2143aa45345e3f025d301b285a3bf2f335e3c084"
+  },
+  "initiativeCompensation": {
+    "levels1To6": 1,
+    "levels7To12": 2,
+    "levels13To16": 3,
+    "allClosedV1Records": 3
+  },
+  "validationNotes": [
+    "Three separate matched scenario banks; compensation selected in independent mirror trials.",
+    "Reran levels1-12 on all three banks after compensation; reused unchanged levels13-16 with3shield.",
+    "Tiny reversals can arise from sampling noise and policy interactions; no human win-rate claim."
+  ]
+}

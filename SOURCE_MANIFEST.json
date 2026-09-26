@@ -1,0 +1,429 @@
+{
+  "upstreamCommit": "83a5badcb2121204c8bcf9bddcf9441be6b5f646",
+  "gameplayUnchanged": true,
+  "excluded": [
+    "Git history",
+    "platform hosting identity",
+    "dependencies",
+    "build output",
+    "real player data",
+    "credentials"
+  ],
+  "files": [
+    {
+      "path": ".github/CODEOWNERS",
+      "bytes": 11,
+      "sha256": "ffc1bbb286b7ea19e1aef7ada261aaa3c973dffe08788d58b65eb8f9e2fa6b2e"
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "bytes": 391,
+      "sha256": "4a2dc4331fb8021ba4f9750fcfed9674de540f50b23c37b9ec367d6cf4981780"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 437,
+      "sha256": "fee713fd34160cbfc067d32be5671a6f2024bb4b7b1a5181d361d7c930fed249"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 337,
+      "sha256": "ac231bc28db9fd59e6abfd3e6270e845df70c47ec79a7bb7d2b1a2b3944081c0"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 828,
+      "sha256": "3b04bb6eaf8210c8e71d0bc6e51ddc5edbcf504b324dcd18f16848be58b31a61"
+    },
+    {
+      "path": "CODEX_DESKTOP_TASK.md",
+      "bytes": 7265,
+      "sha256": "2ae2b11ebcd4a3249d422e2b77835eb2200d3195a6b4859fc84b00328ed5efb8"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3030,
+      "sha256": "a4f1ffa93612aa86e87002f401c1e32f71256144b1b6189c875d4ee4f67f3900"
+    },
+    {
+      "path": "START_HERE.md",
+      "bytes": 1972,
+      "sha256": "871c1b194847d70ee71360b5437513af29d82cb00eb065490d6fd3cf21f08308"
+    },
+    {
+      "path": "db/schema.ts",
+      "bytes": 1260,
+      "sha256": "e5d61c29bf6cc91bfc12dc3f1811b928bd07ccd34e19a25cedb6c14aa5866d15"
+    },
+    {
+      "path": "deployment-status.json",
+      "bytes": 549,
+      "sha256": "4b0815a61eba509dcd48622ac6c506679c273c95232815b0b04093d737e9cbef"
+    },
+    {
+      "path": "dist/advice.mjs",
+      "bytes": 3655,
+      "sha256": "4eb38f296bf96ffdfb11ceff2143aa45345e3f025d301b285a3bf2f335e3c084"
+    },
+    {
+      "path": "dist/app.mjs",
+      "bytes": 56023,
+      "sha256": "8131cb23d9be9298f104b068a72dcb8228964b942db56d04410dfcb1420fed61"
+    },
+    {
+      "path": "dist/assets/enemy-0.png",
+      "bytes": 417069,
+      "sha256": "3f43eecf9f538bc40ab70a38573e3cc5b643af55254f783bf786b38c0b6b836f"
+    },
+    {
+      "path": "dist/assets/enemy-1.png",
+      "bytes": 344811,
+      "sha256": "ba0a060724c497816dd9bf5426714be51e39f93cf51e8b026ed17eae6387de3a"
+    },
+    {
+      "path": "dist/assets/enemy-2.png",
+      "bytes": 464151,
+      "sha256": "dea18efd1eadd3fde4af9907d354a64953129bf950da574a33cfb4afa325745a"
+    },
+    {
+      "path": "dist/assets/enemy-3.png",
+      "bytes": 544654,
+      "sha256": "a2ac7bc5b92753af41fce972cbd79baa6087766e86660a1ca065b3c6b49217de"
+    },
+    {
+      "path": "dist/assets/enemy-4.png",
+      "bytes": 434349,
+      "sha256": "11cb493edf177a25ee822cf6ec872abc827666c1d41c4a1151880a5d61d551b8"
+    },
+    {
+      "path": "dist/assets/enemy-5.png",
+      "bytes": 438126,
+      "sha256": "223818fcf4bcc6e558cff89cde5dbe95c8316fe035e1c6822071134315fb57b1"
+    },
+    {
+      "path": "dist/assets/player.png",
+      "bytes": 520623,
+      "sha256": "2c7e6fc3a39c0a67735f888f7f9889b0a7a3f1f19869227f3d6a29e9fff1e6bd"
+    },
+    {
+      "path": "dist/assets/space.jpg",
+      "bytes": 212464,
+      "sha256": "7575a5bd4d9dd6420b537dcb2fb8d8f8053b175a3cf00b833d81d0605e03b284"
+    },
+    {
+      "path": "dist/challenges.mjs",
+      "bytes": 4553,
+      "sha256": "499e83f444aac53895a5d2d9ca88df14d4412f211f51a404d1dab8f1c5b72bfa"
+    },
+    {
+      "path": "dist/difficulty.mjs",
+      "bytes": 6731,
+      "sha256": "3743272fb8adae8d4b6037a5b14016475916371826c0cbc0c66e5f733b85b83c"
+    },
+    {
+      "path": "dist/engine.mjs",
+      "bytes": 29917,
+      "sha256": "901b797930e0e6c964eb72797c7ec9b4cb6ff9b262d997a5bbe7a0916cb8f4e2"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 1283,
+      "sha256": "5d5bb4c7d6c0a8135e589f72a4492af0bc46bd7713813790870d7b49a7b55356"
+    },
+    {
+      "path": "dist/progress.mjs",
+      "bytes": 1779,
+      "sha256": "f3b30a7533633f7c0be67b759b8f55301e434b8634201bcfda88c7c24f3fcf6e"
+    },
+    {
+      "path": "dist/record-client.mjs",
+      "bytes": 4879,
+      "sha256": "a40b61faed625c96dc56ecdabc6272452a9aea5b4036f9e3a20aa36c3a4cec92"
+    },
+    {
+      "path": "dist/records.mjs",
+      "bytes": 4708,
+      "sha256": "e9918c7722431cda4d9ff4329856ca30016eb505b75cbfb7236350265c6ab6ca"
+    },
+    {
+      "path": "dist/style.css",
+      "bytes": 33673,
+      "sha256": "f219cbdcf91f9f4aff7b296de685d95140e5cb91930c9521cc6b7bac8fa5c5fc"
+    },
+    {
+      "path": "dist/tactics.mjs",
+      "bytes": 3120,
+      "sha256": "77813aa7df30732672f0f72c524f3f0bd726fed73f3c9c21dc97fc9d2ce7e363"
+    },
+    {
+      "path": "docs/ACCEPTANCE.md",
+      "bytes": 1812,
+      "sha256": "6a88e4d9150102ad97a8c29c1c6f2d6c91b6b72309e7bec166ae49caec02e86d"
+    },
+    {
+      "path": "docs/AI_HANDOFF.md",
+      "bytes": 1803,
+      "sha256": "42e8093a154b67de4649d13a019949e5e66dfd6c75da9c9be07e51987620cc0f"
+    },
+    {
+      "path": "docs/BALANCE.md",
+      "bytes": 4939,
+      "sha256": "5e996cbca4dca9c01d3e1a3d5cfe4f71cb1ab2653986d37c36ed7be572bc1e4a"
+    },
+    {
+      "path": "docs/DEPLOYMENT_HANDOFF.md",
+      "bytes": 2740,
+      "sha256": "40d0a2a4ec0e6016833dd675592da49bdd5be73676c197e05cd572e86fb306e1"
+    },
+    {
+      "path": "docs/NINE_LEVELS.md",
+      "bytes": 2878,
+      "sha256": "788fc78ae51417f1de24338233680d4ff31c4d51665b9a3e659997b194c862c5"
+    },
+    {
+      "path": "docs/RECORDS_API.md",
+      "bytes": 7151,
+      "sha256": "1500f921edd2b34f0bde6418fc7a224981a58d2ac0fd49c90532d97ead978c7b"
+    },
+    {
+      "path": "docs/SIXTEEN_LEVELS.md",
+      "bytes": 6065,
+      "sha256": "043f258e1164717bb120cc0790a96cb16ac13bf9bf1a8445a0297e6c935e03e1"
+    },
+    {
+      "path": "docs/TECHNICAL_BASELINE.md",
+      "bytes": 9562,
+      "sha256": "eb2b572fe7032eedcab05cf708689ef9b49e7b4db67ee9329e27be5c86db0d7e"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "bytes": 1595,
+      "sha256": "1cf73d5f426d257f2b98d1658bd8633cc7ffe540c95c550f25b808295ed1635c"
+    },
+    {
+      "path": "docs/balance/baseline.json",
+      "bytes": 178,
+      "sha256": "df8539fef58578692f795c19b63ca7897e281331797d19c4ea8db537ec5dd95f"
+    },
+    {
+      "path": "docs/balance/nine-release-games.jsonl.gz",
+      "bytes": 91410,
+      "sha256": "ba896d45c3f91ab1d8078d4f32c414ed9982037af2aa4e7a90efdf35d6e9b02b"
+    },
+    {
+      "path": "docs/balance/nine-release-summary.json",
+      "bytes": 9944,
+      "sha256": "bec067a31829c32eef04dd357258399c1d01af5eeee3ff686fd2903a2026feb2"
+    },
+    {
+      "path": "docs/balance/regression-summary.json",
+      "bytes": 624,
+      "sha256": "7f121d93d139080f7d655077772c7d3927ec3e7f94a568a2b1121e5d4bdeca0b"
+    },
+    {
+      "path": "docs/balance/release-greedy.json",
+      "bytes": 3275,
+      "sha256": "ca5cf530f91302e8b67746727a6cb7689d95cec275c40c9f3e924bae0b82888b"
+    },
+    {
+      "path": "docs/balance/release-sampled.json",
+      "bytes": 3278,
+      "sha256": "c7da9f9d664c153659f924ac62acf2424fa94fa3e11b4dc9d80aa0cfb7b66cbf"
+    },
+    {
+      "path": "docs/balance/robot-levels.json",
+      "bytes": 1544,
+      "sha256": "ae047448f07bb2ef3e9ac4deafe7dfaae6306fd8af7d5ff418890d631a58ef32"
+    },
+    {
+      "path": "docs/balance/shield-2.json",
+      "bytes": 3215,
+      "sha256": "f4fde825c99f1254ef17811c84216a50d622acd4495eacc6cf89775335427ff9"
+    },
+    {
+      "path": "docs/balance/shield-3.json",
+      "bytes": 3242,
+      "sha256": "eb0d98515d41ae74b4eca09932f23ad0918cb6807fa1b8731ca15268ac0f5782"
+    },
+    {
+      "path": "docs/balance/shield-comparison-summary.json",
+      "bytes": 804,
+      "sha256": "34cae0861347aaa0390e99bf01524c60d30866305316382561242fdd545ebc79"
+    },
+    {
+      "path": "docs/balance/sixteen-fixed-shield-games.jsonl.gz",
+      "bytes": 2360998,
+      "sha256": "26f567121bcea77bc31c9f56a10ceb4748141f52291737bdfc8a7a96c317c256"
+    },
+    {
+      "path": "docs/balance/sixteen-fixed-shield-summary.json",
+      "bytes": 18791,
+      "sha256": "1882bd6f0e60242f4a3c110a5e206abd60559b85eeca9806717ee27def54ec35"
+    },
+    {
+      "path": "docs/balance/sixteen-mirror-games.jsonl.gz",
+      "bytes": 882372,
+      "sha256": "808307486e4e317c44693f0bf447dfb437ea770ad5ad128f5060d6e183b2616a"
+    },
+    {
+      "path": "docs/balance/sixteen-mirror-summary.json",
+      "bytes": 2796,
+      "sha256": "94e305a2b9f4c6acccaffb9428b054ebce64b32ad4947edc38ed5fb963acaedf"
+    },
+    {
+      "path": "docs/balance/sixteen-release-games.jsonl.gz",
+      "bytes": 2323226,
+      "sha256": "3eb9068d25154881c18e7f5cfcdfdc5878159ef2a6d06d47421730480f6765dd"
+    },
+    {
+      "path": "docs/balance/sixteen-release-summary.json",
+      "bytes": 19264,
+      "sha256": "386a50874c3565d80da8c0c5758d87dbd6d4197c543b128154dc0b70243a5423"
+    },
+    {
+      "path": "docs/validation/baseline-tests.log",
+      "bytes": 6067,
+      "sha256": "ff67c617facb69e2ef1d182e484d55ef2a0a940b867877ca624be4c98424a0ff"
+    },
+    {
+      "path": "drizzle/0000_kind_nick_fury.sql",
+      "bytes": 644,
+      "sha256": "4e733e95ad4a66f4f31e1a746152e0055a4ed8238615ea60aba01929608e125f"
+    },
+    {
+      "path": "drizzle/0001_worthless_mandrill.sql",
+      "bytes": 354,
+      "sha256": "05c48dfab83cebec5ac9e2c3d4654cb38198cb8cea696d0d3baeb61c632b903a"
+    },
+    {
+      "path": "drizzle/meta/0000_snapshot.json",
+      "bytes": 3871,
+      "sha256": "6b15e606e033c3a24cf9a069025a28bb4f08aff7945345b1896498745433796b"
+    },
+    {
+      "path": "drizzle/meta/0001_snapshot.json",
+      "bytes": 5734,
+      "sha256": "1239e6935b2642f218a00f34e660ba1c8201d9873402360bee968c3a66772dee"
+    },
+    {
+      "path": "drizzle/meta/_journal.json",
+      "bytes": 350,
+      "sha256": "48ede27fc1fd7c7ac307f8b9cc0aacaebdba276353ae23235ac8dec58426d637"
+    },
+    {
+      "path": "drizzle.config.ts",
+      "bytes": 131,
+      "sha256": "09e793081a6d4e69c9d59cdab4941a17293048c4b2db8963d7a0ca4fccc8ede0"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 50685,
+      "sha256": "cf0feec6861ddd265d190880b3040d8fa10335c2381feeaa076c8ed0fde34ac5"
+    },
+    {
+      "path": "package.json",
+      "bytes": 432,
+      "sha256": "23c92c886e507f181f348f90a795b3fa5d37867c2f0694a6bf77342b75c0285c"
+    },
+    {
+      "path": "scripts/build.mjs",
+      "bytes": 1338,
+      "sha256": "3b1ae231d6b0afe78c67e731b350494945ee72b72e6d67c34918d827bfdfdfff"
+    },
+    {
+      "path": "scripts/dev.mjs",
+      "bytes": 4296,
+      "sha256": "64b10d1eb6d7d226dc60b8ae5a6a45377111f378e8a7b9a812984ca119eb3c73"
+    },
+    {
+      "path": "server/worker.mjs",
+      "bytes": 11845,
+      "sha256": "9dd2fea58fc8213d1b842619e8ae8060287e42d41dee95d3cea18119471111ae"
+    },
+    {
+      "path": "tests/advice.test.mjs",
+      "bytes": 4482,
+      "sha256": "ca97e7028180cad9a5606518bb96c7fd103556070588ec41ef52510b9fb30cb8"
+    },
+    {
+      "path": "tests/api.test.mjs",
+      "bytes": 8875,
+      "sha256": "fcadd2b88cb82a2c526376983152d78b5277e5bab1606be74214a5b4ab03bb80"
+    },
+    {
+      "path": "tests/app.test.mjs",
+      "bytes": 15253,
+      "sha256": "702ead794b4bd34b8d61bbc5cf343affc26e81c46191c48632a92d0a362ed819"
+    },
+    {
+      "path": "tests/balance.mjs",
+      "bytes": 2465,
+      "sha256": "40ccdfccd8a4d2cd56cf9a3241795e2712033233ef52f7e409c538a36c15e742"
+    },
+    {
+      "path": "tests/challenges.test.mjs",
+      "bytes": 3492,
+      "sha256": "320a860a16b2135d8e56c9071184dd97bae34535e39ced596ed7604564887628"
+    },
+    {
+      "path": "tests/engine.test.mjs",
+      "bytes": 10508,
+      "sha256": "579d8b7b7464946bf8e02c46d14925166b89bca73c9fb0ea10e3e7deee6d0e83"
+    },
+    {
+      "path": "tests/fairness.mjs",
+      "bytes": 5616,
+      "sha256": "daf2f8af1c228fbc4e92952a84c687df3ed034884e904a7cf6f815b64604f2ec"
+    },
+    {
+      "path": "tests/fixtures/nine-legacy-flights.json",
+      "bytes": 56052,
+      "sha256": "ec2134c2fc282a29440bd9063355fb2aaa5e93924d8bc4c0c610cb813f64d2e8"
+    },
+    {
+      "path": "tests/ladder-checks.mjs",
+      "bytes": 1505,
+      "sha256": "841433aa2011c42ecf2e56f619f7a6ddb46c04a9e60e84bee10358bedf4781f9"
+    },
+    {
+      "path": "tests/ladder-reference.mjs",
+      "bytes": 2334,
+      "sha256": "0599aed4afd4bbbb27ae99c07c6aa537dfe36450bea6dbc6d18d691e4f27c2de"
+    },
+    {
+      "path": "tests/ladder.mjs",
+      "bytes": 5673,
+      "sha256": "18ca6e2a6fefc816d7a32f9e527fd8c56b8e8f3780ff53324c9010d34ccca811"
+    },
+    {
+      "path": "tests/local-server.test.mjs",
+      "bytes": 2940,
+      "sha256": "d845bd4aaa519d5e449d91261c0ac5ba0b3479b31ef85587f40c1510ac2a2b39"
+    },
+    {
+      "path": "tests/progress.test.mjs",
+      "bytes": 1254,
+      "sha256": "bb36b2584b74103b400f0909ca67bfb4a7b03c6d75fc7fc735a90ebc1ca1b544"
+    },
+    {
+      "path": "tests/record-fixture.mjs",
+      "bytes": 1740,
+      "sha256": "6f91e91f00d5bb3ff32c4065291a2941f2f517e9e6c31c15515893db8c488da5"
+    },
+    {
+      "path": "tests/records.test.mjs",
+      "bytes": 7596,
+      "sha256": "e033a2e7a1bc88604a4a11a5bd725bbbb7a0dc98fbcd5c08bc90649c0d6e1f6d"
+    },
+    {
+      "path": "tests/summarize-ladder.mjs",
+      "bytes": 2111,
+      "sha256": "4e9c4daf83dc8986aa9e0173a2062f59a54ff8908083fcaf079b52036bd9aa9a"
+    },
+    {
+      "path": "tests/tactics.test.mjs",
+      "bytes": 10134,
+      "sha256": "8eb08d3edbd4aa674529b44afad403aa066c74feade6bd243ee540b51f9abdd9"
+    }
+  ]
+}

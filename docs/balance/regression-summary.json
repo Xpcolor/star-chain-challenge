@@ -1,0 +1,18 @@
+{
+  "rulesVersion": "flight-records-2",
+  "configId": "gradient-16-20260926",
+  "tests": 52,
+  "passed": 52,
+  "failed": 0,
+  "completedAt": "2026-09-25T20:13:35.765707+00:00",
+  "checks": [
+    "80 complete engine games across all16 profiles",
+    "36 fully mirrored player-state pairs",
+    "real support accept/decline across four losses",
+    "durable choices, offline reload ordering and duplicate acknowledgment",
+    "real v1 source fixtures replay with original3shield",
+    "actual missed finisher proved by replay",
+    "owner isolation, concurrent choices and immutable records"
+  ],
+  "visualBrowserQA": false
+}
