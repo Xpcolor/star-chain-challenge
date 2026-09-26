@@ -37,7 +37,15 @@ if(process.env.DEPLOY_ARTIFACT){
 const release={version:config.vars.RELEASE_VERSION,commit:sha,environment:pr?'preview':'production',pr:pr||null};
 await writeFile('dist/client/version.mjs',`export const RELEASE=Object.freeze(${JSON.stringify(release)});\n`);
 Object.assign(config,{name,main:resolve('dist/server/index.js'),build:undefined,assets:{...config.assets,directory:resolve('dist/client')},d1_databases:[{...database,migrations_dir:resolve(database.migrations_dir||'drizzle')}],vars:{...config.vars,ENVIRONMENT:release.environment,GIT_COMMIT:sha,PR_NUMBER:pr}});
-if(pr&&process.env.PREVIEW_ACCESS_AUD)config.vars.ACCESS_AUD=process.env.PREVIEW_ACCESS_AUD;
+if(pr){
+  if(process.env.PREVIEW_ACCESS_AUD){
+    config.vars.ACCESS_AUD=process.env.PREVIEW_ACCESS_AUD;
+    if(process.env.PREVIEW_ACCESS_ISSUER)config.vars.ACCESS_ISSUER=process.env.PREVIEW_ACCESS_ISSUER;
+  }else{
+    delete config.vars.ACCESS_AUD;
+    delete config.vars.ACCESS_ISSUER;
+  }
+}
 if(!config.vars.ACCESS_ISSUER||!config.vars.ACCESS_AUD)console.warn('Access configuration pending: record API remains locked.');
 await mkdir('.deployment',{recursive:true});await writeFile('.deployment/wrangler.json',JSON.stringify(config,null,2));
 console.log(cli(['d1','migrations','apply',database.database_name,'--remote','--config','.deployment/wrangler.json']));

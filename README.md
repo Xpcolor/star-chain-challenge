@@ -6,16 +6,17 @@
 
 | 项目 | 当前状态 |
 | --- | --- |
-| 当前已发布游戏 | https://xinglian-challenge.xutaoping.chatgpt.site |
-| 拟建 GitHub 仓库 | `Xpcolor/star-chain-challenge`；本交接包生成时尚未创建 |
-| 独立正式游戏网址 | 待桌面 Codex 部署后填写；原网址尚未完成迁移 |
-| 当前记录入口 | 游戏右上角「记录与难度」，支持导出、重试同步 |
-| 独立记录入口 / PR 预览 | 待部署实现与验收 |
+| 原站点 | https://xinglian-challenge.xutaoping.chatgpt.site |
+| GitHub 仓库 | https://github.com/Xpcolor/star-chain-challenge （公开，仅 Xpcolor 可写） |
+| 独立正式游戏 | https://star-chain-challenge.star-chain-challenge.workers.dev |
+| 正式版本 | `1.0.0`，提交 `401312ef33ddae3016ed0c183994313c527dbce4` |
+| 记录登录 | https://star-chain-challenge.star-chain-challenge.workers.dev/login ，当前只有 Cloudflare 账号登录；邮箱验证码尚未启用 |
+| 已合并预览 | PR #2：https://star-chain-pr-2.star-chain-challenge.workers.dev |
 | 稳定源码基线 | `83a5badcb2121204c8bcf9bddcf9441be6b5f646` |
 
-**先读 [START_HERE.md](START_HERE.md)，再将 [CODEX_DESKTOP_TASK.md](CODEX_DESKTOP_TASK.md) 交给本机 Codex。**
+2026-09-26 已核对：正式页、样式、脚本和飞船图片返回 HTTPS 200；`/api/version` 与 `main` 一致；`/api/profile` 在未登录时返回 401。主分支禁止强推和删除，要求 `verify` 检查和 PR，审批人数为 0。GitHub Actions 的正式发布作业目前会跳过，因为还没有 `CLOUDFLARE_CI_ENABLED` 和部署 Token。旧站记录尚未迁移。
 
-本包包含完整游戏源码、全部飞船素材、历史平衡报告、自动测试，以及 Windows 可用的本地开发入口。云端账号验证未完成，所以本包是本地核验的交接包，不是已经部署好的独立云服务。游戏规则和数值保持稳定基线，未加入尚未批准的实验玩法。
+游戏规则和数值保持稳定基线，未加入尚未批准的实验玩法。
 
 ## 本地启动
 
@@ -47,7 +48,7 @@ npm run build
 | `scripts/build.mjs` | 打包浏览器文件与 Worker，独立部署配置尚需续接 |
 | `tests/` | 规则、界面状态、记录、API 和模拟测试 |
 | `docs/` | 规则、接口、历史报告与部署交接说明 |
-| `.github/` | CI、CODEOWNERS、PR 模板；远端分支保护仍须实际设置 |
+| `.github/` | CI、CODEOWNERS、PR 模板；主分支保护已在远端启用 |
 
 ## 交接说明
 
