@@ -7,6 +7,10 @@
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
   "preview_urls": false,
+  "routes": [
+    {"pattern": "novaw.net", "custom_domain": true},
+    {"pattern": "www.novaw.net", "custom_domain": true}
+  ],
   "assets": {"directory": "dist/client", "binding": "ASSETS", "run_worker_first": ["/api/*", "/login"]},
   "observability": {"enabled": true, "head_sampling_rate": 0.1},
   "vars": {"ENVIRONMENT": "production", "RELEASE_VERSION": "1.0.0", "ACCESS_ISSUER": "https://red-wave-aa94.cloudflareaccess.com", "ACCESS_AUD": "c744221ddb4ea1af348dc07f487f56b4cfc284a04acd94f23fc824c9593532aa"},

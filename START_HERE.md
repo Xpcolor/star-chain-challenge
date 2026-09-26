@@ -13,7 +13,7 @@
 2026-09-26 续接结果：公开仓库、主分支保护和正式游戏网址已经存在，详见 README 与 deployment-status.json。记录登录使用 Cloudflare 账号，Worker 已写入对应的 Access 身份配置。邮箱验证码尚未启用，旧站真实记录也还没迁移。
 
 原站点：https://xinglian-challenge.xutaoping.chatgpt.site
-正式站点：https://star-chain-challenge.star-chain-challenge.workers.dev
+正式站点：https://novaw.net
 
 ## 为什么交给桌面端
 
