@@ -1,0 +1,28 @@
+name: Preview cleanup
+on:
+  pull_request_target:
+    types: [closed]
+permissions:
+  contents: read
+concurrency:
+  group: preview-${{ github.event.pull_request.head.ref }}
+  cancel-in-progress: false
+jobs:
+  cleanup:
+    if: vars.CLOUDFLARE_CI_ENABLED == 'true' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      # Deliberately checkout only trusted main, never the PR head.
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci
+      - run: node scripts/deploy.mjs --cleanup
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GIT_COMMIT: ${{ github.event.pull_request.head.sha }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

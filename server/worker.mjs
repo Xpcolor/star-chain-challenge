@@ -2,6 +2,7 @@ import {buildAdvice} from '../dist/advice.mjs';
 import {BOT_PROFILES,CONFIG_ID,RULES_VERSION,LEVEL_COUNT,compatibleRules,validateProfiles,deriveProgress} from '../dist/difficulty.mjs';
 import {normalizeProgress} from '../dist/progress.mjs';
 import {replayRecord,outcome,publicRecord} from '../dist/records.mjs';
+import {authenticatedOwner} from './auth.mjs';
 
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json; charset=utf-8','cache-control':'private, no-store','x-content-type-options':'nosniff'}});
 const defaults=()=>({base:normalizeProgress(null),imported:false,supportVersion:2,supportEnabled:true,supportEpochs:Array(LEVEL_COUNT).fill(0),config:{id:CONFIG_ID,profiles:structuredClone(BOT_PROFILES)}});
@@ -47,15 +48,35 @@ function validateRecord(r){
 }
 async function body(request){
   if(Number(request.headers.get('content-length')||0)>524288)fail('记录过大',413);
-  const text=await request.text();if(new TextEncoder().encode(text).length>524288)fail('记录过大',413);
+  const reader=request.body?.getReader();let size=0;const chunks=[];
+  if(reader)for(;;){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>524288){await reader.cancel();fail('记录过大',413);}chunks.push(value);}
+  const bytes=new Uint8Array(size);let offset=0;for(const chunk of chunks){bytes.set(chunk,offset);offset+=chunk.length;}const text=new TextDecoder().decode(bytes);
   try{const value=JSON.parse(text);if(!value||typeof value!=='object'||Array.isArray(value))fail('JSON格式不正确');return value;}catch{fail('JSON格式不正确');}
 }
-export async function api(request,env){
-  const url=new URL(request.url),owner=request.headers.get('oai-authenticated-user-id');
+export async function api(request,env,owner=null){
+  const url=new URL(request.url);
   if(!owner)return json({error:'请先登录后读取或保存游玩记录'},401);
+  if(url.pathname==='/api/session'&&request.method==='GET')return json({owner});
+  if(env.ENVIRONMENT&& !['GET','HEAD'].includes(request.method)&&request.headers.get('x-star-chain-owner')!==owner)return json({error:'登录账号已变化，请刷新页面；原账号记录保留在本机'},409);
   if(!env.DB)return json({error:'记录暂时无法保存，请稍后重试'},503);
   if(!['GET','HEAD'].includes(request.method)&&(request.headers.get('sec-fetch-site')==='cross-site'||(request.headers.has('origin')&&request.headers.get('origin')!==url.origin)))return json({error:'请求来源不匹配'},403);
   try{
+    if(url.pathname==='/api/import'&&request.method==='POST'){
+      const input=await body(request);
+      if(input.kind==='support-choice'){
+        const d=input;
+        if(!/^[a-zA-Z0-9-]{8,80}$/.test(d.id||'')||!/^[a-zA-Z0-9-]{8,80}$/.test(d.offerId||'')||!level(d.selectedLevel)||!Number.isSafeInteger(d.epoch)||d.epoch<0||typeof d.accept!=='boolean'||!Number.isSafeInteger(d.at)||d.at>Date.now()+86400000)fail('历史支援选择格式无效');
+        const offer=await stmt(env,"SELECT record,completed_at FROM flights WHERE owner=? AND id=? AND status='complete' AND outcome='loss'",[owner,d.offerId]).first();
+        if(!offer)fail('请先导入支援选择对应的已结束对局');
+        const r=JSON.parse(offer.record);if(r.meta.selectedLevel!==d.selectedLevel||r.meta.supportEpoch!==d.epoch||d.at<offer.completed_at)fail('支援选择与原对局不一致');
+        const result=await stmt(env,'INSERT INTO support_choices(owner,id,offer_id,selected_level,epoch,accept,at) VALUES(?,?,?,?,?,?,?) ON CONFLICT DO NOTHING',[owner,d.id,d.offerId,d.selectedLevel,d.epoch,Number(d.accept),d.at]).run();
+        return json({ok:true,accepted:result.meta.changes===1});
+      }
+      const r=validateRecord(input.record);if(r.status==='active')fail('未结束且缺少完整种子的记录不能迁移');
+      delete r._owner;
+      const result=await stmt(env,'INSERT INTO flights(owner,id,status,started_at,updated_at,completed_at,sequence,selected_level,actual_level,outcome,record) VALUES(?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(owner,id) DO NOTHING',[owner,r.id,r.status,r.startedAt,r.updatedAt,r.completedAt,r.sequence,r.meta.selectedLevel,r.meta.actualLevel,r.result?.outcome||null,JSON.stringify(r)]).run();
+      return json({ok:true,accepted:result.meta.changes===1});
+    }
     if(url.pathname==='/api/profile'&&request.method==='GET')return json(await profile(env,owner));
     if(url.pathname==='/api/profile/import'&&request.method==='POST'){
       const p=await player(env,owner),input=await body(request);
@@ -100,6 +121,8 @@ export async function api(request,env){
     }
     if(match&&request.method==='PUT'){
       const r=validateRecord(await body(request));if(r.id!==match[1])fail('记录编号不匹配');
+      delete r._owner;
+      r.receivedRelease={version:env.RELEASE_VERSION||'local',commit:env.GIT_COMMIT||'local',environment:env.ENVIRONMENT||'development',pr:env.PR_NUMBER||null};
       const result=await stmt(env,`INSERT INTO flights(owner,id,status,started_at,updated_at,completed_at,sequence,selected_level,actual_level,outcome,record) VALUES(?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(owner,id) DO UPDATE SET status=excluded.status,updated_at=excluded.updated_at,completed_at=excluded.completed_at,sequence=excluded.sequence,outcome=excluded.outcome,record=excluded.record WHERE excluded.sequence>flights.sequence AND flights.status='active' AND excluded.started_at=flights.started_at AND excluded.selected_level=flights.selected_level AND excluded.actual_level=flights.actual_level`,[owner,r.id,r.status,r.startedAt,r.updatedAt,r.completedAt,r.sequence,r.meta.selectedLevel,r.meta.actualLevel,r.result?.outcome||null,JSON.stringify(r)]).run();
       return json({ok:true,accepted:result.meta.changes===1});
     }
@@ -107,4 +130,10 @@ export async function api(request,env){
     return json({error:'接口不存在'},404);
   }catch(error){if(!error.status&&!(error instanceof SyntaxError))console.error('records-api',url.pathname,error.message);return json({error:error.status?error.message:'记录校验或保存失败，请稍后重试'},error.status||503);}
 }
-export default {fetch(request,env){return new URL(request.url).pathname.startsWith('/api/')?api(request,env):env.ASSETS.fetch(request);}};
+export default {async fetch(request,env){
+  const url=new URL(request.url);
+  if(url.pathname==='/api/version')return json({version:env.RELEASE_VERSION||'1.0.0',commit:env.GIT_COMMIT||'unknown',environment:env.ENVIRONMENT||'unconfigured',pr:env.PR_NUMBER||null});
+  if(url.pathname==='/login')return env.ACCESS_ISSUER&&env.ACCESS_AUD?Response.redirect(`${url.origin}/?records=1`,302):new Response('记录登录服务尚待站点维护者完成配置。游戏可以继续游玩，未同步记录请从「记录与难度」导出备份。',{status:503,headers:{'content-type':'text/plain; charset=utf-8'}});
+  if(url.pathname.startsWith('/api/'))return api(request,env,await authenticatedOwner(request,env));
+  return env.ASSETS.fetch(request);
+}};

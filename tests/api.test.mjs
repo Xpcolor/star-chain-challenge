@@ -10,11 +10,25 @@ function setup(){
   const db=new DatabaseSync(':memory:');for(const file of readdirSync(new URL('../drizzle/',import.meta.url)).filter(n=>n.endsWith('.sql')).sort())db.exec(readFileSync(new URL('../drizzle/'+file,import.meta.url),'utf8'));
   const env={DB:{prepare(sql){return {bind(...args){const s=db.prepare(sql);return {run:async()=>({meta:{changes:Number(s.run(...args).changes)}}),first:async()=>s.get(...args)||null,all:async()=>({results:s.all(...args)})};}};}}};
   const call=async(path,{method='GET',body,owner='alice',headers={}}={})=>{
-    const response=await api(new Request(`https://game.example${path}`,{method,headers:{...(owner?{'oai-authenticated-user-id':owner}:{}),...headers},...(body===undefined?{}:{body:JSON.stringify(body)})}),env);
+    const response=await api(new Request(`https://game.example${path}`,{method,headers,...(body===undefined?{}:{body:JSON.stringify(body)})}),env,owner);
     return {status:response.status,data:await response.json()};
   };
   return {db,env,call};
 }
+test('migration validates replays, preserves old metadata, binds new owner and never doubles counts or overwrites completed records',async()=>{
+  const {db,call}=setup(),{record}=fixture();
+  assert.equal((await call('/api/import',{method:'POST',body:{record}})).data.accepted,true);
+  assert.equal((await call('/api/import',{method:'POST',body:{record}})).data.accepted,false);
+  assert.equal((await call('/api/profile')).data.progress.matches,1);
+  assert.equal((await call('/api/records',{owner:'bob'})).data.items.length,0);
+  assert.equal((await call('/api/import',{owner:'bob',method:'POST',body:{record}})).data.accepted,true);
+  const bad=structuredClone(record);bad.id=crypto.randomUUID();bad.events.find(e=>e.after).after.hp[0]++;
+  assert.equal((await call('/api/import',{method:'POST',body:{record:bad}})).status,400);
+  const old=JSON.parse(readFileSync(new URL('./fixtures/nine-legacy-flights.json',import.meta.url),'utf8'))[1];
+  assert.equal((await call('/api/import',{method:'POST',body:{record:old}})).data.accepted,true);
+  const saved=(await call('/api/records/'+old.id)).data;assert.equal(saved.rulesVersion,old.rulesVersion);assert.equal(saved.release,undefined);assert.deepEqual(saved.meta,old.meta);
+  db.close();
+});
 test('authenticated records are owner scoped, seed hidden during play, duplicates/out-of-order writes are idempotent',async()=>{
   const {db,call}=setup(),{record,active}=fixture();
   assert.equal((await call('/api/profile',{owner:null})).status,401);
@@ -58,7 +72,7 @@ test('pagination keeps equal-timestamp games, validation bounds settings and dat
   const p=(await call('/api/profile')).data,invalid=structuredClone(BOT_PROFILES);invalid[8].samples=10;
   assert.equal((await call('/api/settings',{method:'PATCH',body:{expectedRevision:p.revision,profiles:invalid}})).status,400);
   db.close();assert.equal((await call('/api/profile')).status,503);
-  assert.equal((await api(new Request('https://game.example/api/profile',{headers:{'oai-authenticated-user-id':'alice'}}),{})).status,503);
+  assert.equal((await api(new Request('https://game.example/api/profile'),{},'alice')).status,503);
 });
 
 test('decline is durable, never downgrades, accepts only a fresh offer and duplicate choices are idempotent',async()=>{

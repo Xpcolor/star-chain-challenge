@@ -1,0 +1,106 @@
+name: PR Preview
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: Reviewed PR number
+        required: true
+      sha:
+        description: Exact reviewed 40-character head SHA
+        required: true
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: preview-${{ github.event.workflow_run.head_branch || inputs.pr }}
+  cancel-in-progress: false
+jobs:
+  identify:
+    runs-on: ubuntu-latest
+    outputs:
+      pr: ${{ steps.select.outputs.pr }}
+      sha: ${{ steps.select.outputs.sha }}
+      enabled: ${{ steps.select.outputs.enabled }}
+    steps:
+      - id: select
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const {owner,repo}=context.repo;
+            let number;
+            if(context.eventName==='workflow_dispatch') {
+              if(context.actor!==owner)throw Error('Only owner can dispatch reviewed fork preview');
+              number=Number(context.payload.inputs.pr);
+            } else {
+              const run=context.payload.workflow_run;
+              if(run.conclusion!=='success'||run.event!=='pull_request')return;
+              number=run.pull_requests[0]?.number;
+            }
+            if(!Number.isSafeInteger(number)||number<1)return;
+            const {data:pr}=await github.rest.pulls.get({owner,repo,pull_number:number});
+            if(pr.state!=='open')return;
+            if(context.eventName==='workflow_dispatch') {
+              if(pr.head.sha!==context.payload.inputs.sha)throw Error('Reviewed SHA changed');
+            } else {
+              if(pr.head.repo.full_name!==`${owner}/${repo}`||pr.head.sha!==context.payload.workflow_run.head_sha)return;
+            }
+            core.setOutput('pr',String(number));core.setOutput('sha',pr.head.sha);core.setOutput('enabled','true');
+  build:
+    needs: identify
+    if: needs.identify.outputs.enabled == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.identify.outputs.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci && npm test && npm run build
+      - run: mkdir -p preview-artifact && cp -r dist/client dist/server preview-artifact/ && cp -r drizzle preview-artifact/migrations
+      - uses: actions/upload-artifact@v4
+        with:
+          name: preview-${{ needs.identify.outputs.sha }}
+          path: preview-artifact
+          retention-days: 3
+  deploy:
+    if: vars.CLOUDFLARE_CI_ENABLED == 'true'
+    needs: [identify,build]
+    runs-on: ubuntu-latest
+    environment:
+      name: preview-${{ needs.identify.outputs.pr }}
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: preview-${{ needs.identify.outputs.sha }}
+          path: .deployment/artifact
+      - uses: actions/github-script@v7
+        env:
+          PR: ${{ needs.identify.outputs.pr }}
+          SHA: ${{ needs.identify.outputs.sha }}
+        with:
+          script: |
+            const {data:pr}=await github.rest.pulls.get({...context.repo,pull_number:Number(process.env.PR)});
+            if(pr.state!=='open'||pr.head.sha!==process.env.SHA)throw Error('PR changed before deploy');
+      - id: deploy
+        run: node scripts/deploy.mjs
+        env:
+          PR_NUMBER: ${{ needs.identify.outputs.pr }}
+          GIT_COMMIT: ${{ needs.identify.outputs.sha }}
+          DEPLOY_ARTIFACT: .deployment/artifact
+          PREVIEW_ACCESS_AUD: ${{ vars.PREVIEW_ACCESS_AUD }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

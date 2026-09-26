@@ -41,10 +41,9 @@ const server = createServer(async (req, res) => {
       for await (const chunk of req) {size += chunk.length; if (size > 524288) {res.writeHead(413).end('记录过大'); return;} chunks.push(chunk);}
       const headers = new Headers();
       for (const [name, value] of Object.entries(req.headers)) if (value !== undefined) headers.set(name, Array.isArray(value) ? value.join(',') : value);
-      headers.set('oai-authenticated-user-id', 'local-development-player');
       const request = new Request(`http://${req.headers.host}${req.url}`, {method: req.method, headers,
         ...(['GET','HEAD'].includes(req.method) ? {} : {body: Buffer.concat(chunks)})});
-      const response = await api(request, env);
+      const response = await api(request, env, 'local-development-player');
       res.writeHead(response.status, Object.fromEntries(response.headers)); res.end(Buffer.from(await response.arrayBuffer())); return;
     }
     if (!['GET','HEAD'].includes(req.method)) {res.writeHead(405).end(); return;}

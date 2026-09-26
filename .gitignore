@@ -24,3 +24,4 @@ deployment-evidence/private/
 
 star-chain-desktop-handoff.zip
 .deployment/
+worker-configuration.d.ts

@@ -72,7 +72,7 @@ test('wild selector accepts every1–9 value; choice and preview survive chain/o
 
 test('cloud support keeps chosen robot identity, displays support name and freezes active difficulty',async()=>{
   timers.clear();Date.now=()=>1800000000000;Math.random=()=>.573;
-  const profile={revision:1,progress:{version:6,unlocked:LEVEL_COUNT-1,matches:24,lastChallenges:[],support:Array.from({length:LEVEL_COUNT},(_,i)=>freshSupport(i))},settings:{supportEnabled:true,supportEpochs:Array(LEVEL_COUNT).fill(0),config:{id:CONFIG_ID,profiles:structuredClone(BOT_PROFILES)}}};
+  const profile={owner:'alice',revision:1,progress:{version:6,unlocked:LEVEL_COUNT-1,matches:24,lastChallenges:[],support:Array.from({length:LEVEL_COUNT},(_,i)=>freshSupport(i))},settings:{supportEnabled:true,supportEpochs:Array(LEVEL_COUNT).fill(0),config:{id:CONFIG_ID,profiles:structuredClone(BOT_PROFILES)}}};
   profile.progress.support[LEVEL_COUNT-1].effective=3;
   globalThis.fetch=async(path,opts)=>{if(path==='/api/settings'){profile.settings.config.profiles[3].temperature=1.2;profile.revision++;}return new Response(JSON.stringify(opts.method==='PUT'?{ok:true,accepted:true}:profile));};
   await import('../dist/app.mjs?cloud-support');click('level',{level:String(LEVEL_COUNT-1)});
