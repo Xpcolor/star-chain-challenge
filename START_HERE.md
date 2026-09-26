@@ -10,9 +10,10 @@
 
 已提取当前正式游戏完整源码、全部图片及测试，增加本地开发入口、GitHub CI、PR 模板和部署验收规格。实际本地验证见 docs/VALIDATION.md。
 
-尚未创建新的 GitHub 仓库，尚未独立部署 Cloudflare、设置远端保护或迁移真实用户记录；原游戏未改动。
+2026-09-26 续接结果：公开仓库、主分支保护和正式游戏网址已经存在，详见 README 与 deployment-status.json。记录登录页已转到 Cloudflare Access，但 Worker 还没有写入身份配置，旧站真实记录也还没迁移。
 
 原站点：https://xinglian-challenge.xutaoping.chatgpt.site
+正式站点：https://star-chain-challenge.star-chain-challenge.workers.dev
 
 ## 为什么交给桌面端
 
