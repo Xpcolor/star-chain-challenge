@@ -1,3 +1,4 @@
+import {RELEASE} from './version.mjs';
 import {BOT_PROFILES,CONFIG_ID,LEVEL_COUNT,validateProfiles,freshSupport,settleSupport,decideSupport} from './difficulty.mjs?v=flight-records-2';
 import {makeRecord,appendEvent,closeRecord,recap,publicSnapshot} from './records.mjs?v=flight-records-2';
 import {createRecordClient} from './record-client.mjs?v=flight-records-2';
@@ -35,7 +36,7 @@ function recordCompletion(){
 }
 function showRecords(){
   const actual=settings().supportEnabled?supportFor(chosenLevel()).effective:chosenLevel();
-  openModal(`<div class="modal-content"><div class="modal-head"><h2 id="modal-title">记录与难度</h2><button class="btn quiet" data-action="close-modal">关闭</button></div><p>已完成 ${progress.matches} 局。详细记录用于复盘和后续优化。</p><div class="record-controls"><button class="btn ${settings().supportEnabled?'primary':''}" data-action="toggle-support" aria-pressed="${settings().supportEnabled}" ${settingsBusy?'disabled':''}>支援邀请：${settings().supportEnabled?'开启':'关闭'}</button><p>每两连败，会询问是否下调一级；只有接受才降低，最低1级。拒绝后保持当前难度，再两连败才重新询问。两连胜恢复一级，最高回到所选等级。退出不计，平局清空连胜连败。</p><p>所选 ${chosenLevel()+1}级 · 当前实际 ${actual+1}级。支援需你确认，调整只影响新局。</p><button class="btn" data-action="reset-support" ${settingsBusy?'disabled':''}>恢复所选难度</button></div><p class="section-note">${recordStatus.error?'有记录尚未同步，请重试或先导出保留。':recordStatus.pending?'正在同步游玩记录…':'游玩记录已保存。'}${recordStatus.localError?'此浏览器无法暂存待同步记录，请及时导出。':''}</p><div class="result-actions"><button class="btn primary" data-action="export-records">导出游玩记录</button><button class="btn" data-action="sync-records">重试同步</button></div></div>`);
+  openModal(`<div class="modal-content"><div class="modal-head"><h2 id="modal-title">记录与难度</h2><button class="btn quiet" data-action="close-modal">关闭</button></div><p>${recordStatus.owner?'已登录 · 记录按账号保存':'未登录 · 当前记录仅保存在本机'} <a class="btn" href="/login">登录记录服务</a> <a class="btn" href="/cdn-cgi/access/logout">退出登录</a></p><p>已完成 ${progress.matches} 局。详细记录用于复盘和后续优化。</p><div class="record-controls"><button class="btn ${settings().supportEnabled?'primary':''}" data-action="toggle-support" aria-pressed="${settings().supportEnabled}" ${settingsBusy?'disabled':''}>支援邀请：${settings().supportEnabled?'开启':'关闭'}</button><p>每两连败，会询问是否下调一级；只有接受才降低，最低1级。拒绝后保持当前难度，再两连败才重新询问。两连胜恢复一级，最高回到所选等级。退出不计，平局清空连胜连败。</p><p>所选 ${chosenLevel()+1}级 · 当前实际 ${actual+1}级。支援需你确认，调整只影响新局。</p><button class="btn" data-action="reset-support" ${settingsBusy?'disabled':''}>恢复所选难度</button></div><p class="section-note">${recordStatus.error?esc(recordStatus.error):recordStatus.pending?'正在同步游玩记录…':'游玩记录已保存。'}${recordStatus.localError?'此浏览器无法暂存待同步记录，请及时导出。':''}</p><div class="result-actions"><button class="btn primary" data-action="export-records">导出游玩记录</button><button class="btn" data-action="sync-records">重试同步</button><button class="btn" data-action="import-records">导入旧站备份</button></div><p class="section-note">版本 ${esc(RELEASE.version)} · ${esc(RELEASE.environment)} · ${esc(RELEASE.commit.slice(0,12))}</p></div>`);
 }
 async function changeSettings(patch){
   if(settingsBusy)return;settingsBusy=true;showRecords();
@@ -47,6 +48,19 @@ async function exportRecords(){
     link.href=url;link.download=`星链算式_游玩记录_${new Date().toISOString().slice(0,10)}.json`;document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
     toast(data.cloudComplete?'游玩记录已导出。':'已导出可读取的记录，仍有云端记录暂时无法读取。');
   }catch(e){toast(e.message);}
+}
+async function importRecords(){
+  const input=document.createElement('input');input.type='file';input.accept='application/json,.json';
+  input.addEventListener('change',async()=>{
+    const file=input.files?.[0];if(!file)return;
+    try{
+      if(file.size>50*1024*1024)throw Error('备份文件超过50MB，请拆分后导入');
+      const data=JSON.parse(await file.text());
+      if(!window.confirm(`将备份中的 ${data.records?.length||0} 条记录导入当前登录账号。请保留原文件；重复记录不会覆盖。继续？`))return;
+      const result=await records.importBackup(data);
+      openModal(`<div class="modal-content"><h2 id="modal-title">导入结果</h2><p>新增 ${result.imported} 条，重复或未结束跳过 ${result.skipped} 条，失败 ${result.errors.length} 条。</p><p>只统计通过重放校验的完整对局，不累加旧档案汇总局数。原始备份请继续保留。</p><pre>${esc(JSON.stringify(result.errors,null,2))}</pre><button class="btn" data-action="close-modal">关闭</button></div>`);
+    }catch(e){toast(e.message);}
+  });input.click();
 }
 function later(fn,delay){const ticket=run;const id=setTimeout(()=>{timers.delete(id);if(ticket===run)fn();},delay);timers.add(id);return id;}
 function cancelTimers(){for(const id of timers)clearTimeout(id);timers.clear();botScheduled=false;}
@@ -251,6 +265,7 @@ function action(name,data={}){
     case'accept-support':chooseSupport(Number(data.level),true);break;
     case'decline-support':chooseSupport(Number(data.level),false);break;
     case'export-records':void exportRecords();break;
+    case'import-records':void importRecords();break;
     case'sync-records':void records.flush();break;
     case'toggle-support':void changeSettings({supportEnabled:!settings().supportEnabled});break;
     case'reset-support':void changeSettings({resetSupportForLevel:chosenLevel()});break;
@@ -278,3 +293,4 @@ function registerAgentTools(){
   try{for(const t of tools)void Promise.resolve(document.modelContext.registerTool(t,{signal:lifecycle.signal})).catch(error=>console.warn('Optional browser controls unavailable',error));window.addEventListener('pagehide',()=>{cancelTimers();lifecycle.abort();},{once:true});}catch(error){console.warn('Optional browser controls unavailable',error);}
 }
 await records.init(legacyImportBase||progress);newMatch(0);registerAgentTools();
+if(globalThis.location?.search?.includes("records=1"))showRecords();

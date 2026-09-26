@@ -46,18 +46,27 @@ test('profile validation caps future tuning and engine copies the selected param
 const memory=()=>{const data=new Map();return {data,all:async()=>[...data.values()].map(r=>structuredClone(r)),put:async r=>data.set(r.id,structuredClone(r)),remove:async id=>data.delete(id)};};
 const response=value=>new Response(JSON.stringify(value),{headers:{'content-type':'application/json'}});
 const drain=()=>new Promise(resolve=>setImmediate(resolve));
+test('account changes never upload another account outbox, and guest entries remain quarantined',async()=>{
+  const store=memory(),{record}=fixture(),writes=[];let user='alice',online=true;
+  const fetcher=async(path,opts)=>{if(!online)throw Error('offline');if(opts.method==='PUT')writes.push(JSON.parse(opts.body));return response({owner:user,revision:0,progress:{},settings:{}});};
+  const alice=createRecordClient({store,fetcher});await alice.init({});online=false;await alice.enqueue(record);await drain();
+  online=true;user='bob';await alice.flush();assert.equal(writes.length,0);assert.match(alice.status().error,/账号/);
+  const bob=createRecordClient({store,fetcher});await bob.init({});assert.equal(writes.length,0);assert.equal(bob.status().quarantined,1);
+  user='alice';const resumed=createRecordClient({store,fetcher});await resumed.init({});assert.equal(writes.length,1);assert.equal(writes[0]._owner,undefined);
+  online=false;const guest=createRecordClient({store,fetcher});await guest.init({});const other={...record,id:crypto.randomUUID()};await guest.enqueue(other);await drain();online=true;await guest.flush();assert.equal(writes.length,1);assert.equal(guest.status().quarantined,1);
+});
 test('offline writes survive retry and reload; completed flight is not reclassified as abandoned',async()=>{
-  const store=memory(),{record,active}=fixture(),writes=[];let online=false;
-  const fetcher=async(path,opts)=>{if(!online)throw Error('offline');if(opts.method==='PUT')writes.push(JSON.parse(opts.body));return response({revision:0,progress:{},settings:{}});};
-  const client=createRecordClient({store,fetcher});await client.init({});await client.enqueue(record);await drain();assert.equal(store.data.size,1);assert.equal(client.status().pending,1);
+  const store=memory(),{record,active}=fixture(),writes=[];let online=true;
+  const fetcher=async(path,opts)=>{if(!online)throw Error('offline');if(opts.method==='PUT')writes.push(JSON.parse(opts.body));return response({owner:'alice',revision:0,progress:{},settings:{}});};
+  const client=createRecordClient({store,fetcher});await client.init({});online=false;await client.enqueue(record);await drain();assert.equal(store.data.size,1);assert.equal(client.status().pending,1);
   online=true;const resumed=createRecordClient({store,fetcher});await resumed.init({});await drain();assert.equal(writes.at(-1).status,'complete');assert.equal(store.data.size,0);
-  await store.put(active);const restarted=createRecordClient({store,fetcher});await restarted.init({});await drain();assert.equal(writes.at(-1).status,'abandoned');assert.equal(writes.at(-1).endReason,'page-reload');
+  await store.put({...active,_owner:'alice'});const restarted=createRecordClient({store,fetcher});await restarted.init({});await drain();assert.equal(writes.at(-1).status,'abandoned');assert.equal(writes.at(-1).endReason,'page-reload');
 });
 test('upload acknowledgment cannot remove a newer pending snapshot',async()=>{
-  const store=memory(),{record,active}=fixture();let online=false,releasePut,releaseRemove,enteredPut=false,enteredRemove=false;
+  const store=memory(),{record,active}=fixture();let online=true,releasePut,releaseRemove,enteredPut=false,enteredRemove=false;
   const originalRemove=store.remove;store.remove=async id=>{enteredRemove=true;await new Promise(r=>releaseRemove=r);return originalRemove(id);};
-  const client=createRecordClient({store,fetcher:async(path,opts)=>{if(!online)throw Error('offline');if(opts.method==='PUT'){enteredPut=true;await new Promise(r=>releasePut=r);}return response({revision:0,progress:{},settings:{}});}});
-  await client.init({});await client.enqueue(active);await drain();online=true;const flushing=client.flush();await drain();assert.equal(enteredPut,true);releasePut();await drain();assert.equal(enteredRemove,true);
+  const client=createRecordClient({store,fetcher:async(path,opts)=>{if(!online)throw Error('offline');if(opts.method==='PUT'){enteredPut=true;await new Promise(r=>releasePut=r);}return response({owner:'alice',revision:0,progress:{},settings:{}});}});
+  await client.init({});online=false;await client.enqueue(active);await drain();online=true;const flushing=client.flush();await drain();assert.equal(enteredPut,true);releasePut();await drain();assert.equal(enteredRemove,true);
   await client.enqueue(record);releaseRemove();await drain();assert.equal(store.data.get(record.id).sequence,record.sequence);
   releasePut();await drain();releaseRemove();await flushing;assert.equal(store.data.size,0);assert.equal(client.status().pending,0);
 });
@@ -67,10 +76,10 @@ test('offline consent survives reload and uploads between the loss that offered 
  const choice={kind:'support-choice',id:'accepted-choice',sequence:1,offerId:loss.id,selectedLevel:LEVEL_COUNT-1,epoch:0,accept:true,at:201};
  const next={...record,id:'game-after-choice',startedAt:202,completedAt:300};
  // IndexedDB returns keys, not chronology. Deliberately supply the reverse order.
- await store.put(next);await store.put(choice);await store.put(loss);
+ for(const r of [next,choice,loss])await store.put({...r,_owner:'alice'});
  const client=createRecordClient({store,fetcher:async(path,opts)=>{
   if(opts.method==='PUT')writes.push({path,body:JSON.parse(opts.body)});
-  return response({revision:0,progress:{},settings:{},supportDecisions:[choice]});
+  return response({owner:'alice',revision:0,progress:{},settings:{},supportDecisions:[choice]});
  }});
  await client.init({});
  assert.deepEqual(writes.map(x=>x.body.id),[loss.id,choice.id,next.id]);

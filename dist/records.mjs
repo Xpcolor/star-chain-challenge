@@ -1,6 +1,7 @@
 import {buildAdvice} from './advice.mjs?v=flight-records-2';
 import {RULES_VERSION,compatibleRules} from './difficulty.mjs?v=flight-records-2';
 import {createGame,selectModule,rollInitiative,playAndClaim,takeCard,rest,audit} from './engine.mjs?v=flight-records-2';
+import {RELEASE} from './version.mjs';
 
 export const RECORD_SCHEMA=1;
 export function publicSnapshot(s){return structuredClone({phase:s.phase,current:s.current,round:s.round,turnInRound:s.turnInRound,board:s.board,hp:s.hp,shields:s.shields,hands:s.hands,market:s.market,goals:s.goals,challengeIds:s.challengeIds,challengeProgress:s.challengeProgress,modules:s.phase==='loadout'?[null,null]:s.modules,moduleProgress:s.moduleProgress,sectorId:s.sectorId,moduleOptions:s.moduleOptions});}
@@ -10,7 +11,7 @@ export function recap(s,actor=0){
 }
 export function outcome(s){return {outcome:s.winner==='draw'?'draw':s.winner===0?'win':'loss',hp:[...s.hp],rounds:s.round,damage:[...s.damageTotal],healing:[...s.healingTotal],recaps:[recap(s,0),recap(s,1)]};}
 export function makeRecord(options,meta,now=Date.now(),id=crypto.randomUUID()){
-  return {schemaVersion:RECORD_SCHEMA,rulesVersion:RULES_VERSION,id,sequence:0,status:'active',startedAt:now,updatedAt:now,completedAt:null,options:structuredClone(options),meta:structuredClone(meta),events:[],result:null};
+  return {schemaVersion:RECORD_SCHEMA,rulesVersion:RULES_VERSION,release:{...RELEASE},id,sequence:0,status:'active',startedAt:now,updatedAt:now,completedAt:null,options:structuredClone(options),meta:structuredClone(meta),events:[],result:null};
 }
 export function appendEvent(record,type,data={},now=Date.now()){
   if(record.status!=='active')throw Error('本局记录已经结束');
