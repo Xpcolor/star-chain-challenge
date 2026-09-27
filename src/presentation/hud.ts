@@ -1,5 +1,5 @@
 import { FX } from "./fx-config";
-type Point = [number, number];
+import { panelCircuit, type Point } from "./hud-path";
 type Border = {
   element: HTMLElement;
   points: Point[];
@@ -45,8 +45,7 @@ export class ElectricHUD {
         ),
         [ox, oy] = style.transformOrigin.split(" ").map(parseFloat),
         w = element.offsetWidth,
-        h = element.offsetHeight,
-        c = 16;
+        h = element.offsetHeight;
       const project = ([x, y]: Point): Point => {
         const p = new DOMPoint(x - ox, y - oy, 0, 1).matrixTransform(matrix);
         return [ox + p.x / p.w, oy + p.y / p.w];
@@ -61,19 +60,12 @@ export class ElectricHUD {
         ).map(project),
         dx = r.x - Math.min(...corners.map((p) => p[0])),
         dy = r.y + scrollY - Math.min(...corners.map((p) => p[1]));
-      const points = (
-        [
-          [c, 0],
-          [w - c, 0],
-          [w, c],
-          [w, h - c],
-          [w - c, h],
-          [c, h],
-          [0, h - c],
-          [0, c],
-          [c, 0],
-        ] as Point[]
-      )
+      const cells = Array.from(element.querySelectorAll<HTMLElement>("[data-electric-cell]")).map(cell => {
+        let x=0, y=0, node: HTMLElement | null=cell;
+        while(node && node!==element) { x+=node.offsetLeft; y+=node.offsetTop; node=node.offsetParent as HTMLElement | null; }
+        return {x,y,width:cell.offsetWidth,height:cell.offsetHeight};
+      });
+      const points = panelCircuit(w,h,cells)
         .map(project)
         .map((p) => [p[0] + dx, p[1] + dy] as Point);
       let total = 0;
@@ -203,10 +195,11 @@ export class ElectricHUD {
           (dt / FX.lightning.period) * (boost ? FX.lightning.boost : 1);
       for (let strand = 0; strand < 2; strand++) {
         const points: Point[] = [];
-        for (let i = 0; i <= 60; i++) {
+        const samples = 80;
+        for (let i = 0; i <= samples; i++) {
           const d =
               ((b.phase + strand / 2) * b.total -
-                (i * b.total * FX.lightning.length) / 60 +
+                (i * b.total * FX.lightning.length) / samples +
                 b.total * 100) %
               b.total,
             e = b.edges.find((e) => d <= e.start + e.length) || b.edges.at(-1)!,
@@ -226,25 +219,16 @@ export class ElectricHUD {
           ctx.lineWidth = layer ? 0.85 : 3;
           ctx.shadowColor = b.color;
           ctx.shadowBlur = layer ? 5 : 14;
-          for (let i = 1; i < points.length; i++) {
+          // Draw eight connected brightness bands, not hundreds of shadowed strokes.
+          for (let start = 0; start < samples; start += 10) {
             ctx.globalAlpha =
-              (1 - i / points.length) ** 0.7 *
+              (1 - start / samples) ** 0.7 *
               (reduced ? 0.2 : boost ? 0.95 : 0.62);
             ctx.beginPath();
-            ctx.moveTo(...points[i - 1]);
-            ctx.lineTo(...points[i]);
+            ctx.moveTo(...points[start]);
+            for(let i=start+1;i<=Math.min(samples,start+10);i++)ctx.lineTo(...points[i]);
             ctx.stroke();
           }
-        }
-        if (!reduced) {
-          const p = points[15],
-            q = points[23];
-          ctx.globalAlpha = 0.4;
-          ctx.beginPath();
-          ctx.moveTo(...p);
-          ctx.lineTo(p[0] + 8, p[1] - 8);
-          ctx.lineTo(q[0] + 11, q[1] - 4);
-          ctx.stroke();
         }
       }
     }

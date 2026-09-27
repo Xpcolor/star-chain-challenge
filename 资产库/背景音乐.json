@@ -1,0 +1,25 @@
+{
+  "title": "Relaxing Ambient Music",
+  "artist": "Clavier-Music",
+  "ownerSelection": "option 3",
+  "libraryAssetId": "ma_523155341193b74f5ef5c06eb5b248a2",
+  "sourceSha256": "523155341193b74f5ef5c06eb5b248a234a9297b3e2a13799c3f1d358d3bbe54",
+  "sourceDurationSeconds": 123.72,
+  "sourceWindowSeconds": [
+    18,
+    116
+  ],
+  "crossfadeSeconds": 4,
+  "durationSeconds": 94,
+  "sampleRate": 44100,
+  "channels": 2,
+  "preparationGain": 0.8792377975864353,
+  "pcmPeak": 0.88,
+  "pcmRms": 0.16655295630720812,
+  "path": "dist/assets/music-relaxing-ambient.ogg",
+  "bytes": 1581188,
+  "sha256": "2d351f33895c50240105e1eb68b8daeb42387f029a5196866dd7baf49a105649",
+  "rightsBasis": "Owner-provided SPGC library recording, explicitly selected for StarChain use. Artist credit retained; no claim of original authorship.",
+  "originalPreserved": true,
+  "releaseAuthorization": "2026-09-27 user explicitly authorized publishing the current StarChain build, including their selected option 3 music; artist credit retained."
+}

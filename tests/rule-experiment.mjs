@@ -43,18 +43,18 @@ function run(s,seed,policy='greedy',mirrored=false){
  while(s.phase!=='over'){
   if(s.phase==='sector'){selectSector(s,chooseSector(s));continue}if(s.phase==='boon'){selectBoon(s,chooseBoon(s));continue}
   assert.equal(s.phase,'action');const actor=s.current,random=randoms[actor];let obs=observation(s,actor);
-  if(s.rulesVersion==='flight-records-3'){for(let n=0;n<2;n++){const swap=chooseTransfer(obs);if(!swap)break;const before=structuredClone({hp:s.hp,board:s.board,turns:s.turns});transfer(s,swap.giveId,swap.marketIndex);metrics.barterUses++;assert.equal(s.phase,'action');assert.deepEqual({hp:s.hp,board:s.board,turns:s.turns},before);obs=observation(s,actor);}}
+  if(['flight-records-3','flight-records-4'].includes(s.rulesVersion)){for(let n=0;n<2;n++){const swap=chooseTransfer(obs);if(!swap)break;const before=structuredClone({hp:s.hp,board:s.board,turns:s.turns});transfer(s,swap.giveId,swap.marketIndex);metrics.barterUses++;assert.equal(s.phase,'action');assert.deepEqual({hp:s.hp,board:s.board,turns:s.turns},before);obs=observation(s,actor);}}
   const ai=policy==='pve'&&actor===(mirrored?0:1);
   const chosen=ai?chooseBotMove(obs,random()):best(obs,random,policy==='pve'?'sampled':policy);
   const hasB=obs.hand.some(c=>c.type==='B');if(hasB)metrics.barterHeld++;
-  const swap=s.rulesVersion!=='flight-records-3'&&hasB&&(!chosen||chosen.points<=0)?barter(obs):null;if(swap)metrics.barterOpportunities++;
+  const swap=!['flight-records-3','flight-records-4'].includes(s.rulesVersion)&&hasB&&(!chosen||chosen.points<=0)?barter(obs):null;if(swap)metrics.barterOpportunities++;
   const before=[...s.hp];
   if(swap){transfer(s,swap.give,swap.index);metrics.barterUses++;assert.deepEqual(s.hp,before)}
   else if(chosen){
    const types=chosen.move.ids.map(id=>obs.hand.find(c=>c.id===id).type);for(const type of types)metrics.playedTypes[type]=(metrics.playedTypes[type]||0)+1;
    metrics.dockUses+=types.includes('D');playAndClaim(s,chosen.move);
    assert.equal(s.hp[actor],before[actor]+chosen.healing);assert.equal(s.hp[1-actor],Math.max(0,before[1-actor]-chosen.damage));
-   assert.ok(s.lastAction.claimed.length<=(s.rulesVersion==='flight-records-3'?s.goals.length:2));metrics.doubleHits+=s.lastAction.claimed.length===2;metrics.damageAndHealing+=s.lastAction.rawDamage>0&&s.lastAction.healing>0;
+   assert.ok(s.lastAction.claimed.length<=(['flight-records-3','flight-records-4'].includes(s.rulesVersion)?s.goals.length:2));metrics.doubleHits+=s.lastAction.claimed.length===2;metrics.damageAndHealing+=s.lastAction.rawDamage>0&&s.lastAction.healing>0;
   }else rest(s,obs.hand.slice(0,2).map(c=>c.id),s.goals[0]);
   metrics.trace.push({actor,board:[...s.board],hp:[...s.hp],swap:!!swap,move:chosen&&!swap?chosen.move:null});
   while(s.phase==='refill'){const o=observation(s,actor);takeCard(s,ai?chooseBotSupply(o,random()):supply(o,random));}

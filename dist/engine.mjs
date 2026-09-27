@@ -1,4 +1,4 @@
-import {BOT_PROFILES,validateProfile} from './difficulty.mjs?v=flight-records-2';
+import {BOT_PROFILES,validateProfile,RULES_VERSION,compatibleRules} from './difficulty.mjs?v=flight-records-2';
 import {MODULES,SECTORS,moduleById,sectorById,freshModuleProgress,copyModuleProgress,previewTactics} from './tactics.mjs?v=flight-records-2';
 import {challengeById,drawChallenges,freshChallengeProgress,copyChallengeProgress,previewChallenges,replaceChallenges} from './challenges.mjs?v=flight-records-2';
 
@@ -18,7 +18,7 @@ export const GOALS = [
 export const goalById = id => GOALS.find(g=>g.id===id);
 export const bestGoalClaims = ids => [...ids].sort((a,b)=>goalById(b).damage-goalById(a).damage);
 const legacyRules = version => version === 'flight-records-1' || version === 'flight-records-2';
-export function warpLandings(before, rulesVersion='flight-records-3') {
+export function warpLandings(before, rulesVersion=RULES_VERSION) {
   if(legacyRules(rulesVersion))return before===10?[9,11]:[20-before];
   const center=20-before;
   return [center-1,center,center+1].filter(n=>n>=0&&n<=20&&n!==before);
@@ -38,8 +38,8 @@ function shuffle(s,list){for(let i=list.length-1;i>0;i--){const j=Math.floor(ran
 function draw(s){if(!s.deck.length)s.deck=shuffle(s,s.discard.splice(0));insist(s.deck.length,'暂时没有可抽取的牌');return s.deck.pop();}
 function drawGoal(s,kind){if(!s.goalDecks[kind].length)s.goalDecks[kind]=shuffle(s,s.goalDiscards[kind].splice(0));return s.goalDecks[kind].pop();}
 function replaceGoal(s,id){const i=s.goals.indexOf(id);insist(i>=0,'这张目标已经不在桌面上');const kind=goalById(id).kind;s.goalDiscards[kind].push(id);s.goals[i]=drawGoal(s,kind);}
-export function createGame({level=0,first=null,seed=Date.now(),previousChallenges=[],modules,sectorId,previousSector=null,initiativeShield=initiativeShieldForLevel(level),handSize=6,wildCount=3,accelCount=3,warpCount=2,botProfile=null,choices=false,pinnedModule=null,robotModuleCounts=null,hp,dockCount,barterCount,extraZone,repairSlots,rulesVersion='flight-records-3'}={}){
-  insist(legacyRules(rulesVersion)||rulesVersion==='flight-records-3','规则版本无效');
+export function createGame({level=0,first=null,seed=Date.now(),previousChallenges=[],modules,sectorId,previousSector=null,initiativeShield=initiativeShieldForLevel(level),handSize=6,wildCount=3,accelCount=3,warpCount=2,botProfile=null,choices=false,pinnedModule=null,robotModuleCounts=null,hp,dockCount,barterCount,extraZone,repairSlots,rulesVersion=RULES_VERSION}={}){
+  insist(compatibleRules(rulesVersion),'规则版本无效');
   const defaults=rulesForLevel(legacyRules(rulesVersion)?0:level);hp??=defaults.hp;dockCount??=defaults.dockCount;barterCount??=defaults.barterCount;extraZone??=defaults.extraZone;repairSlots??=defaults.repairSlots;
   insist(Number.isInteger(level)&&level>=0&&level<ROBOTS.length,'请选择有效的对手');insist(first===null||[0,1].includes(first),'先手无效');
   insist(modules===undefined||(Array.isArray(modules)&&modules.length===2&&modules.every(id=>id===null||moduleById(id))),'模块无效');
@@ -115,7 +115,7 @@ export function goalMatches(id,board,chain){
   }
   return false;
 }
-export function inspectMove(board,hand,goals,move,rulesVersion='flight-records-3'){
+export function inspectMove(board,hand,goals,move,rulesVersion=RULES_VERSION){
   insist(move&&Number.isInteger(move.chain)&&move.chain>=0&&move.chain<3,'先选择一条星链');
   insist(Array.isArray(move.ids)&&move.ids.length>0,'请选择要打出的牌');
   insist(new Set(move.ids).size===move.ids.length,'同一张牌不能使用两次');
@@ -146,7 +146,8 @@ export function inspectMove(board,hand,goals,move,rulesVersion='flight-records-3
   insist(Array.isArray(move.ops)&&move.ops.length===numeric.length&&move.ops.every(o=>o===1||o===-1),'请选择加法或减法');
   let value=board[move.chain];const before=value;const steps=[];
   numeric.forEach((c,i)=>{const n=c.type==='W'?move.wild:c.value;const start=value;value+=move.ops[i]*n;const last=i===numeric.length-1;if(last)insist(value>=0&&value<=20,'最终结果必须在 0–20 之间');else insist(value>=0,'加速的中间结果不能小于 0');steps.push({card:c,from:start,value:n,op:move.ops[i],to:value});});
-  insist(value!==before,'这一回合必须改变星链的最终数值');
+  // V4 acceleration may return to origin; historical replays keep their original rule.
+  insist(value!==before||(accel&&rulesVersion==='flight-records-4'),'这一回合必须改变星链的最终数值');
   const result=[...board];result[move.chain]=value;
   const expression=[String(before),...steps.flatMap(x=>[x.op===1?'+':'−',String(x.value)])].join(' ');
   const trace=steps.some((step,index)=>index<steps.length-1&&step.to>20)?steps.reduce((text,step)=>`${text} ${step.op===1?'+':'−'} ${step.value} = ${step.to}`,String(before)):undefined;

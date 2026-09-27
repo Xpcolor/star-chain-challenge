@@ -1,0 +1,327 @@
+{
+  "verifiedAt": "2026-09-27T10:18:27.920Z",
+  "version": "1.1.1",
+  "branch": "fix/cockpit-feedback-v1-1-1",
+  "baseCommit": "d9ff3ac2dcce3a33b2671514b82946d187f4c17f",
+  "scope": "Local only. Owner playtest approval required before GitHub PR/push or public deployment.",
+  "productionUnchanged": {
+    "version": "1.1.0",
+    "commit": "1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9"
+  },
+  "checks": {
+    "unit": {
+      "passed": 87,
+      "failed": 0
+    },
+    "typecheck": "passed",
+    "build": "passed",
+    "productionVersionAndManualGate": "passed, read-only check",
+    "browser": {
+      "startTime": "2026-09-27T10:10:47.746Z",
+      "duration": 170201.022,
+      "expected": 11,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "gitDiffCheck": "passed"
+  },
+  "layout": {
+    "layouts": [
+      {
+        "level": 1,
+        "width": 2179,
+        "height": 1244,
+        "overflow": false,
+        "marker": 20,
+        "star": 24,
+        "hint": 12,
+        "markerBottom": 741.515625,
+        "labelTop": 751.515625,
+        "cells": 6,
+        "circuits": [
+          {
+            "closed": true,
+            "points": 30,
+            "total": 4985.373790449385
+          },
+          {
+            "closed": true,
+            "points": 30,
+            "total": 5006.061450088496
+          }
+        ],
+        "textOverflow": false
+      },
+      {
+        "level": 1,
+        "width": 1774,
+        "height": 887,
+        "overflow": false,
+        "marker": 20,
+        "star": 24,
+        "hint": 12,
+        "markerBottom": 517.640625,
+        "labelTop": 527.640625,
+        "cells": 6,
+        "circuits": [
+          {
+            "closed": true,
+            "points": 30,
+            "total": 3750.1732877242257
+          },
+          {
+            "closed": true,
+            "points": 30,
+            "total": 3792.3198765908573
+          }
+        ],
+        "textOverflow": false
+      },
+      {
+        "level": 1,
+        "width": 1280,
+        "height": 720,
+        "overflow": false,
+        "marker": 20,
+        "star": 24,
+        "hint": 12,
+        "markerBottom": 415.09375,
+        "labelTop": 425.09375,
+        "cells": 6,
+        "circuits": [
+          {
+            "closed": true,
+            "points": 30,
+            "total": 2878.137192101551
+          },
+          {
+            "closed": true,
+            "points": 30,
+            "total": 2895.073257068529
+          }
+        ],
+        "textOverflow": false
+      },
+      {
+        "level": 1,
+        "width": 390,
+        "height": 844,
+        "overflow": false,
+        "marker": 20,
+        "star": 24,
+        "hint": 12,
+        "markerBottom": 610.5,
+        "labelTop": 617.5,
+        "cells": 6,
+        "circuits": [
+          {
+            "closed": true,
+            "points": 30,
+            "total": 3265.4213562373097
+          },
+          {
+            "closed": true,
+            "points": 30,
+            "total": 3289.4213562373097
+          }
+        ],
+        "textOverflow": false
+      },
+      {
+        "level": 8,
+        "width": 2179,
+        "height": 1244,
+        "overflow": false,
+        "marker": 20,
+        "star": 24,
+        "hint": 12,
+        "markerBottom": 741.515625,
+        "labelTop": 751.515625,
+        "cells": 8,
+        "circuits": [
+          {
+            "closed": true,
+            "points": 36,
+            "total": 5724.935052284575
+          },
+          {
+            "closed": true,
+            "points": 36,
+            "total": 5746.674804536655
+          }
+        ],
+        "textOverflow": false
+      },
+      {
+        "level": 8,
+        "width": 1774,
+        "height": 887,
+        "overflow": false,
+        "marker": 20,
+        "star": 24,
+        "hint": 12,
+        "markerBottom": 615.390625,
+        "labelTop": 625.390625,
+        "cells": 8,
+        "circuits": [
+          {
+            "closed": true,
+            "points": 36,
+            "total": 4670.838363888376
+          },
+          {
+            "closed": true,
+            "points": 36,
+            "total": 4712.35980133328
+          }
+        ],
+        "textOverflow": false
+      },
+      {
+        "level": 8,
+        "width": 1280,
+        "height": 720,
+        "overflow": false,
+        "marker": 20,
+        "star": 24,
+        "hint": 12,
+        "markerBottom": 603.796875,
+        "labelTop": 613.796875,
+        "cells": 8,
+        "circuits": [
+          {
+            "closed": true,
+            "points": 36,
+            "total": 3971.615161419202
+          },
+          {
+            "closed": true,
+            "points": 36,
+            "total": 3987.540992681267
+          }
+        ],
+        "textOverflow": false
+      },
+      {
+        "level": 8,
+        "width": 390,
+        "height": 844,
+        "overflow": false,
+        "marker": 20,
+        "star": 24,
+        "hint": 12,
+        "markerBottom": 610.5,
+        "labelTop": 617.5,
+        "cells": 8,
+        "circuits": [
+          {
+            "closed": true,
+            "points": 36,
+            "total": 4346.391918985787
+          },
+          {
+            "closed": true,
+            "points": 36,
+            "total": 4346.391918985787
+          }
+        ],
+        "textOverflow": false
+      }
+    ],
+    "errors": [],
+    "fixture": "Long attack text and repair progress detail render fixture after a real legal move preview; no engine rule mutation."
+  },
+  "lightning": {
+    "trailsPerPanel": 2,
+    "route": "One continuous outer frame plus bow-shaped scan of inner top/bottom edges, joined through gutters; no individual cell loops.",
+    "cellCounts": [
+      3,
+      4
+    ],
+    "drawing": "Eight brightness bands per strand/layer to reduce shadowed canvas strokes."
+  },
+  "markers": {
+    "currentDiamondPx": 24,
+    "landingTrianglePx": 20,
+    "targetHintPx": 12,
+    "targetHintPreviousPx": 4,
+    "triangleExclusion": false
+  },
+  "audio": {
+    "file": "dist/assets/music-starlight.wav",
+    "durationSeconds": 64,
+    "channels": 2,
+    "sampleRate": 22050,
+    "source": "Original synthesis by scripts/create-music.mjs; no third-party recordings.",
+    "browser": "One looping WebAudio voice; sound off stops it, on resumes, restart keeps one voice.",
+    "subjectiveListening": "Owner mix/aesthetic acceptance pending"
+  },
+  "fatalImpact": {
+    "viewport": {
+      "width": 2179,
+      "height": 1244,
+      "dpr": 1.5
+    },
+    "before": [
+      {
+        "level": 1,
+        "maxFrameGapMs": 33.4,
+        "longTaskMs": [],
+        "maxMeasuredCpuMs": null
+      },
+      {
+        "level": 8,
+        "maxFrameGapMs": 50,
+        "longTaskMs": [
+          54
+        ],
+        "maxMeasuredCpuMs": 53.8999999910593
+      },
+      {
+        "level": 16,
+        "maxFrameGapMs": 66.6,
+        "longTaskMs": [
+          61
+        ],
+        "maxMeasuredCpuMs": 60.400000005960464
+      }
+    ],
+    "after": [
+      {
+        "level": 1,
+        "maxFrameGapMs": 33.4,
+        "longTaskMs": [],
+        "maxMeasuredCpuMs": null
+      },
+      {
+        "level": 8,
+        "maxFrameGapMs": 50.1,
+        "longTaskMs": [],
+        "maxMeasuredCpuMs": null
+      },
+      {
+        "level": 16,
+        "maxFrameGapMs": 33.5,
+        "longTaskMs": [],
+        "maxMeasuredCpuMs": null
+      }
+    ],
+    "rootCause": "TSL FRAME pass reused a prior scene texture during between-frame fleet warmup. Hidden debris of newly selected enemy fleets was first compiled at collapse.",
+    "fix": "Temporarily use RENDER update frequency for warmup and clean replacement frame, then restore original frequency.",
+    "regression": "Before fix: 6 debris node builders during first fatal hit. After fix: 0, on levels 8 and 16.",
+    "limits": "Short same-machine Chrome/WebGPU probe; occasional 50.1 ms frame gap remains, no 50 ms main-thread long tasks in final sample. Not a sustained FPS or hardware-wide guarantee."
+  },
+  "sourceSha256": {
+    "src/presentation/scene.ts": "0085d8efbf273a5e7c7eb3dc732b3e1d9c2b2a93f3060779194e197d45d7501b",
+    "src/presentation/hud.ts": "482bb8caf86a343033e5deaefa2902d5cfad67d1aed0ac6ba346feb25d4355ed",
+    "src/presentation/hud-path.ts": "19d3c576c1fd050ac067e222c869a946e2c35cd39dd97dd8238425ddb3ff08c8",
+    "src/presentation/audio.ts": "a3a356b4f4cab4fe697c9bf4db20f793ec42a0a4d29bc2dfe3f2dc771d17dfe0",
+    "src/ui/Cockpit.tsx": "eef57cc1afc5f83e94e8b763e2320375d6eb10cf4b32a02875d41de76f1f7275",
+    "src/ui/app.css": "86a68604d40d07b34bf494865d11600eecf4b1f2403c66505175b6ed8e920836",
+    "dist/app.mjs": "cc831aededb7a8402a497bc94abc44626ece3138f3685acbf6d74299a512fb42",
+    "dist/manual.mjs": "be04f49dced4bb6f3471a222d70b30e518a8b1409a475d663ece425b54ca494b",
+    "scripts/check-manual.mjs": "81b3f86d8392014a7a80e357e8b77cada8688266cdb98174f483df6725bcfff2",
+    "package.json": "1c4e524952e256ec10e2636424a1b7e758503b9700948c36553975a0c3f4a5fa"
+  }
+}

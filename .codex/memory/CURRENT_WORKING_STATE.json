@@ -1,17 +1,17 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-09-27T08:43:33.859Z",
+  "updatedAt": "2026-09-27T12:44:16.838Z",
   "project": {
     "name": "星链算式",
     "root": "D:/ais/game/StarChain",
     "gitRemote": "https://github.com/Xpcolor/star-chain-challenge.git"
   },
   "currentTask": {
-    "phase": "release-complete",
-    "authorizedWork": "完整人机架构重构、定位星加倍、分支与PR、novaw.net发布和记忆刷新。真人房间后续实现。",
+    "phase": "release-in-progress",
+    "authorizedWork": "V1.1.7：扩大玩法说明弹窗，优化桌面分栏与手机单栏阅读；用户明确要求推送 GitHub 并刷新域名，包含前面确认的本地修正。",
     "gameImplementation": "Vite/TypeScript/React cockpit; replaceable MatchClient; unified WebGPU/TSL scene; GSAP/Howler; fixed player GLB plus sixteen unique enemy GLBs.",
     "playerShip": "固定当前一艘，不更换、不随等级变化；仅我方提供近看、真实转向、独立侧光。",
-    "releaseGate": "2026-09-27 用户批准 GitHub PR 与域名发布，PR #5 已通过受保护 CI 合并，novaw.net / www.novaw.net 已部署并核验。",
+    "releaseGate": "2026-09-27 最新用户请求已明确授权本次 GitHub PR、合并与 novaw.net / www.novaw.net 发布。须通过适用本地检查和真实 CI，再部署并验证线上。",
     "lastLocalFeedback": [
       "星云选择器在橙星链刻度下方按正常流布局，避免向上悬浮遮挡",
       "三处牌区 W星云青蓝/A加速橙金/J折跃紫色，带中文牌名；数字牌米白色",
@@ -23,9 +23,15 @@
       "第1–7级18血/左右各3项；第8–16级固定24血/左右各4项，定轨和调拨各2张；支援不改变所选级别规则。",
       "调拨换来的牌同回合立即可用；跃迁可选反射值及相邻一格，越界和原位除外；所有新局取消攻击两项目标上限。",
       "加速数字牌显示1/2顺序；确认后光束充能，删除选牌常驻连线；正常进场及陨落后等待两秒再弹窗；结算随机三模块，金色钉住只保留下一局。",
-      "检查修复：近看不再覆盖入场/陨落；四连击最后命中后才陨落，从实际陨落起再展示2秒后结算；各级舰体/破损碎片在入场前预热。"
+      "检查修复：近看不再覆盖入场/陨落；四连击最后命中后才陨落，从实际陨落起再展示2秒后结算；各级舰体/破损碎片在入场前预热。",
+      "V1.1.1：每侧两条长电弧连续绕外框并沿小框上下边缘走弓字形；目标提示12px，预计落点三角20px，定位菱形24px；原创64秒循环音乐与音效共用开关；新等级碎片渲染预热真正执行，修复首次爆炸编译阻塞。",
+      "V1.1.2：用户选定第3首 Relaxing Ambient Music；94秒平滑循环，实际输出约-31.22dBFS，声音开关/后台/重开保持单声轨；版本和说明书同步。",
+      "V1.1.3：显示框闪电完整路径周期11秒改44秒；三/四项面板与版本说明书浏览器回归、87项测试和构建通过。",
+      "V1.1.4：数字滚轮误把5显示为0已修复；攻击项升序、不改伤害；跃迁按钮不再被补牌区遮挡。四种视口生命显示、五种视口跃迁、真正零血陨落和两秒后结算通过。",
+      "V1.1.5：A加速回原位可触发攻击，不限使用次数，每次出牌结算一次；旧战绩原规则回放。修复加速越界提示遮挡减号；92项测试、80局模拟、36组镜像对局、四种视口真实操作通过。",
+      "V1.1.6：两条0中一条跃迁到20，或两条20中一条跃迁到0，均能触发二十星门3点基础伤害。原引擎已支持；说明书明确示例、24组专项和94项全套测试通过，本地已刷新。"
     ],
-    "latestRequest": "Publish the verified cockpit/V3/cinematic version through GitHub PR and update bound novaw.net domain."
+    "latestRequest": "Enlarge the rules dialog with a readable layout, push GitHub and update the bound domains."
   },
   "development": {
     "currentStage": "human-vs-ai",
@@ -41,17 +47,25 @@
     "assets": "资产库/README.md",
     "qa": "docs/qa/pve-v4-verification.json",
     "deployment": "deployment-status.json",
-    "latestRules": "docs/RULES_V3_VERIFICATION_20260927.md"
+    "latestRules": "docs/RULES_V3_VERIFICATION_20260927.md",
+    "latestPolish": "docs/POLISH_V1_1_1_20260927.md",
+    "latestMusic": "docs/MUSIC_V1_1_2_20260927.md",
+    "latestHudFix": "docs/HUD_FIX_V1_1_4_20260927.md",
+    "latestRuleChange": "docs/ACCEL_RETURN_V1_1_5_20260927.md",
+    "latestRuleClarification": "docs/qa/warp-endpoints-v1.1.6-verification.json",
+    "latestManual": "docs/MANUAL_V1_1_7_20260927.md"
   },
   "gitSnapshot": {
-    "branch": "main",
+    "branch": "fix/cockpit-feedback-v1-1-1",
     "deployedCommit": "1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9",
     "releasePr": "https://github.com/Xpcolor/star-chain-challenge/pull/5",
     "receiptBranch": "docs/release-20260927",
-    "note": "发布回执为文档补充，不改变已部署的运行代码；保留既有玩法和资产，不强推。"
+    "note": "Release authorized; local validation underway. Preserve untracked user file 游戏优化步骤.txt.",
+    "localVersion": "1.1.7",
+    "localBaseCommit": "d9ff3ac2dcce3a33b2671514b82946d187f4c17f"
   },
   "confirmedVisualDirection": [
-    "Three major transparent glass panels with two long electrical trails; small floating text; lower canopy only.",
+    "Floating transparent glass panels; each side has only two chasing lightning trails on a single outer-frame plus bow-shaped inner-edge route; lower canopy only.",
     "Player fixed aurora GLB; own-ship inspection/turn/side light only; sixteen unique enemy appearances.",
     "Side glass about 17%, bottom 20%; consistent card sizes and readable labels.",
     "Position stars 12px to 24px; tick labels separated beneath.",
@@ -64,10 +78,10 @@
   ],
   "verification": {
     "date": "2026-09-27",
-    "unitTests": "85 passed, 0 failed; includes shared four-hit terminal timing",
+    "unitTests": "94 passed, 0 failed",
     "typecheck": "passed",
     "build": "passed",
-    "browserTests": "8 relevant scenarios passed in one run: three cinematic timing regressions plus complete cockpit suite",
+    "browserTests": "All 18 unique browser scenarios passed across the initial and scoped rerun; full suite was not redundantly repeated after the layout-only fix.",
     "limits": [
       "No long-term GPU benchmark or full browser/hardware matrix.",
       "No subjective audio mix acceptance.",
@@ -182,6 +196,36 @@
       "backend": "webgpu",
       "rules": "flight-records-3",
       "guestRecordsStatus": 401
+    },
+    "latestPolish": {
+      "version": "1.1.1",
+      "evidence": "docs/qa/polish-v1.1.1-verification.json",
+      "published": false
+    },
+    "latestMusicFeedback": {
+      "evidence": "docs/qa/music-v1.1.2-verification.json",
+      "browserTestsPassed": 1,
+      "unitTestsPassed": 87,
+      "subjectiveMixAcceptance": "pending owner audition"
+    },
+    "latestLightningSpeed": {
+      "evidence": "docs/qa/lightning-speed-v1.1.3-verification.json",
+      "unitTestsPassed": 87,
+      "browserTestsPassed": 1,
+      "build": "passed"
+    },
+    "latestHudFix": {
+      "evidence": "docs/qa/hud-fix-v1.1.4-verification.json",
+      "unitTestsPassed": 87,
+      "browserScenariosPassed": 7,
+      "typecheck": "passed",
+      "build": "passed",
+      "trueZeroHpKnockout": "verified [18,0], round5; collapse and delayed result"
+    },
+    "latestManual": {
+      "evidence": "docs/qa/manual-v1.1.7-verification.json",
+      "viewports": 4,
+      "version": "1.1.7"
     }
   },
   "memory": {
@@ -198,7 +242,7 @@
       "memorix_project_context 一次简短 brief",
       "按任务需要读取方向文档和源码"
     ],
-    "status": "Owner-authorized public release stored and read back in project scope; prior local-only release hold superseded",
+    "status": "Project-scoped V1.1.4 local HUD fix handoff stored and read back; release remains awaiting owner approval.",
     "fallback": "Memorix 不可用时使用本文件和相关项目文档继续工作，明确未加载；不绑定父目录、HOME 或其他项目。",
     "topicKeys": [
       "starchain/development/current-direction",
@@ -232,7 +276,10 @@
     "receipt": ".codex/memory/PVE_VERIFICATION.json",
     "latestRulesReceipt": ".codex/memory/RULES_V3_VERIFICATION.json",
     "latestCinematicReceipt": ".codex/memory/CINEMATIC_VERIFICATION.json",
-    "latestReleaseReceipt": ".codex/memory/RELEASE_VERIFICATION.json"
+    "latestReleaseReceipt": ".codex/memory/RELEASE_VERIFICATION.json",
+    "latestPolishReceipt": ".codex/memory/POLISH_VERIFICATION.json",
+    "latestMusicReceipt": ".codex/memory/MUSIC_VERIFICATION.json",
+    "latestHudFixReceipt": ".codex/memory/HUD_FIX_VERIFICATION.json"
   },
   "execution": {
     "blender": "D:/app/blender/blender.exe",
@@ -240,7 +287,7 @@
     "localPreview": "http://127.0.0.1:8792/",
     "devPreview": "http://127.0.0.1:8793/",
     "publicDeployment": "Verified on novaw.net and www.novaw.net; version1.1.0 commit 1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9",
-    "gitCommitPush": "PR #5 merged after verify CI; protected main preserved; documentation-only release receipt follow-up",
+    "gitCommitPush": "V1.1.4 local feedback branch only; await explicit owner approval before PR/push/deployment.",
     "modelOriginals": "C:/Users/xutao/Desktop/飞船图",
     "modelCount": 17,
     "moreModelsNeeded": false,

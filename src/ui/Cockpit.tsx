@@ -16,6 +16,7 @@ import type {
 import { FLEET } from "../../dist/fleet.mjs";
 import { ROBOTS } from "../../dist/engine.mjs";
 import { Markup } from "./markup";
+import { RELEASE } from "../../dist/version.mjs";
 export const usePreferences = create<{
   reduced: boolean;
   inspect: boolean;
@@ -36,7 +37,9 @@ export function Odometer({ value }: { value: number }) {
     tracks = useRef<(HTMLSpanElement | null)[]>([]);
   const digits = String(value).split("");
   useLayoutEffect(() => {
-    const before = String(last.current).padStart(digits.length, "0");
+    const before = String(last.current)
+      .padStart(digits.length, "0")
+      .slice(-digits.length);
     const increasing = value >= last.current;
     last.current = value;
     const tweens = digits.map((d, i) => {
@@ -51,7 +54,9 @@ export function Odometer({ value }: { value: number }) {
           (increasing && n < old ? 10 : !increasing && n > old ? -10 : 0);
       return gsap.fromTo(
         track,
-        { y: `${-from}em` },
+        // A new strip at digit 5 starts exactly halfway down its 30 rows.
+        // Keep GSAP from interpreting that offset as an extra -50% transform.
+        { yPercent: 0, y: `${-from}em` },
         {
           y: `${-to}em`,
           duration: usePreferences.getState().reduced ? 0 : 0.55,
@@ -103,7 +108,9 @@ function CardFace({
 }) {
   const label = card.type === "N" ? String(card.value) : card.type;
   const name =
-    card.type === "N" ? null : { W: "星云", A: "加速", J: "跃迁", D: "定轨", B: "调拨" }[card.type];
+    card.type === "N"
+      ? null
+      : { W: "星云", A: "加速", J: "跃迁", D: "定轨", B: "调拨" }[card.type];
   return (
     <button
       className={`card ${name ? `special-card card-${card.type.toLowerCase()}` : ""} ${selected ? "selected" : ""}`}
@@ -118,7 +125,11 @@ function CardFace({
       <small>{label}</small>
       <span className="card-symbol">{label}</span>
       {name && <span className="card-name">{name}</span>}
-      {order && <span className="card-order" aria-label={`第 ${order} 步`}>{order}</span>}
+      {order && (
+        <span className="card-order" aria-label={`第 ${order} 步`}>
+          {order}
+        </span>
+      )}
     </button>
   );
 }
@@ -229,6 +240,15 @@ function Rails({ snapshot: s }: { snapshot: ViewSnapshot }) {
                 className="cursor position-star"
                 style={{ left: `${value * 5}%` }}
               />
+              {selectedChain === i && s.ui.landing?.chain === i && (
+                <i
+                  className="landing-marker"
+                  style={{ left: `${s.ui.landing.after * 5}%` }}
+                  role="img"
+                  aria-label={`预计落点 ${s.ui.landing.after}`}
+                  data-landing={s.ui.landing.after}
+                />
+              )}
               {selectedChain === i && s.ui.formula && (
                 <span className="rail-preview">{s.ui.formula}</span>
               )}
@@ -252,23 +272,35 @@ export function Cockpit({ client }: { client: MatchClient }) {
   if (!s) return <div className="loading">正在建立星链连接…</div>;
   const g = s.game,
     selected = s.ui.selected;
-  const hasA = !g.rest_mode && selected.some(id=>g.hand.find(c=>c.id===id)?.type==='A'),
-    hasB = !g.rest_mode && selected.some(id=>g.hand.find(c=>c.id===id)?.type==='B'),
-    numericOrder = selected.filter(id=>g.hand.find(c=>c.id===id)?.type==='N');
+  const hasA =
+      !g.rest_mode &&
+      selected.some((id) => g.hand.find((c) => c.id === id)?.type === "A"),
+    hasB =
+      !g.rest_mode &&
+      selected.some((id) => g.hand.find((c) => c.id === id)?.type === "B"),
+    numericOrder = selected.filter(
+      (id) => g.hand.find((c) => c.id === id)?.type === "N",
+    );
   return (
     <>
-      <main className={`cockpit ${g.goals.length===4?'advanced-rules':''}`}>
+      <main
+        className={`cockpit ${g.goals.length === 4 ? "advanced-rules" : ""}`}
+      >
         <header className="masthead">
           <div className="brand">
-            <span className="eyebrow">STAR CHAIN / FLIGHT DECK</span>
             <h1>
-              星链算式 <small>星舰对战</small>
+              星链对战{" "}
+              <small className="release-label">V{RELEASE.version}</small>
             </h1>
           </div>
           <nav>
             <button data-action="records">记录与难度</button>
             <button data-action="help">玩法说明</button>
-            <button data-action="sound" aria-pressed={s.ui.sound}>
+            <button
+              data-action="sound"
+              aria-pressed={s.ui.sound}
+              title="音乐与音效 · Relaxing Ambient Music — Clavier-Music"
+            >
               音效：{s.ui.sound ? "开" : "关"}
             </button>
             <button onClick={prefs.toggleMotion} aria-pressed={prefs.reduced}>
@@ -300,34 +332,50 @@ export function Cockpit({ client }: { client: MatchClient }) {
             <span>共享 {g.goals.length} 项</span>
           </header>
           <div className="entries">
-            {g.goals.map((goal, i) => (
-              <article
-                key={goal.id}
-                className={
-                  g.automatic_goal_claims.includes(goal.id) ? "achievable" : ""
-                }
-              >
-                <span className={"eyebrow " + {E:"cyan",P:"orange",L:"purple"}[goal.kind]}>
-                  {String(i + 1).padStart(2, "0")} /{" "}
-                  {{ E: "区域", P: "精准", L: "联动" }[goal.kind]}
-                </span>
-                <div className="target-title"><h3>{goal.name}</h3>{g.goals.length===4&&<b className="inline-damage">伤害 {goal.damage}</b>}</div>
-                <p>{goal.text}</p>
-                <div className="metric" hidden={g.goals.length===4}>
-                  伤害 <strong>{goal.damage}</strong>
-                  <span className="rule-line" />
-                </div>
-                {g.rest_mode && (
-                  <button
-                    data-action="goal"
-                    data-id={goal.id}
-                    aria-pressed={s.ui.restGoal === goal.id}
+            {[...g.goals]
+              .sort((a, b) => a.damage - b.damage)
+              .map((goal, i) => (
+                <article
+                  key={goal.id}
+                  data-electric-cell="cyan"
+                  data-pulse={
+                    g.automatic_goal_claims.includes(goal.id) ? "1" : "0"
+                  }
+                  className={
+                    g.automatic_goal_claims.includes(goal.id)
+                      ? "achievable"
+                      : ""
+                  }
+                >
+                  <span
+                    className={
+                      "eyebrow " +
+                      { E: "cyan", P: "orange", L: "purple" }[goal.kind]
+                    }
                   >
-                    {s.ui.restGoal === goal.id ? "已选替换" : "休整时替换"}
-                  </button>
-                )}
-              </article>
-            ))}
+                    {String(i + 1).padStart(2, "0")} /{" "}
+                    {{ E: "区域", P: "精准", L: "联动" }[goal.kind]}
+                  </span>
+                  <div className="target-title">
+                    <h3>{goal.name}</h3>
+                    <b className="inline-damage">伤害 {goal.damage}</b>
+                  </div>
+                  <p>{goal.text}</p>
+                  <div className="metric" hidden={g.goals.length === 4}>
+                    伤害 <strong>{goal.damage}</strong>
+                    <span className="rule-line" />
+                  </div>
+                  {g.rest_mode && (
+                    <button
+                      data-action="goal"
+                      data-id={goal.id}
+                      aria-pressed={s.ui.restGoal === goal.id}
+                    >
+                      {s.ui.restGoal === goal.id ? "已选替换" : "休整时替换"}
+                    </button>
+                  )}
+                </article>
+              ))}
           </div>
           <footer>
             预计攻击{" "}
@@ -401,6 +449,10 @@ export function Cockpit({ client }: { client: MatchClient }) {
             {g.repairs[0].map((repair, i) => (
               <article
                 key={repair.id}
+                data-electric-cell="violet"
+                data-pulse={
+                  g.automatic_repair_rewards.includes(repair.id) ? "1" : "0"
+                }
                 data-challenge={repair.id}
                 className={
                   g.automatic_repair_rewards.includes(repair.id)
@@ -464,7 +516,11 @@ export function Cockpit({ client }: { client: MatchClient }) {
                   card={card}
                   action="card"
                   selected={selected.includes(card.id)}
-                  order={hasA && numericOrder.includes(card.id)?numericOrder.indexOf(card.id)+1:undefined}
+                  order={
+                    hasA && numericOrder.includes(card.id)
+                      ? numericOrder.indexOf(card.id) + 1
+                      : undefined
+                  }
                   disabled={!s.ui.humanAction}
                   key={card.id}
                 />
@@ -480,7 +536,13 @@ export function Cockpit({ client }: { client: MatchClient }) {
                   })
                   .join(" · ") || "—"}
               </b>
-              <span>{hasA?'按 1 → 2 顺序运算':g.goals.length===4?'W 星云 · A 加速 · J 跃迁 · D 定轨 · B 调拨':'W 星云 · A 加速 · J 跃迁'}</span>
+              <span>
+                {hasA
+                  ? "按 1 → 2 顺序运算"
+                  : g.goals.length === 4
+                    ? "W 星云 · A 加速 · J 跃迁 · D 定轨 · B 调拨"
+                    : "W 星云 · A 加速 · J 跃迁"}
+              </span>
             </p>
           </div>
           <div className="refill" id="supply-region">
@@ -499,7 +561,7 @@ export function Cockpit({ client }: { client: MatchClient }) {
                   action={hasB ? "barter-market" : "supply"}
                   index={index}
                   disabled={!(s.ui.humanRefill || (hasB && s.ui.humanAction))}
-                  selected={hasB && g.selection.market===index}
+                  selected={hasB && g.selection.market === index}
                   key={card.id}
                 />
               ))}

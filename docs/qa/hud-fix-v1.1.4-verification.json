@@ -1,0 +1,91 @@
+{
+  "version": "1.1.4",
+  "verifiedAt": "2026-09-27T11:50:48.286Z",
+  "scope": [
+    "correct rendered HP reels",
+    "ascending attack display order",
+    "warp controls clearance"
+  ],
+  "rootCause": "GSAP inferred -50 percent translation when a new 30-row digit strip was initially positioned at digit 5; that compounded the em offset. Actual HP 5 was visibly 0.",
+  "changes": {
+    "percentTranslation": 0,
+    "alignPreviousDigits": "right",
+    "goalOrder": "stable ascending damage on a presentation copy",
+    "warp": "natural-height rail area anchored above command deck"
+  },
+  "before": {
+    "hp": {
+      "actual": 5,
+      "visible": [
+        0,
+        0
+      ]
+    },
+    "goalDamage": [
+      1,
+      2,
+      3,
+      1
+    ],
+    "warpClearancePx": -14.2343
+  },
+  "after": {
+    "hpSequences": [
+      24,
+      11,
+      5,
+      6,
+      2,
+      0,
+      5,
+      10,
+      15,
+      9,
+      0
+    ],
+    "hpViewports": [
+      2179,
+      1774,
+      1280,
+      390
+    ],
+    "goalDamage": [
+      1,
+      1,
+      2,
+      3
+    ],
+    "warpViewports": [
+      2179,
+      1920,
+      1774,
+      1280,
+      390
+    ],
+    "fullGame": {
+      "rounds": 5,
+      "hp": [
+        18,
+        0
+      ],
+      "outcome": "win",
+      "endReason": "knockout",
+      "collapseVisible": true,
+      "minimumCollapseBeforeResultMs": 1900
+    }
+  },
+  "checks": {
+    "unitTests": 87,
+    "typecheck": "passed",
+    "build": "passed",
+    "manualVersion": "1.1.4",
+    "relatedBrowserScenarios": 7,
+    "runMode": "Separate runs. Initial combined run: 5 passed, 1 failed on real warp-control pointer interception. Fixed and reran full game and dedicated warp clearance successfully."
+  },
+  "limits": [
+    "Not the entire browser/hardware matrix",
+    "No numerical gameplay changes or new balance simulation",
+    "No commit, PR, push or deployment"
+  ],
+  "report": "docs/HUD_FIX_V1_1_4_20260927.md"
+}

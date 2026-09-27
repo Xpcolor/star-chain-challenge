@@ -7,6 +7,25 @@ export function createAudio(): AudioBus {
     disposed = false,
     unlocked = false;
   const sounds = new Map<string, Howl>();
+  // Music has its own voice, so combat polyphony and match resets cannot interrupt it.
+  const music = new Howl({
+    src: ["/assets/music-relaxing-ambient.ogg"],
+    loop: true,
+    preload: true,
+    // The selected loop is mastered offline; default output is about -31 dBFS RMS.
+    volume: volume * 0.55,
+  });
+  let musicVoice: number | undefined;
+  const resumeMusic = () => {
+    if (disposed || !enabled || !unlocked || document.hidden) return;
+    if (musicVoice === undefined) musicVoice = music.play();
+    else if (!music.playing(musicVoice)) music.play(musicVoice);
+  };
+  const visibility = () => {
+    if (document.hidden) music.pause();
+    else resumeMusic();
+  };
+  document.addEventListener("visibilitychange", visibility);
   const soundFor = (id: string) => {
     let sound = sounds.get(id);
     if (!sound) {
@@ -39,6 +58,7 @@ export function createAudio(): AudioBus {
         AUDIO_BANK.forEach((entry) => soundFor(String(entry.id)));
         await Howler.ctx?.resume();
         unlocked = true;
+        resumeMusic();
         return true;
       } catch {
         return false;
@@ -71,12 +91,16 @@ export function createAudio(): AudioBus {
     },
     setEnabled(v) {
       enabled = v;
-      if (!v) stop();
+      if (!v) {
+        stop();
+        music.pause();
+      } else resumeMusic();
     },
     setVolume(v) {
       const old = volume;
       volume = Math.max(0, Math.min(1, v));
       for (const s of sounds.values()) s.fade(old, volume, 120);
+      music.volume(volume * 0.55);
     },
     stop,
     dispose() {
@@ -85,6 +109,8 @@ export function createAudio(): AudioBus {
       stop();
       sounds.forEach((s) => s.unload());
       sounds.clear();
+      document.removeEventListener("visibilitychange", visibility);
+      music.unload();
     },
   };
 }

@@ -34,7 +34,7 @@ test('wild, acceleration intermediate steps and card identities follow arithmeti
   const through=inspectMove([4,10,18],[A,n(3),n(4)],[],{chain:2,ids:['A','n3','n4'],ops:[1,-1]});
   assert.equal(through.after,17);assert.deepEqual(through.steps.map(step=>step.to),[21,17]);assert.equal(through.expression,'18 + 3 − 4');assert.equal(through.trace,'18 + 3 = 21 − 4 = 17');
   assert.throws(()=>inspectMove([4,10,2],[A,n(3),n(4)],[],{chain:2,ids:['A','n3','n4'],ops:[-1,1]}),/小于 0/);
-  assert.throws(()=>inspectMove([4,10,16],[A,n(3,'x'),n(3,'y')],[],{chain:1,ids:['A','x','y'],ops:[1,-1]}),/改变/);
+  assert.equal(inspectMove([4,10,16],[A,n(3,'x'),n(3,'y')],[],{chain:1,ids:['A','x','y'],ops:[1,-1]}).after,10);
   assert.throws(()=>inspectMove([4,10,16],[A,n(3)],[],{chain:1,ids:['A','n3','n3'],ops:[1,1]}),/两次/);
   assert.throws(()=>inspectMove([4,10,16],[A,W,n(3)],[],{chain:1,ids:['A','W','n3'],ops:[1,1],wild:2}),/功能牌/);
   assert.equal(inspectMove([4,10,16],[A,n(3,'x'),n(3,'y')],[],{chain:1,ids:['A','x','y'],ops:[1,1]}).after,16);

@@ -98,6 +98,7 @@ export class BattleScene implements ScenePort {
   private fxPool!: CombatFXPool;
   private timelines: { timeline: gsap.core.Timeline; start: number }[] = [];
   private hud = new ElectricHUD();
+  private scenePass!: ReturnType<typeof pass>;
   private terminal = false;
   private age = 0;
   private last = 0;
@@ -213,7 +214,7 @@ export class BattleScene implements ScenePort {
         stars.setMatrixAt(i, dummy.matrix);
       }
       this.scene.add(stars);
-      const scenePass = pass(this.scene, this.camera);
+      const scenePass = this.scenePass = pass(this.scene, this.camera);
       scenePass.setMRT(mrt({ output, emissive: vec4(emissive, output.a) }));
       const color = scenePass.getTextureNode("output"),
         emission = scenePass.getTextureNode("emissive"),
@@ -624,10 +625,15 @@ export class BattleScene implements ScenePort {
   }
   private prepareFleetArrival() {
     const canvas = this.renderer.domElement, visibility = canvas.style.visibility;
+    const updateType = this.scenePass.updateBeforeType;
     const parts = this.ships.flatMap((s) => [...s.hull, ...s.fragments]);
     const flags = parts.map((part) => ({ part, visible: part.visible, culled: part.frustumCulled }));
     canvas.style.visibility = "hidden";
     try {
+      // A fleet loaded between animation callbacks shares the previous FRAME id.
+      // Force this scene pass to render each warmup call instead of reusing that
+      // frame's old scene texture (which never visited the new hidden debris).
+      this.scenePass.updateBeforeType = "render";
       // Fractures are normally hidden. Upload their geometry and compile their actual
       // MRT/bloom materials now, rather than pausing on the first fatal impact.
       try {
@@ -640,6 +646,7 @@ export class BattleScene implements ScenePort {
       // Replace the offscreen warmup frame before revealing the canvas.
       this.frame(performance.now());
     } finally {
+      this.scenePass.updateBeforeType = updateType;
       canvas.style.visibility = visibility;
     }
   }

@@ -1,0 +1,87 @@
+{
+  "verifiedAt": "2026-09-27T12:29:26.469Z",
+  "version": "1.1.6",
+  "rulesVersion": "flight-records-4",
+  "ruleChanged": false,
+  "description": "Existing endpoint warp already supports both requested sum20 cases. Clarified manual and added permanent regression coverage; no engine semantic change.",
+  "examples": [
+    {
+      "before": [
+        0,
+        0,
+        7
+      ],
+      "chain": 0,
+      "landing": 20,
+      "after": [
+        20,
+        0,
+        7
+      ],
+      "goal": "L6",
+      "baseDamage": 3
+    },
+    {
+      "before": [
+        20,
+        20,
+        7
+      ],
+      "chain": 0,
+      "landing": 0,
+      "after": [
+        0,
+        20,
+        7
+      ],
+      "goal": "L6",
+      "baseDamage": 3
+    }
+  ],
+  "verification": {
+    "endpointCases": 24,
+    "dimensions": {
+      "levels": [
+        0,
+        7
+      ],
+      "actors": [
+        0,
+        1
+      ],
+      "start": [
+        0,
+        20
+      ],
+      "chains": [
+        0,
+        1,
+        2
+      ]
+    },
+    "checks": [
+      "preview and actual HP agree",
+      "J consumed normally",
+      "bot legalMoves includes endpoints",
+      "one claim with two matching partners",
+      "neighbor alternative must independently satisfy sum20",
+      "no origin landing",
+      "deck and HP accounting valid"
+    ],
+    "unit": {
+      "passed": 94,
+      "failed": 0
+    },
+    "typecheck": "passed",
+    "build": "passed",
+    "browserManual": "V1.1.6 and both examples verified on built local page; isolated API",
+    "browserGameplay": "No new browser gameplay scenario in this turn; actual settlement validated through engine tests.",
+    "screenshot": ".local/qa/warp-endpoints-v1.1.6-manual.png"
+  },
+  "localPreview": {
+    "url": "http://127.0.0.1:8792/",
+    "visibleHeading": "星链对战 V1.1.6",
+    "refreshed": true
+  },
+  "publication": "No commit, push, PR or deployment."
+}

@@ -1,2 +1,2 @@
-// The build replaces this module in dist/client with immutable release metadata.
-export const RELEASE=Object.freeze({version:'1.0.0',commit:'local',environment:'development',pr:null});
+// Vite/build replace this with package.json release metadata. Classic local fallback.
+export const RELEASE=Object.freeze({version:'1.1.7',commit:'local',environment:'development',pr:null});
