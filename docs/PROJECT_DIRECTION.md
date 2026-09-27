@@ -1,8 +1,10 @@
 # 星链算式当前开发方向
 
+2026-09-27 发布完成：PR [#5](https://github.com/Xpcolor/star-chain-challenge/pull/5) 已通过 CI 并合并，版本 1.1.0、提交 `1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9` 已部署到 novaw.net 和 www.novaw.net。两个域名均验证真实 WebGPU 模型、V3 规则、静态入口内容与提交一致、页面零报错；访客记录接口返回 401。生产数据库保持不变，无新增生产迁移。回执见 `docs/qa/release-20260927.json`、`deployment-status.json`。真实账号同步和旧记录迁移仍未重新验收。
+
 更新：2026-09-27。实际代码、测试与部署证据优先于历史记忆。架构详见 `docs/PVE_ARCHITECTURE.md`，发布状态见 `deployment-status.json`。
 
-最新授权：用户已明确要求更新 GitHub、PR 推送后刷新绑定域名 novaw.net。下面关于“等待试玩批准”的描述是此前本地验证阶段的历史状态；现在允许提交、推送、通过 CI 后合并及部署，发布结果仍须以实际回执确认。
+下面关于“等待试玩批准”“未发布”的条目为此前本地验证历史，已被上述正式发布结果取代。
 
 ## 当前版本：完整人机驾驶舱 1.1
 

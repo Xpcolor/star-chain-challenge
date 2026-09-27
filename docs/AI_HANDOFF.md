@@ -1,8 +1,10 @@
 # 给后续 AI 的项目说明
 
+2026-09-27 发布完成：PR [#5](https://github.com/Xpcolor/star-chain-challenge/pull/5) 已通过 CI 并合并，版本 1.1.0、提交 `1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9` 已部署到 novaw.net 和 www.novaw.net。两个域名均验证真实 WebGPU 模型、V3 规则、静态入口内容与提交一致、页面零报错；访客记录接口返回 401。生产数据库保持不变，无新增生产迁移。回执见 `docs/qa/release-20260927.json`、`deployment-status.json`。真实账号同步和旧记录迁移仍未重新验收。
+
 先读 `.codex/memory/CURRENT_WORKING_STATE.json` 并按 AGENTS.md 绑定项目 Memorix。当前阶段是先稳定人机版本、为后续真人对战保留扩展边界；界面、模型、架构和分工方向见 `docs/PROJECT_DIRECTION.md`。
 
-2026-09-27 最新授权：用户已明确要求更新 GitHub、完成 PR 推送后刷新 novaw.net。此前“等待本人试玩批准”已满足，以下相应描述保留为历史记录。发布过程中继续遵守真实 CI、现有主分支保护、记录身份和数据库隔离；发布提交与线上验证见 deployment-status.json。
+此前“等待本人试玩批准”的条目仅记录本地验证历史，已被上述正式发布结果取代。
 
 README 提供项目概况；部署或身份任务再读 CODEX_DESKTOP_TASK，验收任务读 docs/ACCEPTANCE，记录接口任务读 docs/RECORDS_API 与相关源码。历史部署任务不自动恢复执行。规则以当前源码为准，历史平衡报告只适用于其注明版本。未批准的无限模块与轮换星域不能顺手合入。
 

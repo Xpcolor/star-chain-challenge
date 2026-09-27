@@ -1,0 +1,194 @@
+{
+  "verifiedAt": "2026-09-27T08:43:33.859Z",
+  "releaseVersion": "1.1.0",
+  "authorization": "Owner explicitly requested GitHub PR then bound-domain update on 2026-09-27.",
+  "pullRequest": "https://github.com/Xpcolor/star-chain-challenge/pull/5",
+  "pullRequestHead": "e079732b48f8669eb83a739e9c3213bea84fa557",
+  "mergedAt": "2026-09-27T08:31:38Z",
+  "deployedCommit": "1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9",
+  "cloudflareVersion": "fdc489ab-e6bc-456b-8b32-b5b806163154",
+  "previousCloudflareVersion": "a0d00689-bb97-4de7-86a1-c74971fe586b",
+  "deploymentMethod": "Existing Wrangler OAuth; protected PR merged after verify CI; GitHub automatic deploy remains disabled.",
+  "production": {
+    "url": "https://star-chain-challenge.star-chain-challenge.workers.dev",
+    "version": "1.1.0",
+    "commit": "1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9",
+    "environment": "production",
+    "pr": null,
+    "databaseId": "913e0366-c60b-47d8-817f-51725b49fb83"
+  },
+  "preview": {
+    "url": "https://star-chain-pr-5.star-chain-challenge.workers.dev",
+    "version": "1.1.0",
+    "commit": "e079732b48f8669eb83a739e9c3213bea84fa557",
+    "environment": "preview",
+    "pr": "5",
+    "databaseId": "f0f994cc-d20e-4789-8cfc-7e61421b7aca",
+    "cloudflareVersion": "ffb11e10-3907-467c-b8db-f180a1a8d212",
+    "verified": true
+  },
+  "database": {
+    "productionUnchanged": true,
+    "productionMigrationsApplied": 0,
+    "previewIsolated": true
+  },
+  "ci": {
+    "pullRequest": "https://github.com/Xpcolor/star-chain-challenge/actions/runs/36305378698",
+    "mergedMain": "https://github.com/Xpcolor/star-chain-challenge/actions/runs/36306477571",
+    "conclusion": "success"
+  },
+  "verificationBeforeRelease": {
+    "unitTests": 85,
+    "typecheck": "passed",
+    "build": "passed",
+    "focusedBrowserScenarios": 8,
+    "evidence": "docs/qa/cinematic-timing-verification.json",
+    "rulesEvidence": "docs/qa/rules-v3-verification.json"
+  },
+  "liveChecks": [
+    {
+      "base": "https://novaw.net",
+      "expected": "1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9",
+      "checkedAt": "2026-09-27T08:35:08.231Z",
+      "checks": [
+        {
+          "name": "Worker release",
+          "ok": true,
+          "details": {
+            "version": "1.1.0",
+            "commit": "1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9",
+            "environment": "production",
+            "pr": null
+          }
+        },
+        {
+          "name": "Static version",
+          "ok": true,
+          "details": {
+            "status": 200
+          }
+        },
+        {
+          "name": "Homepage",
+          "ok": true,
+          "details": {
+            "status": 200
+          }
+        },
+        {
+          "name": "Live 3D cockpit and V3 rules",
+          "ok": true,
+          "details": {
+            "backend": "webgpu",
+            "models": "ready",
+            "level": "1",
+            "hp": [
+              18,
+              18
+            ],
+            "rules": "flight-records-3",
+            "arrivalPending": false
+          }
+        },
+        {
+          "name": "Loaded entry byte matches production build",
+          "ok": true,
+          "details": {
+            "main": "/assets/index-DqXbJrt7.js",
+            "sha256": "e448a34bdaaa84fdd2082f9795b7b159beb8a1525f35e713380cd6c92460893e"
+          }
+        },
+        {
+          "name": "Guest record access stays protected",
+          "ok": true,
+          "details": {
+            "status": 401
+          }
+        },
+        {
+          "name": "No page errors",
+          "ok": true,
+          "details": {
+            "count": 0
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "base": "https://www.novaw.net",
+      "expected": "1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9",
+      "checkedAt": "2026-09-27T08:36:01.987Z",
+      "checks": [
+        {
+          "name": "Worker release",
+          "ok": true,
+          "details": {
+            "version": "1.1.0",
+            "commit": "1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9",
+            "environment": "production",
+            "pr": null
+          }
+        },
+        {
+          "name": "Static version",
+          "ok": true,
+          "details": {
+            "status": 200
+          }
+        },
+        {
+          "name": "Homepage",
+          "ok": true,
+          "details": {
+            "status": 200
+          }
+        },
+        {
+          "name": "Live 3D cockpit and V3 rules",
+          "ok": true,
+          "details": {
+            "backend": "webgpu",
+            "models": "ready",
+            "level": "1",
+            "hp": [
+              18,
+              18
+            ],
+            "rules": "flight-records-3",
+            "arrivalPending": false
+          }
+        },
+        {
+          "name": "Loaded entry byte matches production build",
+          "ok": true,
+          "details": {
+            "main": "/assets/index-DqXbJrt7.js",
+            "sha256": "e448a34bdaaa84fdd2082f9795b7b159beb8a1525f35e713380cd6c92460893e"
+          }
+        },
+        {
+          "name": "Guest record access stays protected",
+          "ok": true,
+          "details": {
+            "status": 401
+          }
+        },
+        {
+          "name": "No page errors",
+          "ok": true,
+          "details": {
+            "count": 0
+          }
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "limits": [
+    "Real authenticated record login/sync and legacy record migration were not re-verified.",
+    "Same-machine browser and frame probes do not guarantee smoothness on every device.",
+    "No subjective audio mix acceptance."
+  ],
+  "receiptOnlyFollowup": true
+}
