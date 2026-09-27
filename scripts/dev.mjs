@@ -6,6 +6,8 @@ import {resolve, dirname, extname, join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {api} from '../server/worker.mjs';
+import {prepareRenderer} from './prepare-renderer.mjs';
+await prepareRenderer();
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const port = Number(process.env.STAR_CHAIN_LOCAL_PORT || 8787);
@@ -31,7 +33,7 @@ const env = {DB: {prepare(sql) {
       first: async () => statement.get(...args) || null, all: async () => ({results: statement.all(...args)})};
   }};
 }}};
-const mime = {'.html':'text/html; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml'};
+const mime = {'.html':'text/html; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.js':'text/javascript; charset=utf-8','.json':'application/json','.css':'text/css; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml','.glb':'model/gltf-binary','.wav':'audio/wav','.hdr':'application/octet-stream'};
 const server = createServer(async (req, res) => {
   try {
     if (![`127.0.0.1:${port}`, `localhost:${port}`].includes(req.headers.host)) {res.writeHead(403).end('仅允许本机访问'); return;}
@@ -48,8 +50,8 @@ const server = createServer(async (req, res) => {
     }
     if (!['GET','HEAD'].includes(req.method)) {res.writeHead(405).end(); return;}
     const pathname = decodeURIComponent(url.pathname === '/' ? '/index.html' : url.pathname);
-    if (!(/^\/[a-zA-Z0-9_-]+\.(html|mjs|css)$/.test(pathname) || /^\/assets\/[a-zA-Z0-9_.-]+\.(png|jpg|svg)$/.test(pathname))) {res.writeHead(404).end(); return;}
-    const file = await readFile(join(root, 'dist', pathname));
+    if (!(/^\/[a-zA-Z0-9_.-]+\.(html|mjs|css)$/.test(pathname) || /^\/assets\/[a-zA-Z0-9_.-]+\.(png|jpg|svg|glb|wav|hdr|json|js|css)$/.test(pathname))) {res.writeHead(404).end(); return;}
+    const file = await readFile(join(root, process.env.STAR_CHAIN_BUILT==='1'?'dist/client':'dist', pathname));
     res.writeHead(200, {'content-type': mime[extname(pathname)] || 'application/octet-stream', 'cache-control': 'no-store', 'x-content-type-options': 'nosniff'});
     res.end(req.method === 'HEAD' ? undefined : file);
   } catch (e) {res.writeHead(e.code === 'ENOENT' ? 404 : 500).end('本地服务请求失败');}

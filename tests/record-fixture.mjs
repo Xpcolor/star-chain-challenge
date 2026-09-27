@@ -1,9 +1,9 @@
-import {createGame,selectModule,rollInitiative,legalMoves,observation,playAndClaim,rest,takeCard} from '../dist/engine.mjs';
+import {createGame,rulesForLevel,selectModule,rollInitiative,legalMoves,observation,playAndClaim,rest,takeCard} from '../dist/engine.mjs';
 import {BOT_PROFILES,LEVEL_COUNT,CONFIG_ID} from '../dist/difficulty.mjs';
 import {makeRecord,appendEvent,closeRecord,publicSnapshot} from '../dist/records.mjs';
 
 export function fixture({seed=48,actual=LEVEL_COUNT-1,selected=LEVEL_COUNT-1,epoch=0,winner=1,now=Date.now(),id=crypto.randomUUID()}={}){
-  const options={seed,level:actual,botProfile:BOT_PROFILES[actual]},g=createGame(options);
+  const options={...rulesForLevel(selected),seed,level:actual,botProfile:BOT_PROFILES[actual]},g=createGame(options);
   const record=makeRecord(options,{actualLevel:actual,selectedLevel:selected,supportEpoch:epoch,supportEnabled:true,configId:CONFIG_ID},now,id);
   record.initial=publicSnapshot(g);
   const event=(type,data)=>appendEvent(record,type,data,now+record.sequence+1);

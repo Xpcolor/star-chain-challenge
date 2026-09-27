@@ -1,0 +1,323 @@
+{
+  "verifiedAt": "2026-09-27T06:16:12.792Z",
+  "viewport": [
+    1774,
+    887
+  ],
+  "backend": "webgpu",
+  "method": "Headless Chrome / same local machine and UI flow. Random game seeds differ; short observational before/after sample, not sustained FPS or identical-shot benchmark. frame gaps are rAF wall intervals; pipeline costs are synchronous CPU timings, not GPU execution time.",
+  "before": {
+    "summary": [
+      {
+        "start": 3763.1000000089407,
+        "firstFxMs": 139.59999999403954,
+        "frameP95": 50.100000000000364,
+        "maxFrame": 183.19999999999982,
+        "over50": 4,
+        "frameCount": 68,
+        "costs": {
+          "frame": {
+            "p95": 2.4000000059604645,
+            "max": 192.40000000596046
+          },
+          "pipeline": {
+            "p95": 1.5999999940395355,
+            "max": 189.6000000089407
+          },
+          "hud": {
+            "p95": 0.6000000089406967,
+            "max": 2.7000000029802322
+          },
+          "layout": {
+            "p95": 0,
+            "max": 0
+          }
+        }
+      },
+      {
+        "start": 5755.600000008941,
+        "firstFxMs": 66.79999999701977,
+        "frameP95": 50,
+        "maxFrame": 166.60000000000036,
+        "over50": 2,
+        "frameCount": 71,
+        "costs": {
+          "frame": {
+            "p95": 16.799999997019768,
+            "max": 166.5
+          },
+          "pipeline": {
+            "p95": 14.900000005960464,
+            "max": 164.20000000298023
+          },
+          "hud": {
+            "p95": 0.30000001192092896,
+            "max": 0.4000000059604645
+          },
+          "layout": {
+            "p95": 0,
+            "max": 0
+          }
+        }
+      },
+      {
+        "start": 8242.300000011921,
+        "firstFxMs": 117.79999999701977,
+        "frameP95": 33.400000000001455,
+        "maxFrame": 116.60000000000036,
+        "over50": 2,
+        "frameCount": 78,
+        "costs": {
+          "frame": {
+            "p95": 2,
+            "max": 104
+          },
+          "pipeline": {
+            "p95": 1.5,
+            "max": 102.19999998807907
+          },
+          "hud": {
+            "p95": 0.5999999940395355,
+            "max": 2.2000000029802322
+          },
+          "layout": {
+            "p95": 0,
+            "max": 0
+          }
+        }
+      },
+      {
+        "start": 10174.20000000298,
+        "firstFxMs": 125,
+        "frameP95": 150.10000000000036,
+        "maxFrame": 250.09999999999854,
+        "over50": 4,
+        "frameCount": 46,
+        "costs": {
+          "frame": {
+            "p95": 158.09999999403954,
+            "max": 246.1000000089407
+          },
+          "pipeline": {
+            "p95": 156,
+            "max": 244.29999999701977
+          },
+          "hud": {
+            "p95": 0.29999999701976776,
+            "max": 0.4000000059604645
+          },
+          "layout": {
+            "p95": 0,
+            "max": 0
+          }
+        }
+      },
+      {
+        "start": 12642.20000000298,
+        "firstFxMs": 121.90000000596046,
+        "frameP95": 50,
+        "maxFrame": 116.70000000000073,
+        "over50": 2,
+        "frameCount": 73,
+        "costs": {
+          "frame": {
+            "p95": 1.9000000059604645,
+            "max": 104.6000000089407
+          },
+          "pipeline": {
+            "p95": 1.3999999910593033,
+            "max": 103.5
+          },
+          "hud": {
+            "p95": 0.5,
+            "max": 2.4000000059604645
+          },
+          "layout": {
+            "p95": 0,
+            "max": 0
+          }
+        }
+      },
+      {
+        "start": 14604.90000000596,
+        "firstFxMs": 134.09999999403954,
+        "frameP95": 33.5,
+        "maxFrame": 333.5,
+        "over50": 1,
+        "frameCount": 66,
+        "costs": {
+          "frame": {
+            "p95": 2.199999988079071,
+            "max": 338.59999999403954
+          },
+          "pipeline": {
+            "p95": 1.7999999970197678,
+            "max": 336.59999999403954
+          },
+          "hud": {
+            "p95": 0.30000001192092896,
+            "max": 0.3999999910593033
+          },
+          "layout": {
+            "p95": 0,
+            "max": 0
+          }
+        }
+      }
+    ],
+    "errors": []
+  },
+  "after": {
+    "summary": [
+      {
+        "start": 3383.4000000059605,
+        "firstFxMs": 484.09999999403954,
+        "frameP95": 33.400000000000546,
+        "maxFrame": 50,
+        "over50": 0,
+        "frameCount": 79,
+        "costs": {
+          "frame": {
+            "p95": 1.8999999910593033,
+            "max": 3
+          },
+          "pipeline": {
+            "p95": 1.3999999910593033,
+            "max": 1.5
+          },
+          "hud": {
+            "p95": 0.30000001192092896,
+            "max": 0.4000000059604645
+          },
+          "layout": {
+            "p95": 0,
+            "max": 0
+          }
+        }
+      },
+      {
+        "start": 5877.70000000298,
+        "firstFxMs": 506.6000000089407,
+        "frameP95": 33.399999999999636,
+        "maxFrame": 50.100000000000364,
+        "over50": 1,
+        "frameCount": 83,
+        "costs": {
+          "frame": {
+            "p95": 1.7999999970197678,
+            "max": 2
+          },
+          "pipeline": {
+            "p95": 1.3999999910593033,
+            "max": 1.5
+          },
+          "hud": {
+            "p95": 0.29999999701976776,
+            "max": 0.4000000059604645
+          },
+          "layout": {
+            "p95": 0,
+            "max": 0
+          }
+        }
+      },
+      {
+        "start": 8461.10000000894,
+        "firstFxMs": 511.29999999701977,
+        "frameP95": 33.400000000001455,
+        "maxFrame": 50.100000000000364,
+        "over50": 2,
+        "frameCount": 86,
+        "costs": {
+          "frame": {
+            "p95": 1.7999999970197678,
+            "max": 2.199999988079071
+          },
+          "pipeline": {
+            "p95": 1.2999999970197678,
+            "max": 1.7999999970197678
+          },
+          "hud": {
+            "p95": 0.30000001192092896,
+            "max": 0.5
+          },
+          "layout": {
+            "p95": 0,
+            "max": 0
+          }
+        }
+      },
+      {
+        "start": 10932.90000000596,
+        "firstFxMs": 507.5,
+        "frameP95": 33.399999999999636,
+        "maxFrame": 50,
+        "over50": 0,
+        "frameCount": 89,
+        "costs": {
+          "frame": {
+            "p95": 1.6000000089406967,
+            "max": 1.7000000029802322
+          },
+          "pipeline": {
+            "p95": 1.0999999940395355,
+            "max": 1.2999999970197678
+          },
+          "hud": {
+            "p95": 0.30000001192092896,
+            "max": 0.4000000059604645
+          },
+          "layout": {
+            "p95": 0,
+            "max": 0
+          }
+        }
+      },
+      {
+        "start": 13532.60000000894,
+        "firstFxMs": 524,
+        "frameP95": 33.400000000001455,
+        "maxFrame": 50,
+        "over50": 0,
+        "frameCount": 81,
+        "costs": {
+          "frame": {
+            "p95": 1.6000000089406967,
+            "max": 2.0999999940395355
+          },
+          "pipeline": {
+            "p95": 1.1000000089406967,
+            "max": 1.300000011920929
+          },
+          "hud": {
+            "p95": 0.30000001192092896,
+            "max": 0.4000000059604645
+          },
+          "layout": {
+            "p95": 0,
+            "max": 0
+          }
+        }
+      }
+    ],
+    "errors": [],
+    "failures": []
+  },
+  "files": {
+    "src/presentation/scene.ts": "6e1795893e014ae0ad26da3673aabb2db7a125d48e6b1fa3ab86491777fdc6b3",
+    "src/presentation/fx-pool.ts": "8488c73a918fcdfbfc35c88e343c8f202e218ced54828d61ecc7a43f02950c94",
+    "src/presentation/audio.ts": "fa8a9086b09eb1325439cfc6d5a6b76b02088a8a78e9801cb0e057f26020787e",
+    "dist/combat-timing.mjs": "0ae7d5e3cd15a0751afb660b4b209a117f3d8b29049a984af906c93c3d11cf16",
+    "dist/app.mjs": "288195f4a1b528300a6e41b38503ddc9f91f107c8f5ccb85dee574f03cb37215"
+  },
+  "pool": "docs/qa/fx-pool-verification.json",
+  "checks": {
+    "unitTests": 79,
+    "typecheck": "passed",
+    "build": "passed",
+    "browser": "full PvE, WebGL/missing-model fallback, sixteen models/fracture; timing/restart/reduced-motion passed in focused rerun",
+    "layout": "8 cases (3/4 slots, four viewport sizes)",
+    "gameplayActivated": false,
+    "releasePerformed": false
+  }
+}

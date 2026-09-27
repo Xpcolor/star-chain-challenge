@@ -1,0 +1,43 @@
+{
+  "id": "enemy-tier-04",
+  "name": "云雀轻型飞碟",
+  "file": "enemy-tier-04.png",
+  "prompt": "enemy-tier-04.prompt.txt",
+  "generation": "built-in image_gen, single native output",
+  "width": 1536,
+  "height": 1024,
+  "format": "PNG RGBA",
+  "bytes": 1409912,
+  "sha256": "759EFE98FA0C596EEE0B47EE79EB09997CAE96CEE30F00251A41F5D52F6DB029",
+  "bounds_alpha32": [
+    135,
+    310,
+    1399,
+    735
+  ],
+  "transparent_pixels": 1200730,
+  "partial_alpha_pixels": 372134,
+  "opaque_pixels": 0,
+  "orientation": "front left, propulsion right",
+  "anchors_approx_pixels": {
+    "front_optical_core": [
+      214,
+      572
+    ],
+    "thrusters": [
+      [
+        990,
+        681
+      ],
+      [
+        1133,
+        658
+      ],
+      [
+        1250,
+        629
+      ]
+    ]
+  },
+  "visual_review": "PASS: flattened oblate saucer, one central dome, continuous violet rim, three recessed underside thrusters, complete silhouette with minimum 8.8 percent margin, no text or background; transparent alpha verified"
+}

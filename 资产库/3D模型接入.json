@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 2,
+  "models": [
+    {
+      "id": "aurora",
+      "version": 1,
+      "model": "/assets/detailed-player.glb",
+      "source": "futuristic spaceship 3d model2.glb",
+      "sourceSha256": "fe0cb474937ea3b06c5d2457f13410e87258d1814c6a230d5823b0f52d5caa41",
+      "sha256": "26d9cee12701affc6c77382ba7dfc19c39a6066dd744f2b2a1dd365a4f704bb2",
+      "bytes": 4830408,
+      "fractureParts": 6
+    },
+    {
+      "id": "fleet-01",
+      "version": 1,
+      "model": "/assets/detailed-01.glb",
+      "source": "futuristic space thruster 3d model (1).glb",
+      "sourceSha256": "f73b4d7c1c4f23aa802f804d1441352d00f8731e674fbaed55f15ec3eb19e0e3",
+      "sha256": "0fb228a20386a9cfa21a965454139eaf4405bd546fbd3656abfbb788bad1738e",
+      "bytes": 5058444,
+      "fractureParts": 6
+    },
+    {
+      "id": "fleet-02",
+      "version": 1,
+      "model": "/assets/detailed-02.glb",
+      "source": "futuristic spaceship 3d model (5).glb",
+      "sourceSha256": "37770dc197bea647671d74647dfa4bdf3ba8c256246ad24d452da56fa66f5f92",
+      "sha256": "f95b47a005568ce71b67c4fadfacec12b72c5bcb65e62982a645c8cd4cd2485a",
+      "bytes": 6625340,
+      "fractureParts": 6
+    },
+    {
+      "id": "fleet-03",
+      "version": 1,
+      "model": "/assets/detailed-03.glb",
+      "source": "futuristic spaceship 3d model (17).glb",
+      "sourceSha256": "4131b56e475a74d3bdeb24a52f89eb04afe51c902de4c2792c29f4f0126e3dcf",
+      "sha256": "91175c76078931f26fe5f27352b646550f2fe734555bf83009c926e972ead2c3",
+      "bytes": 5025328,
+      "fractureParts": 6
+    },
+    {
+      "id": "fleet-04",
+      "version": 1,
+      "model": "/assets/detailed-04.glb",
+      "source": "futuristic spaceship 3d model (10).glb",
+      "sourceSha256": "39482a54b89b9115a766f448978b6a8b299d4af40113588d7a79f20f90a9f383",
+      "sha256": "00968e31c4de96d012c974cbf3547593d1fdbda57a8d94a6c8fdf54ebbc974d9",
+      "bytes": 4960780,
+      "fractureParts": 6
+    },
+    {
+      "id": "fleet-05",
+      "version": 1,
+      "model": "/assets/detailed-05.glb",
+      "source": "sci-fi spaceship 3d model (1).glb",
+      "sourceSha256": "0904c990a6fc709767f1034fff4729f73496b5cdb22dde6d26048511b30081fe",
+      "sha256": "5fc4b0e14d1ec1982834576964cb924cf0174ccf488c5c330fd12b12500edc3c",
+      "bytes": 5889820,
+      "fractureParts": 6
+    },
+    {
+      "id": "fleet-06",
+      "version": 1,
+      "model": "/assets/detailed-06.glb",
+      "source": "futuristic spacecraft 3d model (1).glb",
+      "sourceSha256": "b0a14244857f9fbf2179f3d52effbd8eb38830099bd8ffbb1b96f56800b2e866",
+      "sha256": "263d8fe42fcbfea055caf3b689e3e8dd51d5a1f1db75114749983c64ec80f454",
+      "bytes": 5667984,
+      "fractureParts": 6
+    },
+    {
+      "id": "fleet-07",
+      "version": 1,
+      "model": "/assets/detailed-07.glb",
+      "source": "futuristic spacecraft 3d model (2).glb",
+      "sourceSha256": "1517f6163d5d5c1a6958a6b9df31b55e38ef1adbc2bf08cd0746b8eeae37701d",
+      "sha256": "4ed1b8c22e413139744327c0571a70f728b1d88860b7892979c794e6eca926df",
+      "bytes": 5840812,
+      "fractureParts": 6
+    },
+    {
+      "id": "fleet-08",
+      "version": 1,
+      "model": "/assets/detailed-08.glb",
+      "source": "futuristic spaceship 3d model (30).glb",
+      "sourceSha256": "680bdc169392583dbd814efd8866ebc89c898874d76bae3980d5c6493ce0330c",
+      "sha256": "f787628f9329e9dd434d8888eefe38e046d25b1c33e9eccdbd690544a7668c6b",
+      "bytes": 4955148,
+      "fractureParts": 6
+    },
+    {
+      "id": "fleet-09",
+      "version": 1,
+      "model": "/assets/detailed-09.glb",
+      "source": "futuristic spaceship 3d model (15).glb",
+      "sourceSha256": "5ac22cbb6a5735818d8835f3d33de8a67f2aeb5daee045a31f9afc6b473585f9",
+      "sha256": "248e19e15baa2ed5ae13a686cf86f66555e66b54311208fd459463ee99680f1f",
+      "bytes": 6128360,
+      "fractureParts": 6
+    },
+    {
+      "id": "fleet-10",
+      "version": 1,
+      "model": "/assets/detailed-10.glb",
+      "source": "spacecraft 3d model (1).glb",
+      "sourceSha256": "6e5eead8b317abdf465073cd4cd71adbeb71d9210d8152f9c5afa5bd1b0df0b3",
+      "sha256": "439549548bdd2e0c05740316ed3e347596e215cbda649f59d6a5a13422ac5294",
+      "bytes": 5667384,
+      "fractureParts": 6
+    },
+    {
+      "id": "fleet-11",
+      "version": 1,
+      "model": "/assets/detailed-11.glb",
+      "source": "futuristic spaceship 3d model (19).glb",
+      "sourceSha256": "50258cc10e6d2fcfb91c7255701af32e167c3c567540a453cd50699d8cc6d778",
+      "sha256": "60a997a973e2e5decde8a7ecc81044dc9f8ac0f7678150cc5bd0885211ab7013",
+      "bytes": 6499872,
+      "fractureParts": 6
+    },
+    {
+      "id": "fleet-12",
+      "version": 1,
+      "model": "/assets/detailed-12.glb",
+      "source": "futuristic spaceship 3d model (13).glb",
+      "sourceSha256": "0bc7167819b0b8cc5f1563b2d06d29ceb401c12999a41c552e97b1939c1727fb",
+      "sha256": "216cb1a2f7809fb5c928b8ba59fcdb3be4bae1eb65b585dcf545dfcb88f62966",
+      "bytes": 6019324,
+      "fractureParts": 6
+    },
+    {
+      "id": "fleet-13",
+      "version": 1,
+      "model": "/assets/detailed-13.glb",
+      "source": "futuristic spaceship 3d model (12).glb",
+      "sourceSha256": "176e1ffc7ce935149a8892aef716a5f36df983b4995f745f98bc85b4071582d5",
+      "sha256": "1bb72d3e996c5ad08c1dc3ae32b2526a2bdd30ab66e904781c988a277dc745da",
+      "bytes": 6404616,
+      "fractureParts": 6
+    },
+    {
+      "id": "fleet-14",
+      "version": 1,
+      "model": "/assets/detailed-14.glb",
+      "source": "futuristic spaceship 3d model (23).glb",
+      "sourceSha256": "a5c518cec1b370f29ed5d5e685bb3757b038ebf01abceec9bc06f9ace742c8e5",
+      "sha256": "49d3c240389ae04857e45bd6db1ab59ba87c748d0c0776dc130b8051d858d91a",
+      "bytes": 6655808,
+      "fractureParts": 6
+    },
+    {
+      "id": "fleet-15",
+      "version": 1,
+      "model": "/assets/detailed-15.glb",
+      "source": "futuristic space platform 3d model (1).glb",
+      "sourceSha256": "421435763d2ac363c95e7162dbab8e1940e0e6e750e07ca0131536cd8feed4c2",
+      "sha256": "7e8f9432e7da0b1ff8bbccf44461144f8c7560241f68c587c68e7944b1ad2d08",
+      "bytes": 6490748,
+      "fractureParts": 6
+    },
+    {
+      "id": "fleet-16",
+      "version": 1,
+      "model": "/assets/detailed-16.glb",
+      "source": "futuristic spaceship 3d model (21).glb",
+      "sourceSha256": "01acc2cdf9eb64f0a54e70901845b8af306787dcbacc030bcf9011f2192ee73e",
+      "sha256": "6d4ce5c65f1f982eb3749f498feaf28a59036862e6a4258092c7094e2d3a1293",
+      "bytes": 6072548,
+      "fractureParts": 6
+    }
+  ]
+}

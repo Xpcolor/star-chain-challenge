@@ -1,0 +1,1706 @@
+:root {
+  --card-w: clamp(44px, 4.1vw, 77px);
+  --card-h: clamp(60px, 8.1vh, 96px);
+}
+body {
+  min-width: 360px;
+}
+.loading {
+  position: relative;
+  z-index: 9;
+  padding: 40px;
+}
+.masthead {
+  top: 16px;
+}
+.masthead nav {
+  font-size: clamp(12px, 0.85vw, 16px);
+  gap: 8px;
+}
+.masthead nav button {
+  padding: 8px 12px;
+}
+.opponent-hand {
+  top: 7.5%;
+  width: 36%;
+  left: 32%;
+  font-size: 15px;
+}
+.opponent-hand .cards {
+  margin: 0;
+}
+.cards button {
+  width: var(--card-w);
+  height: var(--card-h);
+  flex: none;
+  font-size: clamp(28px, 2.6vw, 44px);
+}
+.cards button:disabled {
+  opacity: 0.88;
+}
+.cards button[aria-pressed="false"]:after {
+  display: none;
+}
+.cards button small {
+  font-size: 11px;
+}
+.cards .special-card {
+  color: #effcff;
+  border-color: var(--card-accent);
+  background: linear-gradient(145deg, var(--card-top), var(--card-bottom));
+  box-shadow:
+    inset 0 1px 12px #ffffff14,
+    0 7px 20px #0007;
+}
+.cards .card-w {
+  --card-accent: #78e7ff;
+  --card-top: #205a78;
+  --card-bottom: #0a273e;
+}
+.cards .card-a {
+  --card-accent: #ffc36c;
+  --card-top: #995223;
+  --card-bottom: #49200f;
+  color: #fff4dc;
+}
+.cards .card-j {
+  --card-accent: #cf9dff;
+  --card-top: #64418c;
+  --card-bottom: #29143f;
+  color: #f7edff;
+}
+.cards .special-card small {
+  color: var(--card-accent);
+}
+.cards .special-card .card-symbol {
+  display: inline-block;
+  transform: translateY(-4px);
+}
+.cards .card-name {
+  position: absolute;
+  inset: auto 0 5px;
+  color: inherit;
+  font:
+    700 clamp(11px, 0.8vw, 16px)/1.1 system-ui,
+    sans-serif;
+  letter-spacing: 0.08em;
+}
+.cards .special-card:hover,
+.cards .special-card[aria-pressed="true"] {
+  border-color: var(--card-accent);
+  box-shadow: 0 0 22px color-mix(in srgb, var(--card-accent) 42%, transparent);
+}
+.sector {
+  top: 19%;
+  font-size: var(--ui-body, 15px);
+}
+.rails > .sector {
+  top: auto;
+  bottom: calc(100% + 24px);
+  left: 0;
+  right: 0;
+  padding: 7px 10px;
+  font-size: clamp(14px, 0.9vw, 19px);
+}
+.sector-banner {
+  display: flex;
+  gap: 4px 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.sector-banner strong {
+  color: #ffe1a4;
+}
+.sector-banner small {
+  font-size: 12px;
+}
+.instrument {
+  top: 15.5%;
+  bottom: 25%;
+  background: linear-gradient(125deg, #071b3230, #08243d26);
+  backdrop-filter: blur(2px);
+}
+.targets {
+  transform: perspective(1400px) rotateY(5deg);
+  transform-origin: left;
+}
+.repairs {
+  transform: perspective(1400px) rotateY(-5deg);
+  transform-origin: right;
+}
+.entries {
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.entries article {
+  gap: 10px;
+  border-bottom: 1px solid #8bcded22;
+}
+.entries article:last-child {
+  border-bottom: 0;
+}
+.entries .eyebrow,
+.entries p,
+.metric,
+.instrument footer small,
+.progress-label {
+  font-size: clamp(13px, 0.95vw, 18px);
+  letter-spacing: 0.015em;
+}
+.entries h3 {
+  font-size: clamp(16px, 1.25vw, 24px);
+}
+.entries article.achievable {
+  background: linear-gradient(90deg, #9eedff15, transparent);
+}
+.repair-title {
+  flex-wrap: wrap;
+}
+.repair-title small {
+  font-size: 12px;
+}
+.progress-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 4px;
+}
+.progress-label {
+  gap: 6px;
+}
+progress {
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border: 0;
+  background: #345363;
+  margin-top: 10px;
+}
+progress::-webkit-progress-bar {
+  background: #365264;
+}
+progress::-webkit-progress-value {
+  background: #8ce7f4;
+  box-shadow: 0 0 12px #95edff;
+}
+.progress-pair > div:last-child progress::-webkit-progress-value {
+  background: #c89bff;
+}
+.progress-pair progress {
+  display: block;
+  margin-top: 6px;
+}
+.repair-details {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 18px;
+  margin-top: 3px;
+  font-size: clamp(12px, 0.9vw, 17px);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.repair-details-label,
+.repair-detail-empty {
+  color: #afc5d8;
+}
+.repair-detail {
+  font-weight: 700;
+  text-shadow: 0 0 8px currentColor;
+}
+.repair-hint-op,
+.repair-hint-kind {
+  color: #e6f6ff;
+}
+.repairs .entries article {
+  gap: clamp(3px, 0.4vw, 8px);
+}
+.instrument footer {
+  min-height: 65px;
+}
+.battle {
+  top: 18.5%;
+  height: 30%;
+}
+.battle-top {
+  position: relative;
+  z-index: 2;
+}
+.battle-top > .tactics {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  justify-content: space-between;
+}
+.tactic {
+  border: 0;
+  background: none;
+  padding: 0;
+  pointer-events: auto;
+  font-size: 14px;
+}
+.tactic strong {
+  font-size: 14px;
+}
+.tactic span {
+  color: #afc4d6;
+  margin-left: 10px;
+}
+.tactic small {
+  display: none;
+}
+.round-counter {
+  position: absolute;
+  left: 50%;
+  top: -12px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
+  font-size: clamp(14px, 0.9vw, 19px);
+  color: #eefaff;
+}
+.round-counter .round-number {
+  font-size: clamp(32px, 2.3vw, 44px);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  text-shadow:
+    0 0 16px #76dfff66,
+    0 2px 5px #000;
+}
+.round-divider {
+  padding-inline: 5px;
+  color: #8baabe;
+  font-weight: 400;
+}
+.ship-caption {
+  font-size: 15px;
+  padding: 6px 12px;
+  background: linear-gradient(90deg, transparent, #08182b65, transparent);
+}
+.ship-caption small {
+  font-size: 13px;
+}
+.hero-caption {
+  right: 56%;
+}
+.enemy-caption {
+  left: 56%;
+}
+#combat-notice {
+  font-size: 13px;
+  bottom: -28px;
+  letter-spacing: 0.03em;
+}
+.opening-overlay {
+  pointer-events: auto;
+  position: absolute;
+  inset: 16px 4% -5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 8;
+}
+.opening-overlay > :is(div, section) {
+  width: 100%;
+  background: #071827f7;
+  border: 1px solid #7adeff99;
+  backdrop-filter: blur(18px);
+  padding: 20px;
+  box-shadow: 0 0 35px #05101dda;
+  border-radius: 6px;
+}
+.opening-overlay h2 {
+  font-size: clamp(21px, 1.25vw, 28px);
+  margin-bottom: 10px;
+}
+.opening-overlay p {
+  font-size: clamp(15px, 0.9vw, 19px);
+  line-height: 1.6;
+}
+.loadout-options,
+.sector-options,
+.boon-options {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+.loadout-options button,
+.sector-options button,
+.boon-options button {
+  flex: 1;
+  text-align: left;
+}
+.loadout-options button strong,
+.sector-options button strong,
+.boon-options button strong {
+  display: block;
+  color: #abedff;
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+.loadout-options button span,
+.sector-options button span,
+.boon-options button span {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.initiative {
+  position: relative !important;
+  inset: auto !important;
+  text-align: center;
+}
+.dice-pair {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 8px;
+}
+.die {
+  font-size: 35px;
+}
+.initiative button {
+  margin-top: 10px;
+}
+.rails {
+  top: 61%;
+  bottom: 24%;
+}
+.rail-button {
+  border: 0;
+  background: none;
+  padding: 0;
+  width: 100%;
+  height: 42px;
+  margin-bottom: 12px;
+  border-radius: 0;
+  text-align: left;
+  transition: none;
+  opacity: 1 !important;
+}
+.rail-button:hover {
+  transform: none;
+  filter: brightness(1.16);
+}
+.rail-button.active {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--rail-color) 15%, transparent),
+    transparent 85%
+  );
+}
+.rail-button.active > b,
+.rail-button.active .rail-current {
+  color: var(--rail-color);
+  text-shadow:
+    0 0 9px var(--rail-color),
+    0 1px 4px #000;
+}
+.rail-button.active .track:before {
+  opacity: 0.45;
+}
+.rail-button.active .position-star {
+  background: #eaffff;
+  border-color: #fff;
+  box-shadow:
+    0 0 9px 3px var(--rail-color),
+    0 0 22px var(--rail-color);
+}
+.rail .track {
+  height: 42px;
+  margin: 0 12px 0 0;
+  overflow: visible;
+}
+.track:before {
+  top: 10px;
+}
+.track .tick {
+  position: absolute;
+  width: 0;
+  height: 42px;
+  top: 0;
+  padding: 0;
+  transform: none;
+}
+.tick:before {
+  left: -2px;
+  top: 8px;
+}
+.rail-label {
+  position: absolute;
+  top: 27px;
+  left: 0;
+  transform: translateX(-50%);
+  font-size: 12px;
+  line-height: 14px;
+}
+.track .cursor {
+  width: 24px;
+  height: 24px;
+  top: -2px;
+  border-width: 2px;
+  box-shadow: 0 0 15px 2px currentColor;
+}
+.rail-current {
+  top: -11px;
+  font-size: 12px;
+}
+.rail-preview {
+  position: absolute;
+  top: -15px;
+  left: 18%;
+  font-size: 12px;
+  color: #fff2bd;
+}
+.rail-controls {
+  padding-top: 2px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+.rail-controls .calibrate-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 55%;
+  max-width: none;
+  font-size: clamp(14px, 0.9vw, 19px);
+}
+.calibrate-row p {
+  display: none;
+}
+.calibrate-row button {
+  white-space: nowrap;
+  font-size: clamp(16px, 1vw, 21px);
+  font-weight: 700;
+}
+.calibrate-row button:disabled {
+  opacity: 0.7;
+}
+.operation-row,
+.operation-buttons,
+.operators,
+.op-step,
+.wild-picker,
+.warp-picker {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.operation-row {
+  font-size: clamp(14px, 0.9vw, 19px);
+  justify-content: flex-end;
+}
+.operation-row button {
+  padding: 3px 14px;
+  font-size: clamp(22px, 1.3vw, 28px);
+}
+.operation-row small {
+  display: none;
+}
+.operation-row .active {
+  background: #58d4fd48;
+  border-color: #a3f3ff;
+}
+.command-deck {
+  height: 19%;
+  bottom: 2%;
+  padding: 14px 24px;
+  background: linear-gradient(180deg, #05182b30, #03101e55);
+  grid-template-columns: 1.5fr 0.85fr 1fr;
+  gap: 3%;
+}
+.command-deck .cards {
+  gap: clamp(6px, 0.6vw, 11px);
+  margin-top: 12px;
+}
+.command-deck h2 {
+  font-size: 17px;
+}
+.refill {
+  padding-inline: 18px;
+}
+.refill .cards {
+  justify-content: center;
+}
+.hand > p {
+  font-size: 13px;
+}
+.hand > p span {
+  font-size: 11px;
+}
+.orders .action-title {
+  font-size: 17px;
+  color: #ffdf9a;
+}
+.orders .preview-values {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin: 8px 0;
+}
+.preview-values strong {
+  font-size: 28px;
+  color: #ffe19a;
+}
+.preview-values .healing strong {
+  color: #9ffbdf;
+}
+.orders .btn.primary,
+.orders .confirm {
+  width: 100%;
+  background: linear-gradient(110deg, #876329c4, #ebd193e6, #906820b5);
+  color: #15232e;
+  border: 1px solid #ffe1a2;
+  font-size: 17px;
+  font-weight: 700;
+}
+.orders button {
+  padding: 7px 10px;
+  margin-top: 6px;
+}
+.orders .btn {
+  width: 100%;
+}
+.orders p,
+.orders small {
+  font-size: 12px;
+}
+.orders .dock-wait {
+  font-size: clamp(18px, 1.15vw, 25px);
+  line-height: 1.6;
+  color: #e4f5ff;
+  margin: 12px 0;
+  text-shadow: 0 2px 6px #000;
+}
+.preview-note {
+  line-height: 1.5;
+  color: #d0e3ec;
+}
+.action-explanation {
+  font-size: 12px;
+  line-height: 1.5;
+}
+.odometer {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+.below-deck {
+  position: relative;
+  z-index: 4;
+  padding: 48px 5%;
+  background: #020a14df;
+  border-top: 1px solid #7bdaff30;
+}
+.fleet-heading {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.fleet-heading span {
+  color: #abc3d6;
+}
+.levels {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+.levels button {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  text-align: left;
+}
+.levels img {
+  width: 100%;
+  height: 90px;
+  object-fit: contain;
+}
+.levels small {
+  color: #b2c7da;
+}
+.levels button.active {
+  border-color: #bdf0ff;
+  background: #16496555;
+}
+.below-deck details {
+  padding: 20px 0;
+}
+.below-deck pre {
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+.below-deck > p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #afc3d3;
+}
+.render-info {
+  font-size: 12px;
+}
+.lower-canopy {
+  width: 5%;
+  height: 21%;
+  opacity: 0.8;
+}
+#announcer {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 30;
+  background: #092539ef;
+  border: 1px solid #7edcff;
+  padding: 12px 20px;
+  opacity: 0;
+  pointer-events: none;
+}
+#toast.show {
+  opacity: 1;
+}
+dialog {
+  color: #e7f6ff;
+  background: #061725f5;
+  border: 1px solid #79d8ff80;
+  border-radius: 8px;
+  max-width: min(940px, 93vw);
+  max-height: 88vh;
+  padding: 24px;
+  box-shadow: 0 0 80px #000a;
+}
+dialog::backdrop {
+  background: #01040baa;
+  backdrop-filter: blur(8px);
+}
+.modal-content {
+  min-width: min(480px, 80vw);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+.modal-content h2 {
+  font-size: 24px;
+}
+.modal-content h3 {
+  margin: 18px 0 8px;
+}
+.modal-content p {
+  margin: 12px 0;
+}
+.modal-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.modal-content td,
+.modal-content th {
+  padding: 8px;
+  border-bottom: 1px solid #47728666;
+  text-align: left;
+}
+.modal-content button {
+  margin: 4px;
+}
+.modal-content textarea {
+  width: 100%;
+  min-height: 120px;
+}
+.rules-list li {
+  margin: 14px 0;
+}
+.rules-detail {
+  margin: 16px 0;
+}
+.sector-rules li {
+  margin: 8px 0;
+}
+.sector-rules span {
+  display: block;
+  color: #bfd7e8;
+}
+.result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.impact-scan:after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 5px,
+    #9edaff0a 6px 7px
+  );
+  animation: scan 0.24s linear both;
+}
+@keyframes scan {
+  from {
+    opacity: 0.8;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+.reduced .cursor {
+  transition: none;
+}
+@media (max-height: 900px) and (min-width: 1000px) {
+  .cockpit {
+    min-height: 760px;
+  }
+  .rail-button {
+    height: 36px;
+    margin-bottom: 9px;
+  }
+  .rails {
+    top: 60%;
+  }
+  .rail-controls {
+    padding-top: 0;
+  }
+  .entries article {
+    gap: 6px;
+  }
+  .repairs .entries article {
+    gap: 2px;
+  }
+  .repairs .progress-pair {
+    margin-top: 0;
+  }
+  .repairs progress {
+    margin-top: 4px;
+  }
+  .command-deck {
+    height: 20%;
+    bottom: 1%;
+  }
+  .instrument {
+    bottom: 26%;
+  }
+  .instrument footer {
+    min-height: 50px;
+  }
+  .instrument footer small {
+    font-size: 12px;
+  }
+  .opponent-hand {
+    top: 7%;
+  }
+  .cards button {
+    height: 64px;
+  }
+  .sector {
+    top: 18%;
+  }
+  .opening-overlay > :is(div, section) {
+    padding: 12px;
+  }
+  .opening-overlay h2 {
+    font-size: 20px;
+  }
+  .opening-overlay p {
+    font-size: 14px;
+  }
+  .loadout-options {
+    margin-top: 8px;
+  }
+  .loadout-options button {
+    padding: 8px;
+  }
+  .battle {
+    height: 26%;
+  }
+  #combat-notice {
+    bottom: -20px;
+  }
+  .entries .eyebrow,
+  .entries p,
+  .metric,
+  .progress-label {
+    font-size: 13px;
+  }
+  .command-deck .cards {
+    margin-top: 8px;
+  }
+}
+@media (max-width: 1200px) {
+  .masthead {
+    gap: 8px;
+  }
+  .masthead nav {
+    gap: 4px;
+  }
+  .masthead button {
+    padding: 7px;
+    font-size: 11px;
+  }
+  .opponent-hand {
+    left: 30%;
+    width: 40%;
+    font-size: 12px;
+    gap: 8px;
+  }
+  .instrument {
+    padding: 12px;
+  }
+  .instrument header > span {
+    font-size: 10px;
+  }
+  .entries .eyebrow,
+  .entries p,
+  .metric,
+  .progress-label {
+    font-size: 12px;
+  }
+  .entries h3 {
+    font-size: 16px;
+  }
+  .repair-title > b {
+    font-size: 18px;
+  }
+  .progress-pair {
+    gap: 8px;
+  }
+  .command-deck h2 {
+    font-size: 14px;
+  }
+  .command-deck header span {
+    font-size: 10px;
+  }
+  .command-deck {
+    left: 4%;
+    right: 4%;
+    padding-inline: 12px;
+  }
+  .refill {
+    padding-inline: 8px;
+  }
+  .hand > p span {
+    display: none;
+  }
+  .levels {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 700px) {
+  .cockpit {
+    height: 1670px;
+    min-height: 0;
+  }
+  .masthead {
+    top: 14px;
+  }
+  .masthead nav {
+    max-width: 56%;
+    flex-wrap: wrap;
+  }
+  .masthead h1 {
+    font-size: 24px;
+  }
+  .opponent-hand {
+    top: 110px;
+    left: 5%;
+    width: 90%;
+    gap: 8px;
+  }
+  .cards button {
+    width: 38px;
+    height: 55px;
+    font-size: 28px;
+  }
+  .sector {
+    top: 190px;
+    left: 5%;
+    right: 5%;
+  }
+  .sector-banner {
+    font-size: 12px;
+    gap: 5px;
+  }
+  .sector-banner small {
+    display: none;
+  }
+  .battle {
+    top: 225px;
+    height: 235px;
+    left: 5%;
+    right: 5%;
+  }
+  .battle-top > .tactics {
+    gap: 10px;
+  }
+  .battle-top .tactic {
+    font-size: 10px;
+  }
+  .tactic strong {
+    font-size: 10px;
+  }
+  .tactic span {
+    margin-left: 3px;
+  }
+  .round-counter {
+    top: -36px;
+    font-size: 12px;
+  }
+  .round-counter .round-number {
+    font-size: 26px;
+  }
+  .ship-caption {
+    font-size: 11px;
+    gap: 5px;
+    padding: 0;
+  }
+  .ship-caption small {
+    font-size: 10px;
+  }
+  .ship-caption strong {
+    font-size: 26px;
+  }
+  #combat-notice {
+    font-size: 11px;
+    left: 0;
+    right: 0;
+    bottom: -16px;
+  }
+  .opening-overlay {
+    inset: 12px 0 -14px;
+  }
+  .opening-overlay > :is(div, section) {
+    padding: 10px;
+  }
+  .opening-overlay h2 {
+    font-size: 18px;
+  }
+  .opening-overlay p {
+    font-size: 13px;
+  }
+  .loadout-options,
+  .sector-options,
+  .boon-options {
+    gap: 5px;
+  }
+  .loadout-options button,
+  .sector-options button,
+  .boon-options button {
+    padding: 6px;
+  }
+  .loadout-options button strong,
+  .sector-options button strong,
+  .boon-options button strong {
+    font-size: 12px;
+  }
+  .loadout-options button span,
+  .sector-options button span,
+  .boon-options button span {
+    font-size: 10px;
+  }
+  .rails {
+    top: 590px;
+    height: 210px;
+    left: 6%;
+    right: 6%;
+  }
+  .rail-button {
+    height: 43px;
+    margin-bottom: 10px;
+    gap: 8px;
+  }
+  .rail-label {
+    font-size: 10px;
+  }
+  .rail-current {
+    font-size: 10px;
+  }
+  .rail > b {
+    font-size: 12px;
+  }
+  .rail-controls {
+    flex-wrap: wrap;
+  }
+  .calibrate-row small {
+    display: none;
+  }
+  .rail-controls .calibrate-row {
+    max-width: 100%;
+  }
+  .operation-row {
+    font-size: 14px;
+  }
+  .instrument {
+    top: 850px;
+    height: 500px;
+    bottom: auto;
+    width: 43%;
+    transform: none;
+  }
+  .targets {
+    left: 4%;
+  }
+  .repairs {
+    right: 4%;
+  }
+  .entries {
+    gap: 6px;
+    padding-top: 12px;
+  }
+  .entries .eyebrow,
+  .entries p,
+  .metric,
+  .progress-label {
+    font-size: 12px;
+  }
+  .repair-title {
+    flex-direction: row;
+  }
+  .repair-title small {
+    font-size: 10px;
+  }
+  .repair-title h3 {
+    font-size: 14px;
+  }
+  .instrument h2 {
+    font-size: 16px;
+  }
+  .instrument footer small {
+    font-size: 10px;
+  }
+  .command-deck {
+    top: 1380px;
+    height: 270px;
+    bottom: auto;
+    grid-template-columns: 1fr 1fr;
+    left: 4%;
+    right: 4%;
+    gap: 14px;
+    padding: 12px;
+  }
+  .hand {
+    grid-column: 1/-1;
+  }
+  .hand .cards {
+    justify-content: center;
+  }
+  .refill {
+    display: block;
+    border: 0;
+    padding: 0;
+  }
+  .refill .cards button {
+    width: 35px;
+    height: 50px;
+  }
+  .orders {
+    font-size: 12px;
+  }
+  .orders .btn.primary {
+    font-size: 14px;
+  }
+  .command-deck h2 {
+    font-size: 13px;
+  }
+  .cards button[aria-pressed="true"]:after {
+    top: -30px;
+    font-size: 20px;
+  }
+  .levels {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .below-deck {
+    padding: 30px 5%;
+  }
+  .modal-content {
+    font-size: 13px;
+    min-width: 0;
+  }
+  .modal-content h2 {
+    font-size: 19px;
+  }
+}
+
+.module-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+.module-option {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  padding: 12px;
+}
+.module-option strong {
+  font-size: 18px;
+  color: #b6edff;
+}
+.module-option span {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.module-option small {
+  font-size: 12px;
+  color: #bad1df;
+}
+.module-option em {
+  font-size: 12px;
+  color: #ffe3a1;
+  font-style: normal;
+}
+.loadout-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.loadout-heading span {
+  font-size: 12px;
+  color: #bdd8e8;
+}
+.module-status {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 30px;
+  pointer-events: auto;
+}
+.module-equipped {
+  position: relative;
+  max-width: 40%;
+  font-size: clamp(16px, 1vw, 22px);
+}
+.module-equipped summary {
+  cursor: pointer;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: #b1edff;
+  list-style: none;
+}
+.module-equipped:last-child summary {
+  color: #d1acff;
+}
+.module-equipped summary small {
+  font-size: clamp(14px, 0.85vw, 19px);
+  margin: 0;
+}
+.module-equipped p {
+  position: absolute;
+  z-index: 8;
+  top: 32px;
+  width: 300px;
+  padding: 16px;
+  background: #061725f5;
+  border: 1px solid #62b5da70;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.module-equipped:last-child p {
+  right: 0;
+}
+.combat-summary {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  font-size: 15px;
+  align-items: center;
+  margin: 7px 0;
+}
+.combat-summary b {
+  font-size: 29px;
+  color: #ffdf92;
+}
+.combat-summary .heal-text b {
+  color: #97f1d7;
+}
+.turn-side {
+  color: #f2d18e;
+  font-weight: 700;
+  font-size: 17px !important;
+}
+.bonus-breakdown {
+  font-size: 11px !important;
+  color: #bed3e2;
+}
+.operation-panel {
+  margin-left: auto;
+  position: relative;
+}
+.op-group,
+.wild-values {
+  display: flex;
+  gap: 6px;
+}
+.wild-picker {
+  position: static;
+  padding: 5px 8px;
+  background: #061c2cf5;
+  border: 1px solid #8ee0ff77;
+  border-radius: 6px;
+  min-width: 0;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+.wild-picker-heading {
+  width: auto;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.wild-values {
+  width: auto;
+  gap: 4px;
+  justify-content: space-between;
+}
+.wild-values button {
+  padding: 3px 6px;
+  font-size: 15px;
+}
+.operation-panel:has(.wild-picker) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+}
+.rail-controls:has(.wild-picker) {
+  align-items: center;
+  flex-wrap: wrap;
+}
+.rail-controls:has(.wild-picker) .calibrate-row {
+  flex: 1 1 360px;
+  min-width: 0;
+  max-width: none;
+}
+.rail-controls:has(.wild-picker) .operation-panel {
+  flex: 0 1 auto;
+}
+@media (max-width: 1400px) {
+  .rail-controls:has(.wild-picker) .calibrate-row {
+    flex: 0 0 auto;
+  }
+  .rail-controls:has(.wild-picker) .calibrate-row .section-note {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .wild-picker {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .wild-values {
+    width: 100%;
+  }
+  .operation-panel:has(.wild-picker) {
+    justify-content: flex-start;
+  }
+  .cockpit:has(.wild-picker) {
+    height: 1760px;
+  }
+  .cockpit:has(.wild-picker) .instrument {
+    top: 940px;
+  }
+  .cockpit:has(.wild-picker) .command-deck {
+    top: 1470px;
+  }
+}
+.calibrate-row .section-note {
+  max-width: none;
+  font-size: clamp(14px, 0.9vw, 19px);
+}
+.move-error {
+  position: absolute;
+  right: 0;
+  bottom: 37px;
+  white-space: nowrap;
+  padding: 6px 10px;
+  background: #2c191de8;
+  color: #ffd5bc;
+  font-size: 12px;
+}
+.inspect-controls {
+  position: absolute;
+  left: 30%;
+  right: 30%;
+  top: 70px;
+  z-index: 20;
+  pointer-events: auto;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+.inspect-controls button {
+  background: #061a2def;
+  font-size: 13px;
+}
+#toast:not([hidden]) {
+  opacity: 1;
+}
+#toast:empty {
+  display: none;
+}
+@media (min-width: 701px) {
+  #rail-list {
+    display: block;
+  }
+  .rails {
+    display: flex;
+    flex-direction: column;
+    bottom: 24%;
+  }
+  .rail-controls {
+    margin-top: auto;
+  }
+  .rail-button {
+    height: 42px;
+    margin-bottom: 12px;
+  }
+  .rail-current {
+    top: -10px;
+  }
+  .track .tick:before {
+    top: 8px;
+  }
+  .track .rail-label {
+    top: 30px;
+  }
+  .track .cursor {
+    top: -2px;
+  }
+}
+@media (max-height: 900px) and (min-width: 1000px) {
+  .rail-button {
+    height: 35px;
+    margin-bottom: 9px;
+  }
+  .rails {
+    top: 60%;
+    bottom: 24%;
+  }
+  .rail-controls {
+    margin-top: 0;
+  }
+  .module-option {
+    padding: 8px;
+    gap: 5px;
+  }
+  .module-option strong {
+    font-size: 15px;
+  }
+  .module-option span {
+    font-size: 12px;
+  }
+  .opening-overlay {
+    inset: 8px 2% 0;
+  }
+  .calibrate-row .section-note {
+    font-size: 14px;
+  }
+  .module-equipped {
+    font-size: 16px;
+  }
+  .module-equipped summary {
+    gap: 5px;
+  }
+  .module-equipped summary small {
+    font-size: 14px;
+  }
+  .rail-current {
+    top: -14px;
+  }
+}
+@media (max-width: 700px) {
+  .module-options {
+    gap: 5px;
+  }
+  .module-option {
+    padding: 6px;
+    gap: 5px;
+  }
+  .module-option strong {
+    font-size: 12px;
+  }
+  .module-option span,
+  .module-option small,
+  .module-option em {
+    font-size: 10px;
+  }
+  .loadout-heading span {
+    font-size: 10px;
+  }
+  .module-equipped {
+    max-width: 46%;
+    font-size: 14px;
+  }
+  .module-equipped summary {
+    gap: 3px;
+  }
+  .module-equipped summary small {
+    font-size: 12px;
+  }
+  .module-equipped p {
+    width: 200px;
+    font-size: 12px;
+  }
+  .calibrate-row .section-note {
+    display: none;
+  }
+  .inspect-controls {
+    left: 10%;
+    right: 10%;
+    top: 40px;
+  }
+  .combat-summary {
+    gap: 10px;
+  }
+  .combat-summary b {
+    font-size: 25px;
+  }
+}
+
+.odometer {
+  display: inline-flex;
+  height: 1em;
+  vertical-align: baseline;
+  line-height: 1;
+}
+.number-reel {
+  display: inline-block;
+  overflow: hidden;
+  height: 1em;
+  width: 0.67em;
+  position: relative;
+}
+.number-strip {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+.number-strip > span {
+  display: block;
+  height: 1em;
+  line-height: 1em;
+}
+.rail-controls .calibrate-row {
+  margin-left: 0;
+}
+.rail-controls {
+  min-height: 34px;
+}
+.calibrate-row .section-note {
+  line-height: 1.45;
+}
+.sector-colors {
+  display: flex;
+  gap: 12px;
+}
+.repair-hint-0 {
+  color: #a0edff;
+}
+.repair-hint-1 {
+  color: #ceadff;
+}
+.repair-hint-2 {
+  color: #ffbe96;
+}
+
+@media (max-height: 780px) and (min-width: 1000px) {
+  .cockpit {
+    min-height: 700px;
+  }
+  .battle {
+    height: 22%;
+  }
+  .rails {
+    top: 55.5%;
+    bottom: 23.5%;
+  }
+  .rail-button {
+    height: 33px;
+    margin-bottom: 5px;
+  }
+  .command-deck {
+    height: 21%;
+    bottom: 1.5%;
+  }
+  .rail-controls {
+    min-height: 30px;
+  }
+  .cards button {
+    height: 60px;
+  }
+  .opponent-hand {
+    top: 8%;
+  }
+  .entries p,
+  .entries .eyebrow {
+    font-size: 13px;
+  }
+  .instrument footer small {
+    font-size: 11px;
+  }
+}
+
+.rail-current {
+  left: 0;
+  right: auto;
+  top: auto;
+  bottom: 0;
+  font-size: 11px;
+  line-height: 1.2;
+}
+.rail > b {
+  align-self: flex-start;
+  line-height: 1.1;
+  padding-top: 0;
+}
+.orders .turn-side {
+  margin: 0 0 3px;
+}
+@media (min-width: 1000px) {
+  .rails {
+    top: 58%;
+  }
+}
+@media (max-height: 900px) and (min-width: 1000px) {
+  .rails {
+    top: 56.5%;
+  }
+}
+@media (max-height: 780px) and (min-width: 1000px) {
+  .rails {
+    top: 55.5%;
+  }
+}
+.orders .combat-summary {
+  margin: 4px 0;
+}
+.orders .bonus-breakdown {
+  margin: 2px 0;
+}
+.orders button {
+  margin-top: 4px;
+}
+@media (max-height: 900px) and (min-width: 1000px) {
+  .orders .turn-side {
+    font-size: 14px !important;
+    line-height: 17px;
+    margin: 0;
+  }
+  .orders .combat-summary {
+    margin: 3px 0;
+    font-size: 13px;
+    line-height: 25px;
+  }
+  .orders .combat-summary b {
+    font-size: 24px;
+  }
+  .orders button,
+  .orders .btn.primary {
+    font-size: 14px;
+    padding: 4px 8px;
+    line-height: 20px;
+    margin-top: 3px;
+  }
+  .command-deck {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .rail > b {
+    font-size: 18px;
+  }
+  .rail-current {
+    font-size: 10px;
+  }
+  .orders .bonus-breakdown {
+    font-size: 10px !important;
+    line-height: 13px;
+    margin: 0;
+  }
+}
+@media (max-width: 700px) {
+  .rail > b {
+    font-size: 12px;
+  }
+  .rail-current {
+    font-size: 9px;
+  }
+  .instrument footer {
+    min-height: 50px;
+  }
+  .instrument .entries {
+    padding-bottom: 12px;
+  }
+  .orders .turn-side {
+    font-size: 13px !important;
+  }
+  .orders button,
+  .orders .btn.primary {
+    font-size: 13px;
+    padding: 4px;
+  }
+  .orders .combat-summary {
+    font-size: 11px;
+    margin: 2px 0;
+  }
+  .orders .combat-summary b {
+    font-size: 22px;
+  }
+}
+/* V3: deliberate card order, four-slot instruments and unmistakable pinned state. */
+.cards button:after { content: none !important; display: none !important; }
+.cards .card-order { position:absolute;right:-6px;top:-12px;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;font:800 20px/1 system-ui;color:#092132;background:#b9f5ff;border:2px solid #fff;box-shadow:0 0 16px #77dfff;z-index:2;text-shadow:none; }
+.cards .card-d { --card-accent:#7af5bd;--card-top:#236f61;--card-bottom:#0a302e; }
+.cards .card-b { --card-accent:#ffd48d;--card-top:#75632c;--card-bottom:#382c13; }
+.module-option.pinned { border:2px solid #ffe095 !important;background:linear-gradient(135deg,#5e471c,#1d2335) !important;box-shadow:inset 0 0 22px #ffcc6430,0 0 20px #ffd56b55 !important; }
+.module-option.pinned strong,.module-option.pinned em {color:#ffe9a7!important;}
+.module-option.pinned em {font-weight:800;border-top:1px solid #e4c47588;padding-top:8px;}
+.pin-modules .module-options {grid-template-columns:repeat(3,minmax(0,1fr));}
+.advanced-rules .entries {grid-template-rows:repeat(4,minmax(0,1fr));gap:10px;padding-block:16px 8px;}
+.target-title {display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.inline-damage {color:#ffda92;font-size:16px;white-space:nowrap;}
+.metric[hidden] {display:none;}
+.advanced-rules .entries article {gap:3px;}
+.advanced-rules .instrument {padding-inline:18px;}
+.advanced-rules .entries h3 {font-size:clamp(17px,1.08vw,22px);letter-spacing:0;}
+.advanced-rules .entries p {line-height:1.4;}
+.advanced-rules .entries .eyebrow {line-height:1.1;}
+.advanced-rules .repair-title>b {font-size:20px;}
+.advanced-rules .repair-details {min-height:20px;}
+.advanced-rules .repairs .entries article {justify-content:flex-start;gap:3px;}
+.advanced-rules .repairs .progress-pair {margin-top:0;}
+.advanced-rules .repairs .progress-label {line-height:1.2;}
+.advanced-rules .repairs progress {margin-top:4px;}
+@media(min-width:701px){.advanced-rules {min-height:1060px;}}
+@media(min-width:1800px){.advanced-rules {min-height:1000px;}}
+@media(max-width:700px){
+ .advanced-rules {height:2100px;}
+ .advanced-rules .instrument {height:700px;bottom:auto;top:1000px;}
+ .advanced-rules .command-deck {top:1760px;}
+ .advanced-rules .target-title {flex-wrap:wrap;gap:3px;}
+ .advanced-rules .entries {gap:12px;}
+ .pin-modules .module-options {grid-template-columns:1fr;}
+}

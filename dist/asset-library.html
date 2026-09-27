@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101925">
+  <meta name="description" content="星链算式舰船、画面特效与音效目录。预览座舰和十六级舰队，不进入对战。">
+  <title>星链算式 · 舰船与特效库</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23101925'/%3E%3Cpath d='M8 34h18l6-14 6 14h18' fill='none' stroke='%2377d8ed' stroke-width='3'/%3E%3Ccircle cx='32' cy='34' r='4' fill='%23ffcf6f'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./asset-library.css">
+  <script>
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('reduce');
+  </script>
+</head>
+<body class="asset-library">
+  <a class="skip" href="#fleet">跳到舰队选择</a>
+  <div class="shell">
+    <header class="top">
+      <div class="brand">
+        <p class="eyebrow">星链算式</p>
+        <h1>舰船与特效库</h1>
+      </div>
+      <div class="top-actions">
+        <a class="text-btn" href="./index.html">返回对战</a>
+      </div>
+    </header>
+    <p id="status" class="status" role="status">正在准备资产库…</p>
+    <main id="layout" class="layout" data-view="fleet">
+      <section class="stage-wrap" aria-label="舰船预览">
+        <div id="stage" class="stage is-flat">
+          <figure id="fallback" class="fallback">
+            <img id="fallback-img" alt="" width="720" height="460">
+            <span class="fx-layer" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          </figure>
+          <div class="hud">
+            <p id="grade" class="grade">座舰</p>
+            <h2 id="ship-name">正在读取舰队</h2>
+            <p id="ship-brief" class="brief"></p>
+            <p id="ship-spec" class="spec"></p>
+          </div>
+          <p id="stage-note" class="stage-note">拖拽旋转 · 滚轮缩放</p>
+          <p id="stage-msg" class="stage-msg" hidden></p>
+          <div class="stage-actions">
+            <button type="button" id="view-art" aria-pressed="false">实战外观</button>
+            <button type="button" id="view-model" aria-pressed="true">精细三维</button>
+            <button type="button" id="reset-view">重置视角</button>
+            <button type="button" id="motion" aria-pressed="false">减少动效</button>
+            <button type="button" id="retry-gl" hidden>重试三维</button>
+          </div>
+          <span class="corner c1" aria-hidden="true"></span>
+          <span class="corner c2" aria-hidden="true"></span>
+          <span class="corner c3" aria-hidden="true"></span>
+          <span class="corner c4" aria-hidden="true"></span>
+        </div>
+      </section>
+      <aside class="side" aria-label="资产目录">
+        <div class="side-head">
+          <h2 id="side-title">舰队</h2>
+          <p id="library-current">座舰与 1–16 级</p>
+        </div>
+        <div class="tabs" role="tablist" aria-label="资产类型">
+          <button type="button" role="tab" id="tab-fleet" data-view="fleet" aria-selected="true" aria-controls="panel-fleet">舰队</button>
+          <button type="button" role="tab" id="tab-visual" data-view="visual" aria-selected="false" aria-controls="panel-visual" tabindex="-1">画面</button>
+          <button type="button" role="tab" id="tab-audio" data-view="audio" aria-selected="false" aria-controls="panel-audio" tabindex="-1">音效</button>
+        </div>
+        <div id="strip-slot" hidden></div>
+        <div id="panel-fleet" role="tabpanel" aria-labelledby="tab-fleet">
+          <div id="fleet" class="thumb-grid" role="group" aria-label="座舰与十六级舰队"></div>
+        </div>
+        <div id="panel-visual" class="copy-panel" role="tabpanel" aria-labelledby="tab-visual" hidden>
+          <ul class="notes">
+            <li><strong>飞入</strong>从画面外减速入位，喷口先亮再收回。</li>
+            <li><strong>激光</strong>是一条持续的青色光束，不是飞行弹丸。</li>
+            <li><strong>重炮</strong>是一发粗橙色重弹，后坐更重，末端爆出火花。</li>
+            <li><strong>单发</strong>只有一枚弹丸、一次后坐、一次命中环。</li>
+            <li><strong>连射</strong>四枚弹丸分四条高度依次打出，可以数清。</li>
+            <li><strong>护盾</strong>是青紫球面涟漪，包住整舰。</li>
+            <li><strong>维修</strong>是整舰维护场，两道大环加雾状粒子，不计次数。</li>
+            <li><strong>回血1</strong>只点亮一盏治疗灯，跳一次。</li>
+            <li><strong>回血3</strong>三盏治疗灯从左到右依次点亮，并各放一道环。</li>
+            <li><strong>胜利</strong>舰体上抬，尾部引擎增强光焰。</li>
+            <li><strong>陨落</strong>螺旋下坠、隐去舰体，并留下碎片。</li>
+          </ul>
+        </div>
+        <div id="panel-audio" class="audio-panel" role="tabpanel" aria-labelledby="tab-audio" hidden>
+          <div class="audio-bar">
+            <label for="volume">主音量 <span id="volume-read">70%</span>
+              <input id="volume" type="range" min="0" max="1" step="0.01" value="0.7">
+            </label>
+            <button type="button" id="mute" aria-pressed="false">静音</button>
+          </div>
+          <div id="audio-list" class="audio-list"></div>
+          <p id="audio-note" class="audio-note">音效在第一次点击播放或特效按钮后才会解锁。</p>
+        </div>
+      </aside>
+      <section class="dock" aria-label="特效预览">
+        <div class="dock-head">
+          <h2>特效预览</h2>
+          <p id="fx-caption">选择一项，观看当前舰船。单发和连射、回血1和回血3可以分开看。</p>
+        </div>
+        <div id="effects" class="effect-row">
+          <button type="button" class="fx" data-fx="arrival" data-tone="cyan" data-blurb="从远处减速入位" aria-pressed="false">飞入</button>
+          <button type="button" class="fx" data-fx="laser" data-tone="cyan" data-blurb="一道持续光束" aria-pressed="false">激光</button>
+          <button type="button" class="fx" data-fx="cannon" data-tone="orange" data-blurb="慢速重弹与强后坐" aria-pressed="false">重炮</button>
+          <button type="button" class="fx" data-fx="single" data-tone="gold" data-blurb="一发弹丸，一次命中" aria-pressed="false">单发</button>
+          <button type="button" class="fx" data-fx="burst" data-tone="violet" data-blurb="四发分弹道连射" aria-pressed="false">连射</button>
+          <button type="button" class="fx" data-fx="shield" data-tone="violet" data-blurb="球面护盾涟漪" aria-pressed="false">护盾</button>
+          <button type="button" class="fx" data-fx="repair" data-tone="green" data-blurb="整舰维护场，不计次数" aria-pressed="false">维修</button>
+          <button type="button" class="fx" data-fx="heal1" data-tone="green" data-blurb="一点治疗，一盏灯" aria-pressed="false">回血1</button>
+          <button type="button" class="fx" data-fx="heal3" data-tone="green" data-blurb="三次治疗，三盏灯依次点亮" aria-pressed="false">回血3</button>
+          <button type="button" class="fx" data-fx="victory" data-tone="gold" data-blurb="上抬并放出向上光焰" aria-pressed="false">胜利</button>
+          <button type="button" class="fx" data-fx="defeat" data-tone="danger" data-blurb="螺旋下坠、消散并留下碎片" aria-pressed="false">陨落</button>
+          <button type="button" class="fx" data-fx="reset" data-tone="muted" data-blurb="清空预览并回到初始机位" aria-pressed="false">重置</button>
+        </div>
+        <p id="env-note" class="env-note">环境光准备中…</p>
+      </section>
+    </main>
+    <footer class="foot">
+      <p>精细三维：已接入全部十七艘带纹理 GLB。这里可检查资源、试听音效；正式战场使用统一的 WebGPU / WebGL 2 渲染。</p>
+    </footer>
+  </div>
+  <noscript>
+    <p class="noscript">需要开启 JavaScript 才能查看舰船目录。对战页面在 <a href="./index.html">index.html</a>。</p>
+  </noscript>
+  <script type="module" src="./asset-studio.bundle.mjs"></script>
+</body>
+</html>

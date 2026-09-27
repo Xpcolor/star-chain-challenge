@@ -1,5 +1,5 @@
 // Repeatable tuning sample, not a claim about human-player win rates.
-import {ROBOTS,createGame,selectModule,observation,legalMoves,chooseBotMove,chooseBotSupply,playAndClaim,rest,takeCard,audit} from '../dist/engine.mjs';
+import {ROBOTS,createGame,selectModule,observation,legalMoves,includeCalibrate,chooseBotMove,chooseBotSupply,playAndClaim,rest,takeCard,audit} from '../dist/engine.mjs';
 
 function rng(seed){let n=seed>>>0;return()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return n/4294967296;};}
 const count=Number(process.argv[2]||24);
@@ -15,8 +15,8 @@ for(let level=0;level<ROBOTS.length;level++){
       if(actor===0){
         // A fixed, moderately attentive reference: sample eight ordinary/wild
         // possibilities, then choose the best immediate damage plus healing among them.
-        const options=legalMoves(obs,{allowAccel:false});
-        const pool=options.length?options:legalMoves(obs);const sample=[];
+        const options=includeCalibrate(obs,legalMoves(obs,{allowAccel:false}));
+        const pool=options.length?options:includeCalibrate(obs,legalMoves(obs));const sample=[];
         if(pool.length)for(let k=0;k<8;k++)sample.push(pool[Math.floor(random()*pool.length)]);
         selected=sample.sort((a,b)=>b.points-a.points||a.move.ids.length-b.move.ids.length)[0];
       }else{

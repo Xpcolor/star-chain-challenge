@@ -1,0 +1,95 @@
+{
+  "verifiedAt": "2026-09-27T07:07:23.187Z",
+  "scope": "local-only; selected levels1-7:18HP/3+3; levels8-16:24HP/4+4",
+  "rulesVersion": "flight-records-3",
+  "git": {
+    "branch": "feat/cockpit-pve-architecture",
+    "base": "b413653763a1a01d7564a087718ac4eb86842e03",
+    "committed": false,
+    "pushed": false,
+    "pr": false,
+    "publicRelease": false
+  },
+  "unit": {
+    "passed": 84,
+    "failed": 0,
+    "skipped": 0,
+    "log": ".local/qa/rules-v3-tests-third.log"
+  },
+  "typecheck": {
+    "passed": true,
+    "log": ".local/qa/rules-v3-typecheck.log"
+  },
+  "build": {
+    "passed": true,
+    "log": ".local/qa/rules-v3-build.log"
+  },
+  "browser": {
+    "uniqueScenariosPassed": 7,
+    "execution": "Focused runs, not a single final whole-suite run",
+    "scenarios": [
+      {
+        "name": "Preparation lock, restart clears effects, reduced motion",
+        "evidence": ".local/qa/v3-terminal-browser.log"
+      },
+      {
+        "name": "Complete match, records/help/refills, collapse-to-modal gap >=1900ms, stable three pins and next draft",
+        "evidence": ".local/qa/v3-terminal-browser.log"
+      },
+      {
+        "name": "Existing readable UI across desktop/phone",
+        "evidence": ".local/qa/rules-v3-browser-first.log"
+      },
+      {
+        "name": "WebGL and model failure fallback",
+        "evidence": ".local/qa/rules-v3-browser-first.log"
+      },
+      {
+        "name": "16 enemy models, player-only inspect, fractured model visibility",
+        "evidence": ".local/qa/rules-v3-browser-first.log"
+      },
+      {
+        "name": "Arrival waits, A 1/2 badges, J15/16/17, confirm-only card charging",
+        "evidence": ".local/qa/v3-interactions-final.log"
+      },
+      {
+        "name": "B swaps D then same-turn D play, 4 slots at1920/1774/1280/390",
+        "evidence": ".local/qa/v3-interactions-final.log"
+      }
+    ],
+    "failuresResolved": [
+      "Old reset assertion incorrectly counted intentional arrival timeline",
+      "Frozen test random/time interfered with scene UUIDs and odometers; scope limited to seed generation and include prior repairs",
+      "Four-slot long descriptions overflowed; reduced spacing while preserving font size"
+    ],
+    "visualInspected": [
+      ".local/qa/v3-layout-1920.png",
+      ".local/qa/v3-layout-390.png"
+    ],
+    "screenshotHash": {
+      "desktop": "2eab7e02aa064d2e901ea069baa5fe9025640e586ee6ad97c941f99f1ce04494",
+      "mobile": "493fd0b5595e327ce751a38739990b4a8d705795c9776ee6d5fa9226982fb274"
+    }
+  },
+  "simulation": {
+    "executions": 3424,
+    "mirroredPairs": 48,
+    "passed": true,
+    "sourceHash": "854d0a6f5b4297ad05fdf2eecbf8bbb677cc85978f59f60fdc27aad853844c2f",
+    "currentEngineHash": "854d0a6f5b4297ad05fdf2eecbf8bbb677cc85978f59f60fdc27aad853844c2f",
+    "raw": "docs/qa/rules-v3-simulation.json",
+    "limitations": "Not human win rates. Automated immediate policies, not human win rates or enjoyment. Baseline/full comparisons force matching HP/slot settings; actual level ladder is baseline1-7/full8-16."
+  },
+  "preview": {
+    "url": "http://127.0.0.1:8792/",
+    "httpStatus": 200,
+    "apiRulesVersion": "flight-records-3",
+    "dataDirectoryPreserved": ".local",
+    "testDatabaseIsolated": ".local/qa/v3-browser-db"
+  },
+  "limits": [
+    "Not a sustained GPU benchmark",
+    "Not human win rates; first-player advantage remains",
+    "No PR/push/deployment; owner local playtest first"
+  ]
+}

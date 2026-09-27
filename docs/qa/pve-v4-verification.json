@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-27T04:11:39.400Z",
+  "version": "1.1.0",
+  "unit": {
+    "passed": 75,
+    "failed": 0,
+    "simulationGames": {
+      "crossLevel": 80,
+      "mirror": 36,
+      "replayAudit": 48
+    }
+  },
+  "typecheck": "pass",
+  "build": "pass",
+  "format": "pass",
+  "browser": {
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0,
+    "checks": [
+      "Complete PvE game: preview equals settlement; refill/help/records/restart",
+      "Five layouts: 1920x1080,1774x887,1280x720,2560x1080,390x844; 24px stars separated from labels; controls and deck do not overlap",
+      "Forced WebGL2 and missing-model fallback",
+      "All 16 models; player inspection and side lighting; actual hull/fragments visibility verified on synthetic terminal event"
+    ]
+  },
+  "screenshots": [
+    "pve-v4-desktop.png",
+    "pve-v4-1280.png",
+    "pve-v4-player-inspect.png",
+    "pve-v4-fracture-synthetic.png"
+  ],
+  "productionDependenciesAudit": "0 vulnerabilities",
+  "limits": [
+    "Synthetic fracture screenshot only injects scene events; HUD values deliberately remain the live game values.",
+    "No long-term GPU benchmark, full compatibility matrix or subjective audio mix acceptance.",
+    "No new verified live-account login or legacy record migration."
+  ]
+}

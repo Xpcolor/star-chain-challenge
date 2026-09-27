@@ -1,0 +1,134 @@
+[
+  {
+    "requested": {
+      "width": 1440,
+      "height": 900
+    },
+    "measured": {
+      "dockBottom": 894.0000457763672,
+      "overflow": false,
+      "ready": "ready",
+      "renderer": "ready",
+      "repairs": [
+        {
+          "h": 141,
+          "scroll": 141
+        },
+        {
+          "h": 141,
+          "scroll": 141
+        },
+        {
+          "h": 141,
+          "scroll": 141
+        }
+      ],
+      "scrollY": 0,
+      "spaceDisplay": "block",
+      "ticks": 63,
+      "viewport": [
+        1440,
+        900
+      ]
+    }
+  },
+  {
+    "requested": {
+      "width": 1920,
+      "height": 1080
+    },
+    "measured": {
+      "dockBottom": 1022.0000457763672,
+      "overflow": false,
+      "ready": "ready",
+      "renderer": "ready",
+      "repairs": [
+        {
+          "h": 165,
+          "scroll": 165
+        },
+        {
+          "h": 165,
+          "scroll": 165
+        },
+        {
+          "h": 165,
+          "scroll": 165
+        }
+      ],
+      "scrollY": 0,
+      "spaceDisplay": "block",
+      "ticks": 63,
+      "viewport": [
+        1920,
+        1032
+      ]
+    }
+  },
+  {
+    "requested": {
+      "width": 2560,
+      "height": 1080
+    },
+    "measured": {
+      "dockBottom": 1022.0000457763672,
+      "overflow": false,
+      "ready": "ready",
+      "renderer": "ready",
+      "repairs": [
+        {
+          "h": 165,
+          "scroll": 165
+        },
+        {
+          "h": 165,
+          "scroll": 165
+        },
+        {
+          "h": 165,
+          "scroll": 165
+        }
+      ],
+      "scrollY": 0,
+      "spaceDisplay": "block",
+      "ticks": 63,
+      "viewport": [
+        2560,
+        1032
+      ]
+    }
+  },
+  {
+    "requested": {
+      "width": 390,
+      "height": 844
+    },
+    "measured": {
+      "dockBottom": 2320.7083740234375,
+      "overflow": false,
+      "ready": "ready",
+      "renderer": "ready",
+      "repairs": [
+        {
+          "h": 179,
+          "scroll": 179
+        },
+        {
+          "h": 157,
+          "scroll": 157
+        },
+        {
+          "h": 221,
+          "scroll": 221
+        }
+      ],
+      "scrollY": 0,
+      "spaceDisplay": "none",
+      "ticks": 63,
+      "viewport": [
+        390,
+        796
+      ]
+    }
+  }
+]

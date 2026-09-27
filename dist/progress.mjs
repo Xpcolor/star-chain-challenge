@@ -1,5 +1,6 @@
 import {LEVEL_COUNT,OLD_LEVEL_MAP} from './difficulty.mjs?v=flight-records-2';
 import {challengeById} from './challenges.mjs?v=flight-records-2';
+import {MODULES,moduleById} from './tactics.mjs?v=flight-records-2';
 
 const bounded=(value,max)=>Number.isFinite(Number(value))?Math.min(max,Math.max(0,Math.trunc(Number(value)))):0;
 export function normalizeProgress(raw){
@@ -15,6 +16,11 @@ export function normalizeProgress(raw){
     next.unlocked=oldToNew[unlocked];
   }else return next;
   next.matches=bounded(raw.matches,Number.MAX_SAFE_INTEGER);
+  if(moduleById(raw.pinnedModule))next.pinnedModule=raw.pinnedModule;
+  if(raw.robotModuleCounts&&typeof raw.robotModuleCounts==='object'){
+    next.robotModuleCounts={};
+    for(const item of MODULES)next.robotModuleCounts[item.id]=bounded(raw.robotModuleCounts[item.id],1000000);
+  }
   // Offline cache only. Authenticated completed records rebuild this on sync.
   if(raw.version===6&&Array.isArray(raw.support)&&raw.support.length===LEVEL_COUNT){
     next.support=raw.support.map((s,i)=>({selected:i,effective:bounded(s?.effective??i,i),wins:bounded(s?.wins,1),losses:bounded(s?.losses,1),pending:s?.pending&&typeof s.pending.id==='string'&&s.pending.from===s.effective&&s.pending.to===s.effective-1&&s.pending.to>=0?{id:s.pending.id,from:s.pending.from,to:s.pending.to}:null}));

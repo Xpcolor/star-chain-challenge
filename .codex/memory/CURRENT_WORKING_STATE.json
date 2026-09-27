@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 2,
+  "updatedAt": "2026-09-27T07:48:46.4190608Z",
+  "project": {
+    "name": "星链算式",
+    "root": "D:/ais/game/StarChain",
+    "gitRemote": "https://github.com/Xpcolor/star-chain-challenge.git"
+  },
+  "currentTask": {
+    "phase": "release-authorized-in-progress",
+    "authorizedWork": "完整人机架构重构、定位星加倍、分支与PR、novaw.net发布和记忆刷新。真人房间后续实现。",
+    "gameImplementation": "Vite/TypeScript/React cockpit; replaceable MatchClient; unified WebGPU/TSL scene; GSAP/Howler; fixed player GLB plus sixteen unique enemy GLBs.",
+    "playerShip": "固定当前一艘，不更换、不随等级变化；仅我方提供近看、真实转向、独立侧光。",
+    "releaseGate": "2026-09-27 用户明确要求更新 GitHub 仓库、PR 推送后刷新绑定域名；现已授权提交、推送、经 CI 的 PR 合并与 novaw.net 发布。保留数据库、身份与分支保护。",
+    "lastLocalFeedback": [
+      "星云选择器在橙星链刻度下方按正常流布局，避免向上悬浮遮挡",
+      "三处牌区 W星云青蓝/A加速橙金/J折跃紫色，带中文牌名；数字牌米白色",
+      "窄屏选择器展开时下移后续面板",
+      "维修补给进度条下显示双方各自已用 +/−、蓝/紫/橙或已攻星链/目标类别；新任务清空，窄屏布局不重叠",
+      "选中星链以整条同色波动电弧、增强定位星和已选文字显示；电弧避开刻度数字，减弱动效时常亮，休整/重开清除",
+      "后段三选一等选择框统一约97%不透明深色底板；星域说明移到蓝星链上方、对战区上移；轮数字号与生命值一致；双方模块、校准按钮/说明、加减操作及等待增益提示放大；校准说明加宽，保留星云选数空间",
+      "确认即时反馈、约0.5秒蓄能；实例粒子和28对象复用预热；等待覆盖多段回血/终局，重开清空、减弱动效短结算。",
+      "第1–7级18血/左右各3项；第8–16级固定24血/左右各4项，定轨和调拨各2张；支援不改变所选级别规则。",
+      "调拨换来的牌同回合立即可用；跃迁可选反射值及相邻一格，越界和原位除外；所有新局取消攻击两项目标上限。",
+      "加速数字牌显示1/2顺序；确认后光束充能，删除选牌常驻连线；正常进场及陨落后等待两秒再弹窗；结算随机三模块，金色钉住只保留下一局。",
+      "检查修复：近看不再覆盖入场/陨落；四连击最后命中后才陨落，从实际陨落起再展示2秒后结算；各级舰体/破损碎片在入场前预热。"
+    ],
+    "latestRequest": "Publish the verified cockpit/V3/cinematic version through GitHub PR and update bound novaw.net domain."
+  },
+  "development": {
+    "currentStage": "human-vs-ai",
+    "nextStage": "玩法稳定后再做真人联网对战",
+    "constraint": "当前按人机版本交付；设计时分离规则、玩家操作、画面和持久化，保留联网扩展空间。"
+  },
+  "sources": {
+    "direction": "docs/PROJECT_DIRECTION.md",
+    "architecture": "docs/PVE_ARCHITECTURE.md",
+    "engine": "dist/engine.mjs",
+    "replay": "dist/records.mjs",
+    "handoff": "docs/AI_HANDOFF.md",
+    "assets": "资产库/README.md",
+    "qa": "docs/qa/pve-v4-verification.json",
+    "deployment": "deployment-status.json",
+    "latestRules": "docs/RULES_V3_VERIFICATION_20260927.md"
+  },
+  "gitSnapshot": {
+    "branch": "feat/cockpit-pve-architecture",
+    "base": "b413653763a1a01d7564a087718ac4eb86842e03",
+    "note": "既有 GROK 玩法变动、美术和原型保留；不强推、不擅自合并。"
+  },
+  "confirmedVisualDirection": [
+    "Three major transparent glass panels with two long electrical trails; small floating text; lower canopy only.",
+    "Player fixed aurora GLB; own-ship inspection/turn/side light only; sixteen unique enemy appearances.",
+    "Side glass about 17%, bottom 20%; consistent card sizes and readable labels.",
+    "Position stars 12px to 24px; tick labels separated beneath.",
+    "Blender six capped pre-cut pieces; fracture/fall at zero HP; not real-time physics."
+  ],
+  "proposalsNotImplemented": [
+    "Authoritative multiplayer rooms, identity, WebSocket/reconnect and server persistence; explicitly deferred.",
+    "Full migration of existing pure JS engine and legacy choice templates; documented compatibility boundaries retained.",
+    "Real-time physics fracture; replaced by capped pre-cut fragments."
+  ],
+  "verification": {
+    "date": "2026-09-27",
+    "unitTests": "85 passed, 0 failed; includes shared four-hit terminal timing",
+    "typecheck": "passed",
+    "build": "passed",
+    "browserTests": "8 relevant scenarios passed in one run: three cinematic timing regressions plus complete cockpit suite",
+    "limits": [
+      "No long-term GPU benchmark or full browser/hardware matrix.",
+      "No subjective audio mix acceptance.",
+      "Live account login/sync and legacy record migration not re-verified."
+    ],
+    "latestUiFeedback": {
+      "evidence": "docs/qa/special-cards-verification.json",
+      "viewports": 5,
+      "unitTestsPassed": 75,
+      "browserErrors": 0
+    },
+    "latestRepairFeedback": {
+      "evidence": "docs/qa/repair-hints-verification.json",
+      "viewports": 5,
+      "unitTestsPassed": 75,
+      "browserErrors": 0
+    },
+    "latestRailFeedback": {
+      "evidence": "docs/qa/rail-lightning-verification.json",
+      "viewports": 5,
+      "railsPerViewport": 3,
+      "unitTestsPassed": 75,
+      "browserErrors": 0
+    },
+    "latestReadabilityFeedback": {
+      "evidence": "docs/qa/readability-verification.json",
+      "viewports": 5,
+      "phases": [
+        "actual-action",
+        "actual-boon",
+        "long-copy-fixture"
+      ],
+      "unitTestsPassed": 75,
+      "browserTestsPassed": 2,
+      "browserErrors": 0,
+      "wildPickerRegression": "5 viewports passed"
+    },
+    "latestPerformance": {
+      "evidence": "docs/qa/combat-performance-verification.json",
+      "relevantBrowserChecks": 4,
+      "frameGapMaxMs": {
+        "before": 333.5,
+        "after": 50.1
+      },
+      "limit": "Short same-machine Chrome/WebGPU observation; random seeds differ, no sustained FPS claim"
+    },
+    "ruleExperiment": {
+      "evidence": "docs/qa/gameplay-experiment.json",
+      "report": "docs/GAMEPLAY_EXPERIMENT_20260927.md",
+      "games": 4832,
+      "mirroredPairs": 48,
+      "actualRobotLevels": 16,
+      "newGameplayActivated": false,
+      "layout": "docs/design/rule-layout-preview.html",
+      "layoutChecks": 8,
+      "limitations": "Same seeds reused across variants; automated policies, not human win rates; first-move advantage remains and B has low use under conservative policy.",
+      "historical": true,
+      "supersededBy": "latestRules"
+    },
+    "latestRules": {
+      "evidence": "docs/qa/rules-v3-verification.json",
+      "report": "docs/RULES_V3_VERIFICATION_20260927.md",
+      "simulation": "docs/qa/rules-v3-simulation.json",
+      "executions": 3424,
+      "mirroredPairs": 48,
+      "levels": 16,
+      "enabledLocally": true,
+      "version": "flight-records-3",
+      "advancedFromLevel": 8,
+      "earlyMode": {
+        "hp": 18,
+        "attacks": 3,
+        "repairs": 3,
+        "cards": 44
+      },
+      "advancedMode": {
+        "hp": 24,
+        "attacks": 4,
+        "repairs": 4,
+        "cards": 48
+      },
+      "roundMean": {
+        "earlyPve": 7.236607142857143,
+        "advancedPve": 9.84375
+      },
+      "limit": "Automated paired policies, not human win rates. First-player advantage remains; increased complexity does not prove a monotonic difficulty ladder."
+    },
+    "latestCinematics": {
+      "evidence": "docs/qa/cinematic-timing-verification.json",
+      "report": "docs/CINEMATIC_VERIFICATION_20260927.md",
+      "unitTestsPassed": 85,
+      "browserTestsPassed": 8,
+      "firstFracture": {
+        "beforeMaxFrameGapMs": 52.3,
+        "afterMaxFrameGapMs": 28,
+        "beforeLongTaskMs": 53,
+        "afterLongTaskCount": 0
+      },
+      "limit": "Short same-machine Chrome/WebGPU rendering probe, not universal smoothness or sustained FPS guarantee"
+    }
+  },
+  "memory": {
+    "projectId": "Xpcolor/star-chain-challenge",
+    "scope": "project",
+    "visibility": "project",
+    "agent": "codex",
+    "agentType": "codex",
+    "joinTeam": false,
+    "entryOrder": [
+      "确认实际 Git 根",
+      "读取本文件",
+      "memorix_session_start 显式 projectRoot",
+      "memorix_project_context 一次简短 brief",
+      "按任务需要读取方向文档和源码"
+    ],
+    "status": "Cinematic local milestone stored and read back in project scope; owner playtest release gate preserved",
+    "fallback": "Memorix 不可用时使用本文件和相关项目文档继续工作，明确未加载；不绑定父目录、HOME 或其他项目。",
+    "topicKeys": [
+      "starchain/development/current-direction",
+      "starchain/visual/immersive-wide-screen",
+      "starchain/architecture/extension-boundaries",
+      "starchain/workflow/current-handoff"
+    ],
+    "references": [
+      {
+        "topicKey": "starchain/development/current-direction",
+        "typedRef": "obs:322@Xpcolor/star-chain-challenge",
+        "searchKeyword": "PvE"
+      },
+      {
+        "topicKey": "starchain/visual/immersive-wide-screen",
+        "typedRef": "obs:323@Xpcolor/star-chain-challenge",
+        "searchKeyword": "spaceship"
+      },
+      {
+        "topicKey": "starchain/architecture/extension-boundaries",
+        "typedRef": "obs:324@Xpcolor/star-chain-challenge",
+        "searchKeyword": "architecture"
+      },
+      {
+        "topicKey": "starchain/workflow/current-handoff",
+        "typedRef": "obs:325@Xpcolor/star-chain-challenge",
+        "searchKeyword": "handoff"
+      }
+    ],
+    "retrievalNote": "当前 fast fulltext 中文检索未命中已存记录；优先使用已验证的英文关键词或 typedRef。代码索引尚无已完成结果。",
+    "receipt": ".codex/memory/PVE_VERIFICATION.json",
+    "latestRulesReceipt": ".codex/memory/RULES_V3_VERIFICATION.json",
+    "latestCinematicReceipt": ".codex/memory/CINEMATIC_VERIFICATION.json"
+  },
+  "execution": {
+    "blender": "D:/app/blender/blender.exe",
+    "blenderVersion": "5.2.1 LTS",
+    "localPreview": "http://127.0.0.1:8792/",
+    "devPreview": "http://127.0.0.1:8793/",
+    "publicDeployment": "Authorized and in progress; not yet verified",
+    "gitCommitPush": "Authorized and in progress; pending PR and CI",
+    "modelOriginals": "C:/Users/xutao/Desktop/飞船图",
+    "modelCount": 17,
+    "moreModelsNeeded": false,
+    "layoutProposal": "Historical independent proposal only; live UI now switches by selected level"
+  }
+}

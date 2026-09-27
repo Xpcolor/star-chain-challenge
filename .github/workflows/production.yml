@@ -26,6 +26,9 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+        env:
+          DEPLOY_ENV: production
+          GIT_COMMIT: ${{ github.sha }}
       - id: deploy
         run: node scripts/deploy.mjs
         env:

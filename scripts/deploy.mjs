@@ -38,6 +38,7 @@ const release={version:config.vars.RELEASE_VERSION,commit:sha,environment:pr?'pr
 await writeFile('dist/client/version.mjs',`export const RELEASE=Object.freeze(${JSON.stringify(release)});\n`);
 Object.assign(config,{name,main:resolve('dist/server/index.js'),build:undefined,assets:{...config.assets,directory:resolve('dist/client')},d1_databases:[{...database,migrations_dir:resolve(database.migrations_dir||'drizzle')}],vars:{...config.vars,ENVIRONMENT:release.environment,GIT_COMMIT:sha,PR_NUMBER:pr}});
 if(pr){
+  delete config.routes;delete config.route;config.workers_dev=true;
   if(process.env.PREVIEW_ACCESS_AUD){
     config.vars.ACCESS_AUD=process.env.PREVIEW_ACCESS_AUD;
     if(process.env.PREVIEW_ACCESS_ISSUER)config.vars.ACCESS_ISSUER=process.env.PREVIEW_ACCESS_ISSUER;

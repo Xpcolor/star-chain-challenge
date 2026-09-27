@@ -1,0 +1,573 @@
+{
+  "schemaVersion": 3,
+  "coordinateSystem": "GLB: +X nose, +Y up, X length 6. Detailed GLB: intact hull and six capped debris nodes, original textures embedded. Cinematic PNG: 1536x1024; pixel bounds and mounts in dist/fleet.mjs; logical nose +X before enemy scene rotation.",
+  "assets": [
+    {
+      "path": "dist/assets/audio-arrival.wav",
+      "bytes": 97066,
+      "sha256": "54cebdabe57eaa7fe56688765d640429dc4b40e79fdd73bde9f235288897cfef",
+      "kind": "audio",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/audio-cannon.wav",
+      "bytes": 35324,
+      "sha256": "592fcb03c366c086ce59e3c26d1cb12ac55f888a38416044e279203bf76f6c0c",
+      "kind": "audio",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/audio-collapse.wav",
+      "bytes": 123524,
+      "sha256": "eba37bbe88c550ff1bc711ad5358f4069b6c5b975027557ed1a47afbb95a79d9",
+      "kind": "audio",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/audio-confirm.wav",
+      "bytes": 7982,
+      "sha256": "2feba66efb0093373b9f980f05252e5fc21346aca3ac184a2b5a89e4278de854",
+      "kind": "audio",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/audio-defeat.wav",
+      "bytes": 75014,
+      "sha256": "97b3b3b1e2d433826445799d737ac8be05e1c0376b0d8d258c8ef507f24bb0a5",
+      "kind": "audio",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/audio-impact.wav",
+      "bytes": 26504,
+      "sha256": "fd8b50856ce1f85f1e8111bee93f9677bb308ce9f154740e62ae77ef3ffe29ef",
+      "kind": "audio",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/audio-laser.wav",
+      "bytes": 21212,
+      "sha256": "b4d58bc1930146bb9c51155861a075c1048897a9e4bcae8dc9e2e0bb0f5926f1",
+      "kind": "audio",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/audio-repair.wav",
+      "bytes": 48556,
+      "sha256": "904609ac95f390946a4bbbc3da4ab3e856300f0b38017613955800a26f7a6d65",
+      "kind": "audio",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/audio-select.wav",
+      "bytes": 3794,
+      "sha256": "395b74a17703e8e104672d559ba9860a9be09d09c0954b1f6dec10a04e36be07",
+      "kind": "audio",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/audio-shield.wav",
+      "bytes": 37530,
+      "sha256": "42decc70ea7124ed0be6d36925b4aa50ab7c144a39b01a164d4837c6c5eedfc1",
+      "kind": "audio",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/audio-victory.wav",
+      "bytes": 105884,
+      "sha256": "e1ef1bd1005994e2e4b81f3a303c3e0fa862bd079ffa8e0b5c67641c64f3438e",
+      "kind": "audio",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/cosmos-v2.png",
+      "bytes": 2651920,
+      "sha256": "a96ca353b3062a1a913a67b6503da38063610988a34a1e5c06f50cbe70ffde4b",
+      "kind": "background",
+      "origin": "Built-in ImageGen / StarChain reference-led artwork"
+    },
+    {
+      "path": "dist/assets/detailed-01.glb",
+      "bytes": 5058444,
+      "sha256": "0fb228a20386a9cfa21a965454139eaf4405bd546fbd3656abfbb788bad1738e",
+      "kind": "textured-fractured-model",
+      "origin": "User supplied GLB / Blender pre-fracture / fleet-models.json"
+    },
+    {
+      "path": "dist/assets/detailed-02.glb",
+      "bytes": 6625340,
+      "sha256": "f95b47a005568ce71b67c4fadfacec12b72c5bcb65e62982a645c8cd4cd2485a",
+      "kind": "textured-fractured-model",
+      "origin": "User supplied GLB / Blender pre-fracture / fleet-models.json"
+    },
+    {
+      "path": "dist/assets/detailed-03.glb",
+      "bytes": 5025328,
+      "sha256": "91175c76078931f26fe5f27352b646550f2fe734555bf83009c926e972ead2c3",
+      "kind": "textured-fractured-model",
+      "origin": "User supplied GLB / Blender pre-fracture / fleet-models.json"
+    },
+    {
+      "path": "dist/assets/detailed-04.glb",
+      "bytes": 4960780,
+      "sha256": "00968e31c4de96d012c974cbf3547593d1fdbda57a8d94a6c8fdf54ebbc974d9",
+      "kind": "textured-fractured-model",
+      "origin": "User supplied GLB / Blender pre-fracture / fleet-models.json"
+    },
+    {
+      "path": "dist/assets/detailed-05.glb",
+      "bytes": 5889820,
+      "sha256": "5fc4b0e14d1ec1982834576964cb924cf0174ccf488c5c330fd12b12500edc3c",
+      "kind": "textured-fractured-model",
+      "origin": "User supplied GLB / Blender pre-fracture / fleet-models.json"
+    },
+    {
+      "path": "dist/assets/detailed-06.glb",
+      "bytes": 5667984,
+      "sha256": "263d8fe42fcbfea055caf3b689e3e8dd51d5a1f1db75114749983c64ec80f454",
+      "kind": "textured-fractured-model",
+      "origin": "User supplied GLB / Blender pre-fracture / fleet-models.json"
+    },
+    {
+      "path": "dist/assets/detailed-07.glb",
+      "bytes": 5840812,
+      "sha256": "4ed1b8c22e413139744327c0571a70f728b1d88860b7892979c794e6eca926df",
+      "kind": "textured-fractured-model",
+      "origin": "User supplied GLB / Blender pre-fracture / fleet-models.json"
+    },
+    {
+      "path": "dist/assets/detailed-08.glb",
+      "bytes": 4955148,
+      "sha256": "f787628f9329e9dd434d8888eefe38e046d25b1c33e9eccdbd690544a7668c6b",
+      "kind": "textured-fractured-model",
+      "origin": "User supplied GLB / Blender pre-fracture / fleet-models.json"
+    },
+    {
+      "path": "dist/assets/detailed-09.glb",
+      "bytes": 6128360,
+      "sha256": "248e19e15baa2ed5ae13a686cf86f66555e66b54311208fd459463ee99680f1f",
+      "kind": "textured-fractured-model",
+      "origin": "User supplied GLB / Blender pre-fracture / fleet-models.json"
+    },
+    {
+      "path": "dist/assets/detailed-10.glb",
+      "bytes": 5667384,
+      "sha256": "439549548bdd2e0c05740316ed3e347596e215cbda649f59d6a5a13422ac5294",
+      "kind": "textured-fractured-model",
+      "origin": "User supplied GLB / Blender pre-fracture / fleet-models.json"
+    },
+    {
+      "path": "dist/assets/detailed-11.glb",
+      "bytes": 6499872,
+      "sha256": "60a997a973e2e5decde8a7ecc81044dc9f8ac0f7678150cc5bd0885211ab7013",
+      "kind": "textured-fractured-model",
+      "origin": "User supplied GLB / Blender pre-fracture / fleet-models.json"
+    },
+    {
+      "path": "dist/assets/detailed-12.glb",
+      "bytes": 6019324,
+      "sha256": "216cb1a2f7809fb5c928b8ba59fcdb3be4bae1eb65b585dcf545dfcb88f62966",
+      "kind": "textured-fractured-model",
+      "origin": "User supplied GLB / Blender pre-fracture / fleet-models.json"
+    },
+    {
+      "path": "dist/assets/detailed-13.glb",
+      "bytes": 6404616,
+      "sha256": "1bb72d3e996c5ad08c1dc3ae32b2526a2bdd30ab66e904781c988a277dc745da",
+      "kind": "textured-fractured-model",
+      "origin": "User supplied GLB / Blender pre-fracture / fleet-models.json"
+    },
+    {
+      "path": "dist/assets/detailed-14.glb",
+      "bytes": 6655808,
+      "sha256": "49d3c240389ae04857e45bd6db1ab59ba87c748d0c0776dc130b8051d858d91a",
+      "kind": "textured-fractured-model",
+      "origin": "User supplied GLB / Blender pre-fracture / fleet-models.json"
+    },
+    {
+      "path": "dist/assets/detailed-15.glb",
+      "bytes": 6490748,
+      "sha256": "7e8f9432e7da0b1ff8bbccf44461144f8c7560241f68c587c68e7944b1ad2d08",
+      "kind": "textured-fractured-model",
+      "origin": "User supplied GLB / Blender pre-fracture / fleet-models.json"
+    },
+    {
+      "path": "dist/assets/detailed-16.glb",
+      "bytes": 6072548,
+      "sha256": "6d4ce5c65f1f982eb3749f498feaf28a59036862e6a4258092c7094e2d3a1293",
+      "kind": "textured-fractured-model",
+      "origin": "User supplied GLB / Blender pre-fracture / fleet-models.json"
+    },
+    {
+      "path": "dist/assets/detailed-player.glb",
+      "bytes": 4830408,
+      "sha256": "26d9cee12701affc6c77382ba7dfc19c39a6066dd744f2b2a1dd365a4f704bb2",
+      "kind": "textured-fractured-model",
+      "origin": "User supplied GLB / Blender pre-fracture / fleet-models.json"
+    },
+    {
+      "path": "dist/assets/enemy-tier-01.png",
+      "bytes": 1659046,
+      "sha256": "236961f99f5cccc44e48493e2aa6ed7ab82f0d47178d2766398a39cc8b146963",
+      "kind": "cinematic-portrait",
+      "origin": "Built-in ImageGen / StarChain reference-led artwork"
+    },
+    {
+      "path": "dist/assets/enemy-tier-02.png",
+      "bytes": 1832465,
+      "sha256": "997f9f9b86f024af54c79e91188ba9c2068c5ea41f67d809bc6d97b18ce66e79",
+      "kind": "cinematic-portrait",
+      "origin": "Built-in ImageGen / StarChain reference-led artwork"
+    },
+    {
+      "path": "dist/assets/enemy-tier-03.png",
+      "bytes": 1199936,
+      "sha256": "0129c2491333498d81a16725f9bbed3aed16793250d3bbd24d2d3aa375e70519",
+      "kind": "cinematic-portrait",
+      "origin": "Built-in ImageGen / StarChain reference-led artwork"
+    },
+    {
+      "path": "dist/assets/enemy-tier-04.png",
+      "bytes": 1409912,
+      "sha256": "759efe98fa0c596eee0b47ee79eb09997cae96cee30f00251a41f5d52f6db029",
+      "kind": "cinematic-portrait",
+      "origin": "Built-in ImageGen / StarChain reference-led artwork"
+    },
+    {
+      "path": "dist/assets/enemy-tier-05.png",
+      "bytes": 1751757,
+      "sha256": "42a1b313623a54acd7a3b4f8102d51712e0f036f57ab27ba72f2326fbdbdcfa1",
+      "kind": "cinematic-portrait",
+      "origin": "Built-in ImageGen / StarChain reference-led artwork"
+    },
+    {
+      "path": "dist/assets/enemy-tier-06.png",
+      "bytes": 1430271,
+      "sha256": "3f7e4e21adff7edbd2eb1f5fdc07d897ef81bfb3ec1ee7358243e801d937bbbf",
+      "kind": "cinematic-portrait",
+      "origin": "Built-in ImageGen / StarChain reference-led artwork"
+    },
+    {
+      "path": "dist/assets/enemy-tier-07.png",
+      "bytes": 1880751,
+      "sha256": "3966f2d70df2e0019aa3b49e156ca3b4d7c2197227698b855a5eb99df46f3118",
+      "kind": "cinematic-portrait",
+      "origin": "Built-in ImageGen / StarChain reference-led artwork"
+    },
+    {
+      "path": "dist/assets/enemy-tier-08.png",
+      "bytes": 1523748,
+      "sha256": "a922966ed0d6dd45081f4a9a612c84fcf85fb981448f5ce2f8da1fdaae40479c",
+      "kind": "cinematic-portrait",
+      "origin": "Built-in ImageGen / StarChain reference-led artwork"
+    },
+    {
+      "path": "dist/assets/enemy-tier-09.png",
+      "bytes": 1984938,
+      "sha256": "d50855e1de2ae87e69e15fd247a40420278acb8d3cd911d6741d5d0e8c3d015d",
+      "kind": "cinematic-portrait",
+      "origin": "Built-in ImageGen / StarChain reference-led artwork"
+    },
+    {
+      "path": "dist/assets/enemy-tier-10.png",
+      "bytes": 1658475,
+      "sha256": "b893bcd772f54f4ef12a8c4348191653f6b0b02d5ac15e02da74104d523e6bfc",
+      "kind": "cinematic-portrait",
+      "origin": "Built-in ImageGen / StarChain reference-led artwork"
+    },
+    {
+      "path": "dist/assets/enemy-tier-11.png",
+      "bytes": 2146283,
+      "sha256": "2adbacedf6f0d8d495fa22681d848b5a2ec14e3f92f1ff7a5e4c33c18f0c2d02",
+      "kind": "cinematic-portrait",
+      "origin": "Built-in ImageGen / StarChain reference-led artwork"
+    },
+    {
+      "path": "dist/assets/enemy-tier-12.png",
+      "bytes": 2046750,
+      "sha256": "37cc1378c9c940f03dd0ea026ed0111dd805811adc738a0fcf891216119968ee",
+      "kind": "cinematic-portrait",
+      "origin": "Built-in ImageGen / StarChain reference-led artwork"
+    },
+    {
+      "path": "dist/assets/enemy-tier-13.png",
+      "bytes": 2106384,
+      "sha256": "03c2ead6e9ad05f437bbdf1710f78517e969abc9470f7b3120643a85aaa45343",
+      "kind": "cinematic-portrait",
+      "origin": "Built-in ImageGen / StarChain reference-led artwork"
+    },
+    {
+      "path": "dist/assets/enemy-tier-14.png",
+      "bytes": 2287717,
+      "sha256": "0d00fa19ac3df27f9364147c99f7d0ef5bb81e7b1649a96390536c8365f65a4d",
+      "kind": "cinematic-portrait",
+      "origin": "Built-in ImageGen / StarChain reference-led artwork"
+    },
+    {
+      "path": "dist/assets/enemy-tier-15.png",
+      "bytes": 2460682,
+      "sha256": "77bda8c691ac6a3d63638401ea804b903c02a6f57d9e424d2be492e462c0fa58",
+      "kind": "cinematic-portrait",
+      "origin": "Built-in ImageGen / StarChain reference-led artwork"
+    },
+    {
+      "path": "dist/assets/enemy-tier-16.png",
+      "bytes": 2080637,
+      "sha256": "94f2f238d3fca858a577069d8768771cd17786fead1288f1f647e49545135815",
+      "kind": "cinematic-portrait",
+      "origin": "Built-in ImageGen / StarChain reference-led artwork"
+    },
+    {
+      "path": "dist/assets/player-cinematic-v2.png",
+      "bytes": 1633855,
+      "sha256": "f211a032eeefec42267e05a53d48dd2ab40fd834bb4b5fc5d989a6682509425f",
+      "kind": "cinematic-portrait",
+      "origin": "Built-in ImageGen / StarChain reference-led artwork"
+    },
+    {
+      "path": "dist/assets/ship-01.glb",
+      "bytes": 510216,
+      "sha256": "ca91f8202754ce66595fc128ce6fa9d5481e52923f05dc1bd0b454f1a37f0954",
+      "kind": "prototype-model",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-01.png",
+      "bytes": 158728,
+      "sha256": "14bfcb77484604d87efdaeb2a06123331aac0c7ec795e4f29792c50372ce61b8",
+      "kind": "prototype-render",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-02.glb",
+      "bytes": 1117628,
+      "sha256": "cec79a40713e12c5e139081779a9f3172018ea56054964156804fb61bc5e99de",
+      "kind": "prototype-model",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-02.png",
+      "bytes": 201962,
+      "sha256": "cecd4a3454be06945068815cc627bb3837fc59fa531a8a8b47567213775a1098",
+      "kind": "prototype-render",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-03.glb",
+      "bytes": 1117632,
+      "sha256": "351ce11683352185d5436600dbb4dc2383aa458a52325a1137c921b9d9d4ef7c",
+      "kind": "prototype-model",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-03.png",
+      "bytes": 201920,
+      "sha256": "9d8cf12597511e0eb71e597988a353c37f46a3667116c9e95d731d822a42b7e9",
+      "kind": "prototype-render",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-04.glb",
+      "bytes": 1343560,
+      "sha256": "1dcefecbe39c840dc9ddca9cb2c632d5b293f11742da43dea52a7ba6d2b00f7a",
+      "kind": "prototype-model",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-04.png",
+      "bytes": 243410,
+      "sha256": "8dbd76d901b6226baec8750f96f148ebbbe853cc7ae3d63ce5bc2341397e2ec1",
+      "kind": "prototype-render",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-05.glb",
+      "bytes": 1098452,
+      "sha256": "d8b29645a5f7375d8a69f5b30adbfaa0e77c4f16f023968f8d6ff7ddbb18526f",
+      "kind": "prototype-model",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-05.png",
+      "bytes": 226842,
+      "sha256": "fc6cc6164258b471a638fc2ecf27391c4ab6c693a01fecf63a7a6a21594ac8e4",
+      "kind": "prototype-render",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-06.glb",
+      "bytes": 1275148,
+      "sha256": "2269d2c43f7122c22a9aa9bb407ce64b816c60ccabdfb1b4e4e1b2283eb1b442",
+      "kind": "prototype-model",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-06.png",
+      "bytes": 252502,
+      "sha256": "5c1ae5e364a7b9f7127a5f4e1116171f2544e44391741686799e34f2a0449b97",
+      "kind": "prototype-render",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-07.glb",
+      "bytes": 1108072,
+      "sha256": "f397819304b3a0292fb457d36550a18d593ce8358640f6c2d3141e09f6c815e6",
+      "kind": "prototype-model",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-07.png",
+      "bytes": 286800,
+      "sha256": "a083135fc819fd8bb08e3e72b56ef7e53bc5e4eddc408199590ad4d91a77e9de",
+      "kind": "prototype-render",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-08.glb",
+      "bytes": 1851832,
+      "sha256": "d9823a0ccf634d4ecf65c5e261d842c8fb3734467ec41ad677ee70f8d35fa114",
+      "kind": "prototype-model",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-08.png",
+      "bytes": 255535,
+      "sha256": "277b5925a618c75236233153279909b155389cab05adabb60ec13c8d5f4a37e3",
+      "kind": "prototype-render",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-09.glb",
+      "bytes": 1804484,
+      "sha256": "712a4bec2c3a77324b3b3bdf3b78af142d2a2c50c3521256345ebc3bcb4a2313",
+      "kind": "prototype-model",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-09.png",
+      "bytes": 243404,
+      "sha256": "9d42277fbc10526524261140bd04db5df3a4a6c549c6fea08635c552fbeff003",
+      "kind": "prototype-render",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-10.glb",
+      "bytes": 1601056,
+      "sha256": "813bad09196764ebc308337a72cfadfc3307ad54bdc2fc2c667a56920a9f7c28",
+      "kind": "prototype-model",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-10.png",
+      "bytes": 301231,
+      "sha256": "1893d96bdc972efe24bd891abca742ae9e1c21984470e088ebf7ccac8a95b6a1",
+      "kind": "prototype-render",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-11.glb",
+      "bytes": 1682724,
+      "sha256": "f9940aabde6efc064c5d99745544708c7e5ec5da48e9ec207eebcf572739d81c",
+      "kind": "prototype-model",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-11.png",
+      "bytes": 306829,
+      "sha256": "b85b14d93a7eb40a6d13d633dc9d1fb61d1c4e17dbe834d07d4a5bf735cd4181",
+      "kind": "prototype-render",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-12.glb",
+      "bytes": 1860904,
+      "sha256": "02d2e02ae753558123ec9f7be70025f857c85a4e7f5ea81553fd6e37c495360a",
+      "kind": "prototype-model",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-12.png",
+      "bytes": 256378,
+      "sha256": "4a1f957cec4ba4438b44541860b7f4060b7ee142b79ad493c81bbb80ef327483",
+      "kind": "prototype-render",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-13.glb",
+      "bytes": 1705464,
+      "sha256": "7147f99b2cecf190c45b7b3b8bfced88b250bbc24a95f2bc6e3e087b8829a295",
+      "kind": "prototype-model",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-13.png",
+      "bytes": 300860,
+      "sha256": "fc7933ab6959cb162e9e723e0a3176273614e509bc93fc8066875ffa3c22adab",
+      "kind": "prototype-render",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-14.glb",
+      "bytes": 2266248,
+      "sha256": "7d12507c74ae9bb9034408396bc161a3f645314171f58a401b34f82a5d84131e",
+      "kind": "prototype-model",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-14.png",
+      "bytes": 305534,
+      "sha256": "ff9d99cd040cd3e8f47281c15258ff7fe71b52dca3aceb7db635952c2d5b659a",
+      "kind": "prototype-render",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-15.glb",
+      "bytes": 2349284,
+      "sha256": "bbf2f759c7e04d9deb8eefa1824917fa65686e67e925b2775acfc37140094053",
+      "kind": "prototype-model",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-15.png",
+      "bytes": 298833,
+      "sha256": "46339634a53d23bf5d268afd2d80a6873bbb45ba73d3e865b44837e6e9b83d88",
+      "kind": "prototype-render",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-16.glb",
+      "bytes": 2452528,
+      "sha256": "032d9f47a9dac62dcc6c01d6d882134cb2ce374a91e62ab2cc349c2bff8a4e35",
+      "kind": "prototype-model",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-16.png",
+      "bytes": 334368,
+      "sha256": "f6af5f07770632b408f4326e129e92fa95e98b376c82bc7037581bdbe670238d",
+      "kind": "prototype-render",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-player.glb",
+      "bytes": 1853420,
+      "sha256": "cb96eb443324c31d4cad5441561c3350c297513e3b8918d369195a18aa4118b5",
+      "kind": "prototype-model",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/ship-player.png",
+      "bytes": 248863,
+      "sha256": "ac774bb1238195704e17fde95abbd4629bce560f8c9cb6f64673e2beabfc5f2d",
+      "kind": "prototype-render",
+      "origin": "StarChain generated source"
+    },
+    {
+      "path": "dist/assets/studio-light.hdr",
+      "bytes": 422105,
+      "sha256": "875d1f2d4a242a7b4acfe645aa22e40a5556d080cb6c96015d482d7326316a7a",
+      "kind": "environment",
+      "origin": "Poly Haven / Greg Zaal / CC0"
+    }
+  ]
+}

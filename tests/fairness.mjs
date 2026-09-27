@@ -1,12 +1,12 @@
 // Seeded diagnostic matches, not human win-rate evidence.
 // node tests/fairness.mjs [samples-per-pair=2] [seed=101] [greedy|sampled] [matrix|baseline] [shield=3]
-import {INITIATIVE_SHIELD,createGame,observation,legalMoves,playAndClaim,rest,takeCard,audit} from '../dist/engine.mjs';
+import {INITIATIVE_SHIELD,createGame,observation,legalMoves,includeCalibrate,playAndClaim,rest,takeCard,audit} from '../dist/engine.mjs';
 import {MODULES,SECTORS,moduleById} from '../dist/tactics.mjs';
 const samples=Number(process.argv[2]||2),offset=Number(process.argv[3]||101),policy=process.argv[4]||'greedy',shield=Number(process.argv[6]??INITIATIVE_SHIELD);
 if(!Number.isInteger(samples)||samples<1||!Number.isFinite(offset)||!['greedy','sampled'].includes(policy)||!Number.isInteger(shield)||shield<0||shield>6||!['matrix','baseline'].includes(process.argv[5]||'matrix'))throw new Error('Invalid simulation arguments');
 const rng=seed=>{let x=seed>>>0;return()=>{x=(Math.imul(x,1664525)+1013904223)>>>0;return x/4294967296;};};
 function decide(obs,random){
-  let options=legalMoves(obs);if(!options.length)return null;
+  let options=includeCalibrate(obs,legalMoves(obs));if(!options.length)return null;
   if(policy==='sampled'){
     const seen=new Map();for(let i=0;i<24;i++){const m=options[Math.floor(random()*options.length)];seen.set(JSON.stringify(m.move),m);}options=[...seen.values()];
   }

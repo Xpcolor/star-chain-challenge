@@ -9,7 +9,7 @@ export const CHALLENGES = [
   {id:'meet',name:'双星相会',text:'落点与另一条星链相同',metric:'meet',target:1,healing:1},
   {id:'all-chains',name:'双线巡航',text:'在 2 条不同星链上出牌',metric:'chains',target:2,healing:2},
   {id:'goal-kinds',name:'多面能手',text:'触发 2 类不同攻击目标',metric:'goalKinds',target:2,healing:2},
-  {id:'double-goal',name:'一举两得',text:'一次触发 2 张攻击目标',metric:'double',target:1,healing:2},
+  {id:'double-goal',name:'一举两得',text:'一次触发至少 2 项攻击目标',metric:'double',target:1,healing:2},
   {id:'streak',name:'连续出击',text:'自己连续 2 回合触发攻击',metric:'streak',target:2,healing:2},
   {id:'goal-chains',name:'双线呼应',text:'在 2 条不同星链上触发攻击',metric:'goalChains',target:2,healing:2}
 ];
@@ -18,14 +18,25 @@ const fresh=()=>({chains:[],ops:[],goalKinds:[],goalChains:[],minus:0,small:0,ev
 const copy=p=>({...p,chains:[...p.chains],ops:[...p.ops],goalKinds:[...p.goalKinds],goalChains:[...p.goalChains]});
 export const freshChallengeProgress=(ids=[])=>Object.fromEntries(ids.map(id=>[id,fresh()]));
 export const copyChallengeProgress=(p={})=>Object.fromEntries(Object.entries(p).map(([id,value])=>[id,copy(value)]));
-export function drawChallenges(random,previous=[]){
+export function drawChallenges(random,previous=[],slots=null){
   const sample=healing=>{
     const pool=CHALLENGES.filter(c=>c.healing===healing).map(c=>c.id);
     for(let i=pool.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
     return pool;
   };
-  const easy=sample(1),hard=sample(2),ids=[...easy.slice(0,2),hard[0]];
-  if(ids.every(id=>previous.includes(id)))ids[2]=hard.find(id=>!previous.includes(id));
+  if(!slots){
+    const easy=sample(1),hard=sample(2),ids=[...easy.slice(0,2),hard[0]];
+    if(ids.every(id=>previous.includes(id)))ids[2]=hard.find(id=>!previous.includes(id));
+    return ids;
+  }
+  const ids=[];
+  for(const healing of slots){
+    const pool=CHALLENGES.filter(c=>c.healing===healing&&!ids.includes(c.id));
+    const fresh=pool.filter(c=>!previous.includes(c.id)),choices=fresh.length?fresh:pool;
+    const bag=[...choices];
+    for(let i=bag.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[bag[i],bag[j]]=[bag[j],bag[i]];}
+    ids.push(bag[0].id);
+  }
   return ids;
 }
 const value=(c,p)=>Array.isArray(p[c.metric])?p[c.metric].length:p[c.metric];
@@ -43,7 +54,7 @@ export function previewChallenges(ids,progress={},event){
     p.even+=Number(event.after%2===0);p.long+=Number(distance>=7);p.edge+=Number(event.after<=3||event.after>=17);
     p.meet+=Number(event.board.some((n,i)=>i!==event.chain&&n===event.after));
     if(claimed.length){add('goalKinds',claimed.map(id=>id[0]));add('goalChains',[event.chain]);}
-    p.double+=Number(claimed.length===2);p.streak=claimed.length?p.streak+1:0;
+    p.double+=Number(claimed.length>=2);p.streak=claimed.length?p.streak+1:0;
     if(value(challengeById(id),p)>=challengeById(id).target){p.done=true;awarded.push(id);}
   }
   return{next,awarded,healing:awarded.reduce((n,id)=>n+challengeById(id).healing,0)};

@@ -1,0 +1,37 @@
+{
+  "id": "enemy-tier-11",
+  "name": "远航碟形巡洋舰",
+  "file": "enemy-tier-11.png",
+  "prompt": "enemy-tier-11.prompt.txt",
+  "generation": "built-in image_gen, single native output",
+  "width": 1536,
+  "height": 1024,
+  "format": "PNG RGBA",
+  "bytes": 2146283,
+  "sha256": "2ADBACEDF6F0D8D495FA22681D848B5A2EC14E3F92F1FF7A5E4C33C18F0C2D02",
+  "bounds_alpha32": [
+    46,
+    183,
+    1490,
+    811
+  ],
+  "transparent_pixels": 922399,
+  "partial_alpha_pixels": 650465,
+  "opaque_pixels": 0,
+  "orientation": "navigation notch left",
+  "anchors_approx_pixels": {
+    "forward_notch": [
+      56,
+      619
+    ],
+    "right_engine": [
+      1450,
+      542
+    ],
+    "center_dome": [
+      792,
+      308
+    ]
+  },
+  "visual_review": "Usable native asset: distinct two-tier broad saucer, blue recessed dome, segmented silver armor, graphite tier gap, violet circular seams and substantial peripheral pods; full silhouette uncut; true alpha verified. Five peripheral pods clearly visible, sixth occluded/unverified. Horizontal margins about 3 percent rather than requested 8 percent, retained one native generation."
+}
