@@ -1,17 +1,17 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-09-27T07:48:46.4190608Z",
+  "updatedAt": "2026-09-27T08:43:33.859Z",
   "project": {
     "name": "星链算式",
     "root": "D:/ais/game/StarChain",
     "gitRemote": "https://github.com/Xpcolor/star-chain-challenge.git"
   },
   "currentTask": {
-    "phase": "release-authorized-in-progress",
+    "phase": "release-complete",
     "authorizedWork": "完整人机架构重构、定位星加倍、分支与PR、novaw.net发布和记忆刷新。真人房间后续实现。",
     "gameImplementation": "Vite/TypeScript/React cockpit; replaceable MatchClient; unified WebGPU/TSL scene; GSAP/Howler; fixed player GLB plus sixteen unique enemy GLBs.",
     "playerShip": "固定当前一艘，不更换、不随等级变化；仅我方提供近看、真实转向、独立侧光。",
-    "releaseGate": "2026-09-27 用户明确要求更新 GitHub 仓库、PR 推送后刷新绑定域名；现已授权提交、推送、经 CI 的 PR 合并与 novaw.net 发布。保留数据库、身份与分支保护。",
+    "releaseGate": "2026-09-27 用户批准 GitHub PR 与域名发布，PR #5 已通过受保护 CI 合并，novaw.net / www.novaw.net 已部署并核验。",
     "lastLocalFeedback": [
       "星云选择器在橙星链刻度下方按正常流布局，避免向上悬浮遮挡",
       "三处牌区 W星云青蓝/A加速橙金/J折跃紫色，带中文牌名；数字牌米白色",
@@ -44,9 +44,11 @@
     "latestRules": "docs/RULES_V3_VERIFICATION_20260927.md"
   },
   "gitSnapshot": {
-    "branch": "feat/cockpit-pve-architecture",
-    "base": "b413653763a1a01d7564a087718ac4eb86842e03",
-    "note": "既有 GROK 玩法变动、美术和原型保留；不强推、不擅自合并。"
+    "branch": "main",
+    "deployedCommit": "1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9",
+    "releasePr": "https://github.com/Xpcolor/star-chain-challenge/pull/5",
+    "receiptBranch": "docs/release-20260927",
+    "note": "发布回执为文档补充，不改变已部署的运行代码；保留既有玩法和资产，不强推。"
   },
   "confirmedVisualDirection": [
     "Three major transparent glass panels with two long electrical trails; small floating text; lower canopy only.",
@@ -151,7 +153,8 @@
         "earlyPve": 7.236607142857143,
         "advancedPve": 9.84375
       },
-      "limit": "Automated paired policies, not human win rates. First-player advantage remains; increased complexity does not prove a monotonic difficulty ladder."
+      "limit": "Automated paired policies, not human win rates. First-player advantage remains; increased complexity does not prove a monotonic difficulty ladder.",
+      "enabledInProduction": true
     },
     "latestCinematics": {
       "evidence": "docs/qa/cinematic-timing-verification.json",
@@ -165,6 +168,20 @@
         "afterLongTaskCount": 0
       },
       "limit": "Short same-machine Chrome/WebGPU rendering probe, not universal smoothness or sustained FPS guarantee"
+    },
+    "publicRelease": {
+      "evidence": "docs/qa/release-20260927.json",
+      "version": "1.1.0",
+      "deployedCommit": "1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9",
+      "domains": [
+        "https://novaw.net",
+        "https://www.novaw.net"
+      ],
+      "pageErrors": 0,
+      "models": "ready",
+      "backend": "webgpu",
+      "rules": "flight-records-3",
+      "guestRecordsStatus": 401
     }
   },
   "memory": {
@@ -181,7 +198,7 @@
       "memorix_project_context 一次简短 brief",
       "按任务需要读取方向文档和源码"
     ],
-    "status": "Cinematic local milestone stored and read back in project scope; owner playtest release gate preserved",
+    "status": "Owner-authorized public release stored and read back in project scope; prior local-only release hold superseded",
     "fallback": "Memorix 不可用时使用本文件和相关项目文档继续工作，明确未加载；不绑定父目录、HOME 或其他项目。",
     "topicKeys": [
       "starchain/development/current-direction",
@@ -214,15 +231,16 @@
     "retrievalNote": "当前 fast fulltext 中文检索未命中已存记录；优先使用已验证的英文关键词或 typedRef。代码索引尚无已完成结果。",
     "receipt": ".codex/memory/PVE_VERIFICATION.json",
     "latestRulesReceipt": ".codex/memory/RULES_V3_VERIFICATION.json",
-    "latestCinematicReceipt": ".codex/memory/CINEMATIC_VERIFICATION.json"
+    "latestCinematicReceipt": ".codex/memory/CINEMATIC_VERIFICATION.json",
+    "latestReleaseReceipt": ".codex/memory/RELEASE_VERIFICATION.json"
   },
   "execution": {
     "blender": "D:/app/blender/blender.exe",
     "blenderVersion": "5.2.1 LTS",
     "localPreview": "http://127.0.0.1:8792/",
     "devPreview": "http://127.0.0.1:8793/",
-    "publicDeployment": "Authorized and in progress; not yet verified",
-    "gitCommitPush": "Authorized and in progress; pending PR and CI",
+    "publicDeployment": "Verified on novaw.net and www.novaw.net; version1.1.0 commit 1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9",
+    "gitCommitPush": "PR #5 merged after verify CI; protected main preserved; documentation-only release receipt follow-up",
     "modelOriginals": "C:/Users/xutao/Desktop/飞船图",
     "modelCount": 17,
     "moreModelsNeeded": false,
