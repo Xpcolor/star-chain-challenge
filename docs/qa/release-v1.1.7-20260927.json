@@ -1,0 +1,90 @@
+{
+  "checkedAt": "2026-09-27T12:56:49.854Z",
+  "version": "1.1.7",
+  "commit": "643ddc0d9d1659b7810c7adb254ab216bf0593f3",
+  "cloudflareVersion": "30ead51a-dcdf-47c2-a566-12b903dc1582",
+  "previousCloudflareVersion": "fdc489ab-e6bc-456b-8b32-b5b806163154",
+  "pullRequest": "https://github.com/Xpcolor/star-chain-challenge/pull/7",
+  "domains": [
+    {
+      "url": "https://novaw.net",
+      "release": {
+        "version": "1.1.7",
+        "commit": "643ddc0d9d1659b7810c7adb254ab216bf0593f3",
+        "environment": "production",
+        "pr": null
+      },
+      "rootStatus": 200,
+      "htmlSha256": "136c0f6fbb22af1c85a44fb87115690b3950d3e45176fc86a28e890d4cd31da9",
+      "cloudflareInjectedScript": true,
+      "gameHtmlMatchesBuild": true,
+      "cacheControl": "no-cache",
+      "guestProfileStatus": 401,
+      "music": {
+        "status": 200,
+        "type": "audio/ogg",
+        "bytes": null
+      },
+      "rendering": {
+        "models": "ready"
+      },
+      "layout": {
+        "width": 1380,
+        "fontSize": "17px",
+        "overflow": 0
+      },
+      "errors": [],
+      "failedAssets": [],
+      "screenshot": ".local/qa/manual-live-novaw.net.png"
+    },
+    {
+      "url": "https://www.novaw.net",
+      "release": {
+        "version": "1.1.7",
+        "commit": "643ddc0d9d1659b7810c7adb254ab216bf0593f3",
+        "environment": "production",
+        "pr": null
+      },
+      "rootStatus": 200,
+      "htmlSha256": "c1e11e70ec8b542e5840fc38cc2040dbc3805787d9c69bffff6d44143529047b",
+      "cloudflareInjectedScript": true,
+      "gameHtmlMatchesBuild": true,
+      "cacheControl": "no-cache",
+      "guestProfileStatus": 401,
+      "music": {
+        "status": 200,
+        "type": "audio/ogg",
+        "bytes": null
+      },
+      "rendering": {
+        "models": "ready"
+      },
+      "layout": {
+        "width": 1380,
+        "fontSize": "17px",
+        "overflow": 0
+      },
+      "errors": [],
+      "failedAssets": [],
+      "screenshot": ".local/qa/manual-live-www.novaw.net.png"
+    }
+  ],
+  "database": {
+    "changed": false,
+    "pendingMigrations": 0
+  },
+  "validation": {
+    "unitTests": 94,
+    "localBrowserScenarios": 18,
+    "mode": "17 passed initially; the four-slot layout failure was fixed and relevant 3+3 tests passed on rerun",
+    "typecheck": "passed",
+    "build": "passed",
+    "prCi": "https://github.com/Xpcolor/star-chain-challenge/actions/runs/36320378213",
+    "mainCi": "https://github.com/Xpcolor/star-chain-challenge/actions/runs/36320480821"
+  },
+  "limitations": [
+    "Real-account sync and legacy records import not re-verified.",
+    "No long-term all-device GPU performance guarantee."
+  ],
+  "htmlNote": "Cloudflare inserts its JavaScript detection script. Verification strips only that known injected script and compares the entire remaining game HTML to the deployed build; edge protection stays enabled."
+}

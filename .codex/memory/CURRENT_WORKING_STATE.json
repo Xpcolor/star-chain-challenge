@@ -1,17 +1,17 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-09-27T12:44:16.838Z",
+  "updatedAt": "2026-09-27T13:04:18.633Z",
   "project": {
     "name": "星链算式",
     "root": "D:/ais/game/StarChain",
     "gitRemote": "https://github.com/Xpcolor/star-chain-challenge.git"
   },
   "currentTask": {
-    "phase": "release-in-progress",
+    "phase": "released",
     "authorizedWork": "V1.1.7：扩大玩法说明弹窗，优化桌面分栏与手机单栏阅读；用户明确要求推送 GitHub 并刷新域名，包含前面确认的本地修正。",
     "gameImplementation": "Vite/TypeScript/React cockpit; replaceable MatchClient; unified WebGPU/TSL scene; GSAP/Howler; fixed player GLB plus sixteen unique enemy GLBs.",
     "playerShip": "固定当前一艘，不更换、不随等级变化；仅我方提供近看、真实转向、独立侧光。",
-    "releaseGate": "2026-09-27 最新用户请求已明确授权本次 GitHub PR、合并与 novaw.net / www.novaw.net 发布。须通过适用本地检查和真实 CI，再部署并验证线上。",
+    "releaseGate": "用户本次已明确授权，PR7通过CI并合并，V1.1.7已部署至两个域名且线上验收通过。后续新增工作按其当次范围执行。",
     "lastLocalFeedback": [
       "星云选择器在橙星链刻度下方按正常流布局，避免向上悬浮遮挡",
       "三处牌区 W星云青蓝/A加速橙金/J折跃紫色，带中文牌名；数字牌米白色",
@@ -29,7 +29,8 @@
       "V1.1.3：显示框闪电完整路径周期11秒改44秒；三/四项面板与版本说明书浏览器回归、87项测试和构建通过。",
       "V1.1.4：数字滚轮误把5显示为0已修复；攻击项升序、不改伤害；跃迁按钮不再被补牌区遮挡。四种视口生命显示、五种视口跃迁、真正零血陨落和两秒后结算通过。",
       "V1.1.5：A加速回原位可触发攻击，不限使用次数，每次出牌结算一次；旧战绩原规则回放。修复加速越界提示遮挡减号；92项测试、80局模拟、36组镜像对局、四种视口真实操作通过。",
-      "V1.1.6：两条0中一条跃迁到20，或两条20中一条跃迁到0，均能触发二十星门3点基础伤害。原引擎已支持；说明书明确示例、24组专项和94项全套测试通过，本地已刷新。"
+      "V1.1.6：两条0中一条跃迁到20，或两条20中一条跃迁到0，均能触发二十星门3点基础伤害。原引擎已支持；说明书明确示例、24组专项和94项全套测试通过，本地已刷新。",
+      "V1.1.7：玩法说明最大1380px、正文17px/手机16px、五分区与功能牌色卡、固定关闭按钮；四项补给高度补足。94项测试、18个浏览器场景分次通过，PR7已合并，双域名线上验收通过。"
     ],
     "latestRequest": "Enlarge the rules dialog with a readable layout, push GitHub and update the bound domains."
   },
@@ -53,14 +54,15 @@
     "latestHudFix": "docs/HUD_FIX_V1_1_4_20260927.md",
     "latestRuleChange": "docs/ACCEL_RETURN_V1_1_5_20260927.md",
     "latestRuleClarification": "docs/qa/warp-endpoints-v1.1.6-verification.json",
-    "latestManual": "docs/MANUAL_V1_1_7_20260927.md"
+    "latestManual": "docs/MANUAL_V1_1_7_20260927.md",
+    "latestRelease": "docs/qa/release-v1.1.7-20260927.json"
   },
   "gitSnapshot": {
-    "branch": "fix/cockpit-feedback-v1-1-1",
-    "deployedCommit": "1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9",
-    "releasePr": "https://github.com/Xpcolor/star-chain-challenge/pull/5",
-    "receiptBranch": "docs/release-20260927",
-    "note": "Release authorized; local validation underway. Preserve untracked user file 游戏优化步骤.txt.",
+    "branch": "docs/release-v1-1-7",
+    "deployedCommit": "643ddc0d9d1659b7810c7adb254ab216bf0593f3",
+    "releasePr": "https://github.com/Xpcolor/star-chain-challenge/pull/7",
+    "receiptBranch": "docs/release-v1-1-7",
+    "note": "Feature release merged and published. Follow-up documentation receipt only; user file 游戏优化步骤.txt remains untracked.",
     "localVersion": "1.1.7",
     "localBaseCommit": "d9ff3ac2dcce3a33b2671514b82946d187f4c17f"
   },
@@ -226,6 +228,12 @@
       "evidence": "docs/qa/manual-v1.1.7-verification.json",
       "viewports": 4,
       "version": "1.1.7"
+    },
+    "latestRelease": {
+      "evidence": "docs/qa/release-v1.1.7-20260927.json",
+      "version": "1.1.7",
+      "domains": 2,
+      "pageErrors": 0
     }
   },
   "memory": {
@@ -286,8 +294,8 @@
     "blenderVersion": "5.2.1 LTS",
     "localPreview": "http://127.0.0.1:8792/",
     "devPreview": "http://127.0.0.1:8793/",
-    "publicDeployment": "Verified on novaw.net and www.novaw.net; version1.1.0 commit 1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9",
-    "gitCommitPush": "V1.1.4 local feedback branch only; await explicit owner approval before PR/push/deployment.",
+    "publicDeployment": "Verified on novaw.net and www.novaw.net; version1.1.7 commit 643ddc0d9d1659b7810c7adb254ab216bf0593f3",
+    "gitCommitPush": "PR7 merged after passing CI. Production published and verified; documentation receipt is a separate PR.",
     "modelOriginals": "C:/Users/xutao/Desktop/飞船图",
     "modelCount": 17,
     "moreModelsNeeded": false,
