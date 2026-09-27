@@ -1,10 +1,10 @@
 import {buildAdvice} from './advice.mjs?v=flight-records-2';
 import {RULES_VERSION,compatibleRules} from './difficulty.mjs?v=flight-records-2';
-import {createGame,selectModule,rollInitiative,playAndClaim,takeCard,rest,audit} from './engine.mjs?v=flight-records-2';
+import {createGame,selectModule,rollInitiative,selectSector,selectBoon,playAndClaim,transfer,takeCard,rest,audit} from './engine.mjs?v=flight-records-2';
 import {RELEASE} from './version.mjs';
 
 export const RECORD_SCHEMA=1;
-export function publicSnapshot(s){return structuredClone({phase:s.phase,current:s.current,round:s.round,turnInRound:s.turnInRound,board:s.board,hp:s.hp,shields:s.shields,hands:s.hands,market:s.market,goals:s.goals,challengeIds:s.challengeIds,challengeProgress:s.challengeProgress,modules:s.phase==='loadout'?[null,null]:s.modules,moduleProgress:s.moduleProgress,sectorId:s.sectorId,moduleOptions:s.moduleOptions});}
+export function publicSnapshot(s){const snap={phase:s.phase,current:s.current,round:s.round,turnInRound:s.turnInRound,board:s.board,hp:s.hp,shields:s.shields,hands:s.hands,market:s.market,goals:s.goals,challengeIds:s.challengeIds,challengeProgress:s.challengeProgress,modules:s.phase==='loadout'?[null,null]:s.modules,moduleProgress:s.moduleProgress,sectorId:s.sectorId,moduleOptions:s.moduleOptions};if(s.choices){snap.choices=true;snap.sectorOptions=[...s.sectorOptions];snap.boon=s.boon?structuredClone(s.boon):null;}return structuredClone(snap);}
 export function recap(s,actor=0){
   const own=s.history.filter(h=>h.actor===actor&&!h.rest),other=s.history.filter(h=>h.actor!==actor&&!h.rest);
   return {maxHit:Math.max(0,...own.map(h=>h.actualDamage)),healing:s.healingTotal[actor],repairs:own.reduce((n,h)=>n+h.challengeAwards.length,0),enemyRepairs:other.reduce((n,h)=>n+h.challengeAwards.length,0),moduleUses:s.moduleProgress[actor].uses};
@@ -28,7 +28,7 @@ export function closeRecord(record,state,reason='restart',now=Date.now()){
 // irrelevant to replay because the selected actions and supply choices are kept.
 export function replayRecord(record){
   if(record.schemaVersion!==1||!compatibleRules(record.rulesVersion))throw Error('记录规则版本不匹配');
-  const g=createGame({...record.options,...(record.rulesVersion==='flight-records-1'?{initiativeShield:3}:{})});
+  const g=createGame({...record.options,rulesVersion:record.rulesVersion,...(record.rulesVersion==='flight-records-1'?{initiativeShield:3}:{})});
   if(record.initial&&JSON.stringify(publicSnapshot(g))!==JSON.stringify(record.initial))throw Error('开局快照不一致');
   for(const event of record.events){
     if(event.type==='error')continue;
@@ -36,6 +36,9 @@ export function replayRecord(record){
     switch(event.type){
       case'module':selectModule(g,event.id);break;
       case'dice':{const roll=rollInitiative(g);if(JSON.stringify(roll.pair)!==JSON.stringify(event.pair))throw Error('骰子记录不一致');break;}
+      case'sector':selectSector(g,event.id);break;
+      case'boon':selectBoon(g,event.kind);break;
+      case'transfer':transfer(g,event.giveId,event.marketIndex);break;
       case'play':playAndClaim(g,event.move);break;
       case'rest':rest(g,event.ids,event.goal);break;
       case'take':{const c=takeCard(g,event.source);if(c.id!==event.card.id)throw Error('补牌记录不一致');break;}

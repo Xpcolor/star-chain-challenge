@@ -62,6 +62,10 @@ jobs:
         with:
           node-version: '24'
       - run: npm ci && npm test && npm run build
+        env:
+          DEPLOY_ENV: preview
+          GIT_COMMIT: ${{ needs.identify.outputs.sha }}
+          PR_NUMBER: ${{ needs.identify.outputs.pr }}
       - run: mkdir -p preview-artifact && cp -r dist/client dist/server preview-artifact/ && cp -r drizzle preview-artifact/migrations
       - uses: actions/upload-artifact@v4
         with:

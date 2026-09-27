@@ -1,0 +1,166 @@
+{
+  "date": "2026-09-27T07:27:40.572Z",
+  "scope": "Local presentation timing and frame-stall repair; gameplay and difficulty unchanged; no push/PR/deploy",
+  "reproduced": [
+    {
+      "problem": "Inspection overwrites player entry/fall transform",
+      "redEvidence": ".local/qa/cinematic-before.log",
+      "observation": "350ms after new game player offset was +2.385 instead of incoming from left"
+    },
+    {
+      "problem": "Four-hit fatal volley begins collapse before final impact",
+      "redEvidence": ".local/qa/cinematic-volley-before.log",
+      "observation": "Only three of four impact callbacks preceded collapse"
+    },
+    {
+      "problem": "First fracture render compiles/uploads hidden pieces during combat",
+      "redEvidence": ".local/qa/cinematic-perf-before.json",
+      "observation": "53ms long task, 52.4ms pipeline CPU call"
+    }
+  ],
+  "changes": [
+    "Reset and terminal sequences exit inspection; inspection transform cannot override entry/fall",
+    "Collapse starts after the last expected impact with scheduling headroom; terminal readiness runs on a new two-second render-clock timeline from actual collapse",
+    "Prewarm hull/fragments and pooled effects through the actual MRT/bloom pipeline before each loaded fleet arrival; restore warmup flags and replace its hidden frame"
+  ],
+  "checks": {
+    "unit": {
+      "passed": 85,
+      "failed": 0,
+      "log": ".local/qa/cinematic-unit.log"
+    },
+    "typecheck": "passed",
+    "build": "passed",
+    "browser": {
+      "passed": 8,
+      "failed": 0,
+      "log": ".local/qa/cinematic-browser-final.log",
+      "scenarios": [
+        "Cold GLB loading, same-level restart and level8 arrival: no opening panel before two rendered seconds",
+        "Real inspection toggle does not replace entry/fall trajectory",
+        "Synthetic four-hit fatal volley: four impacts before collapse, readiness >=1.95s later",
+        "Confirm warmup, repeated input protection, restart cancellation, reduced motion",
+        "Actual complete PvE: visible zero-HP fracture with no dialog/opening overlay, result >=1.9s after collapse, record and result controls",
+        "Five viewports retain readable layout",
+        "WebGL and missing-model fallback remain usable",
+        "Sixteen model loads, own inspection and own zero-HP fracture"
+      ]
+    }
+  },
+  "visuals": {
+    "inspected": [
+      ".local/qa/cinematic-arrival.png",
+      ".local/qa/cinematic-inspection-fall.png",
+      ".local/qa/cinematic-game-fall.png"
+    ],
+    "note": "Actual PvE screenshot shows enemy at zero HP, six separated pieces and clear central battlefield before result modal. Inspection-fall probe is presentation-only, not a saved match."
+  },
+  "performance": {
+    "environment": {
+      "backend": "webgpu",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1.25
+      },
+      "mode": "Chrome headless; sequential synthetic rendering scenarios on same machine; API401 isolation; unchanged graphics settings"
+    },
+    "samples": [
+      {
+        "scenario": "idle",
+        "before": {
+          "p95Ms": 17.6,
+          "maxFrameGapMs": 18.4,
+          "longTasks": [],
+          "pipelineCpuMaxMs": 1.3
+        },
+        "after": {
+          "p95Ms": 20.9,
+          "maxFrameGapMs": 41.8,
+          "longTasks": [],
+          "pipelineCpuMaxMs": 1.1
+        }
+      },
+      {
+        "scenario": "four hits + six healing + three charging cards",
+        "before": {
+          "p95Ms": 17.6,
+          "maxFrameGapMs": 34.9,
+          "longTasks": [],
+          "pipelineCpuMaxMs": 1.4
+        },
+        "after": {
+          "p95Ms": 21,
+          "maxFrameGapMs": 27.7,
+          "longTasks": [],
+          "pipelineCpuMaxMs": 1.2
+        }
+      },
+      {
+        "scenario": "repeat heavy effects",
+        "before": {
+          "p95Ms": 17.6,
+          "maxFrameGapMs": 34.5,
+          "longTasks": [],
+          "pipelineCpuMaxMs": 1.1
+        },
+        "after": {
+          "p95Ms": 20.9,
+          "maxFrameGapMs": 21.3,
+          "longTasks": [],
+          "pipelineCpuMaxMs": 1.1
+        }
+      },
+      {
+        "scenario": "first fractured hull render",
+        "before": {
+          "p95Ms": 17.6,
+          "maxFrameGapMs": 52.3,
+          "longTasks": [
+            53
+          ],
+          "pipelineCpuMaxMs": 52.4
+        },
+        "after": {
+          "p95Ms": 20.7,
+          "maxFrameGapMs": 28,
+          "longTasks": [],
+          "pipelineCpuMaxMs": 1.1
+        }
+      },
+      {
+        "scenario": "same-size resize burst",
+        "before": {
+          "p95Ms": 17.5,
+          "maxFrameGapMs": 18.1,
+          "longTasks": [],
+          "pipelineCpuMaxMs": 0.9
+        },
+        "after": {
+          "p95Ms": 20.9,
+          "maxFrameGapMs": 28.2,
+          "longTasks": [],
+          "pipelineCpuMaxMs": 1.3
+        }
+      }
+    ],
+    "browserErrors": [],
+    "rawBefore": ".local/qa/cinematic-perf-before.json",
+    "rawAfter": ".local/qa/cinematic-perf-after.json",
+    "probe": ".local/profile-cinematics.mjs",
+    "limits": [
+      "Short same-machine sample, not a sustained FPS or cross-device/browser guarantee",
+      "Idle p95 varied from17.6 to20.9ms and idle max18.4 to41.8ms; scheduling/refresh variability prevents a blanket FPS improvement claim",
+      "Prewarming moves shader/geometry work into loading; it does not eliminate its cost",
+      "Reduced motion and missing-model fallback intentionally bypass cinematic waits"
+    ]
+  },
+  "sourceSha256": {
+    "dist/combat-timing.mjs": "79eef81a9417378f889bd1932a05a5c835497a915197a487c2ec5dac82104733",
+    "src/presentation/scene.ts": "bb8f11af386e1b8a9c34d57041f59835a7869fc700e8c79a412db61728fd3ae8",
+    "src/presentation/fx-pool.ts": "7626aef7efb9e9abfc2bd62f994bc377512b4883277995bfaa088419289493fd",
+    "tests/combat-timing.test.mjs": "94c4e1fb167ed18e8b71e41f6331c523798fce093f995c051104ed2344ff85fe",
+    "tests/browser/cinematic-timing.spec.ts": "d1a9f04075119d32d5413d685369037b95c3164435cee1f5f01623a5fa2d603c",
+    "tests/browser/cockpit.spec.ts": "db96b7ce55a6318a7279c108e11bea0b25cafed8605f72b23378a8ae66ba4105"
+  }
+}

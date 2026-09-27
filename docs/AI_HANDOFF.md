@@ -1,14 +1,36 @@
 # 给后续 AI 的项目说明
 
-先读 README、CODEX_DESKTOP_TASK、docs/ACCEPTANCE、docs/RECORDS_API 与相关源码。规则以版本化源码为准，历史平衡报告只适用于其注明版本。未批准的无限模块与轮换星域不能顺手合入。
+先读 `.codex/memory/CURRENT_WORKING_STATE.json` 并按 AGENTS.md 绑定项目 Memorix。当前阶段是先稳定人机版本、为后续真人对战保留扩展边界；界面、模型、架构和分工方向见 `docs/PROJECT_DIRECTION.md`。
+
+2026-09-27 最新授权：用户已明确要求更新 GitHub、完成 PR 推送后刷新 novaw.net。此前“等待本人试玩批准”已满足，以下相应描述保留为历史记录。发布过程中继续遵守真实 CI、现有主分支保护、记录身份和数据库隔离；发布提交与线上验证见 deployment-status.json。
+
+README 提供项目概况；部署或身份任务再读 CODEX_DESKTOP_TASK，验收任务读 docs/ACCEPTANCE，记录接口任务读 docs/RECORDS_API 与相关源码。历史部署任务不自动恢复执行。规则以当前源码为准，历史平衡报告只适用于其注明版本。未批准的无限模块与轮换星域不能顺手合入。
 
 ## 本地开发
 
-Node.js 24，npm ci，npm run dev；浏览器打开 http://127.0.0.1:8787 。本地固定开发玩家，数据库 .local/star-chain.sqlite 不提交 Git。
+Node.js 24，npm ci，npm run dev；浏览器打开 http://127.0.0.1:8793（Vite，API 仅在 loopback 8792） 。本地固定开发玩家，数据库 .local/star-chain.sqlite 不提交 Git。
 
 npm test / npm run build 是基础检查。仅玩法和数值变化需要按 BALANCE / SIXTEEN_LEVELS 文档追加必要配对模拟，记录种子、样本、策略和限制；界面文案修改无需全面重跑梯度。
 
+## 三维与视听实现
+
+宽屏人机版已落地，当前实现与已验证限制见 `docs/PROJECT_DIRECTION.md`；视觉回归先读根目录 `design-qa.md`。模型、音效、来源和再生成入口见 `资产库/README.md` 与 `资产库/inventory.json`，浏览器资产预览为 `/asset-library.html`。
+
+当前入口为 src/main.tsx → LocalMatchClient → dist/app.mjs 控制器/纯规则 → React 与统一 Three.js 战场。新增表现源码在 src/presentation，具体边界、GLB 封口分件、播放器单独检视、WebGL/舰图降级与限制见 docs/PVE_ARCHITECTURE.md。Vite 自动热更新；构建后预览需 STAR_CHAIN_BUILT=1 node scripts/dev.mjs。
+
+本次分支 feat/cockpit-pve-architecture，起点已有 GROK 玩法改动全部保留。用户要求先本人本地试玩，明确同意后才创建 PR 和发布 novaw.net；当前尚未推送、创建 PR 或更新公网。历史发布结果见 deployment-status.json，测试见 docs/qa/pve-v4-verification.json。不得将历史独立样板的状态当作本次交付现状。
+
+最新本地反馈已补齐维修条下的任务明细：进退自如显示已用 +/−，双线呼应显示已攻蓝/紫/橙；双线巡航、多面能手同样显示相应明细。双方独立读取现有 challenge_progress，新任务清空，普通移动不计为攻击星链。五种视口与功能牌/星云选择器回归证据见 docs/qa/repair-hints-verification.json；仍等待用户本地试玩后的发布批准。
+
 ## 当前记录入口
+
+上一轮性能任务（2026-09-27）：本地战斗特效优化已实施，确认后约 0.5 秒蓄能，特效对象池与实例粒子预热，统一最后一段特效/陨落的结算等待，减弱动效快速结算，重开取消旧特效。79 项测试及类型检查/构建通过；完整人机、重开/重复输入/减弱动效、WebGL/缺模型降级、16 舰模型/陨落四项相关浏览器检查通过。完整证据 `docs/qa/combat-performance-verification.json`。
+
+2026-09-27 用户已确认的新规则已在本地启用：1–7级18血、攻击/维修各3项；8–16级唯一24血、各4项，并加入D定轨2张/B调拨2张。调拨换牌后继续同回合，跃迁可选20−当前位置及两侧一格（去掉越界与原位）；所有新局取消攻击两项目标上限。加速选择次序1/2、确认后光束充能、进场/陨落两秒后弹窗、随机三种钉住候选和明显金色选中已接入。支援只降低AI，保留所选等级的规则。V3新记录与V1/V2旧规则重放分离。
+
+最新证据：`docs/RULES_V3_VERIFICATION_20260927.md`；84项单测通过，类型与构建通过，7项相关浏览器场景分次回归通过，3,424次模拟与48对镜像通过。每组共享种子，不是3,424个独立样本，也不是真人胜率。进阶组平均9.84轮，先手优势尚存；未擅自修改AI/护盾。旧实验报告作为历史保留。当前本地预览8792，QA服务8795使用独立数据库，勿混用。未推送、PR或发布。
+
+最新动效专项复查：修复近看模式覆盖入场/陨落、四连击末次命中晚于陨落；陨落开始后以渲染时钟再展示两秒才放行结算。加载各级模型时预热完整舰体、隐藏碎片及对象池，首次破损实测最大帧间隔52.3→28ms、53ms长任务消除（同机短测，无全设备FPS保证）。85项测试、类型/构建、同次8项浏览器检查通过；实际完整对局的零血陨落截图确认没有中央弹窗遮挡。证据 `docs/qa/cinematic-timing-verification.json`，报告 `docs/CINEMATIC_VERIFICATION_20260927.md`。规则保持V3，仍仅本地；8792供用户试玩，专项QA8795测试完成后关闭。
 
 在已登录的同一游戏页面内：
 
@@ -26,3 +48,5 @@ await window.starChainRecords.export();
 ## 提交
 
 修改通过分支和 PR，说明具体问题、变更行为、验证、预览和试玩重点。维护者按任务授权决定合并；不直推未经批准的玩法，不覆盖已应用迁移，不强推主分支，不擅自添加协作者或改仓库公开范围。
+
+本轮九处可读性反馈已处理：后段选择框约 97% 不透明；星域移至蓝星链上方、战场上移；轮数与生命字号一致，模块/校准/操作/等待提示放大。实际后段选择、五种视口和长文案压力检查通过；75 项单测、类型检查、构建及两个相关浏览器回归通过。最新证据 docs/qa/readability-verification.json。试玩确认前仍不得推送、PR 或发布。

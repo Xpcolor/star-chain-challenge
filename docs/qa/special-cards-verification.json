@@ -1,0 +1,149 @@
+{
+  "verifiedAt": "2026-09-27T04:27:25.998Z",
+  "changes": [
+    "星云选择器在橙星链刻度下方按正常流布局，避免向上悬浮遮挡",
+    "三处牌区 W星云青蓝/A加速橙金/J折跃紫色，带中文牌名；数字牌米白色",
+    "窄屏选择器展开时下移后续面板"
+  ],
+  "layouts": [
+    {
+      "viewport": [
+        2179,
+        1244
+      ],
+      "passed": true,
+      "pickerBelowLabels": 32.9375,
+      "controlsBeforeDeck": 38.5340576171875
+    },
+    {
+      "viewport": [
+        1920,
+        1080
+      ],
+      "passed": true,
+      "pickerBelowLabels": 18,
+      "controlsBeforeDeck": 25.76568603515625
+    },
+    {
+      "viewport": [
+        1774,
+        887
+      ],
+      "passed": true,
+      "pickerBelowLabels": 9.5,
+      "controlsBeforeDeck": 27.3406982421875
+    },
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "passed": true,
+      "pickerBelowLabels": 4.5,
+      "controlsBeforeDeck": 7.73681640625
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "passed": true,
+      "pickerBelowLabels": 46.5,
+      "controlsBeforeDeck": 508.5697021484375
+    }
+  ],
+  "specialPalettes": [
+    {
+      "selector": ".hand",
+      "cards": [
+        {
+          "name": "手牌 星云 W",
+          "caption": "星云",
+          "background": "linear-gradient(145deg, rgb(32, 90, 120), rgb(10, 39, 62))",
+          "color": "rgb(239, 252, 255)"
+        },
+        {
+          "name": "手牌 加速 A",
+          "caption": "加速",
+          "background": "linear-gradient(145deg, rgb(153, 82, 35), rgb(73, 32, 15))",
+          "color": "rgb(255, 244, 220)"
+        },
+        {
+          "name": "手牌 折跃 J",
+          "caption": "折跃",
+          "background": "linear-gradient(145deg, rgb(100, 65, 140), rgb(41, 20, 63))",
+          "color": "rgb(247, 237, 255)"
+        },
+        {
+          "name": "手牌 6",
+          "background": "linear-gradient(130deg, rgb(255, 250, 231), rgb(228, 216, 188))",
+          "color": "rgb(17, 35, 57)"
+        }
+      ]
+    },
+    {
+      "selector": ".opponent-hand",
+      "cards": [
+        {
+          "name": "对手 星云 W",
+          "caption": "星云",
+          "background": "linear-gradient(145deg, rgb(32, 90, 120), rgb(10, 39, 62))",
+          "color": "rgb(239, 252, 255)"
+        },
+        {
+          "name": "对手 加速 A",
+          "caption": "加速",
+          "background": "linear-gradient(145deg, rgb(153, 82, 35), rgb(73, 32, 15))",
+          "color": "rgb(255, 244, 220)"
+        },
+        {
+          "name": "对手 折跃 J",
+          "caption": "折跃",
+          "background": "linear-gradient(145deg, rgb(100, 65, 140), rgb(41, 20, 63))",
+          "color": "rgb(247, 237, 255)"
+        },
+        {
+          "name": "对手 6",
+          "background": "linear-gradient(130deg, rgb(255, 250, 231), rgb(228, 216, 188))",
+          "color": "rgb(17, 35, 57)"
+        }
+      ]
+    },
+    {
+      "selector": ".refill",
+      "cards": [
+        {
+          "name": "补牌 星云 W",
+          "caption": "星云",
+          "background": "linear-gradient(145deg, rgb(32, 90, 120), rgb(10, 39, 62))",
+          "color": "rgb(239, 252, 255)"
+        },
+        {
+          "name": "补牌 加速 A",
+          "caption": "加速",
+          "background": "linear-gradient(145deg, rgb(153, 82, 35), rgb(73, 32, 15))",
+          "color": "rgb(255, 244, 220)"
+        },
+        {
+          "name": "补牌 折跃 J",
+          "caption": "折跃",
+          "background": "linear-gradient(145deg, rgb(100, 65, 140), rgb(41, 20, 63))",
+          "color": "rgb(247, 237, 255)"
+        },
+        {
+          "name": "补牌 6",
+          "background": "linear-gradient(130deg, rgb(255, 250, 231), rgb(228, 216, 188))",
+          "color": "rgb(17, 35, 57)"
+        }
+      ]
+    }
+  ],
+  "unitTests": {
+    "passed": 75,
+    "failed": 0
+  },
+  "typecheck": "passed",
+  "build": "passed",
+  "browserErrors": [],
+  "scope": "Local only; PR/push/publication still awaiting owner approval"
+}

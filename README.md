@@ -2,54 +2,58 @@
 
 三条共享星链、六张手牌、明牌人机对战的中文浏览器游戏。
 
-## 入口与当前状态
+## 当前版本
 
-| 项目 | 当前状态 |
-| --- | --- |
-| 原站点 | https://xinglian-challenge.xutaoping.chatgpt.site |
-| GitHub 仓库 | https://github.com/Xpcolor/star-chain-challenge （公开，仅 Xpcolor 可写） |
-| 独立正式游戏 | https://novaw.net （www.novaw.net 同样可用） |
-| 原 Workers 地址 | https://star-chain-challenge.star-chain-challenge.workers.dev |
-| 正式版本 | `1.0.0`，提交 `a5abcc8e213e8a98115703d2c341ef5a405c55c9` |
-| 记录登录 | https://star-chain-challenge.star-chain-challenge.workers.dev/login ，当前只有 Cloudflare 账号登录；邮箱验证码尚未启用 |
-| 已合并预览 | PR #2：https://star-chain-pr-2.star-chain-challenge.workers.dev |
-| 稳定源码基线 | `83a5badcb2121204c8bcf9bddcf9441be6b5f646` |
+本次升级为完整可玩的人机驾驶舱：React 界面、统一 Three.js WebGPU / WebGL 2 战场、GSAP 动效和 Howler 音频。玩家的近看、转向与独立侧光可在下方舰队区开启。敌方按十六个等级使用不同模型，不提供近看操作。
 
-2026-09-26 已核对：正式页、样式、脚本和飞船图片返回 HTTPS 200；`/api/version` 与 `main` 一致；`/api/profile` 在未登录时返回 401。主分支禁止强推和删除，要求 `verify` 检查和 PR，审批人数为 0。GitHub Actions 的正式发布作业目前会跳过，因为还没有 `CLOUDFLARE_CI_ENABLED` 和部署 Token。旧站记录尚未迁移。
+当前 V3 规则：第 1–7 级双方 18 血、攻击和维修各 3 项；第 8–16 级固定 24 血、各 4 项，并加入定轨和调拨。调拨后可立即出牌，跃迁可选择反射值及相邻格，攻击触发全部达成目标。规则、模拟结果与限制见 [V3 验证](docs/RULES_V3_VERIFICATION_20260927.md)。用户于 2026-09-27 明确批准将试玩版通过 PR 发布到 novaw.net；实际发布提交与回执以 deployment-status.json 为准。
 
-游戏规则和数值保持稳定基线，未加入尚未批准的实验玩法。
+- 正式游戏：https://novaw.net （https://www.novaw.net 同步）
+- 仓库：https://github.com/Xpcolor/star-chain-challenge
+- 实际线上版本与提交： https://novaw.net/api/version
+- 本轮架构和验证说明：[docs/PVE_ARCHITECTURE.md](docs/PVE_ARCHITECTURE.md)
+- 真人房间后续实现。当前对局接口已可替换，本地人机规则与表现层分离。
 
 ## 本地启动
 
-需要 Node.js 24（测试使用 `node:sqlite`）、npm。无需先登录 GitHub 或 Cloudflare。
+需要 Node.js 24.3+、npm；浏览器测试需要 Chrome。
 
 ```powershell
 npm ci
 npm run dev
 ```
 
-打开 http://127.0.0.1:8787 。此服务只绑定本机地址，使用固定开发玩家，记录写入 `.local/star-chain.sqlite`，重启后保留。不要把该开发服务映射到公网，也不要将开发身份用于云端。
+打开 http://127.0.0.1:8793 。Vite 提供驾驶舱，8792 的本机 API 使用固定开发身份，数据在 `.local/star-chain.sqlite`。不要公开这两个开发服务。旧界面可通过 `npm run dev:classic` 在 8787 对照。
 
 ```powershell
-npm test
-npm run build
+npm run verify
+npm run test:browser
 ```
 
-`npm run verify` 依次运行测试和构建。实际验证结果见 [docs/VALIDATION.md](docs/VALIDATION.md)。
+浏览器测试默认访问 8792 的生产构建。先 `npm run build`，然后在另一个 PowerShell 窗口运行：
+
+```powershell
+$env:STAR_CHAIN_LOCAL_PORT='8792'
+$env:STAR_CHAIN_BUILT='1'
+$env:STAR_CHAIN_LOCAL_DATA='.local/browser-test'
+node scripts/dev.mjs
+```
 
 ## 文件结构
 
 | 路径 | 作用 |
 | --- | --- |
-| `dist/*.mjs` | 游戏、规则、机器人、任务、记录和界面源码；不能把整个 dist 删除 |
-| `dist/assets/` | 全部游戏图片 |
-| `server/worker.mjs` | 记录接口；独立部署前必须替换原平台身份验证边界 |
-| `db/`、`drizzle/` | SQLite / D1 数据结构和追加式迁移 |
-| `scripts/dev.mjs` | 本机服务，提供模拟身份与本地数据库 |
-| `scripts/build.mjs` | 打包浏览器文件与 Worker，独立部署配置尚需续接 |
-| `tests/` | 规则、界面状态、记录、API 和模拟测试 |
-| `docs/` | 规则、接口、历史报告与部署交接说明 |
-| `.github/` | CI、CODEOWNERS、PR 模板；主分支保护已在远端启用 |
+| `src/ui/` | React 驾驶舱、稳定卡牌组件和 CSS |
+| `src/application/`、`src/contracts.ts` | 本地对局适配器、版本化指令与快照契约 |
+| `src/presentation/` | 统一三维战场、TSL 后处理、GSAP 编排、Howler 声音和 HUD 电弧 |
+| `dist/*.mjs` | 保留的规则、机器人、回放、记录和兼容控制器源码；不可删除整个 dist |
+| `dist/assets/` | 运行资产；`fleet-models.json` 固定模型版本、SHA 和分件数量 |
+| `资产库/` | 转换原图、来源与模型接入说明 |
+| `server/worker.mjs` | Cloudflare Access 认证和按用户隔离的记录接口 |
+| `db/`、`drizzle/` | SQLite / D1 结构和追加式迁移 |
+| `scripts/` | 本机 API、Vite 构建、Blender 分件、部署 |
+| `dist/client/`、`dist/server/` | 生成目录，不进 Git |
+| `tests/` | 规则、API、回放、架构资产和浏览器回归 |
 
 ## 交接说明
 

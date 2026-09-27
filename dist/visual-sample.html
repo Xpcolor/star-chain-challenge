@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>星链算式 · 悬浮座舱视觉样板</title>
+  <link rel="stylesheet" href="./visual-sample.css">
+</head>
+<body>
+  <div id="universe" aria-hidden="true"></div>
+  <canvas id="electricity" aria-hidden="true"></canvas>
+  <div class="lower-canopy left" aria-hidden="true"></div><div class="lower-canopy right" aria-hidden="true"></div>
+  <main class="cockpit">
+    <header class="masthead"><div class="brand"><span class="eyebrow">STAR CHAIN / FLIGHT DECK</span><h1>星链算式 <small>星舰对战</small></h1></div><div class="sample-label">视觉样板 <span>01 / 浮光座舱</span></div><nav><a class="nav-link" href="./?records=1" target="_blank" rel="noopener">记录与难度</a><a class="nav-link" href="./?help=1" target="_blank" rel="noopener">玩法说明</a><button id="audio" aria-pressed="false">音效：关</button><button id="motion" aria-pressed="false">减弱动效</button><button id="reset">重新开局</button></nav></header>
+    <section class="opponent-hand" aria-label="对手手牌"><span>对手手牌</span><div class="mini-cards"><i data-number="6">6</i><i data-number="6">6</i><i data-number="1">1</i><i data-number="7">7</i><i data-number="6">6</i><i data-number="7">7</i></div></section>
+    <div class="sector"><b>巡航星域</b><span>连续两次在不同颜色触发攻击，后一次伤害 +1。</span><small>双方共享 · 整局固定</small></div>
+    <aside class="instrument targets" data-electric="cyan" aria-label="攻击目标">
+      <header><h2>攻击目标</h2><span>双方共享</span></header>
+      <div class="entries">
+        <article><span class="eyebrow cyan">01 / 区域</span><h3>二号港口</h3><p>落点为 2 或 3</p><div class="metric">伤害 <strong>1</strong><span class="rule-line"></span></div></article>
+        <article><span class="eyebrow orange">02 / 精准</span><h3>二十信标</h3><p>落点恰好为 20</p><div class="metric">伤害 <strong>2</strong><span class="rule-line"></span></div></article>
+        <article><span class="eyebrow purple">03 / 联动</span><h3>六格编队</h3><p>落点与另一条星链相差 6</p><div class="metric">伤害 <strong>3</strong><span class="rule-line"></span></div></article>
+      </div>
+      <footer>预计攻击 <strong id="damage-total">0</strong><small>确认后触发 · 最多 2 项</small></footer>
+    </aside>
+    <section class="battle" aria-label="飞船对战演示">
+      <div class="battle-top"><span class="cyan">你 · 巡航引擎 <small>剩余 2/2</small></span><b>第 1 / 12 轮 · 前段</b><span class="purple">对手 · 逆向炮 <small>剩余 2/2</small></span></div>
+      <div class="ship-anchor hero" id="hero-anchor"></div><div class="ship-anchor enemy" id="enemy-anchor"></div>
+      <div class="ship-caption hero-caption"><span>你 · 曙光</span><strong id="hero-hp">17</strong><small>生命</small><i></i></div>
+      <div class="ship-caption enemy-caption"><span>小启 · 先手</span><strong id="enemy-hp">18</strong><small>生命</small><i></i></div>
+      <output id="combat-notice" aria-live="polite">星海静默，等待你的指令。</output>
+      <div class="quick-demo"><button data-demo="single">单发</button><button data-demo="combo">连击</button><button data-demo="heal3">修复</button><button data-demo="fall">陨落</button><button id="quick-inspect">近看飞船</button></div>
+    </section>
+    <aside class="instrument repairs" data-electric="violet" aria-label="维修补给">
+      <header><h2>维修补给</h2><span>共享 3 项</span></header>
+      <div class="entries">
+        <article><div class="repair-title"><h3>双星相会</h3><b>+1 <small>生命</small></b></div><p>落点与另一条星链相同</p><div class="progress-label"><span>你 0/1</span><span>对手 0/1</span></div><div class="progress"><i></i><i></i></div></article>
+        <article><div class="repair-title"><h3>微光穿梭</h3><b>+1 <small>生命</small></b></div><p>2 次净移动 1–3 格</p><div class="progress-label"><span>你 0/2</span><span>对手 1/2</span></div><div class="progress"><i></i><i class="half"></i></div></article>
+        <article><div class="repair-title"><h3>一举两得</h3><b>+2 <small>生命</small></b></div><p>一次触发 2 张攻击目标</p><div class="progress-label"><span>你 0/1</span><span>对手 0/1</span></div><div class="progress"><i></i><i></i></div></article>
+      </div>
+      <footer><span>完成几项，补充几项</span><small>新任务从下一次出牌开始计数</small></footer>
+    </aside>
+    <section class="rails" aria-label="三色星链"><div id="rail-list"></div><div class="rail-controls"><button id="calibrate">校准</button><span>剩余 1 次</span><div><button id="plus" aria-label="加法">＋</button><button id="minus" aria-label="减法">−</button></div><small>每一步都在 0–20 之间</small></div></section>
+    <section class="command-deck" data-electric="cyan" aria-label="操作区">
+      <div class="hand"><header><h2>你的手牌</h2><span>6/6 张</span></header><div class="cards" id="cards"></div><p>已选牌 <b id="selection">—</b><span>点击卡牌，唤醒量子牵引</span></p></div>
+      <div class="refill"><header><h2>补牌区</h2><span>出牌后补满 6 张</span></header><div class="mini-cards"><i data-number="6">6</i><i data-number="2">2</i><i data-number="4">4</i></div><p>牌堆 28 · 演示布局</p></div>
+      <div class="orders"><h2>我方出牌</h2><p>攻击 <b id="attack-value">0</b><span>回血 <b id="heal-value">0</b></span></p><button class="confirm" id="fire">确认出牌</button><button class="rest" id="rest">休整</button></div>
+    </section>
+  </main>
+  <section class="sample-tools" aria-label="视觉演示控制">
+    <div><span class="eyebrow">视觉实验台</span><h2>从一束光，到整片星海。</h2><p>上方是一屏座舱样板；这里可以单独比较动效。两艘飞船使用你提供的 3D 模型，支持转向与侧光；装甲预切破损待后续制作。</p></div>
+    <div class="demo-buttons"><button data-demo="arrival">开局飞入</button><button data-demo="single">单发攻击</button><button data-demo="combo">三连齐射</button><button data-demo="heal1">修复 1 点</button><button data-demo="heal3">修复 3 点</button><button data-demo="fall">击毁陨落</button><button data-demo="victory">胜利信号</button></div>
+    <div class="model-tools"><label class="file-button">导入我方 GLB<input id="model-file" type="file" accept=".glb"></label><button id="inspect-model" disabled>近看 / 转向</button><button id="side-light" disabled>切换侧光</button><button id="portrait-compare" disabled>对比 2.5D 原图</button><span id="model-status">正在接入两艘 3D 飞船…</span></div>
+    <p class="render-info"><span id="renderer-status">正在初始化渲染器…</span><span id="render-stats"></span><a href="?backend=webgl">测试 WebGL 2 回退</a><a href="./visual-sample.html">WebGPU 优先</a><a href="./">返回人机游戏</a></p>
+  </section>
+  <script type="module" src="./visual-sample.bundle.mjs"></script>
+</body>
+</html>

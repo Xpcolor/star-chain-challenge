@@ -1,10 +1,10 @@
-import {createGame,selectModule,rollInitiative,playAndClaim,rest,takeCard,observation,legalMoves,evaluateMove,chainName} from './engine.mjs?v=flight-records-2';
+import {createGame,selectModule,rollInitiative,selectSector,selectBoon,playAndClaim,transfer,rest,takeCard,observation,legalMoves,evaluateMove,chainName} from './engine.mjs?v=flight-records-2';
 import {moduleById} from './tactics.mjs?v=flight-records-2';
 
 // Advice uses only the public position at the recorded decision. It does not
 // inspect future deck order or claim that a non-lethal alternative would win.
 export function buildAdvice(record){
- const s=createGame({...record.options,...(record.rulesVersion==='flight-records-1'?{initiativeShield:3}:{})});let candidate=null;
+ const s=createGame({...record.options,rulesVersion:record.rulesVersion,...(record.rulesVersion==='flight-records-1'?{initiativeShield:3}:{})});let candidate=null;
  for(let index=0;index<record.events.length;index++){
   const e=record.events[index];
   if(e.type==='play'&&s.current===0){
@@ -20,7 +20,10 @@ export function buildAdvice(record){
   switch(e.type){
    case'module':selectModule(s,e.id);break;
    case'dice':rollInitiative(s);break;
-   case'play':playAndClaim(s,e.move);break;
+   case'sector':selectSector(s,e.id);break;
+   case'boon':selectBoon(s,e.kind);break;
+   case'transfer':transfer(s,e.giveId,e.marketIndex);break;
+      case'play':playAndClaim(s,e.move);break;
    case'rest':rest(s,e.ids,e.goal);break;
    case'take':takeCard(s,e.source);break;
   }

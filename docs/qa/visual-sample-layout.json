@@ -1,0 +1,56 @@
+{
+  "checkedAt": "2026-09-27T02:17:19.370Z",
+  "layouts": [
+    {
+      "cardScales": [
+        "60.4792px / 72px / 36px"
+      ],
+      "description": "15px",
+      "entriesFit": true,
+      "eyebrow": "12px",
+      "horizontalOverflow": false,
+      "restBottom": 862.17555809021,
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "cardScales": [
+        "53.75px / 65px / 30px"
+      ],
+      "description": "12px",
+      "entriesFit": true,
+      "eyebrow": "10px",
+      "horizontalOverflow": false,
+      "restBottom": 719.465576171875,
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "cardScales": [
+        "77px / 86.3958px / 36px"
+      ],
+      "description": "15px",
+      "entriesFit": true,
+      "eyebrow": "12px",
+      "horizontalOverflow": false,
+      "nav": [
+        "记录与难度",
+        "玩法说明"
+      ],
+      "restBottom": 1003.5437431335448,
+      "viewport": [
+        1920,
+        1080
+      ]
+    }
+  ],
+  "menuRoutes": {
+    "help": "verified existing rules dialog",
+    "records": "verified existing records dialog"
+  },
+  "cardNote": "CSS dimensions are shared. Parent perspective can change projected pixel bounds slightly."
+}

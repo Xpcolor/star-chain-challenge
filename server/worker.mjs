@@ -1,3 +1,4 @@
+import {rulesForLevel} from '../dist/engine.mjs';
 import {buildAdvice} from '../dist/advice.mjs';
 import {BOT_PROFILES,CONFIG_ID,RULES_VERSION,LEVEL_COUNT,compatibleRules,validateProfiles,deriveProgress} from '../dist/difficulty.mjs';
 import {normalizeProgress} from '../dist/progress.mjs';
@@ -39,6 +40,7 @@ function validateRecord(r){
   if(r.status!=='active'&&r.completedAt!==r.updatedAt)fail('结束时间不正确');
   if(!Number.isInteger(r.options.seed)||r.options.seed<0||r.options.seed>4294967295||r.options.first!==undefined||r.options.modules!==undefined)fail('开局记录不正确');
   if(r.options.handSize!==undefined||r.options.wildCount!==undefined||r.options.accelCount!==undefined||r.options.warpCount!==undefined||r.options.initiativeShield!==undefined)fail('本版使用固定牌库和护盾规则');
+  if(r.rulesVersion==='flight-records-3'){const expected=rulesForLevel(r.meta.selectedLevel),defaults=rulesForLevel(r.options.level);for(const [key,value] of Object.entries(expected))if((r.options[key]??defaults[key])!==value)fail('等级与血量、项目或牌组规则不匹配');}
   let last=r.startedAt;
   for(let i=0;i<r.events.length;i++){const e=r.events[i];if(e.n!==i+1||!Number.isSafeInteger(e.at)||e.at<last||e.at>r.updatedAt)fail('行动时间或序号不正确');last=e.at;}
   let g;try{g=replayRecord(r);}catch(e){fail(e.message);}

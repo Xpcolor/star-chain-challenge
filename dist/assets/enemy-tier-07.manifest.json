@@ -1,0 +1,41 @@
+{
+  "id": "enemy-tier-07",
+  "name": "探路弦月舰",
+  "file": "enemy-tier-07.png",
+  "prompt": "enemy-tier-07.prompt.txt",
+  "generation": "built-in image_gen, single native output",
+  "width": 1536,
+  "height": 1024,
+  "format": "PNG RGBA",
+  "bytes": 1880751,
+  "sha256": "3966F2D70DF2E0019AA3B49E156CA3B4D7C2197227698B855A5EB99DF46F3118",
+  "bounds_alpha32": [
+    121,
+    119,
+    1476,
+    921
+  ],
+  "transparent_pixels": 1118668,
+  "partial_alpha_pixels": 454196,
+  "opaque_pixels": 0,
+  "orientation": "open crescent faces left, engine at right",
+  "anchors_approx_pixels": {
+    "upper_blade_tip": [
+      145,
+      275
+    ],
+    "lower_blade_tip": [
+      124,
+      625
+    ],
+    "front_spine_tip": [
+      831,
+      530
+    ],
+    "engine": [
+      1390,
+      515
+    ]
+  },
+  "visual_review": "PASS usable: two curved forward arms form a large open crescent; central right spine, blue cockpit, silver/graphite materials and violet edge strips; full uncut body, verified transparency. Right-side plume reaches 3.8 percent canvas margin; retained single native generation."
+}

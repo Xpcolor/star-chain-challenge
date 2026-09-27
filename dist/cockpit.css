@@ -1,0 +1,76 @@
+/* Transparent flight-deck instruments share the outside world's light and depth. */
+:root{--look-x:0;--look-y:0;--glass-x:50%;--glass-y:24%;--combat-light:0}
+.space-scene{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.space-scene canvas{display:block;width:100%;height:100%}
+html[data-space-renderer="ready"] .ambient{visibility:hidden}
+.cockpit-canopy{position:fixed;inset:0;z-index:1;pointer-events:none;box-shadow:inset 0 0 65px #01091690}
+.cockpit-canopy svg{width:100%;height:100%;overflow:visible}
+.canopy-metal{fill:none;stroke:#071522;stroke-width:12}
+.canopy-rim{fill:none;stroke:#81dfff;stroke-opacity:.35;stroke-width:1.1;filter:drop-shadow(0 0 4px #2fb5ff)}
+.canopy-light{fill:none;stroke:#b2e9ff;stroke-opacity:.7;stroke-width:1.5}
+.cockpit-fx{position:fixed;inset:0;z-index:7;pointer-events:none}
+.goal-panel,.repair-panel,.dock,.opponent-hand{
+  background:radial-gradient(ellipse at var(--glass-x) var(--glass-y),#a9e9ff1f,transparent 50%),linear-gradient(122deg,#1a698129,#06172473 47%,#17608427);
+  backdrop-filter:blur(3px) saturate(1.15);
+  border:1px solid #a0eaffaa;overflow:visible;
+  box-shadow:inset 0 0 0 2px #051525a8,inset 0 0 0 3px #52c9ff69,inset 0 1px 24px #5cbdff1e,0 15px 28px #0009,0 0 16px #4daffe30;
+  text-shadow:0 2px 5px #010c18;
+}
+.goal-panel:before,.repair-panel:before,.dock:before{inset:5px;border-color:#9adfff45;box-shadow:inset 0 0 16px #7dcdff15}
+.goal-panel:after,.repair-panel:after,.dock:after{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(115deg,transparent 12%,#c4f3ff06 27%,#dcf8ff22 28%,#c3efff06 29%,transparent 46%),repeating-linear-gradient(0deg,transparent 0 5px,#8ce2ff03 6px);
+  background-position:var(--glass-x) 0;mix-blend-mode:screen;
+}
+.goal,.repair{position:relative;background:linear-gradient(125deg,#0d263f65,#091b3170 65%,#24718c27);border-color:#64b5d78a;box-shadow:inset 0 1px 0 #c9f1ff42,0 5px 12px #0003}
+.goal:disabled{opacity:1}
+.repair-progress{margin-top:auto;padding-top:10px}
+.repair-title{line-height:1.3}
+.repair-title>span{white-space:nowrap}
+.repair-progress{line-height:1.35}
+.repair-hints{min-height:17px;margin-top:4px;font-size:12px;line-height:1.25;gap:3px 6px}
+.repair.rewarding{padding-bottom:30px}
+.repair-preview{position:absolute;left:12px;right:12px;bottom:7px;margin:0;font-size:11px;line-height:15px}
+.repair-progress i{height:5px;background:#16445dd6;box-shadow:0 1px 0 #b4ecff24}
+.repair p{color:#e1edf6}
+.repair-foot,.section-note{color:#bdd6e5}
+.hud-circuit{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:2}
+.hud-circuit .circuit-track{fill:none;stroke:#9be7ff;stroke-opacity:.17;stroke-width:.4;vector-effect:non-scaling-stroke}
+.hud-circuit .circuit-flow{fill:none;stroke:#b5f4ff;stroke-width:1.5;stroke-dasharray:32 368;animation:circuit-flow 9s linear infinite;filter:drop-shadow(0 0 3px #31bcff);vector-effect:non-scaling-stroke}
+.repair-panel .circuit-flow{animation-delay:-4.5s}
+@keyframes circuit-flow{to{stroke-dashoffset:-400}}
+.hand{perspective:700px;overflow:visible}
+.hand .card{transform-style:preserve-3d;transition:transform .18s ease,box-shadow .18s ease}
+.hand .card:not(:disabled):hover,.hand .card:not(:disabled):focus-visible{transform:translateY(-10px) rotateX(9deg) rotateY(-7deg);box-shadow:0 12px 18px #0008,0 0 18px #7beaff60,inset 0 0 0 2px #fffbe9}
+.hand .card.selected{transform:translateY(-9px) rotateX(6deg);box-shadow:0 13px 20px #0008,0 0 0 2px #7ceaff,0 0 22px #7ceaff80}
+.hand .card.selected:after{content:"";position:absolute;inset:-35px -12px 0;pointer-events:none;background:linear-gradient(0deg,#82eaff33,transparent 80%);clip-path:polygon(18% 100%,82% 100%,100% 0,0 0);z-index:-1}
+.action-zone>.btn.primary{position:relative;overflow:hidden;transition:transform .15s,box-shadow .15s}
+.action-zone>.btn.primary:not(:disabled):before{content:"";position:absolute;inset:-50%;background:linear-gradient(100deg,transparent 38%,#fff6 50%,transparent 62%);animation:button-shimmer 3.8s ease-in-out infinite;pointer-events:none}
+.action-zone>.btn.primary:not(:disabled):hover{transform:perspective(700px) rotateX(5deg) translateY(-2px);box-shadow:0 0 23px #ffce7880}
+.action-zone>.btn.primary:active{transform:scale(.985)}
+@keyframes button-shimmer{0%,50%{translate:-80% 0}100%{translate:80% 0}}
+.ship-status{box-shadow:0 7px 16px #0007,inset 0 1px 0 #d6f8ff66!important;backdrop-filter:blur(4px)}
+.track-heading>span{display:block;overflow:hidden}
+.tracks{border-top:1px solid #73cbeb30;border-bottom:1px solid #73cbeb25;background:linear-gradient(100deg,#07162552,#09314a27,#07162559);box-shadow:0 8px 24px #01081640;backdrop-filter:blur(1px)}
+.dock{background:radial-gradient(ellipse at var(--glass-x) 0,#8ad9ff1a,transparent 55%),linear-gradient(120deg,#07172b75,#08182994 54%,#14344560)}
+@media(min-width:1001px){
+  .goal-panel,.repair-panel,.dock{clip-path:none;border-radius:10px 3px 10px 3px}
+  .goal-panel{transform:perspective(1400px) translate3d(calc(var(--look-x)*-4px),calc(var(--look-y)*-3px),0) rotateX(calc(var(--look-y)*1.4deg)) rotateY(calc(7deg + var(--look-x)*1.3deg));transform-origin:right center;border-left:3px solid #a2e8ffbb;box-shadow:-6px 5px 0 #164765aa,-8px 6px 0 #74d6ff66,0 20px 32px #0008,inset 0 0 30px #3295bd22}
+  .repair-panel{transform:perspective(1400px) translate3d(calc(var(--look-x)*-4px),calc(var(--look-y)*-3px),0) rotateX(calc(var(--look-y)*1.4deg)) rotateY(calc(-7deg + var(--look-x)*1.3deg));transform-origin:left center;border-right:3px solid #a2e8ffbb;box-shadow:6px 5px 0 #164765aa,8px 6px 0 #74d6ff66,0 20px 32px #0008,inset 0 0 30px #3295bd22}
+  .dock{transform:perspective(1600px) rotateX(5deg);transform-origin:center bottom;border-top:2px solid #b9efffd1;box-shadow:0 7px 0 #143649cc,0 9px 0 #71cffd80,0 -8px 25px #3699dd12,inset 0 2px 18px #addfff14}
+  .repairs{display:grid;grid-template-rows:repeat(3,minmax(0,1fr));flex:1;min-height:0}
+  .repair{min-height:0;display:flex;flex-direction:column;padding:clamp(10px,1.15vw,20px) 12px}
+  .repair p{margin:12px 0}
+  .repair-foot{margin:14px 0 0;padding-top:6px}
+  .goal-panel>.section-note:last-child{margin-bottom:0}
+  .opponent-hand{transform:perspective(1200px) rotateX(-3deg)}
+  .battle .tracks{transform:perspective(1500px) rotateX(3deg);transform-origin:center bottom}
+}
+@media(min-width:1001px) and (max-width:1550px){
+  .repair{padding:9px}.repair-title strong{font-size:14px}.repair-title>span{font-size:17px}.repair-title small{font-size:11px}
+  .repair p{font-size:12px;line-height:1.35;margin:6px 0}.repair-progress{padding-top:3px;font-size:11px;line-height:1.2;gap:8px}
+  .repair-hints{min-height:14px;margin-top:3px;font-size:11px;line-height:1.2}.repair-progress i{margin-top:4px}
+}
+@media(min-width:1001px) and (max-height:820px){.repair p{font-size:12px;line-height:1.35;margin:5px 0}.repair-progress{padding-top:3px;font-size:11px}.repair-foot{margin-top:8px}.repair{padding:8px}.repair-title strong{font-size:14px}.repair-title>span{font-size:17px}.repair-hints{min-height:14px;margin-top:3px;font-size:11px}}
+@media(max-width:1000px){.space-scene,.cockpit-canopy,.cockpit-fx{display:none}.ambient{visibility:visible!important}.goal-panel,.repair-panel,.dock{background:linear-gradient(130deg,#10334aa3,#09172bd4)}}
+@media(prefers-reduced-motion:reduce){.hud-circuit .circuit-flow,.action-zone>.btn.primary:before{animation:none}.goal-panel,.repair-panel,.dock,.opponent-hand,.battle .tracks{transform:none!important}.hand .card{transition:none}.cockpit-fx{display:none}}

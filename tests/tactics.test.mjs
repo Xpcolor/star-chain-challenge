@@ -7,7 +7,7 @@ const event=patch=>({chain:0,before:4,after:12,ops:[1],claimed:['E7'],healing:0,
 test('second-player compensation is fixed by actual grade, disclosed before rolling and symmetric for either player',()=>{
  for(let level=0;level<LEVEL_COUNT;level++)for(const first of [0,1]){
   const expected=level<6?1:level<12?2:3,s=createGame({seed:900+level,level,first,modules:[null,null],sectorId:null});
-  assert.equal(s.shieldAllowance,expected);assert.deepEqual(s.hp,[18,18]);assert.equal(s.shields[first],0);assert.equal(s.shields[1-first],expected);
+  assert.equal(s.shieldAllowance,expected);assert.deepEqual(s.hp,level>=7?[24,24]:[18,18]);assert.equal(s.shields[first],0);assert.equal(s.shields[1-first],expected);
   const opening=createGame({seed:900+level,level});assert.equal(opening.shieldAllowance,expected);assert.deepEqual(opening.shields,[0,0]);
  }
 });

@@ -1,0 +1,180 @@
+/* Cinematic cockpit: one shared universe, glass HUDs, readable live controls. */
+:root{--blue:#7ceaff;--purple:#c2a0ff;--green:#8bf2d7;--muted:#b5cede;--line:#41799c}
+body{background:#030c1b}
+.ambient{inset:-14px;background:linear-gradient(180deg,#020c1b08 0%,#020b1600 60%,#020a1a26),url('./assets/cosmos-v2.png') center/cover no-repeat;transform:translate(var(--cosmos-x,0px),var(--cosmos-y,0px));will-change:transform}
+.shell{max-width:none}
+.brand h1{color:#eefcff;text-shadow:0 2px 0 #438bb6,0 0 22px #43baff88}
+.brand>span{color:#c3dff6}
+.btn,.deck-button,.op-btn{border-radius:5px;border-color:#508bac;background:linear-gradient(140deg,#12466dca,#051c30c7);box-shadow:inset 0 0 12px #368bc52e,0 0 8px #259ddd20}
+.btn.quiet{background:linear-gradient(150deg,#123e5bd6,#081a2ce0)}
+.btn.primary{background:linear-gradient(135deg,#d8a442,#ffe5a3 45%,#c79943 80%,#f9d581);border:1px solid #fff3c3;box-shadow:0 0 16px #ffc75f66,inset 0 0 0 2px #fbe3a681;color:#201c16}
+.btn.primary:disabled{opacity:.64}
+.goal-panel,.repair-panel,.dock,.opponent-hand{position:relative;background:linear-gradient(135deg,#103755b8,#071b2bc7 55%,#10304dad);border:1px solid #6bd3ff;border-radius:3px;box-shadow:inset 0 0 0 3px #092744,inset 0 0 0 4px #4aa4d59c,inset 0 0 32px #309ddd35,0 0 18px #149cf855;backdrop-filter:blur(7px)}
+.goal-panel:before,.repair-panel:before,.dock:before{content:"";position:absolute;inset:7px;border:1px solid #64cfff50;pointer-events:none;border-radius:2px}
+.goal,.repair{border:1px solid #5097bb;border-radius:5px;background:linear-gradient(130deg,#133c589c,#081e32ad);box-shadow:inset 0 1px 0 #a7e8ff18,inset 0 0 18px #1b81b518}
+.goal>strong,.repair-title strong{color:#f4fbff;text-shadow:0 1px 4px #0008}
+.goal-kind{text-shadow:0 0 10px currentColor}
+.goal-bottom b,.goal-total strong{color:#ffda78;text-shadow:0 0 15px #ffd16635}
+.repair-title>span{color:#8ff4de;text-shadow:0 0 12px #64e6df50}
+.repair-progress i{background:#315c77;height:5px;border-radius:1px}
+.repair-progress i:before{box-shadow:0 0 7px var(--blue);border-radius:1px}
+.repair-progress>span:last-child i:before{box-shadow:0 0 7px var(--purple)}
+.sector-banner{background:linear-gradient(90deg,#103c59ca,#081e31d6,#0a2e47c9);border:1px solid #68cff2;box-shadow:inset 0 0 0 3px #0e42625c,0 0 10px #49bcef30;border-radius:3px}
+.module-equipped{border:1px solid #579cbc;background:linear-gradient(105deg,#113e57b8,#08253db8);border-radius:3px;box-shadow:inset 0 0 10px #319cc433}
+.module-equipped:last-child{border-color:#9776c1;box-shadow:inset 0 0 10px #a279ee33;background:linear-gradient(105deg,#392453a3,#15192dba)}
+.module-equipped:last-child summary strong{color:var(--purple)}
+.module-equipped p{background:#071827f2;padding:10px;margin:5px -5px 0;border:1px solid #47748b;position:relative;z-index:7}
+.tracks{background:linear-gradient(90deg,#05152200,#06172565,#06172500)}
+.track{background:transparent;border-color:transparent;border-radius:5px;text-shadow:0 2px 5px #010810}
+.track:hover:not(:disabled),.track.selected{border-color:color-mix(in srgb,var(--chain),transparent 55%);background:linear-gradient(90deg,#0a213933,#123c5855,#0a213933)}
+.rail-line{box-shadow:0 0 9px color-mix(in srgb,var(--chain),transparent 50%);opacity:.9}
+.tick.goal-mark>i{background:#fff0b7;box-shadow:0 0 0 2px #f9cd675c,0 0 11px #ffcd53}
+.orb.position-star{background:var(--chain);border:2px solid #eaffff;box-shadow:0 0 8px var(--chain),0 0 19px var(--chain);width:17px;height:17px;top:-7px;border-radius:1px}
+.card{background:linear-gradient(110deg,#fff8e8,#f7efd9);border-color:#cfc5ae;border-radius:6px;box-shadow:inset 0 0 0 3px #fffbed,0 3px 10px #0007}
+.card-value{text-shadow:0 1px 0 #fff}
+.hand .card.selected{box-shadow:inset 0 0 0 3px #fff9ee,0 0 18px #7ceaff85}
+.initiative,.loadout{background:linear-gradient(140deg,#0c2943f0,#051322ef);border:1px solid #65c8ed;box-shadow:0 0 24px #42bff940,inset 0 0 30px #25689940;backdrop-filter:blur(10px)}
+.module-option{background:linear-gradient(145deg,#133c56d9,#0b2036df);border-color:#4e8eac}
+.fleet,.history{background:#071b2ed9;border-color:#467a96;backdrop-filter:blur(8px)}
+.level img{object-fit:contain}
+.enemy-ship .ship-art img.enemy-facing{transform:translateX(calc((1 - var(--ship-arrive, 1)) * 85%)) translateY(calc(var(--fall-enemy, 0) * 28% - var(--victory-enemy, 0) * 8%)) rotate(calc(var(--fall-enemy, 0) * -540deg)) scale(calc(1 - var(--fall-enemy, 0) * .65))}
+@media(min-width:1001px){
+  .shell{padding:16px clamp(20px,2.5vw,54px) 22px}
+  .flight-screen{height:calc(100dvh - 26px);min-height:740px}
+  .header{min-height:62px;gap:18px;margin-bottom:12px;grid-template-columns:1fr auto 1fr;align-items:start}
+  .brand{padding:1px 0 0 10px;gap:15px}
+  .brand h1{font-size:clamp(28px,2.3vw,44px);letter-spacing:.1em}
+  .brand>span{font-size:clamp(12px,1vw,18px)}
+  .header-actions{padding-top:0;gap:9px;flex-wrap:nowrap}
+  .header-actions .btn{font-size:clamp(12px,.85vw,16px);min-height:40px;padding:7px 12px}
+  .opponent-hand{padding:8px 14px;gap:14px;clip-path:polygon(12px 0,calc(100% - 12px) 0,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,12px 100%,0 calc(100% - 12px),0 12px)}
+  .opponent-label{white-space:nowrap;color:#e5f5ff;font-size:15px;font-weight:750}
+  .opponent-cards{background:none;border:0;padding:0;border-radius:0;gap:6px}
+  .opponent-cards .card{height:48px;width:38px;flex-basis:38px}
+  .opponent-cards .card-value{font-size:25px}
+  .opponent-cards .card-caption{font-size:10px}
+  .game-grid{grid-template-columns:minmax(176px,15%) minmax(0,1fr) minmax(176px,15%);gap:10px 22px}
+  .goal-panel,.repair-panel{padding:22px 20px 18px;clip-path:polygon(12px 0,calc(100% - 12px) 0,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,12px 100%,0 calc(100% - 12px),0 12px)}
+  .goal-panel{transform:perspective(1500px) rotateY(4deg);transform-origin:right center}
+  .repair-panel{transform:perspective(1500px) rotateY(-4deg);transform-origin:left center}
+  .goal-panel>.section-heading h2,.repair-panel>.section-heading h2{font-size:clamp(19px,1.3vw,25px)}
+  .goal-panel>.section-heading,.repair-panel>.section-heading{margin-bottom:14px}
+  .goals,.repairs{gap:12px}
+  .goals{flex:1;min-height:0}
+  .goal{flex:1;min-height:0;padding:14px;gap:6px}
+  .goal>strong{font-size:clamp(17px,1.08vw,21px)}
+  .goal-text,.repair p{font-size:clamp(13px,.86vw,16px);line-height:1.55}
+  .goal-kind{font-size:13px}
+  .goal-bottom{margin-top:auto}
+  .goal-bottom b{font-size:30px}
+  .goal-total{margin-top:12px;padding-top:0}
+  .goal-total strong{font-size:38px}
+  .goal-panel>.section-note:last-child{font-size:12px}
+  .repair-panel>.section-note{margin:-7px 0 14px;font-size:12px}
+  .repair{padding:14px 12px}
+  .repair-title{gap:4px}
+  .repair-title strong{font-size:clamp(15px,1vw,19px)}
+  .repair-title>span{font-size:22px}
+  .repair-title small{font-size:13px}
+  .repair p{margin:10px 0 16px}
+  .repair-progress{font-size:13px;gap:14px}
+  .repair-foot{font-size:12px;padding-top:16px}
+  .play-area{position:relative}
+  .sector-banner{min-height:36px;margin:4px 9% 12px;padding:5px 12px;justify-content:center;font-size:13px;gap:8px}
+  .sector-banner small{font-size:11px}
+  .sector-banner .alignment-note,.sector-colors{font-size:11px}
+  .tactics{position:absolute;top:52px;left:0;right:0;z-index:4;margin:0;pointer-events:none}
+  .module-status{justify-content:space-between;gap:24%;display:flex}
+  .module-equipped{width:38%;flex:none;padding:5px 10px;pointer-events:auto;font-size:13px}
+  .module-equipped summary{gap:7px}
+  .module-equipped small,.module-track{font-size:11px}
+  .stage{min-height:170px}
+  .stage>.round{top:6px;left:38%;right:38%;font-size:15px;line-height:1.5}
+  .stage>.round strong{font-size:18px;color:#fff}
+  .stage>.battle-caption{top:38px;font-size:12px;color:#d7ebfc}
+  .model-lane{top:47px;bottom:55px;left:-2%;right:-2%}
+  .battle .player-ship .ship-art,.battle .enemy-ship .ship-art{top:47px;bottom:55px}
+  .battle .player-ship .ship-status,.battle .enemy-ship .ship-status{bottom:14px;border-radius:3px;padding:5px 14px;background:linear-gradient(110deg,#0a335bba,#062037cc);border:1px solid #61cfff;box-shadow:inset 0 0 10px #39b9f633,0 0 10px #54b9ed44;gap:10px;flex-direction:row}
+  .battle .player-ship .ship-status{left:45%}
+  .battle .enemy-ship .ship-status{left:55%;background:linear-gradient(110deg,#251440ba,#10152ccc);border-color:#b091ef;box-shadow:inset 0 0 10px #bb7efa33,0 0 10px #ac79ee44}
+  .ship-status>span{font-size:14px}
+  .hp strong{font-size:36px;color:#8af0ff;text-shadow:0 0 15px #56c5ff80}
+  .enemy-ship .hp strong{color:#d8acff;text-shadow:0 0 15px #bd7cff80}
+  .hp>span{font-size:12px}
+  .battle .tracks{padding:0 4px;background:linear-gradient(90deg,#061a2a00,#071c3245,#061a2a00)}
+  .battle .track{min-height:51px;padding:6px 12px 3px;display:grid;grid-template-columns:94px minmax(0,1fr);align-items:center;gap:10px;position:relative}
+  .battle .track-heading{display:block;margin:0;font-size:18px;align-self:start;line-height:32px}
+  .battle .track-heading strong{font-size:18px}
+  .battle .track-heading>span{position:absolute;right:9px;top:-6px;font-size:11px;line-height:16px;color:#d5e7f4;max-width:70%}
+  .battle .rail{margin:12px 7px 0;height:28px}
+  .battle .rail-label{font-size:11px;top:9px;color:#deedfc}
+  .battle.choosing-module,.battle.choosing-sector,.battle.opening,.battle.choosing-boon{flex:1 1 auto}
+  .stage:has(>.loadout){min-height:min-content}
+  .loadout{flex-shrink:0;margin-top:7px}
+  .tick>i{width:5px;height:5px;top:-2px}
+  .operation-dock{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:48px}
+  .operation-panel{padding:2px 4px;margin:0;flex:1}
+  .operation-row{justify-content:center;gap:14px}
+  .operation-dock .calibrate-row{flex:0 1 31%;gap:8px;flex-wrap:nowrap}
+  .calibrate-row .btn{min-width:83px;min-height:36px;padding:4px 9px;font-size:14px}
+  .calibrate-row .section-note{font-size:11px;line-height:1.4}
+  .op-btn{height:38px;min-width:53px;font-size:24px}
+  .expression{font-size:15px;min-height:0}
+  .expression>span{font-size:12px;color:#bed2e4}
+  .dock{padding:15px 6% 12px;gap:22px;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr);clip-path:polygon(40px 0,calc(100% - 40px) 0,100% 100%,0 100%);border-bottom:0;flex-shrink:0}
+  .dock .section-heading{margin-bottom:8px}
+  .dock .section-heading h2{font-size:17px}
+  .dock .section-heading>span{font-size:12px}
+  .dock .hand,.dock .supply-cards{min-height:92px;gap:8px}
+  .dock .hand .card{height:92px;width:64px;flex-basis:64px}
+  .dock .supply-cards .card{height:72px;width:57px;flex-basis:57px}
+  .hand .card-value{font-size:40px}
+  .supply-cards .card-value{font-size:33px}
+  .selected-cards{margin-top:5px;min-height:19px;padding:0;font-size:12px}
+  .selected-cards small{font-size:10px}
+  .supply-zone,.action-zone{border-left-color:#529abc; padding-left:24px}
+  .deck-button{min-height:30px;font-size:13px;margin-top:5px}
+  .deck-button small{font-size:11px}
+  .turn-side{font-size:16px;margin:0 0 2px}
+  .combat-summary{margin:0 0 6px;gap:25px;font-size:14px}
+  .combat-summary b{font-size:31px}
+  .action-zone>.btn{min-height:31px;padding:4px 10px;border-radius:4px}
+  .action-zone>.btn.primary{min-height:45px;font-size:20px;margin-bottom:4px}
+  .fleet{margin-top:24px}
+}
+@media(min-width:1001px) and (max-width:1550px){
+  .shell{padding:10px 22px 20px}
+  .flight-screen{height:calc(100dvh - 16px)}
+  .header{min-height:56px;margin-bottom:8px;gap:10px}
+  .brand{gap:7px;padding-left:0}.brand h1{font-size:28px}.brand>span{font-size:12px}
+  .header-actions{gap:6px}.header-actions .btn{padding:6px 9px;min-height:36px;font-size:12px}
+  .opponent-hand{padding:6px 12px;gap:8px}.opponent-cards .card{height:43px;width:33px;flex-basis:33px}
+  .game-grid{gap:9px 16px;grid-template-columns:minmax(170px,15%) minmax(0,1fr) minmax(178px,15%)}
+  .goal-panel,.repair-panel{padding:16px 12px 12px}.goal{padding:10px;gap:4px}.goal-bottom b{font-size:26px}
+  .repair{padding:11px 9px}.repair p{margin:7px 0 10px}.repair-title>span{font-size:19px}.repair-progress{font-size:12px}
+  .sector-banner{margin:3px 1% 12px;font-size:12px}.sector-banner small{display:none}
+  .module-equipped{width:40%;padding:4px 7px}.module-status{gap:20%}
+  .module-equipped summary{font-size:12px;gap:3px}.module-equipped small{font-size:10px}
+  .dock{padding:12px 5% 10px;gap:17px}.dock .hand .card{height:83px;flex-basis:54px;width:54px}.dock .hand,.dock .supply-cards{min-height:86px}
+  .dock .section-heading h2{font-size:15px}.hand .card-value{font-size:35px}.supply-zone,.action-zone{padding-left:17px}
+  .dock .supply-cards .card{height:66px;width:49px;flex-basis:49px}.calibrate-row .section-note{font-size:10px}
+  .ship-status .calibrate-badge{font-size:10px}.hp strong{font-size:30px}.ship-status>span{font-size:12px}
+  .battle .track{grid-template-columns:80px minmax(0,1fr)}.battle .track-heading strong{font-size:16px}
+  .goal-panel>.section-heading,.repair-panel>.section-heading{flex-wrap:nowrap}
+  .goal-panel>.section-heading h2,.repair-panel>.section-heading h2{font-size:18px;white-space:nowrap}
+  .goal-panel>.section-heading>span,.repair-panel>.section-heading>span{font-size:11px;white-space:nowrap}
+}
+@media(min-width:1001px) and (max-height:820px){
+  .flight-screen{min-height:710px}.header{min-height:50px;margin-bottom:7px}
+  .battle .track{min-height:44px;padding-top:2px}.battle .rail{height:24px}.battle .track-heading{line-height:28px}
+  .goal-panel,.repair-panel{padding-top:15px;padding-bottom:11px}.goal{padding:8px;gap:3px}.goals,.repairs{gap:8px}
+  .goal-text,.repair p{font-size:12px}.goal>strong{font-size:16px}.goal-total{margin-top:5px}.goal-total strong{font-size:30px}
+  .repair{padding:10px 9px}.repair-title strong{font-size:14px}.repair p{margin:5px 0 9px}
+  .dock{padding-top:10px;padding-bottom:8px}.dock .hand .card{height:75px}.dock .hand,.dock .supply-cards{min-height:78px}
+  .dock .supply-cards .card{height:63px}.operation-dock{min-height:42px}
+}
+@media(max-width:1000px){
+  .ambient{background-position:58% center}.operation-dock{padding:8px}.operation-dock .calibrate-row{margin:8px 0}
+  .opponent-hand{padding:9px 13px}.goal-panel,.repair-panel,.dock{border-radius:6px}
+}
+@media(prefers-reduced-motion:reduce){.ambient{transform:none;will-change:auto}.enemy-ship .ship-art img.enemy-facing{transform:none}}

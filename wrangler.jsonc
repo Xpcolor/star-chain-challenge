@@ -4,15 +4,45 @@
   "main": "dist/server/index.js",
   "account_id": "fffdf83298b6e7b53b44cfd575e9df03",
   "compatibility_date": "2026-09-26",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "workers_dev": true,
   "preview_urls": false,
   "routes": [
-    {"pattern": "novaw.net", "custom_domain": true},
-    {"pattern": "www.novaw.net", "custom_domain": true}
+    {
+      "pattern": "novaw.net",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.novaw.net",
+      "custom_domain": true
+    }
   ],
-  "assets": {"directory": "dist/client", "binding": "ASSETS", "run_worker_first": ["/api/*", "/login"]},
-  "observability": {"enabled": true, "head_sampling_rate": 0.1},
-  "vars": {"ENVIRONMENT": "production", "RELEASE_VERSION": "1.0.0", "ACCESS_ISSUER": "https://red-wave-aa94.cloudflareaccess.com", "ACCESS_AUD": "c744221ddb4ea1af348dc07f487f56b4cfc284a04acd94f23fc824c9593532aa"},
-  "d1_databases": [{"binding": "DB", "database_name": "star-chain-production", "database_id": "913e0366-c60b-47d8-817f-51725b49fb83", "migrations_dir": "drizzle"}]
+  "assets": {
+    "directory": "dist/client",
+    "binding": "ASSETS",
+    "run_worker_first": [
+      "/api/*",
+      "/login"
+    ]
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 0.1
+  },
+  "vars": {
+    "ENVIRONMENT": "production",
+    "RELEASE_VERSION": "1.1.0",
+    "ACCESS_ISSUER": "https://red-wave-aa94.cloudflareaccess.com",
+    "ACCESS_AUD": "c744221ddb4ea1af348dc07f487f56b4cfc284a04acd94f23fc824c9593532aa"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "star-chain-production",
+      "database_id": "913e0366-c60b-47d8-817f-51725b49fb83",
+      "migrations_dir": "drizzle"
+    }
+  ]
 }

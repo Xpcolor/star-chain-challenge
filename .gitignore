@@ -1,4 +1,7 @@
 node_modules/
+dist/battle-scene.bundle.mjs
+dist/asset-studio.bundle.mjs
+dist/visual-sample.bundle.mjs
 dist/client/
 dist/server/
 dist/.openai/

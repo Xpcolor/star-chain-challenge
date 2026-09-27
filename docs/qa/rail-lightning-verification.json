@@ -1,0 +1,335 @@
+{
+  "verifiedAt": "2026-09-27T04:47:09.433Z",
+  "checks": [
+    {
+      "width": 2179,
+      "height": 1244,
+      "chain": 0,
+      "changed": 85383,
+      "maxDelta": 255,
+      "first": 0,
+      "center": 731.515625,
+      "markerX": 762.7950439453125,
+      "trackY": 721.515625,
+      "hash": 3073785093,
+      "coverage": 0.9722455845248108,
+      "labelAlpha": 0,
+      "selected": [
+        0
+      ],
+      "caption": "已选 · 当前 4",
+      "overflow": false,
+      "color": "#80e5ff",
+      "animated": true
+    },
+    {
+      "width": 2179,
+      "height": 1244,
+      "chain": 1,
+      "changed": 82295,
+      "maxDelta": 255,
+      "first": 17,
+      "center": 785.515625,
+      "markerX": 1119.5762939453125,
+      "trackY": 775.515625,
+      "hash": 1236612523,
+      "coverage": 0.9722455845248108,
+      "labelAlpha": 0,
+      "selected": [
+        1
+      ],
+      "caption": "已选 · 当前 10",
+      "overflow": false,
+      "color": "#c899ff",
+      "animated": true
+    },
+    {
+      "width": 2179,
+      "height": 1244,
+      "chain": 2,
+      "changed": 88045,
+      "maxDelta": 255,
+      "first": 9,
+      "center": 839.515625,
+      "markerX": 1476.3731689453125,
+      "trackY": 829.515625,
+      "hash": 956239465,
+      "coverage": 0.9722455845248108,
+      "labelAlpha": 0,
+      "selected": [
+        2
+      ],
+      "caption": "已选 · 当前 16",
+      "overflow": false,
+      "color": "#ffb584",
+      "animated": true
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "chain": 0,
+      "changed": 73783,
+      "maxDelta": 255,
+      "first": 9,
+      "center": 636.390625,
+      "markerX": 679.9044189453125,
+      "trackY": 626.390625,
+      "hash": 1011142690,
+      "coverage": 0.9671179883945842,
+      "labelAlpha": 0,
+      "selected": [
+        0
+      ],
+      "caption": "已选 · 当前 4",
+      "overflow": false,
+      "color": "#80e5ff",
+      "animated": true
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "chain": 1,
+      "changed": 71583,
+      "maxDelta": 255,
+      "first": 64,
+      "center": 690.390625,
+      "markerX": 990.0762939453125,
+      "trackY": 680.390625,
+      "hash": 639118122,
+      "coverage": 0.9690522243713733,
+      "labelAlpha": 0,
+      "selected": [
+        1
+      ],
+      "caption": "已选 · 当前 10",
+      "overflow": false,
+      "color": "#c899ff",
+      "animated": true
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "chain": 2,
+      "changed": 76953,
+      "maxDelta": 255,
+      "first": 72,
+      "center": 744.390625,
+      "markerX": 1300.2481689453125,
+      "trackY": 734.390625,
+      "hash": 2826241894,
+      "coverage": 0.9690522243713733,
+      "labelAlpha": 0,
+      "selected": [
+        2
+      ],
+      "caption": "已选 · 当前 16",
+      "overflow": false,
+      "color": "#ffb584",
+      "animated": true
+    },
+    {
+      "width": 1774,
+      "height": 887,
+      "chain": 0,
+      "changed": 69106,
+      "maxDelta": 255,
+      "first": 0,
+      "center": 507.64064025878906,
+      "markerX": 616.7637939453125,
+      "trackY": 497.640625,
+      "hash": 3798996119,
+      "coverage": 0.9658738366080661,
+      "labelAlpha": 0,
+      "selected": [
+        0
+      ],
+      "caption": "已选 · 当前 4",
+      "overflow": false,
+      "color": "#80e5ff",
+      "animated": true
+    },
+    {
+      "width": 1774,
+      "height": 887,
+      "chain": 1,
+      "changed": 55119,
+      "maxDelta": 255,
+      "first": 15552,
+      "center": 551.640625,
+      "markerX": 906.8106689453125,
+      "trackY": 541.640625,
+      "hash": 2204449449,
+      "coverage": 0.9648397104446742,
+      "labelAlpha": 0,
+      "selected": [
+        1
+      ],
+      "caption": "已选 · 当前 10",
+      "overflow": false,
+      "color": "#c899ff",
+      "animated": true
+    },
+    {
+      "width": 1774,
+      "height": 887,
+      "chain": 2,
+      "changed": 58577,
+      "maxDelta": 255,
+      "first": 15557,
+      "center": 595.640625,
+      "markerX": 1196.8575439453125,
+      "trackY": 585.640625,
+      "hash": 1049643860,
+      "coverage": 0.9648397104446742,
+      "labelAlpha": 0,
+      "selected": [
+        2
+      ],
+      "caption": "已选 · 当前 16",
+      "overflow": false,
+      "color": "#ffb584",
+      "animated": true
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "chain": 0,
+      "changed": 47280,
+      "maxDelta": 255,
+      "first": 0,
+      "center": 405.09375,
+      "markerX": 458.6856689453125,
+      "trackY": 395.09375,
+      "hash": 2260285856,
+      "coverage": 0.9522388059701492,
+      "labelAlpha": 0,
+      "selected": [
+        0
+      ],
+      "caption": "已选 · 当前 4",
+      "overflow": false,
+      "color": "#80e5ff",
+      "animated": true
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "chain": 1,
+      "changed": 26014,
+      "maxDelta": 255,
+      "first": 29480,
+      "center": 443.09375,
+      "markerX": 659.8106689453125,
+      "trackY": 433.09375,
+      "hash": 1470628589,
+      "coverage": 0.9522388059701492,
+      "labelAlpha": 0,
+      "selected": [
+        1
+      ],
+      "caption": "已选 · 当前 10",
+      "overflow": false,
+      "color": "#c899ff",
+      "animated": true
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "chain": 2,
+      "changed": 27185,
+      "maxDelta": 255,
+      "first": 29573,
+      "center": 481.09375,
+      "markerX": 860.9356689453125,
+      "trackY": 471.09375,
+      "hash": 1763442308,
+      "coverage": 0.9522388059701492,
+      "labelAlpha": 0,
+      "selected": [
+        2
+      ],
+      "caption": "已选 · 当前 16",
+      "overflow": false,
+      "color": "#ffb584",
+      "animated": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "chain": 0,
+      "changed": 18433,
+      "maxDelta": 255,
+      "first": 0,
+      "center": 600.5,
+      "markerX": 111.90443420410156,
+      "trackY": 590.5,
+      "hash": 2741621337,
+      "coverage": 0.8829787234042553,
+      "labelAlpha": 0,
+      "selected": [
+        0
+      ],
+      "caption": "已选 · 当前 4",
+      "overflow": false,
+      "color": "#80e5ff",
+      "animated": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "chain": 1,
+      "changed": 18125,
+      "maxDelta": 255,
+      "first": 4,
+      "center": 653.5,
+      "markerX": 196.56068420410156,
+      "trackY": 643.5,
+      "hash": 916925025,
+      "coverage": 0.8865248226950354,
+      "labelAlpha": 0,
+      "selected": [
+        1
+      ],
+      "caption": "已选 · 当前 10",
+      "overflow": false,
+      "color": "#c899ff",
+      "animated": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "chain": 2,
+      "changed": 19225,
+      "maxDelta": 255,
+      "first": 9,
+      "center": 706.5,
+      "markerX": 281.2012939453125,
+      "trackY": 696.5,
+      "hash": 462630273,
+      "coverage": 0.8794326241134752,
+      "labelAlpha": 0,
+      "selected": [
+        2
+      ],
+      "caption": "已选 · 当前 16",
+      "overflow": false,
+      "color": "#ffb584",
+      "animated": true
+    }
+  ],
+  "assertions": {
+    "realGameSelection": true,
+    "reducedMotionSteady": true,
+    "keyboardSelection": true,
+    "restClears": true,
+    "restartClears": true
+  },
+  "errors": [],
+  "validation": {
+    "unitTestsPassed": 75,
+    "typecheck": "passed",
+    "build": "passed",
+    "reducedMotion": "Two consecutive identical canvas samples after resize/readback warmup; visible selection retained",
+    "scope": "Local Chrome; three rails at five viewports; no production deployment"
+  }
+}

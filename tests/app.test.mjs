@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createGame,selectModule,rollInitiative,legalMoves} from '../dist/engine.mjs';
+import {createGame,selectModule,rollInitiative,legalMoves,observation,calibrateOffer} from '../dist/engine.mjs';
 import {BOT_PROFILES,LEVEL_COUNT,freshSupport,CONFIG_ID} from '../dist/difficulty.mjs';
+import {MODULES,SECTORS} from '../dist/tactics.mjs';
 // DOM/clock harness verifies handlers, not browser layout or rendered animation.
 const elements=new Map(),listeners=new Map(),registered=new Map(),timers=new Map(),stored=new Map();let timerId=0;
 stored.set('star-chain-demo-v1',JSON.stringify({version:1,medals:[7,7,7],unlocked:2,matches:0}));
@@ -22,13 +23,15 @@ function execute(action,args={}){return decode(registered.get('play_star_chain_a
 function ok(action,args={}){const r=execute(action,args);assert.equal(r.ok,true,r.error);return r.state;}
 function click(action,data={}){listeners.get('click')({target:{dataset:{action,...data},disabled:false,closest(){return this;}}});}
 function tick(){const found=[...timers].sort((a,b)=>a[1].delay-b[1].delay)[0];assert.ok(found,'continuation scheduled');timers.delete(found[0]);found[1].fn();}
-function settle(){let limit=0;while(state().initiative.stage!=='none'||state().animation||(state().current_player==='robot'&&state().phase!=='over')){tick();assert.ok(++limit<100);}}
-function start(){if(state().phase==='loadout')ok('module',{id:state().module_options[0].id});assert.equal(state().phase,'opening');ok('roll');settle();}
-function moves(){const s=state();return legalMoves({actor:0,shield:s.shields[0],opponentShield:s.shields[1],sectorId:s.sector.id,moduleId:s.modules[0],opponentModuleId:s.modules[1],moduleProgress:s.module_progress[0],opponentModuleProgress:s.module_progress[1],hp:s.hp,level:2,board:s.board,hand:s.hand,opponentHand:s.robot_hand,goals:s.goals.map(g=>g.id),market:s.market,round:s.round,turnInRound:s.turn_in_round,challengeIds:s.challenge_ids,challengeProgress:s.challenge_progress[0],opponentChallengeProgress:s.challenge_progress[1]}).sort((a,b)=>Number(b.lethal)-Number(a.lethal)||b.points-a.points||a.move.ids.length-b.move.ids.length);}
-function select(m){for(const id of m.move.ids)ok('card',{id});ok('chain',{index:m.move.chain});m.move.ops.forEach((value,step)=>ok('op',{value,step}));if(m.move.wild)ok('wild',{value:m.move.wild});}
+function resolveChoices(){const s=state();if(s.phase==='sector'&&s.current_player==='human')ok('sector',{id:s.sector_options[0].id});if(s.phase==='boon'&&s.current_player==='human')ok('boon',{kind:'calibrate'});}
+function settle(){let limit=0;for(;;){resolveChoices();const s=state();if(s.initiative.stage==='none'&&!s.animation&&!(s.current_player==='robot'&&s.phase!=='over'))break;tick();assert.ok(++limit<120);}}
+function start(){while(state().arrival_pending)tick();if(state().phase==='loadout'){ok('module',{id:state().module_options[0].id});assert.equal(state().phase,'opening');ok('roll');}else if(state().phase==='opening')ok('roll');settle();}
+function moves(){const s=state();return legalMoves({actor:0,shield:s.shields[0],opponentShield:s.shields[1],sectorId:s.sector?.id||null,moduleId:s.modules[0],opponentModuleId:s.modules[1],moduleProgress:s.module_progress[0],opponentModuleProgress:s.module_progress[1],hp:s.hp,level:s.opponent_level-1,board:s.board,hand:s.hand,opponentHand:s.robot_hand,goals:s.goals.map(g=>g.id),market:s.market,round:s.round,turnInRound:s.turn_in_round,challengeIds:s.challenge_ids,challengeProgress:s.challenge_progress[0],opponentChallengeProgress:s.challenge_progress[1],calibrates:s.calibrates,boon:s.boon}).sort((a,b)=>Number(b.lethal)-Number(a.lethal)||b.points-a.points||a.move.ids.length-b.move.ids.length);}
+function select(m){for(const id of m.move.ids)ok('card',{id});ok('chain',{index:m.move.chain});m.move.ops.forEach((value,step)=>ok('op',{value,step}));if(m.move.wild)ok('wild',{value:m.move.wild});if(m.move.warpTo!==undefined)ok('warp-to',{value:m.move.warpTo});if(m.move.port!==undefined)ok('dock-to',{value:m.move.port});}
 function humanTurn(){
-  assert.equal(state().current_player,'human');const before=state(),m=moves()[0];assert.ok(m);select(m);
-  assert.equal(state().automatic_damage,m.damage);assert.equal(state().automatic_healing,m.healing);assert.match(html(),/class="selected-cards"><span>已选牌<\/span>/);
+  resolveChoices();let fills=0;while(state().current_player==='human'&&state().phase==='refill'){ok('supply',{index:0});assert.ok(++fills<=6);}resolveChoices();
+  assert.equal(state().phase,'action');assert.equal(state().current_player,'human');const before=state(),m=moves()[0];assert.ok(m);select(m);
+  assert.equal(state().automatic_damage,m.damage);assert.equal(state().automatic_healing,m.healing);assert.match(html(),/class="selected-cards"><span>已选牌<\/span>/);assert.match(html(),/goal-mark/);assert.match(html(),/class="calibrate-row"/);assert.match(html(),/position-star/);assert.match(html(),/data-action="calibrate"/);assert.match(html(),/我方出牌/);assert.doesNotMatch(html(),/轮到你出牌/);assert.match(html(),/class="opponent-label">对手手牌</);assert.match(html(),/class="duel-mid"/);assert.ok(html().indexOf('id="sector-banner"')<html().indexOf('id="track-region"'));assert.ok(state().calibrates[0]<=2);
   if(m.blockedDamage)assert.match(html(),new RegExp(`护盾抵消 ${m.blockedDamage}`));
   const s=ok('play');assert.equal(s.animation,true);assert.deepEqual(s.board,m.info.board);assert.equal(s.hp[0],before.hp[0]+m.healing);assert.equal(s.hp[1],Math.max(0,before.hp[1]-m.damage));assert.deepEqual(s.selection.ids,[]);
   assert.equal(s.shields[1],before.shields[1]-m.blockedDamage);assert.deepEqual(s.sector,before.sector);assert.deepEqual(s.modules,before.modules);
@@ -38,13 +41,13 @@ function humanTurn(){
 test('initial screen has fleet, both hands,63 numbered ticks,3 shared repairs and random draw',()=>{
   const s=state();assert.equal(s.phase,'loadout');assert.equal(s.first,null);assert.equal(s.module_options.length,3);assert.deepEqual(s.modules,[null,null]);assert.deepEqual(s.hp,[18,18]);assert.equal(s.opponent_count,LEVEL_COUNT);assert.equal(s.unlocked_opponents,LEVEL_COUNT);
   assert.equal((html().match(/data-action="level"/g)||[]).length,LEVEL_COUNT);assert.equal((html().match(/data-action="opponent-card"/g)||[]).length,6);assert.equal((html().match(/class="rail-label"/g)||[]).length,63);assert.equal((html().match(/data-challenge=/g)||[]).length,3);
-  assert.match(html(),/随机抽 1 张/);assert.match(html(),/已选牌/);assert.match(html(),/共享 3 项/);assert.match(html(),/选择本局模块/);assert.equal((html().match(/data-action="module"/g)||[]).length,3);assert.ok(!/我的<|对手<\/button>|18 星|NaN|undefined/.test(html()));
+  assert.match(html(),/随机抽 1 张/);assert.match(html(),/已选牌/);assert.match(html(),/共享 3 项/);assert.match(html(),/选择本局模块/);assert.match(html(),/goal-mark/);assert.ok(html().indexOf('id="sector-banner"')<html().indexOf('id="track-region"'));assert.doesNotMatch(html(),/boon-slot/);assert.equal(html().includes('calibrate-row'),false);assert.equal((html().match(/data-action="module"/g)||[]).length,3);assert.ok(!/我的<|对手<\/button>|18 星|NaN|undefined/.test(html()));
   assert.equal(JSON.parse(stored.get('star-chain-demo-v1')).version,6);const before=state();assert.equal(execute('play').ok,false);assert.deepEqual(state(),before);
 });
 test('opening roll locks interaction then disappears permanently during the match',()=>{
   assert.equal(execute('roll').ok,false);const before=state();assert.equal(execute('module',{id:'invalid'}).ok,false);assert.deepEqual(state(),before);ok('module',{id:state().module_options[0].id});assert.ok(state().modules.every(Boolean));assert.equal(execute('module',{id:state().module_options[1].id}).ok,false);ok('roll');assert.equal(execute('roll').ok,false);assert.equal(execute('card',{id:state().hand[0].id}).ok,false);settle();
   assert.ok([0,1].includes(state().first));assert.ok(state().initiative.rolls.length>=1);assert.ok(!html().includes('data-action="roll"'));assert.ok(!html().includes('先手判定'));
-  const snapshot=state();assert.equal(execute('roll').ok,false);assert.deepEqual(state(),snapshot);click('help');assert.ok(elements.get('modal').open);assert.match(elements.get('modal').innerHTML,/只在开局/);assert.match(elements.get('modal').innerHTML,/上不封顶/);click('close-modal');
+  const snapshot=state();assert.equal(execute('roll').ok,false);assert.deepEqual(state(),snapshot);click('help');assert.ok(elements.get('modal').open);assert.match(elements.get('modal').innerHTML,/只在开局/);assert.match(elements.get('modal').innerHTML,/上不封顶/);assert.match(elements.get('modal').innerHTML,/必须自己按按钮，不会自动使用/);assert.match(elements.get('modal').innerHTML,/橙星链下方、手牌上方/);assert.match(elements.get('modal').innerHTML,/4可以落到15、16、17/);assert.match(elements.get('modal').innerHTML,/10可以落到9或11/);assert.match(elements.get('modal').innerHTML,/中间结果可以超过 20/);assert.match(elements.get('modal').innerHTML,/星云 W/);assert.match(elements.get('modal').innerHTML,/加速 A/);const help=elements.get('modal').innerHTML;for(const sector of SECTORS){assert.ok(help.includes(sector.name),sector.name);assert.ok(help.includes(sector.text),sector.text);}for(const item of MODULES){assert.ok(help.includes(item.name),item.name);assert.ok(help.includes(item.text),item.text);assert.ok(help.includes(`每局最多 ${item.limit} 次`));}click('close-modal');
 });
 test('human confirm locks animation, updates HP once and supports public and random refill',()=>{humanTurn();settle();assert.equal(state().current_player,'human');assert.equal(state().phase,'action');assert.equal(state().robot_hand.length,6);});
 test('rest chooses0–2 cards and a goal, then shares the same refill flow',()=>{
@@ -52,10 +55,14 @@ test('rest chooses0–2 cards and a goal, then shares the same refill flow',()=>
   ok('confirm-rest');assert.equal(state().hand.length,4);assert.deepEqual(state().hp,oldHp);ok('supply',{index:1});ok('draw');settle();
 });
 test('restarting during combat cancels all pending callbacks and opens fresh initiative',()=>{
-  globalThis.matchMedia=()=>({matches:false});select(moves()[0]);ok('play');assert.equal(state().animation,true);assert.ok([...timers.values()].some(t=>t.delay===1100));const previousSector=state().sector.id;ok('retry');globalThis.matchMedia=()=>({matches:true});assert.equal(state().phase,'loadout');assert.notEqual(state().sector.id,previousSector);assert.deepEqual(state().hp,[18,18]);assert.deepEqual(state().shields,[0,0]);assert.ok(state().module_progress.every(p=>p.uses===0));assert.equal(state().animation,false);assert.equal(timers.size,0);start();
+  globalThis.matchMedia=()=>({matches:false});select(moves()[0]);ok('play');assert.equal(state().animation,true);assert.ok([...timers.values()].some(t=>t.delay===500));assert.ok([...timers.values()].some(t=>t.delay>=700));const previousSector=state().sector.id;ok('retry');globalThis.matchMedia=()=>({matches:true});assert.equal(state().phase,'loadout');assert.equal(state().sector,null);assert.ok(state().sector_options.every(s=>s.id!==previousSector));assert.deepEqual(state().hp,[18,18]);assert.deepEqual(state().shields,[0,0]);assert.ok(state().module_progress.every(p=>p.uses===0));assert.equal(state().animation,false);assert.equal(timers.size,1);tick();assert.equal(state().arrival_pending,false);assert.equal(timers.size,0);start();
 });
 test('complete game settles result and saves unlocks without duplicate match records',()=>{
-  let turns=0;while(state().phase!=='over'||state().animation){settle();if(state().phase==='over')break;humanTurn();assert.ok(++turns<=12);}settle();
+  const schedule=globalThis.setTimeout;let finalSceneScheduled=false;
+  globalThis.matchMedia=()=>({matches:false});
+  globalThis.setTimeout=(fn,delay)=>{if(delay>=3200){finalSceneScheduled=true;assert.equal(elements.get('modal').open,false,'result must leave time for the final ship animation');}return schedule(fn,delay);};
+  let turns=0;while(state().phase!=='over'||state().animation){settle();if(state().phase==='over')break;if(state().phase==='action'&&state().current_player==='human')humanTurn();assert.ok(++turns<=24);}settle();
+  assert.equal(finalSceneScheduled,true);globalThis.setTimeout=schedule;globalThis.matchMedia=()=>({matches:true});
   assert.ok(elements.get('modal').open);assert.match(elements.get('modal').innerHTML,/对局|航行胜利|势均力敌/);assert.equal(JSON.parse(stored.get('star-chain-demo-v1')).matches,1);
   assert.equal(JSON.parse(stored.get('star-chain-demo-v1')).legacyImportBase.matches,0);click('close-modal');click('result');assert.equal(JSON.parse(stored.get('star-chain-demo-v1')).matches,1);ok('retry');assert.deepEqual(state().hp,[18,18]);assert.equal(state().phase,'loadout');assert.equal(elements.get('modal').open,false);
 });
@@ -84,7 +91,7 @@ test('cloud support keeps chosen robot identity, displays support name and freez
 test('warp card shows from/to preview, cannot set arithmetic, and plays the previewed reflection',async()=>{
   timers.clear();globalThis.fetch=async()=>{throw Error('offline test');};stored.set('star-chain-demo-v1',JSON.stringify({version:6,unlocked:LEVEL_COUNT-1,matches:0}));Math.random=()=>0;
   let seed=1;for(;seed<1000;seed++){const g=createGame({seed});selectModule(g,g.moduleOptions[0]);while(g.phase==='opening')rollInitiative(g);if(g.first===0&&g.hands[0].some(c=>c.type==='J'))break;}
-  Date.now=()=>seed;await import('../dist/app.mjs?warp-preview');start();const j=state().hand.find(c=>c.type==='J');assert.ok(j);ok('card',{id:j.id});ok('chain',{index:0});assert.match(html(),/4 → 16/);assert.match(html(),/不计加法或减法/);assert.equal(execute('op',{step:0,value:1}).ok,false);
+  Date.now=()=>seed;await import('../dist/app.mjs?warp-preview');start();const j=state().hand.find(c=>c.type==='J');assert.ok(j);ok('card',{id:j.id});ok('chain',{index:0});assert.match(html(),/20 − 4 = 16/);assert.doesNotMatch(html(),/4 → 16 = 16/);assert.match(html(),/不计加法或减法/);assert.equal(execute('op',{step:0,value:1}).ok,false);
   const p=state(),played=ok('play');assert.equal(played.board[0],16);assert.equal(played.hp[1],Math.max(0,p.hp[1]-p.automatic_damage));assert.equal(played.hand.some(c=>c.id===j.id),false);
 });
 
@@ -101,4 +108,37 @@ test('two real losses offer a choice; closing/refusing retains strength, accepti
  ok('accept-support',{level:LEVEL_COUNT-1});assert.equal(state().opponent_level,LEVEL_COUNT-1);assert.equal(state().selected_opponent_level,LEVEL_COUNT);assert.equal(state().support_mode,true);assert.match(state().opponent,/（支援模式）/);
  const id=state().record_id;assert.equal(execute('accept-support',{level:LEVEL_COUNT-1}).ok,false);assert.equal(state().record_id,id);assert.equal(state().opponent_level,LEVEL_COUNT-1);
  const exported=await window.starChainRecords.export();assert.equal(exported.supportDecisions.length,2);assert.deepEqual(exported.supportDecisions.map(x=>x.accept),[false,true]);
+});
+
+test('calibrate button shifts the previewed landing by one cell and spends only the human charge',async()=>{
+  timers.clear();globalThis.fetch=async()=>{throw Error('offline test');};
+  stored.set('star-chain-demo-v1',JSON.stringify({version:6,unlocked:LEVEL_COUNT-1,matches:0}));
+  let seed=1,hit=null,offer=null,startBoard=null;
+  for(;seed<8000;seed++){
+    const g=createGame({level:0,seed,previousChallenges:[],botProfile:BOT_PROFILES[0]});selectModule(g,g.moduleOptions[0]);while(g.phase==='opening')rollInitiative(g);
+    if(g.current!==0)continue;
+    const obs=observation(g,0),choice=legalMoves(obs).find(m=>calibrateOffer(g.goals,m.info,obs));
+    if(choice){hit=choice;offer=calibrateOffer(g.goals,hit.info,obs);startBoard=[...g.board];break;}
+  }
+  assert.ok(hit,'search did not find a one-cell calibrate');
+  Date.now=()=>seed;Math.random=()=>0;await import('../dist/app.mjs?calibrate-play');start();
+  assert.equal(state().current_player,'human');assert.deepEqual(state().board,startBoard);
+  select(hit);assert.equal(state().calibrate_offer.after,offer.after);assert.match(html(),/goal-mark/);assert.match(html(),/校准至/);assert.match(html(),/calibrate-hint/);
+  const armed=ok('calibrate');assert.equal(armed.selection.calibrate,true);assert.equal(armed.automatic_damage,offer.scoring.damage);assert.match(html(),/已校准至/);
+  ok('chain',{index:hit.move.chain});assert.equal(state().selection.calibrate,false);
+  ok('calibrate');const played=ok('play');
+  assert.equal(played.animation,true);assert.equal(played.board[hit.move.chain],offer.after);assert.deepEqual(played.calibrates,[0,1]);assert.match(html(),/校准已用/);assert.match(html(),/校准至/);
+});
+
+test('roving sector lists each side last attack color beside the effect',async()=>{
+  timers.clear();globalThis.fetch=async()=>{throw Error('offline test');};
+  stored.set('star-chain-demo-v1',JSON.stringify({version:6,unlocked:LEVEL_COUNT-1,matches:0}));
+  let seed=1;for(;seed<8000;seed++){const g=createGame({level:0,seed,previousChallenges:[],botProfile:BOT_PROFILES[0],choices:true});if(!g.sectorOptions.includes('roving'))continue;selectModule(g,g.moduleOptions[0]);while(g.phase==='opening')rollInitiative(g);if(g.phase==='sector'&&g.first===0)break;}
+  assert.ok(seed<8000);Date.now=()=>seed;Math.random=()=>0;await import('../dist/app.mjs?roving-colors');
+  if(state().phase==='loadout')ok('module',{id:state().module_options[0].id});ok('roll');
+  let limit=0;while(state().initiative.stage!=='none'){tick();assert.ok(++limit<40);}
+  assert.equal(state().phase,'sector');ok('sector',{id:'roving'});
+  assert.match(html(),/巡航星域/);assert.match(html(),/id="sector-banner"[\s\S]*我方[\s\S]*暂无[\s\S]*敌方[\s\S]*暂无/);
+  const banner=html().match(/id="sector-banner"[\s\S]*?<\/div>/)[0];
+  assert.match(banner.split('敌方')[0],/暂无/);assert.match(banner.split('敌方')[1],/暂无/);
 });

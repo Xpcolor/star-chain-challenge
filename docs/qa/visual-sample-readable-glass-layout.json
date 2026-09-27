@@ -1,0 +1,71 @@
+{
+  "clientWidth": 1265,
+  "controlsBottom": 555.8437919616699,
+  "deckTop": 569.29052734375,
+  "dpr": 1.0000000298023224,
+  "labels": [
+    "14px",
+    "14px"
+  ],
+  "navRight": 1229.2604370117188,
+  "panels": [
+    {
+      "entries": [
+        {
+          "firstTop": 4,
+          "height": 95,
+          "lastBottom": 91,
+          "top": 43
+        },
+        {
+          "firstTop": 4,
+          "height": 95,
+          "lastBottom": 91,
+          "top": 144
+        },
+        {
+          "firstTop": 4,
+          "height": 95,
+          "lastBottom": 91,
+          "top": 245
+        }
+      ],
+      "footerTop": 345,
+      "name": "instrument targets",
+      "opacity": "rgba(3, 16, 34, 0.17)",
+      "transform": "matrix3d(0.990268, 0, -0.139173, 0.000139173, 0, 1, 0, 0, 0.139173, 0, 0.990268, -0.000990268, 0, 0, 0, 1)"
+    },
+    {
+      "entries": [
+        {
+          "firstTop": 17,
+          "height": 102,
+          "lastBottom": 85,
+          "top": 43
+        },
+        {
+          "firstTop": 17,
+          "height": 102,
+          "lastBottom": 85,
+          "top": 150
+        },
+        {
+          "firstTop": 17,
+          "height": 102,
+          "lastBottom": 85,
+          "top": 258
+        }
+      ],
+      "footerTop": 364,
+      "name": "instrument repairs",
+      "opacity": "rgba(3, 16, 34, 0.17)",
+      "transform": "matrix3d(0.990268, 0, 0.139173, -0.000139173, 0, 1, 0, 0, -0.139173, 0, 0.990268, -0.000990268, 0, 0, 0, 1)"
+    }
+  ],
+  "restBottom": 698.8143920898438,
+  "scrollWidth": 1265,
+  "viewport": [
+    1280,
+    720
+  ]
+}

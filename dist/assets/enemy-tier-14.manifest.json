@@ -1,0 +1,65 @@
+{
+  "id": "enemy-tier-14",
+  "name": "破晓星环旗舰",
+  "file": "enemy-tier-14.png",
+  "prompt": "enemy-tier-14.prompt.txt",
+  "generation": "built-in image_gen, single native output",
+  "width": 1536,
+  "height": 1024,
+  "format": "PNG RGBA",
+  "bytes": 2287717,
+  "sha256": "0D00FA19AC3DF27F9364147C99F7D0EF5BB81E7B1649A96390536C8365F65A4D",
+  "bounds_alpha32": [
+    44,
+    105,
+    1501,
+    927
+  ],
+  "transparent_pixels": 945570,
+  "partial_alpha_pixels": 627294,
+  "opaque_pixels": 0,
+  "orientation": "flat horizontal annulus with left-facing command spear; rear engines right",
+  "anchors_approx_pixels": {
+    "spear_tip": [
+      48,
+      482
+    ],
+    "engine_banks": [
+      [
+        1415,
+        366
+      ],
+      [
+        1470,
+        447
+      ],
+      [
+        1482,
+        537
+      ]
+    ]
+  },
+  "hole_alpha_samples": [
+    {
+      "x": 650,
+      "y": 300,
+      "alpha": 0
+    },
+    {
+      "x": 1050,
+      "y": 290,
+      "alpha": 0
+    },
+    {
+      "x": 650,
+      "y": 650,
+      "alpha": 0
+    },
+    {
+      "x": 1100,
+      "y": 620,
+      "alpha": 0
+    }
+  ],
+  "visual_review": "Usable: flat annular flagship layout, long left spear, four radial armored connections and four large negative-space quadrants; transparency verified in all four holes. Three rear engine banks clearly visible, fourth not verified. Full uncut body, horizontal margins 2.2-2.9 percent rather than requested 8 percent. Retained one native generation."
+}
