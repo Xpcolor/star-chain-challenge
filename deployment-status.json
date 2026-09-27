@@ -1,10 +1,10 @@
 {
   "preparedAt": "2026-09-26",
-  "verifiedAt": "2026-09-27T08:43:33.859Z",
+  "verifiedAt": "2026-09-27T13:04:18.597Z",
   "owner": "Xpcolor",
   "repositoryName": "star-chain-challenge",
-  "sourceCommit": "1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9",
-  "deployedCommit": "1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9",
+  "sourceCommit": "643ddc0d9d1659b7810c7adb254ab216bf0593f3",
+  "deployedCommit": "643ddc0d9d1659b7810c7adb254ab216bf0593f3",
   "existingGameUrl": "https://xinglian-challenge.xutaoping.chatgpt.site",
   "githubRepositoryUrl": "https://github.com/Xpcolor/star-chain-challenge",
   "independentProductionUrl": "https://novaw.net",
@@ -24,10 +24,11 @@
   "accessLoginMethod": "cloudflare-account",
   "workerAccessVarsConfigured": true,
   "actionsDeployEnabled": false,
-  "nextTask": "本轮 GitHub PR 与双域名发布完成。真实账号记录登录/同步与旧站记录迁移仍未重新验收；后续另行处理。",
-  "releaseVersion": "1.1.0",
-  "cloudflareVersion": "fdc489ab-e6bc-456b-8b32-b5b806163154",
-  "previousCloudflareVersion": "a0d00689-bb97-4de7-86a1-c74971fe586b",
-  "verificationEvidence": "docs/qa/release-20260927.json",
-  "deploymentMethod": "manual-wrangler-oauth-after-protected-pr-merge"
+  "nextTask": "V1.1.7 GitHub PR与双域名发布完成。真实账号登录/同步及旧记录迁移仍未重新验收，后续另行处理。",
+  "releaseVersion": "1.1.7",
+  "cloudflareVersion": "30ead51a-dcdf-47c2-a566-12b903dc1582",
+  "previousCloudflareVersion": "fdc489ab-e6bc-456b-8b32-b5b806163154",
+  "verificationEvidence": "docs/qa/release-v1.1.7-20260927.json",
+  "deploymentMethod": "manual-wrangler-oauth-after-protected-pr-merge",
+  "releasePrUrl": "https://github.com/Xpcolor/star-chain-challenge/pull/7"
 }

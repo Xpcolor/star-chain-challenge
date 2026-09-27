@@ -105,5 +105,5 @@
     "No fresh real-account login/sync or legacy record import.",
     "No long-term GPU benchmark across devices."
   ],
-  "release": "authorized; GitHub CI and production verification pending"
+  "release": "PR7 merged, deployed and verified on both domains; see docs/qa/release-v1.1.7-20260927.json"
 }

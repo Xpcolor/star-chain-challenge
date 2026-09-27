@@ -1,6 +1,8 @@
 # 星链算式 · 星舰对战
 
-2026-09-27 V1.1.7 发布中：玩法说明已扩为宽幅分区布局，包含此前确认的显示、音乐与加速回原位修正。最新线上状态以 `/api/version` 和 `deployment-status.json` 为准。
+2026-09-27 **V1.1.7 已发布**：PR [#7](https://github.com/Xpcolor/star-chain-challenge/pull/7) 经CI通过后合并，提交 `643ddc0d9d1659b7810c7adb254ab216bf0593f3` 已上线 novaw.net 与 www.novaw.net。玩法说明扩为最大1380px，正文17px/手机16px，分区与功能牌色卡便于阅读，固定关闭按钮；同时包含此前确认的 V1.1.1–V1.1.6 修正。94项测试、类型、构建通过；18个浏览器场景分次通过，四项补给排版缺陷修复后相关复验通过。两个域名版本一致、模型就绪、音乐资源200、说明书无横向溢出、页面零脚本错误，访客记录API仍401。生产D1无变更。线上证据见 `docs/qa/release-v1.1.7-20260927.json` 和 `deployment-status.json`。
+
+以下是历史开发与发布记录，旧版等待确认语句不代表当前状态。
 
 上一版发布：PR [#5](https://github.com/Xpcolor/star-chain-challenge/pull/5) 已通过 CI 并合并，版本 1.1.0、提交 `1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9` 已部署到 novaw.net 和 www.novaw.net。两个域名均验证真实 WebGPU 模型、V3 规则、静态入口内容与提交一致、页面零报错；访客记录接口返回 401。生产数据库保持不变，无新增生产迁移。回执见 `docs/qa/release-20260927.json`、`deployment-status.json`。真实账号同步和旧记录迁移仍未重新验收。
 
