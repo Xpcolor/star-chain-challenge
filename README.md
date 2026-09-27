@@ -1,6 +1,8 @@
 # 星链算式 · 星舰对战
 
-2026-09-27 发布完成：PR [#5](https://github.com/Xpcolor/star-chain-challenge/pull/5) 已通过 CI 并合并，版本 1.1.0、提交 `1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9` 已部署到 novaw.net 和 www.novaw.net。两个域名均验证真实 WebGPU 模型、V3 规则、静态入口内容与提交一致、页面零报错；访客记录接口返回 401。生产数据库保持不变，无新增生产迁移。回执见 `docs/qa/release-20260927.json`、`deployment-status.json`。真实账号同步和旧记录迁移仍未重新验收。
+2026-09-27 V1.1.7 发布中：玩法说明已扩为宽幅分区布局，包含此前确认的显示、音乐与加速回原位修正。最新线上状态以 `/api/version` 和 `deployment-status.json` 为准。
+
+上一版发布：PR [#5](https://github.com/Xpcolor/star-chain-challenge/pull/5) 已通过 CI 并合并，版本 1.1.0、提交 `1acf617fb19794b0cd1a0e24928e41dfdb2b4ab9` 已部署到 novaw.net 和 www.novaw.net。两个域名均验证真实 WebGPU 模型、V3 规则、静态入口内容与提交一致、页面零报错；访客记录接口返回 401。生产数据库保持不变，无新增生产迁移。回执见 `docs/qa/release-20260927.json`、`deployment-status.json`。真实账号同步和旧记录迁移仍未重新验收。
 
 三条共享星链、六张手牌、明牌人机对战的中文浏览器游戏。
 
@@ -8,7 +10,7 @@
 
 本次升级为完整可玩的人机驾驶舱：React 界面、统一 Three.js WebGPU / WebGL 2 战场、GSAP 动效和 Howler 音频。玩家的近看、转向与独立侧光可在下方舰队区开启。敌方按十六个等级使用不同模型，不提供近看操作。
 
-当前 V3 规则：第 1–7 级双方 18 血、攻击和维修各 3 项；第 8–16 级固定 24 血、各 4 项，并加入定轨和调拨。调拨后可立即出牌，跃迁可选择反射值及相邻格，攻击触发全部达成目标。规则、模拟结果与限制见 [V3 验证](docs/RULES_V3_VERIFICATION_20260927.md)。用户于 2026-09-27 明确批准将试玩版通过 PR 发布到 novaw.net；实际发布提交与回执以 deployment-status.json 为准。
+当前 V4 规则：第 1–7 级双方 18 血、攻击和维修各 3 项；第 8–16 级固定 24 血、各 4 项，并加入定轨和调拨。调拨后可立即出牌，跃迁可选择反射值及相邻格，攻击触发全部达成目标。加速允许返回原位，按最终局面结算一次，不额外限制次数；旧战绩继续按各自规则回放。规则、模拟结果与限制见 [V3 验证](docs/RULES_V3_VERIFICATION_20260927.md)。用户于 2026-09-27 明确批准将试玩版通过 PR 发布到 novaw.net；实际发布提交与回执以 deployment-status.json 为准。
 
 - 正式游戏：https://novaw.net （https://www.novaw.net 同步）
 - 仓库：https://github.com/Xpcolor/star-chain-challenge

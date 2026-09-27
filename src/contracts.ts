@@ -124,6 +124,7 @@ export interface ViewSnapshot {
     restCount: number;
     deckCount: number;
     formula: string;
+    landing: { chain: number; after: number } | null;
     error: string | null;
     opening: string;
     operations: string;

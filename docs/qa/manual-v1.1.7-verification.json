@@ -1,0 +1,109 @@
+{
+  "version": "1.1.7",
+  "layouts": [
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "width": 1380,
+      "left": 270,
+      "right": 1650,
+      "top": 43.203125,
+      "bottom": 1036.796875,
+      "overflow": 0,
+      "fontSize": 17,
+      "columns": 2
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "width": 1203.1875,
+      "left": 38.40625,
+      "right": 1241.59375,
+      "top": 28.796875,
+      "bottom": 691.1875,
+      "overflow": 0,
+      "fontSize": 17,
+      "columns": 2
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "width": 721.90625,
+      "left": 23.046875,
+      "right": 744.953125,
+      "top": 40.953125,
+      "bottom": 983.03125,
+      "overflow": 0,
+      "fontSize": 17,
+      "columns": 1
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "width": 374.390625,
+      "left": 7.796875,
+      "right": 382.1875,
+      "top": 21.09375,
+      "bottom": 822.890625,
+      "overflow": 0,
+      "fontSize": 16,
+      "columns": 1
+    }
+  ],
+  "pageErrors": [],
+  "checkedAt": "2026-09-27T12:49:52.456Z",
+  "unitTests": {
+    "passed": 94,
+    "failed": 0
+  },
+  "typecheck": "passed",
+  "build": "passed",
+  "wranglerDryRun": "passed",
+  "browser": {
+    "initialRun": {
+      "passed": 17,
+      "failed": 1,
+      "total": 18
+    },
+    "found": "Advanced four-slot repair entries with progress hints overflowed their borders slightly.",
+    "fix": "Extended both advanced side panels to bottom:23%, maintaining alignment and room above the command deck.",
+    "finalScopedRun": {
+      "passed": 3,
+      "failed": 0,
+      "scenarios": [
+        "manual four responsive viewports and close/focus/scroll",
+        "arrival and functional-card charging",
+        "B immediate exchange and four entries at four viewports"
+      ]
+    },
+    "coverage": "All 18 unique browser scenarios passed across the initial and scoped rerun; full suite was not redundantly repeated after the layout-only fix.",
+    "finalHudRun": {
+      "passed": 3,
+      "failed": 0,
+      "checks": [
+        "actual HP reels including zero",
+        "four goals sorted",
+        "warp buttons above command deck"
+      ]
+    }
+  },
+  "screenshots": [
+    ".local/qa/manual/1920-top.png",
+    ".local/qa/manual/1920-cards.png",
+    ".local/qa/manual/390-top.png",
+    ".local/qa/v3-layout-1920.png"
+  ],
+  "limits": [
+    "No fresh real-account login/sync or legacy record import.",
+    "No long-term GPU benchmark across devices."
+  ],
+  "release": "authorized; GitHub CI and production verification pending"
+}

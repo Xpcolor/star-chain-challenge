@@ -32,12 +32,12 @@ export default defineConfig({
   plugins: [
     {
       name: "release-metadata",
-      load(id) {
-        if (
-          id.replaceAll("\\", "/").endsWith("/dist/version.mjs") &&
-          process.env.STARCHAIN_BUILD_RELEASE
-        )
-          return `export const RELEASE=Object.freeze(${process.env.STARCHAIN_BUILD_RELEASE});`;
+      async load(id) {
+        if (id.replaceAll("\\", "/").endsWith("/dist/version.mjs")) {
+          const version=JSON.parse(await readFile("package.json","utf8")).version;
+          const metadata=process.env.STARCHAIN_BUILD_RELEASE || JSON.stringify({version,commit:"local",environment:"development",pr:null});
+          return `export const RELEASE=Object.freeze(${metadata});`;
+        }
       },
     },
     {

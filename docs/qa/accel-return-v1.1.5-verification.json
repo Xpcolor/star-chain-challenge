@@ -1,0 +1,93 @@
+{
+  "verifiedAt": "2026-09-27T12:15:59.508Z",
+  "version": "1.1.5",
+  "rulesVersion": "flight-records-4",
+  "scope": "local only; owner approval required before push/PR/deploy",
+  "rule": "Acceleration may return to origin; final-board scoring once per play; no per-match use quota; consumes A and two distinct number cards; same rules for both actors.",
+  "tests": {
+    "unit": {
+      "passed": 92,
+      "failed": 0
+    },
+    "postReviewTargeted": {
+      "passed": 7,
+      "failed": 0
+    },
+    "typecheck": "passed",
+    "build": "passed",
+    "browser": {
+      "passed": 1,
+      "failed": 0,
+      "viewports": [
+        [
+          1920,
+          1080
+        ],
+        [
+          1774,
+          887
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "seed": 569,
+      "board": [
+        4,
+        10,
+        16
+      ],
+      "formula": "10 + 8 - 8 = 10",
+      "claimed": [
+        "L8"
+      ],
+      "baseDamage": 3,
+      "sectorDamage": 1,
+      "shieldAbsorbed": 2,
+      "actualDamage": 2,
+      "hpBefore": [
+        24,
+        24
+      ],
+      "hpAfter": [
+        25,
+        22
+      ],
+      "notes": "Browser test uses isolated API/storage, clicks actual cards/operators/confirmation; both A number cards and A consumed. HP unchanged after animation finishes. Error tooltip originally intercepted the minus button; moved into normal layout and rerun passed."
+    },
+    "simulation": {
+      "fullMatches": 80,
+      "minRounds": 5,
+      "maxRounds": 12,
+      "meanRounds": 10.85,
+      "knockouts": 33,
+      "mirroredPairs": 36,
+      "note": "Deterministic automated regression sample, not human win-rate or balance guarantee."
+    },
+    "repeatedUse": {
+      "perActor": 5,
+      "actors": 2,
+      "passed": true
+    }
+  },
+  "preview": {
+    "url": "http://127.0.0.1:8792/?preview=1.1.5",
+    "pid": 20176,
+    "persistentData": ".local/star-chain.sqlite",
+    "apiRulesVerified": "flight-records-4",
+    "visibleHeaderVerified": "星链对战 V1.1.5"
+  },
+  "screenshots": [
+    ".local/qa/accel-return-v1.1.5-preview.png",
+    ".local/qa/accel-return-v1.1.5-settled.png"
+  ],
+  "limitations": [
+    "No new Git commit, push, pull request or Cloudflare deployment.",
+    "Old records retain their historical rules; no existing records or user progress rewritten."
+  ]
+}

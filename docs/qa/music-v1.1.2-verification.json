@@ -1,0 +1,85 @@
+{
+  "verifiedAt": "2026-09-27T10:48:47.288Z",
+  "version": "1.1.2",
+  "scope": "local only; no PR, push or deployment",
+  "title": "Relaxing Ambient Music",
+  "artist": "Clavier-Music",
+  "ownerSelectedOption": 3,
+  "asset": {
+    "title": "Relaxing Ambient Music",
+    "artist": "Clavier-Music",
+    "ownerSelection": "option 3",
+    "libraryAssetId": "ma_523155341193b74f5ef5c06eb5b248a2",
+    "sourceSha256": "523155341193b74f5ef5c06eb5b248a234a9297b3e2a13799c3f1d358d3bbe54",
+    "sourceDurationSeconds": 123.72,
+    "sourceWindowSeconds": [
+      18,
+      116
+    ],
+    "crossfadeSeconds": 4,
+    "durationSeconds": 94,
+    "sampleRate": 44100,
+    "channels": 2,
+    "preparationGain": 0.8792377975864353,
+    "pcmPeak": 0.88,
+    "pcmRms": 0.16655295630720812,
+    "path": "dist/assets/music-relaxing-ambient.ogg",
+    "bytes": 1581188,
+    "sha256": "2d351f33895c50240105e1eb68b8daeb42387f029a5196866dd7baf49a105649",
+    "rightsBasis": "Owner-provided SPGC library recording, selected explicitly for local StarChain use. Preserve artist credit. Publication remains pending owner approval.",
+    "originalPreserved": true
+  },
+  "browserMix": {
+    "context": "running",
+    "routedToOutput": true,
+    "duration": 94,
+    "gain": 0.16500000655651093,
+    "mixedRmsDb": -31.216140186967106,
+    "openingRmsDb": -32.773770788712845
+  },
+  "previousMusicRmsDb": -42.59185695365264,
+  "checks": {
+    "typecheck": "passed",
+    "unitTests": {
+      "passed": 87,
+      "failed": 0
+    },
+    "build": "passed",
+    "browser": {
+      "passed": 1,
+      "failed": 0,
+      "coverage": [
+        "new brand/manual version",
+        "audio/ogg resource response",
+        "running audio context and gain route to output",
+        "music output and opening RMS",
+        "single looping voice",
+        "sound mute/resume",
+        "visibility handler pause/resume",
+        "match reset without extra music voice"
+      ]
+    },
+    "preview": {
+      "url": "http://127.0.0.1:8792/",
+      "version": "1.1.2",
+      "musicHttp": 200,
+      "musicType": "audio/ogg"
+    }
+  },
+  "priorBroaderVerification": "docs/qa/polish-v1.1.1-verification.json (historical, not rerun in full)",
+  "limits": [
+    "No speaker-level or subjective listening acceptance; owner local audition pending.",
+    "Visibility handler exercised with a document visibility fixture, not a hardware/browser matrix."
+  ],
+  "sourceSha256": {
+    "src/presentation/audio.ts": "1d1d534a650f7cdf853d202ed5f78648abf9ffaed50ba42772aa4db74617d925",
+    "src/ui/Cockpit.tsx": "a6d63c64c758b67a8ceba4d50b2a6f3b8bf3117fdf3357b6d5d511fe3e946e9c",
+    "scripts/dev.mjs": "4a4d5cf46b2eeff3148ec98125ccd4c930adb8e644cf4a030d55705fb97e71ff",
+    "scripts/prepare-music.mjs": "9c3fc6026de5a4f23b597856b0d3b9069707fa0badd955de59847284a28b3a3a",
+    "tests/browser/polish.spec.ts": "240f3ea3e69f9b4d48cbd999cf9ba1e07dc7348a2f6c77226490d9495b0d4a21",
+    "package.json": "55246dc54e8e63aed21935cddf0c0d156f1e6c8eee118d14b1acde40be56c2d7",
+    "docs/manual-review.json": "53bd25872e8c85f09f8f284727a2dc3bca4bd469bdc8cf7eef91f577615e7721",
+    "资产库/背景音乐.json": "dcab2532050984683e1e499bba1b9711f4462c964c27ae31c9a4e82686f32cd9",
+    "dist/assets/music-relaxing-ambient.ogg": "2d351f33895c50240105e1eb68b8daeb42387f029a5196866dd7baf49a105649"
+  }
+}

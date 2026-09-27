@@ -10,8 +10,10 @@
 | 玩家及 16 级舰图 | `player-cinematic-v2.png`、`enemy-tier-NN.png`；内置 ImageGen；保留作降级与生成来源 |
 | 原型与缩略图 | `ship-player.glb`、`ship-NN.glb` 和同名 PNG；本地 Blender 脚本生成，保留参考 |
 | 11 项音效 | `audio-*.wav`；`scripts/create-audio.mjs` 原创程序合成 |
+| 当前背景音乐 | `music-relaxing-ambient.ogg`；Clavier-Music《Relaxing Ambient Music》，用户选择的第 3 首；94 秒双声道循环，来源与处理见 `背景音乐.json` |
+| 旧版音乐草稿 | `music-starlight.wav`；原创 64 秒合成草稿，已停用，仅保留参考 |
 | 环境光 | `studio-light.hdr`；Poly Haven / Greg Zaal，Studio Small 03，CC0 |
-| 媒体清单 | `inventory.json`；81 项约 164.97 MB，含 SHA256；正式游戏仅按需加载当前两舰 |
+| 媒体清单 | `inventory.json`；83 项约 172.19 MB，含 SHA256；正式游戏仅按需加载当前两舰 |
 | 主战场效果 | `src/presentation/scene.ts`、`hud.ts`、`audio.ts`、`fx-config.ts`；TSL、GSAP、Howler |
 
 GLB 约定舰首 +X、上方 +Y、标准长度 6。完整舰体默认显示，`debris_*` 分件默认隐藏，零血时交换可见性。真实近看和独立侧光只用于玩家舰；敌方保留等级与战斗效果。原始生成纹理决定近距离细节上限。
@@ -27,5 +29,7 @@ npm run verify
 脚本验证来源哈希，不改源 GLB。旧 `create-fleet.py` 和 `render-fleet-previews.py` 只再生成原型。图像生成有随机性，正式 PNG 作为源资产保留。下坠分件是预制动画，不是实时刚体断裂。
 
 声音在首次交互后解锁，支持静音、声部上限、左右声像。音量/混音仍需用户实际试听反馈。图鉴是单项效果演示，不等同完整游戏结算验收。
+
+驾驶舱轻音乐与音效开关共用；首次交互后循环，切后台暂停、返回继续。重新开局仅清空战斗音效，不中断音乐。当前选曲取原曲 18–116 秒，首尾 4 秒交叉淡化成 94 秒循环，保留原录音及作者署名，不做变速。`scripts/prepare-music.mjs` 验证源哈希后离线制作；运行时单音轨循环，无实时转码。
 
 环境来源：[Studio Small 03](https://polyhaven.com/a/studio_small_03) 与 [CC0 许可](https://polyhaven.com/license)。用户提供模型按用户授权接入；本次未新增网络下载素材。Blender 仅离线制作，玩家只需浏览器。

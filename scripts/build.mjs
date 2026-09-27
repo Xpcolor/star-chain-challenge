@@ -3,6 +3,8 @@ import { mkdir, cp, rm, readdir, writeFile, readFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 import { build as buildVite } from "vite";
 import { prepareRenderer } from "./prepare-renderer.mjs";
+import { checkManual } from "./check-manual.mjs";
+checkManual();
 await prepareRenderer();
 const pkg = JSON.parse(await readFile("package.json", "utf8"));
 let commit = process.env.GIT_COMMIT;

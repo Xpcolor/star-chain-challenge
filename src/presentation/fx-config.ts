@@ -4,7 +4,8 @@ export const FX = Object.freeze({
   exposure: 0.95,
   dpr: 1.65,
   maxParticles: 96,
-  lightning: { length: 0.17, period: 11, boost: 2.5 },
+  // A full panel circuit takes 44 seconds: one quarter of the former speed.
+  lightning: { length: 0.17, period: 44, boost: 2.5 },
   attack: {
     warmup: TIMING.prepare,
     spacing: TIMING.attackSpacing,

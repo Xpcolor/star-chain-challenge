@@ -318,6 +318,20 @@
       "origin": "Built-in ImageGen / StarChain reference-led artwork"
     },
     {
+      "path": "dist/assets/music-relaxing-ambient.ogg",
+      "bytes": 1581188,
+      "sha256": "2d351f33895c50240105e1eb68b8daeb42387f029a5196866dd7baf49a105649",
+      "kind": "audio",
+      "origin": "Clavier-Music / Relaxing Ambient Music / owner-selected SPGC recording; provenance in 资产库/背景音乐.json"
+    },
+    {
+      "path": "dist/assets/music-starlight.wav",
+      "bytes": 5644844,
+      "sha256": "0a82be78265ad00c1e10cc2d6ec8665e68ed8d8b81cdef65350f4eb69e6db150",
+      "kind": "audio",
+      "origin": "StarChain generated source"
+    },
+    {
       "path": "dist/assets/player-cinematic-v2.png",
       "bytes": 1633855,
       "sha256": "f211a032eeefec42267e05a53d48dd2ab40fd834bb4b5fc5d989a6682509425f",
