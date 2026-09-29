@@ -112,6 +112,7 @@ export class BattleScene implements ScenePort {
   private seen = new Set<string>();
   private state: BattleState | null = null;
   private manifest: ModelEntry[] = [];
+  private modelBuffers = new Map<string, ArrayBuffer>();
   private background!: THREE.Mesh;
   private rocks: THREE.Mesh[] = [];
   private flash = new THREE.PointLight(0xa5dbff, 0, 30, 1.5);
@@ -135,6 +136,22 @@ export class BattleScene implements ScenePort {
   };
   constructor(private audio: AudioBus) {}
   async init() {
+    const level = this.state?.level || 0;
+    const manifestPromise = fetch("/assets/fleet-models.json").then(
+      async (response) => {
+        if (!response.ok) throw Error("舰船清单加载失败");
+        return (await response.json()) as ModelEntry[];
+      },
+    );
+    const backgroundPromise = new THREE.TextureLoader().loadAsync(
+      "/assets/cosmos-v2.png",
+    );
+    const environmentPromise = new HDRLoader().loadAsync(
+      "/assets/studio-light.hdr",
+    );
+    const modelPromise = manifestPromise.then((manifest) =>
+      this.prefetchFleet(manifest, level),
+    );
     try {
       this.renderer = new THREE.WebGPURenderer({
         antialias: true,
@@ -157,9 +174,7 @@ export class BattleScene implements ScenePort {
       const rim = new THREE.DirectionalLight(0xb58bff, 1.1);
       rim.position.set(4, 2, -4);
       this.scene.add(this.sideLight, rim, this.flash);
-      const bg = await new THREE.TextureLoader().loadAsync(
-        "/assets/cosmos-v2.png",
-      );
+      const bg = await backgroundPromise;
       bg.colorSpace = THREE.SRGBColorSpace;
       bg.generateMipmaps = true;
       bg.minFilter = THREE.LinearMipmapLinearFilter;
@@ -172,13 +187,11 @@ export class BattleScene implements ScenePort {
       this.background = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), bgMat);
       this.background.position.z = -20;
       this.scene.add(this.background);
-      const env = await new HDRLoader().loadAsync("/assets/studio-light.hdr");
+      const env = await environmentPromise;
       env.mapping = THREE.EquirectangularReflectionMapping;
       this.scene.environment = env;
       this.scene.environmentIntensity = 0.55;
-      const response = await fetch("/assets/fleet-models.json");
-      if (!response.ok) throw Error("舰船清单加载失败");
-      this.manifest = await response.json();
+      this.manifest = await manifestPromise;
       this.ships.forEach((s) => this.scene.add(s.root));
       for (let i = 0; i < 22; i++) {
         const rock = new THREE.Mesh(
@@ -248,6 +261,7 @@ export class BattleScene implements ScenePort {
       this.fxPool = new CombatFXPool(this.scene, FX.maxParticles);
       this.ready = true;
       this.layout();
+      await modelPromise;
       await this.loadFleet(this.state?.level || 0);
       if (this.disposed || !this.ready) return;
       document.documentElement.dataset.backend =
@@ -535,6 +549,20 @@ export class BattleScene implements ScenePort {
     this.shock(s.root.position.clone(), 1.5);
     void this.audio.play("collapse", actor ? 0.5 : -0.5);
   }
+  private async prefetchFleet(manifest: ModelEntry[], level: number) {
+    const ids = ["aurora", `fleet-${String(level + 1).padStart(2, "0")}`];
+    await Promise.all(
+      ids.map(async (id) => {
+        const entry = manifest.find((item) => item.id === id);
+        if (!entry) throw Error("等级模型缺失");
+        const url = entry.model + "?v=" + entry.sha256.slice(0, 12);
+        if (this.modelBuffers.has(url)) return;
+        const response = await fetch(url);
+        if (!response.ok) throw Error("舰船模型加载失败");
+        this.modelBuffers.set(url, await response.arrayBuffer());
+      }),
+    );
+  }
   async loadFleet(level: number) {
     if (!this.ready || this.disposed) return;
     const ticket = ++this.loadTicket;
@@ -545,9 +573,15 @@ export class BattleScene implements ScenePort {
       const entry = this.manifest.find((e) => e.id === ids[actor]);
       if (!entry) throw Error("等级模型缺失");
       if (actor === 0 && this.ships[0].model) continue;
-      const gltf = await new GLTFLoader().loadAsync(
-        entry.model + "?v=" + entry.sha256.slice(0, 12),
-      );
+      const url = entry.model + "?v=" + entry.sha256.slice(0, 12);
+      const buffer = this.modelBuffers.get(url);
+      this.modelBuffers.delete(url);
+      const gltf = buffer
+        ? await new GLTFLoader().parseAsync(
+            buffer,
+            url.slice(0, url.lastIndexOf("/") + 1),
+          )
+        : await new GLTFLoader().loadAsync(url);
       if (this.disposed || ticket !== this.loadTicket) {
         disposeObject(gltf.scene);
         return;

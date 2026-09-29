@@ -19,6 +19,26 @@ import { FLEET } from "../../dist/fleet.mjs";
 import { ROBOTS } from "../../dist/engine.mjs";
 import { Markup } from "./markup";
 import { RELEASE } from "../../dist/version.mjs";
+function LevelPortrait({ src }: { src: string }) {
+  const ref = useRef<HTMLImageElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || visible) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        setVisible(true);
+        observer.disconnect();
+      },
+      { rootMargin: "0px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [visible]);
+  return <img ref={ref} alt="" src={visible ? src : undefined} />;
+}
+
 export const usePreferences = create<{
   reduced: boolean;
   inspect: boolean;
@@ -860,7 +880,7 @@ export function Cockpit({ client }: { client: MatchClient }) {
               data-level={i}
               disabled={i >= g.unlocked_opponents}
             >
-              <img src={FLEET[i].portrait} alt="" loading="lazy" />
+              <LevelPortrait src={FLEET[i].portrait} />
               <b>
                 {i + 1} · {r.name}
               </b>
