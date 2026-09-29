@@ -356,18 +356,6 @@ function Rails({ snapshot: s }: { snapshot: ViewSnapshot }) {
 export function Cockpit({ client }: { client: MatchClient }) {
   const s = useSyncExternalStore(client.subscribe, client.getSnapshot),
     prefs = usePreferences();
-  if (!s) return <div className="loading">正在建立星链连接…</div>;
-  const g = s.game,
-    selected = s.ui.selected;
-  const hasA =
-      !g.rest_mode &&
-      selected.some((id) => g.hand.find((c) => c.id === id)?.type === "A"),
-    hasB =
-      !g.rest_mode &&
-      selected.some((id) => g.hand.find((c) => c.id === id)?.type === "B"),
-    numericOrder = selected.filter(
-      (id) => g.hand.find((c) => c.id === id)?.type === "N",
-    );
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -517,6 +505,19 @@ export function Cockpit({ client }: { client: MatchClient }) {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
+
+  if (!s) return <div className="loading">正在建立星链连接…</div>;
+  const g = s.game,
+    selected = s.ui.selected;
+  const hasA =
+      !g.rest_mode &&
+      selected.some((id) => g.hand.find((c) => c.id === id)?.type === "A"),
+    hasB =
+      !g.rest_mode &&
+      selected.some((id) => g.hand.find((c) => c.id === id)?.type === "B"),
+    numericOrder = selected.filter(
+      (id) => g.hand.find((c) => c.id === id)?.type === "N",
+    );
 
   return (
     <>

@@ -4,7 +4,7 @@
 }
 .masthead .brand h1 { display:flex; align-items:baseline; gap:12px; white-space:nowrap; }
 .masthead .release-label { display:inline; margin:0; font-size:clamp(14px,1.05vw,21px); letter-spacing:0; color:#b5dff4; }
-.entries article[data-electric-cell] { position:relative; padding:4px 6px; gap:6px; border:1px solid #8bcded28; border-radius:6px; }
+.entries article[data-electric-cell] { position:relative; padding:3px 6px; gap:4px; border:1px solid #8bcded28; border-radius:6px; }
 .entries article[data-electric-cell]:last-child { border-bottom:1px solid #8bcded28; }
 @media (max-height:900px), (max-width:700px) {
   .entries article[data-electric-cell] { padding-block:3px; gap:2px; }
@@ -727,13 +727,12 @@ progress::-webkit-progress-value {
 }
 @keyframes calibrateBtnPulse {
   from {
-    transform: scale(1);
     filter: brightness(1);
+    box-shadow: 0 0 14px #ffcf6866, inset 0 0 8px #ffffff88 !important;
   }
   to {
-    transform: scale(1.03);
-    filter: brightness(1.2);
-    box-shadow: 0 0 24px #ffd978bb;
+    filter: brightness(1.22);
+    box-shadow: 0 0 24px #ffd978dd, inset 0 0 14px #ffffffff !important;
   }
 }
 .operation-row,
@@ -1504,6 +1503,9 @@ dialog:has(.manual-content) {
   }
   .ship-caption strong {
     font-size: 26px;
+  }
+  .ship-health-bar {
+    display: none;
   }
   #combat-notice {
     font-size: 11px;
