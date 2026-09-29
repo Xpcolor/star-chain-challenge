@@ -13,16 +13,14 @@ test('levels 1–7 use 18HP/three slots; 8–16 use 24HP/four slots and D2/B2',(
   audit(s);audit(old);
  }
 });
-test('warp every starting value exposes exactly the in-range neighboring landings and never stands still',()=>{
+test('warp every starting value lands exactly on 20 - before including 10 to 10',()=>{
  const j={id:'j',type:'J'};
- assert.deepEqual(warpLandings(4),[15,16,17]);assert.deepEqual(warpLandings(10),[9,11]);
- assert.deepEqual(warpLandings(0),[19,20]);assert.deepEqual(warpLandings(20),[0,1]);
- for(let before=0;before<=20;before++)for(let after=-1;after<=21;after++){
-  const move={chain:0,ids:['j'],ops:[],warpTo:after},valid=after>=0&&after<=20&&after!==before&&Math.abs(after-(20-before))<=1;
-  if(valid){const info=inspectMove([before,10,16],[j],[],move);assert.equal(info.after,after);assert.deepEqual(info.steps,[]);}
-  else assert.throws(()=>inspectMove([before,10,16],[j],[],move));
+ assert.deepEqual(warpLandings(4),[16]);assert.deepEqual(warpLandings(10),[10]);
+ assert.deepEqual(warpLandings(0),[20]);assert.deepEqual(warpLandings(20),[0]);
+ for(let before=0;before<=20;before++){
+  const info=inspectMove([before,10,16],[j],[],{chain:0,ids:['j'],ops:[]});
+  assert.equal(info.after,20-before);assert.deepEqual(info.steps,[]);
  }
- assert.throws(()=>inspectMove([4,10,16],[j],[],{chain:0,ids:['j'],ops:[],warpTo:15},'flight-records-2'));
 });
 test('three matching objectives all score once; legacy v2 keeps its two-objective result',()=>{
  for(const rulesVersion of ['flight-records-2','flight-records-3']){

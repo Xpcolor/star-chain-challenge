@@ -170,6 +170,11 @@ function CardFace({
       <small>{label}</small>
       <span className="card-symbol">{label}</span>
       {name && <span className="card-name">{name}</span>}
+      {action === "card" && index !== undefined && (
+        <kbd className="card-keycap" aria-hidden="true">
+          {index + 1}
+        </kbd>
+      )}
       {order && (
         <span className="card-order" aria-label={`第 ${order} 步`}>
           {order}
@@ -270,7 +275,12 @@ function Rails({ snapshot: s }: { snapshot: ViewSnapshot }) {
             aria-label={`${["蓝", "紫", "橙"][i]}星链，当前 ${value}`}
             aria-pressed={selectedChain === i}
           >
-            <b>{["蓝", "紫", "橙"][i]}星链</b>
+            <b>
+              {["蓝", "紫", "橙"][i]}星链
+              <kbd className="keycap-hint" aria-hidden="true">
+                {["Q", "W", "E"][i]}
+              </kbd>
+            </b>
             <span className="track">
               {Array.from({ length: 21 }, (_, n) => (
                 <span
@@ -358,6 +368,156 @@ export function Cockpit({ client }: { client: MatchClient }) {
     numericOrder = selected.filter(
       (id) => g.hand.find((c) => c.id === id)?.type === "N",
     );
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey || e.altKey || e.metaKey) return;
+      const active = document.activeElement;
+      if (
+        active &&
+        (active.tagName === "INPUT" ||
+          active.tagName === "TEXTAREA" ||
+          active.closest("dialog[open]"))
+      ) {
+        return;
+      }
+      const modal = document.getElementById("modal") as HTMLDialogElement | null;
+      if (modal && modal.open) {
+        if (e.key === "Escape") {
+          modal.close();
+          e.preventDefault();
+        }
+        return;
+      }
+
+      const key = e.key;
+      // 1 ~ 6: Select hand cards
+      if (key >= "1" && key <= "6") {
+        const index = parseInt(key, 10) - 1;
+        const cardButtons = document.querySelectorAll<HTMLButtonElement>(
+          "#cards button.card[data-action='card']",
+        );
+        if (cardButtons[index] && !cardButtons[index].disabled) {
+          cardButtons[index].click();
+          e.preventDefault();
+        }
+        return;
+      }
+
+      // Q, W, E: Select blue, purple, orange rails
+      if (key === "q" || key === "Q") {
+        document
+          .querySelector<HTMLButtonElement>(
+            '[data-action="chain"][data-index="0"]',
+          )
+          ?.click();
+        e.preventDefault();
+        return;
+      }
+      if (key === "w" || key === "W") {
+        document
+          .querySelector<HTMLButtonElement>(
+            '[data-action="chain"][data-index="1"]',
+          )
+          ?.click();
+        e.preventDefault();
+        return;
+      }
+      if (key === "e" || key === "E") {
+        document
+          .querySelector<HTMLButtonElement>(
+            '[data-action="chain"][data-index="2"]',
+          )
+          ?.click();
+        e.preventDefault();
+        return;
+      }
+
+      // + / = : Addition
+      if (key === "+" || key === "=") {
+        document
+          .querySelector<HTMLButtonElement>(
+            '[data-action="op"][data-value="1"]:not(:disabled)',
+          )
+          ?.click();
+        e.preventDefault();
+        return;
+      }
+      // - : Subtraction
+      if (key === "-") {
+        document
+          .querySelector<HTMLButtonElement>(
+            '[data-action="op"][data-value="-1"]:not(:disabled)',
+          )
+          ?.click();
+        e.preventDefault();
+        return;
+      }
+
+      // C : Calibrate
+      if (key === "c" || key === "C") {
+        document
+          .querySelector<HTMLButtonElement>(
+            '[data-action="calibrate"]:not(:disabled)',
+          )
+          ?.click();
+        e.preventDefault();
+        return;
+      }
+
+      // R : Rest or Draw
+      if (key === "r" || key === "R") {
+        const restBtn = document.querySelector<HTMLButtonElement>(
+          '[data-action="rest"]:not(:disabled)',
+        );
+        const drawBtn = document.querySelector<HTMLButtonElement>(
+          '[data-action="draw"]:not(:disabled)',
+        );
+        if (restBtn) {
+          restBtn.click();
+          e.preventDefault();
+        } else if (drawBtn) {
+          drawBtn.click();
+          e.preventDefault();
+        }
+        return;
+      }
+
+      // Space or Enter: Play / Roll / Confirm Rest / Draw
+      if (key === " " || key === "Enter") {
+        const playBtn = document.querySelector<HTMLButtonElement>(
+          '[data-action="play"]:not(:disabled)',
+        );
+        const rollBtn = document.querySelector<HTMLButtonElement>(
+          '[data-action="roll"]:not(:disabled)',
+        );
+        const confirmRestBtn = document.querySelector<HTMLButtonElement>(
+          '[data-action="confirm-rest"]:not(:disabled)',
+        );
+        const drawBtn = document.querySelector<HTMLButtonElement>(
+          '[data-action="draw"]:not(:disabled)',
+        );
+        if (playBtn) {
+          playBtn.click();
+          e.preventDefault();
+        } else if (rollBtn) {
+          rollBtn.click();
+          e.preventDefault();
+        } else if (confirmRestBtn) {
+          confirmRestBtn.click();
+          e.preventDefault();
+        } else if (drawBtn) {
+          drawBtn.click();
+          e.preventDefault();
+        }
+        return;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <>
       <main
@@ -604,10 +764,11 @@ export function Cockpit({ client }: { client: MatchClient }) {
               <span>{g.hand.length}/6 张</span>
             </header>
             <div className="cards" id="cards">
-              {g.hand.map((card) => (
+              {g.hand.map((card, idx) => (
                 <CardFace
                   card={card}
                   action="card"
+                  index={idx}
                   selected={selected.includes(card.id)}
                   order={
                     hasA && numericOrder.includes(card.id)
