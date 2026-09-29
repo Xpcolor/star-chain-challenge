@@ -163,6 +163,48 @@ body {
 .entries article.achievable {
   background: linear-gradient(90deg, #9eedff15, transparent);
 }
+.entries .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: 1px solid currentColor;
+  background: color-mix(in srgb, currentColor 12%, #030d1aa0);
+  width: fit-content;
+}
+.entries .eyebrow.cyan {
+  color: #7de8ff;
+  box-shadow: 0 0 8px #58d4fd26;
+}
+.entries .eyebrow.orange {
+  color: #ffbe7a;
+  box-shadow: 0 0 8px #ffb35e26;
+}
+.entries .eyebrow.purple {
+  color: #d2a4ff;
+  box-shadow: 0 0 8px #c895ff26;
+}
+.goal-kind-icon {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+}
+.goal-kind-icon.icon-e {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%237de8ff' stroke-width='1.8'%3E%3Crect x='2' y='2' width='12' height='12' rx='2' stroke-dasharray='3 2'/%3E%3Ccircle cx='8' cy='8' r='2.5' fill='%237de8ff'/%3E%3C/svg%3E");
+}
+.goal-kind-icon.icon-p {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffbe7a' stroke-width='1.8'%3E%3Ccircle cx='8' cy='8' r='5'/%3E%3Cline x1='8' y1='1' x2='8' y2='4'/%3E%3Cline x1='8' y1='12' x2='8' y2='15'/%3E%3Cline x1='1' y1='8' x2='4' y2='8'/%3E%3Cline x1='12' y1='8' x2='15' y2='8'/%3E%3C/svg%3E");
+}
+.goal-kind-icon.icon-l {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23d2a4ff'%3E%3Ccircle cx='3.5' cy='5' r='2'/%3E%3Ccircle cx='12.5' cy='5' r='2'/%3E%3Ccircle cx='8' cy='12' r='2'/%3E%3Cline x1='3.5' y1='5' x2='12.5' y2='5' stroke='%23d2a4ff' stroke-width='1.4'/%3E%3Cline x1='3.5' y1='5' x2='8' y2='12' stroke='%23d2a4ff' stroke-width='1.4'/%3E%3Cline x1='12.5' y1='5' x2='8' y2='12' stroke='%23d2a4ff' stroke-width='1.4'/%3E%3C/svg%3E");
+}
 .repair-title {
   flex-wrap: wrap;
 }
@@ -291,6 +333,70 @@ progress::-webkit-progress-value {
 }
 .ship-caption small {
   font-size: 13px;
+}
+.ship-health-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 130px;
+  margin: 3px 0 2px;
+}
+.ship-health-bar .bar-track {
+  position: relative;
+  flex: 1;
+  height: 6px;
+  background: #091726cc;
+  border: 1px solid #5aa7cf66;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px #000a;
+}
+.ship-health-bar .bar-ghost {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: #ff5268;
+  border-radius: 2px;
+  transition: width 0.4s cubic-bezier(0.2, 0.8, 0.3, 1);
+  box-shadow: 0 0 6px #ff4057;
+}
+.ship-health-bar .bar-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 2px;
+  transition: width 0.15s ease-out;
+}
+.ship-health-bar.health-hero .bar-fill {
+  background: linear-gradient(90deg, #3bb3ec, #7ef2ff);
+  box-shadow: 0 0 8px #5fe8ffaa;
+}
+.ship-health-bar.health-enemy .bar-fill {
+  background: linear-gradient(90deg, #905cf2, #d1a4ff);
+  box-shadow: 0 0 8px #c89bffaa;
+}
+.ship-health-bar .bar-shield {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #9feeff;
+  background: #08293e;
+  border: 1px solid #75deff;
+  border-radius: 3px;
+  padding: 1px 5px;
+  box-shadow: 0 0 6px #5fd7ff55;
+  line-height: 1;
+}
+.ship-health-bar .shield-icon {
+  display: inline-block;
+  width: 9px;
+  height: 10px;
+  background: currentColor;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 70%, 50% 100%, 0% 70%, 0% 25%);
 }
 .hero-caption {
   right: 56%;
@@ -437,6 +543,69 @@ progress::-webkit-progress-value {
   left: -2px;
   top: 8px;
 }
+.tick.major-tick:before {
+  width: 4px;
+  height: 9px;
+  left: -2px;
+  top: 6px;
+  border-radius: 2px;
+  background: #ffffff;
+  box-shadow: 0 0 8px currentColor;
+}
+.tick.major-tick .rail-label {
+  font-weight: 700;
+  font-size: 13px;
+  color: #ffffff;
+  text-shadow: 0 0 6px currentColor;
+}
+.tick.minor-tick .rail-label {
+  opacity: 0.65;
+}
+.track .jump-arc-svg {
+  position: absolute;
+  inset: -6px 0 0;
+  width: 100%;
+  height: 38px;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 5;
+}
+.track .jump-arc-path {
+  fill: none;
+  stroke: var(--rail-color);
+  stroke-width: 2.2;
+  stroke-dasharray: 6 3;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 7px var(--rail-color));
+  animation: jumpArcDash 1.2s linear infinite;
+}
+@keyframes jumpArcDash {
+  from { stroke-dashoffset: 18; }
+  to { stroke-dashoffset: 0; }
+}
+.track .calibrate-target-cue {
+  position: absolute;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  transform: translateX(-50%) rotate(45deg);
+  border: 2px solid #ffe28a;
+  background: #ffb83477;
+  box-shadow: 0 0 12px #ffc952, inset 0 0 8px #fff0a8;
+  z-index: 6;
+  pointer-events: none;
+  animation: calibrateTargetPulse 1.2s ease-in-out infinite alternate;
+}
+@keyframes calibrateTargetPulse {
+  from {
+    transform: translateX(-50%) rotate(45deg) scale(0.9);
+    box-shadow: 0 0 8px #ffb834;
+  }
+  to {
+    transform: translateX(-50%) rotate(45deg) scale(1.25);
+    box-shadow: 0 0 18px 4px #ffd86b, 0 0 30px #ffea9f;
+  }
+}
 .rail-label {
   position: absolute;
   top: 27px;
@@ -487,6 +656,25 @@ progress::-webkit-progress-value {
 }
 .calibrate-row button:disabled {
   opacity: 0.7;
+}
+.calibrate-row button.primary {
+  background: linear-gradient(110deg, #d49a26, #fff0a8, #b88219) !important;
+  color: #0b1723 !important;
+  font-weight: 800 !important;
+  border-color: #fff2c4 !important;
+  box-shadow: 0 0 18px #ffcf6888, inset 0 0 10px #ffffffaa !important;
+  animation: calibrateBtnPulse 1.4s ease-in-out infinite alternate;
+}
+@keyframes calibrateBtnPulse {
+  from {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  to {
+    transform: scale(1.03);
+    filter: brightness(1.2);
+    box-shadow: 0 0 24px #ffd978bb;
+  }
 }
 .operation-row,
 .operation-buttons,

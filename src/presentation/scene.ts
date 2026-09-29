@@ -161,9 +161,12 @@ export class BattleScene implements ScenePort {
         "/assets/cosmos-v2.png",
       );
       bg.colorSpace = THREE.SRGBColorSpace;
+      bg.generateMipmaps = true;
+      bg.minFilter = THREE.LinearMipmapLinearFilter;
+      bg.magFilter = THREE.LinearFilter;
       const bgMat = new THREE.MeshBasicNodeMaterial({
         map: bg,
-        color: 0x7b91ad,
+        color: 0xffffff,
       });
       bgMat.toneMapped = false;
       this.background = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), bgMat);
@@ -720,9 +723,10 @@ export class BattleScene implements ScenePort {
         (i === 0 ? 1 : 0.55 + (Math.max(0, this.level) / 15) * 0.35);
     }
     const dist = 32.071 / 12.071,
-      scale = 1.02 * Math.max(w / h / (1672 / 941), 1);
+      aspect = 1376 / 768,
+      scale = 1.02 * Math.max(w / h / aspect, 1);
     this.background.scale.set(
-      ((10 * 1672) / 941) * scale * dist,
+      10 * aspect * scale * dist,
       10 * scale * dist,
       1,
     );
