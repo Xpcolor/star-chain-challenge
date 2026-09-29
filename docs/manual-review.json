@@ -1,8 +1,8 @@
 {
-  "version": "1.1.7",
-  "reviewedAt": "2026-09-27T12:37:53.061Z",
+  "version": "1.1.8",
+  "reviewedAt": "2026-09-29T00:07:26.642Z",
   "rulesVersion": "flight-records-4",
-  "note": "V1.1.7 enlarges and reorganizes the manual for desktop and mobile. All seven basic rules, five functional card explanations, module/sector definitions and settlement/support details are preserved. Rules remain flight-records-4.",
+  "note": "V1.1.8 visual polish: HD cosmos background, rail major/minor ticks and jump trajectory arc, goal kind badges/icons decoupling, calibrate magnetic cue, and ship health bars with damage ghosting.",
   "sha256": {
     "dist/engine.mjs": "1e72484ca15b5382b673c8bc6a69debfd8456e7b7dba0e71a416764d542b48d2",
     "dist/tactics.mjs": "77813aa7df30732672f0f72c524f3f0bd726fed73f3c9c21dc97fc9d2ce7e363",

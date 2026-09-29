@@ -2,6 +2,8 @@ import {
   useLayoutEffect,
   useRef,
   useSyncExternalStore,
+  useState,
+  useEffect,
   type CSSProperties,
 } from "react";
 import { gsap } from "gsap";
@@ -89,6 +91,49 @@ export function Odometer({ value }: { value: number }) {
         </span>
       ))}
     </span>
+  );
+}
+function ShipHealthBar({
+  hp,
+  maxHp,
+  shield,
+  side,
+}: {
+  hp: number;
+  maxHp: number;
+  shield: number;
+  side: "hero" | "enemy";
+}) {
+  const percent = Math.min(100, Math.max(0, (hp / maxHp) * 100));
+  const lastHp = useRef(hp);
+  const [ghostWidth, setGhostWidth] = useState(percent);
+
+  useEffect(() => {
+    if (hp < lastHp.current) {
+      const timer = setTimeout(() => {
+        setGhostWidth(percent);
+        lastHp.current = hp;
+      }, 400);
+      return () => clearTimeout(timer);
+    } else {
+      lastHp.current = hp;
+      setGhostWidth(percent);
+    }
+  }, [hp, percent]);
+
+  return (
+    <div className={`ship-health-bar health-${side}`} aria-hidden="true">
+      <div className="bar-track">
+        <div className="bar-ghost" style={{ width: `${ghostWidth}%` }} />
+        <div className="bar-fill" style={{ width: `${percent}%` }} />
+      </div>
+      {shield > 0 && (
+        <span className="bar-shield" title={`防护盾: ${shield}`}>
+          <i className="shield-icon" />
+          <b>{shield}</b>
+        </span>
+      )}
+    </div>
   );
 }
 function CardFace({
@@ -229,7 +274,11 @@ function Rails({ snapshot: s }: { snapshot: ViewSnapshot }) {
             <span className="track">
               {Array.from({ length: 21 }, (_, n) => (
                 <span
-                  className={"tick " + (marks.has(n) ? "target" : "")}
+                  className={
+                    "tick " +
+                    (n % 5 === 0 ? "major-tick " : "minor-tick ") +
+                    (marks.has(n) ? "target " : "")
+                  }
                   style={{ left: `${n * 5}%` }}
                   key={n}
                 >
@@ -249,6 +298,34 @@ function Rails({ snapshot: s }: { snapshot: ViewSnapshot }) {
                   data-landing={s.ui.landing.after}
                 />
               )}
+              {selectedChain === i &&
+                s.ui.landing?.chain === i &&
+                value !== s.ui.landing.after && (
+                  <svg
+                    className="jump-arc-svg"
+                    viewBox="0 0 100 24"
+                    preserveAspectRatio="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d={`M ${value * 5} 20 Q ${(value + s.ui.landing.after) * 2.5} ${Math.max(
+                        2,
+                        18 - Math.min(16, Math.abs(value - s.ui.landing.after) * 2),
+                      )} ${s.ui.landing.after * 5} 20`}
+                      className="jump-arc-path"
+                    />
+                  </svg>
+                )}
+              {selectedChain === i &&
+                g.calibrate_offer &&
+                g.calibrate_offer.after !== s.ui.landing?.after && (
+                  <i
+                    className="calibrate-target-cue"
+                    style={{ left: `${g.calibrate_offer.after * 5}%` }}
+                    role="img"
+                    aria-label={`可校准落点 ${g.calibrate_offer.after}`}
+                  />
+                )}
               {selectedChain === i && s.ui.formula && (
                 <span className="rail-preview">{s.ui.formula}</span>
               )}
@@ -353,6 +430,10 @@ export function Cockpit({ client }: { client: MatchClient }) {
                       { E: "cyan", P: "orange", L: "purple" }[goal.kind]
                     }
                   >
+                    <i
+                      className={`goal-kind-icon icon-${goal.kind.toLowerCase()}`}
+                      aria-hidden="true"
+                    />
                     {String(i + 1).padStart(2, "0")} /{" "}
                     {{ E: "区域", P: "精准", L: "联动" }[goal.kind]}
                   </span>
@@ -407,6 +488,12 @@ export function Cockpit({ client }: { client: MatchClient }) {
             <strong>
               <Odometer value={g.hp[0]} />
             </strong>
+            <ShipHealthBar
+              hp={g.hp[0]}
+              maxHp={g.initial_hp || 18}
+              shield={g.shields[0] || 0}
+              side="hero"
+            />
             <small>生命{g.shields[0] ? ` · 盾 ${g.shields[0]}` : ""}</small>
           </div>
           <div className="ship-caption enemy-caption">
@@ -417,6 +504,12 @@ export function Cockpit({ client }: { client: MatchClient }) {
             <strong>
               <Odometer value={g.hp[1]} />
             </strong>
+            <ShipHealthBar
+              hp={g.hp[1]}
+              maxHp={g.initial_hp || 18}
+              shield={g.shields[1] || 0}
+              side="enemy"
+            />
             <small>生命{g.shields[1] ? ` · 盾 ${g.shields[1]}` : ""}</small>
           </div>
           {prefs.inspect && (
