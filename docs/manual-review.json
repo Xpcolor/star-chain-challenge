@@ -1,8 +1,8 @@
 {
-  "version": "1.1.10",
-  "reviewedAt": "2026-09-29T00:46:59.774Z",
+  "version": "1.1.11",
+  "reviewedAt": "2026-09-29T01:45:00.000Z",
   "rulesVersion": "flight-records-4",
-  "note": "V1.1.10: PC commander hotkeys, 3D card perspective hover, wide 2-column game-over dialog, and simplified warp rule (20 - before allowing 10 -> 10).",
+  "note": "V1.1.11: Fix React hook order in Cockpit to restore anchor layout and prevent ship collision.",
   "sha256": {
     "dist/engine.mjs": "d207c246347ce887c3887bd585c236224a557d0f3395f5280c8fd93023f51e89",
     "dist/tactics.mjs": "77813aa7df30732672f0f72c524f3f0bd726fed73f3c9c21dc97fc9d2ce7e363",

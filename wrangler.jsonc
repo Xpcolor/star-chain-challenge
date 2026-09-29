@@ -33,7 +33,7 @@
   },
   "vars": {
     "ENVIRONMENT": "production",
-    "RELEASE_VERSION": "1.1.10",
+    "RELEASE_VERSION": "1.1.11",
     "ACCESS_ISSUER": "https://red-wave-aa94.cloudflareaccess.com",
     "ACCESS_AUD": "c744221ddb4ea1af348dc07f487f56b4cfc284a04acd94f23fc824c9593532aa"
   },
