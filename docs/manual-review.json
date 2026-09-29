@@ -1,8 +1,8 @@
 {
-  "version": "1.1.12",
-  "reviewedAt": "2026-09-29T02:27:00.000Z",
+  "version": "1.1.13",
+  "reviewedAt": "2026-09-29T13:40:00.000Z",
   "rulesVersion": "flight-records-4",
-  "note": "V1.1.12: Update Warp (J) landing options to 20 - before and neighboring values within 0-20, allowing 10 -> 10.",
+  "note": "V1.1.13: No rules change. First screen no longer downloads all sixteen portraits, a second background copy, or music before the ships.",
   "sha256": {
     "dist/engine.mjs": "50c07e331c3e994d2b9098b266daebaad252b0651b9d0337ad15f51435e76de4",
     "dist/tactics.mjs": "77813aa7df30732672f0f72c524f3f0bd726fed73f3c9c21dc97fc9d2ce7e363",

@@ -11,7 +11,7 @@ export function createAudio(): AudioBus {
   const music = new Howl({
     src: ["/assets/music-relaxing-ambient.ogg"],
     loop: true,
-    preload: true,
+    preload: false,
     // The selected loop is mastered offline; default output is about -31 dBFS RMS.
     volume: volume * 0.55,
   });
@@ -56,6 +56,7 @@ export function createAudio(): AudioBus {
       try {
         // Decode the small sound bank on the first gesture, before combat starts.
         AUDIO_BANK.forEach((entry) => soundFor(String(entry.id)));
+        if (music.state() === "unloaded") music.load();
         await Howler.ctx?.resume();
         unlocked = true;
         resumeMusic();
