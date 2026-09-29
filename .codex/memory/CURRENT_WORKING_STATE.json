@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-09-29T00:12:10.000Z",
+  "updatedAt": "2026-09-29T00:24:14.000Z",
   "project": {
     "name": "星链算式",
     "root": "D:/ais/game/StarChain",
@@ -8,10 +8,10 @@
   },
   "currentTask": {
     "phase": "released",
-    "authorizedWork": "V1.1.8：高清背景替换与Three.js材质清晰度调优、数轴刻度分级与动态跳跃电弧、攻击目标类别图标解耦、校准磁吸落点提示与按钮高亮、对战血条与受击残影反馈；用户明确要求推送GitHub并刷新域名。",
+    "authorizedWork": "V1.1.9：针对用户提出的“背景星星过多导致眼花疲劳”问题，替换为纯净、极简、低噪的黑曜石深空背景，保留柔和冷光星云与地平线微弧，降低视觉干扰；用户明确要求推送GitHub并刷新域名。",
     "gameImplementation": "Vite/TypeScript/React cockpit; replaceable MatchClient; unified WebGPU/TSL scene; GSAP/Howler; fixed player GLB plus sixteen unique enemy GLBs.",
     "playerShip": "固定当前一艘，不更换、不随等级变化；仅我方提供近看、真实转向、独立侧光。",
-    "releaseGate": "用户本次已明确授权，PR9通过CI并合并，V1.1.8已部署至两个域名且线上验收通过。后续新增工作按其当次范围执行。",
+    "releaseGate": "用户本次已明确授权，PR11通过CI并合并，V1.1.9已部署至两个域名且线上验收通过。后续新增工作按其当次范围执行。",
     "lastLocalFeedback": [
       "星云选择器在橙星链刻度下方按正常流布局，避免向上悬浮遮挡",
       "三处牌区 W星云青蓝/A加速橙金/J折跃紫色，带中文牌名；数字牌米白色",
@@ -31,9 +31,10 @@
       "V1.1.5：A加速回原位可触发攻击，不限使用次数，每次出牌结算一次；旧战绩原规则回放。修复加速越界提示遮挡减号；92项测试、80局模拟、36组镜像对局、四种视口真实操作通过。",
       "V1.1.6：两条0中一条跃迁到20，或两条20中一条跃迁到0，均能触发二十星门3点基础伤害。原引擎已支持；说明书明确示例、24组专项和94项全套测试通过，本地已刷新。",
       "V1.1.7：玩法说明最大1380px、正文17px/手机16px、五分区与功能牌色卡、固定关闭按钮；四项补给高度补足。94项测试、18个浏览器场景分次通过，PR7已合并，双域名线上验收通过。",
-      "V1.1.8：高清背景替换与Three.js材质清晰度调优、数轴0/5/10/15/20主次刻度分级、动态跳跃电弧抛物线、攻击目标类别图标解耦、校准磁吸落点提示与按钮脉冲、对战血条与受击残影反馈。PR9通过CI并合并，线上双域名已刷新验收。"
+      "V1.1.8：高清背景替换与Three.js材质清晰度调优、数轴0/5/10/15/20主次刻度分级、动态跳跃电弧抛物线、攻击目标类别图标解耦、校准磁吸落点提示与按钮脉冲、对战血条与受击残影反馈。PR9通过CI并合并，线上双域名已刷新验收。",
+      "V1.1.9：纯净极简低噪深空背景替换，去除过度密集的繁星点缀，降低眼疲劳并强化UI前景信息可读性。PR11通过CI并合并，线上双域名已刷新验收。"
     ],
-    "latestRequest": "Replace blurry background with HD image, optimize rail ticks/jump arc, goal badges, calibrate cue, and combat health bars, then push GitHub and update domains."
+    "latestRequest": "背景图的星星太多，看起很花眼睛，请做一个背景干净的太空图片做背景"
   },
   "development": {
     "currentStage": "human-vs-ai",
@@ -60,12 +61,12 @@
   },
   "gitSnapshot": {
     "branch": "main",
-    "deployedCommit": "5a45245d1923f74829a94895d42b7a3712cae06e",
-    "releasePr": "https://github.com/Xpcolor/star-chain-challenge/pull/9",
+    "deployedCommit": "62a4d95f047d73fa5646aed9d6197f49777f16b8",
+    "releasePr": "https://github.com/Xpcolor/star-chain-challenge/pull/11",
     "receiptBranch": "main",
     "note": "Feature release merged and published. User file 游戏优化步骤.txt remains untracked.",
-    "localVersion": "1.1.8",
-    "localBaseCommit": "5a45245d1923f74829a94895d42b7a3712cae06e"
+    "localVersion": "1.1.9",
+    "localBaseCommit": "62a4d95f047d73fa5646aed9d6197f49777f16b8"
   },
   "confirmedVisualDirection": [
     "Floating transparent glass panels; each side has only two chasing lightning trails on a single outer-frame plus bow-shaped inner-edge route; lower canopy only.",
