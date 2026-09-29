@@ -1,5 +1,7 @@
 # 星链算式当前开发方向
 
+2026-09-29 **V1.1.10 已发布**：PR [#13](https://github.com/Xpcolor/star-chain-challenge/pull/13) 经CI通过后合并，提交 `64139d764c3e6004c0427f4e87722d9342cef9d3` 已上线 novaw.net 与 www.novaw.net。本次优化：（1）PC键盘控制台快捷键（1~6选卡，Q/W/E选轨，+/-切算符，Space/Enter出牌，C校准，R补牌休整），卡牌3D悬浮与全息光晕；（2）战绩结算弹窗改为960px双栏桌面画卷，左侧首屏直达胜负、血量与“再来一局/挑战下一级”按钮，免除向下滚动；（3）功能牌“跃迁”规则极简重构为 `20 - 当前值`，10直接落10可触发二十星门与十号港口。回执见 `deployment-status.json`。
+
 2026-09-29 **V1.1.9 已发布**：PR [#11](https://github.com/Xpcolor/star-chain-challenge/pull/11) 经CI通过后合并，提交 `62a4d95f047d73fa5646aed9d6197f49777f16b8` 已上线 novaw.net 与 www.novaw.net。针对用户提出的“背景星星过多、引起视觉疲劳”反馈，重新设计并替换为纯净、极简、低噪的黑曜石深空背景，减少噪点与密集恒星，保留柔和冷光星云与微弧度地平线，大幅降低眼部疲劳并突显对战卡牌与刻度轨道。94项测试、类型检查与构建通过，双域名版本一致且页面零脚本错误。生产D1无变更。回执见 `deployment-status.json`。
 
 2026-09-29 **V1.1.8 已发布**：PR [#9](https://github.com/Xpcolor/star-chain-challenge/pull/9) 经CI通过后合并，提交 `5a45245d1923f74829a94895d42b7a3712cae06e` 已上线 novaw.net 与 www.novaw.net。采用全新16:9高清深空背景，调优Three.js材质纯白映射提升全景对比度与清晰度；数轴引入0/5/10/15/20主次刻度分级与动态跳跃轨迹抛物线（Jump Arc）；攻击目标增加E区域、P精准、L联动专属几何图标徽标，消除撞色；校准增加磁吸金色目标落点光圈与按钮高亮动效；飞船生命下方增加双层能量血条与受击残影消退反馈（Damage Ghosting）。94项测试、类型检查、构建及真实浏览器回归全部通过，双域名版本一致、页面零脚本错误。生产D1无变更。回执见 `deployment-status.json`。
