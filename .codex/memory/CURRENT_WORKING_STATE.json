@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-09-29T01:10:00.000Z",
+  "updatedAt": "2026-09-29T13:30:36.000Z",
   "project": {
     "name": "星链算式",
     "root": "D:/ais/game/StarChain",
@@ -8,10 +8,10 @@
   },
   "currentTask": {
     "phase": "released",
-    "authorizedWork": "V1.1.12：针对用户提出的功能牌“跃迁”规则重构（20-当前值结果以及前后各一位一起3个数字，边界0/20各2位，10为9/10/11并允许10->10），已在 engine.mjs、app.mjs、说明书 manual.mjs 及对应测试套件中完成精准调整。94项测试、浏览器实测通过，PR17通过CI并合并，部署至 novaw.net 与 www.novaw.net 线上双域名验收通过。",
+    "authorizedWork": "V1.1.13：首屏不再下载十六张等级肖像、第二份星空和开局音乐，两艘舰船与画面初始化并行预取。规则未改。94项测试通过，PR19通过CI并合并，部署至 novaw.net 与 www.novaw.net，线上双域名验收通过。",
     "gameImplementation": "Vite/TypeScript/React cockpit; replaceable MatchClient; unified WebGPU/TSL scene; GSAP/Howler; fixed player GLB plus sixteen unique enemy GLBs.",
     "playerShip": "固定当前一艘，不更换、不随等级变化；仅我方提供近看、真实转向、独立侧光。",
-    "releaseGate": "用户本次已明确授权，PR17通过CI并合并，V1.1.12已部署至两个域名且线上验收通过。后续新增工作按其当次范围执行。",
+    "releaseGate": "用户本次已明确授权发布，PR19通过CI并合并，V1.1.13已部署至两个域名且线上验收通过。后续新增工作按其当次范围执行。",
     "lastLocalFeedback": [
       "星云选择器在橙星链刻度下方按正常流布局，避免向上悬浮遮挡",
       "三处牌区 W星云青蓝/A加速橙金/J折跃紫色，带中文牌名；数字牌米白色",
@@ -35,9 +35,10 @@
       "V1.1.9：纯净极简低噪深空背景替换，去除过度密集的繁星点缀，降低眼疲劳并强化UI前景信息可读性。PR11通过CI并合并，线上双域名已刷新验收。",
       "V1.1.10：PC指挥官快捷操控（1~6选卡/QWE选轨/+/-切符/Space或Enter确认/C校准/R休整），卡牌3D悬浮与全息光晕；战绩结算窗重构为960px双栏免拖拽画卷；功能牌跃迁落地极简为20-X（支持10落10双10触发）。PR13通过CI并合并，线上双域名已刷新验收。",
       "V1.1.11：修复Cockpit中React Hook条件调用导致的Error #310，彻底根除DOM两翼锚点无法挂载引起的三维战场飞船向中央(0,0,0)对撞卡死缺陷；校准按钮动画改为纯光晕避免Playwright抖动。PR15通过CI并合并，线上双域名已刷新验收。",
-      "V1.1.12：重构功能牌“跃迁”规则为 20-当前值 及前后各一格（限制0-20合法范围，0为19/20两项，20为0/1两项，10为9/10/11三项且允许10->10），刷新玩法说明书与操作台提示文案。PR17通过CI并合并，线上双域名已刷新验收。"
+      "V1.1.12：重构功能牌“跃迁”规则为 20-当前值 及前后各一格（限制0-20合法范围，0为19/20两项，20为0/1两项，10为9/10/11三项且允许10->10），刷新玩法说明书与操作台提示文案。PR17通过CI并合并，线上双域名已刷新验收。",
+      "V1.1.13：首屏延后十六张等级肖像、去掉样式中的第二份星空、音乐改到解锁后加载，开局两艘模型与画面初始化并行预取。PR19通过CI并合并，线上双域名已刷新验收。"
     ],
-    "latestRequest": "“跃迁”卡牌需要再优化下，开始是我描述错了，以前是20-当前数字的结果和前后各一位一起3个数字可以，如果0.20没有就是2位，比如现在是0，20-0=20，还可以选10，21但是21没有就只能选20和19，明白吧，如果明白，帮忙更换下这个效果，并刷新说明书"
+    "latestRequest": "https://novaw.net/ 进入页面后，好久飞船等游玩页面都加载不了。帮我发布到 novaw.net"
   },
   "development": {
     "currentStage": "human-vs-ai",
@@ -64,12 +65,12 @@
   },
   "gitSnapshot": {
     "branch": "main",
-    "deployedCommit": "c6e4b005dd44ff6ffecf7631aa6870eb1ec325c4",
-    "releasePr": "https://github.com/Xpcolor/star-chain-challenge/pull/17",
+    "deployedCommit": "79dd023cbd6aa2b41177061d253a92d0424bab11",
+    "releasePr": "https://github.com/Xpcolor/star-chain-challenge/pull/19",
     "receiptBranch": "main",
-    "note": "Feature release v1.1.12 merged and published. User file 游戏优化步骤.txt remains untracked.",
-    "localVersion": "1.1.12",
-    "localBaseCommit": "c6e4b005dd44ff6ffecf7631aa6870eb1ec325c4"
+    "note": "Load fix v1.1.13 merged and published. User files 架构优化.txt and 游戏优化步骤.txt remain untracked.",
+    "localVersion": "1.1.13",
+    "localBaseCommit": "79dd023cbd6aa2b41177061d253a92d0424bab11"
   },
   "confirmedVisualDirection": [
     "Floating transparent glass panels; each side has only two chasing lightning trails on a single outer-frame plus bow-shaped inner-edge route; lower canopy only.",
