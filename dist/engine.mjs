@@ -20,7 +20,8 @@ export const bestGoalClaims = ids => [...ids].sort((a,b)=>goalById(b).damage-goa
 const legacyRules = version => version === 'flight-records-1' || version === 'flight-records-2';
 export function warpLandings(before, rulesVersion=RULES_VERSION) {
   if(legacyRules(rulesVersion))return before===10?[9,11]:[20-before];
-  return [20-before];
+  const center=20-before;
+  return [center-1,center,center+1].filter(n=>n>=0&&n<=20);
 }
 export const rulesForLevel = level => level>=7
   ? {hp:24,extraZone:true,repairSlots:4,dockCount:2,barterCount:2}

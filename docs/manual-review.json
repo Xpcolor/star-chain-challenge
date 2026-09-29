@@ -1,12 +1,12 @@
 {
-  "version": "1.1.11",
-  "reviewedAt": "2026-09-29T01:45:00.000Z",
+  "version": "1.1.12",
+  "reviewedAt": "2026-09-29T02:27:00.000Z",
   "rulesVersion": "flight-records-4",
-  "note": "V1.1.11: Fix React hook order in Cockpit to restore anchor layout and prevent ship collision.",
+  "note": "V1.1.12: Update Warp (J) landing options to 20 - before and neighboring values within 0-20, allowing 10 -> 10.",
   "sha256": {
-    "dist/engine.mjs": "d207c246347ce887c3887bd585c236224a557d0f3395f5280c8fd93023f51e89",
+    "dist/engine.mjs": "50c07e331c3e994d2b9098b266daebaad252b0651b9d0337ad15f51435e76de4",
     "dist/tactics.mjs": "77813aa7df30732672f0f72c524f3f0bd726fed73f3c9c21dc97fc9d2ce7e363",
     "dist/challenges.mjs": "6e848111300daa9f90e48fe7e626d5aaaa575ef32ecb298bf8910013a85c1ed0",
-    "dist/manual.mjs": "2bfb79e61dd1f8af7e5c204454e94b53cc99053995a467d7a145f7c714d62d29"
+    "dist/manual.mjs": "97636cddba2b46d6ceecf249be12f4b353753a01283b5f59bf1adc394d30ec40"
   }
 }
