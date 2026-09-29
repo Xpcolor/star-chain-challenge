@@ -81,8 +81,8 @@
     },
     {
       "path": "dist/assets/cosmos-v2.png",
-      "bytes": 2171779,
-      "sha256": "5cd6950d7feadc11dec8d721e1a4481920dc725b8501c8ddc15c15c3eb527191",
+      "bytes": 1302836,
+      "sha256": "a4de3c2ec431be9f6505fa552d3431594eee3802c95460800797c3da9ba1081f",
       "kind": "background",
       "origin": "Built-in ImageGen / StarChain reference-led artwork"
     },
