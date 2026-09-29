@@ -47,11 +47,11 @@ test('arrival has a clear two seconds; A order badges, three warp landings and c
  expect(await page.locator('#cards .selected').first().evaluate(e=>getComputedStyle(e,'::after').content)).toBe('none');
  expect(await page.evaluate(()=>(window.starChainBridge!.battleView as any).hud.particles.length)).toBe(0);
  await page.locator(`#cards [data-id="${j.id}"]`).click();await page.locator('[data-action=chain][data-index="0"]').click();
- await expect(page.locator('[data-action=warp-to]')).toHaveText(['落到 15','落到 16','落到 17']);
- await page.locator('[data-action=warp-to][data-value="15"]').click();
+ await expect(page.locator('[data-action=warp-to]')).toHaveText(['落到 16']);
+ await page.locator('[data-action=warp-to][data-value="16"]').click();
  await expect(page.locator('#cards .card-order')).toHaveCount(0);
  await page.locator('[data-action=play]').click();
- expect((await state(page)).game.board[0]).toBe(15);
+ expect((await state(page)).game.board[0]).toBe(16);
  expect(await page.evaluate(()=>(window.starChainBridge!.battleView as any).hud.particles.length)).toBeGreaterThan(0);
  await page.waitForTimeout(90);await page.screenshot({path:'.local/qa/v3-confirm-charge.png'});
  expect(errors).toEqual([]);

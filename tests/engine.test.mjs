@@ -147,7 +147,6 @@ test('six-card trial deck has W3 A3 J2; warp uses reflection without arithmetic 
   assert.deepEqual(Object.fromEntries(['N','W','A','J'].map(t=>[t,all.filter(c=>c.type===t).length])),{N:36,W:3,A:3,J:2});
   const J={type:'J',id:'j'};
   for(let x=0;x<=20;x++){
-    if(x===10){assert.throws(()=>inspectMove([x,10,16],[J],[],{chain:0,ids:['j'],ops:[]}),/9 或 11/);assert.equal(inspectMove([x,10,16],[J],[],{chain:0,ids:['j'],ops:[],warpTo:9}).after,9);assert.equal(inspectMove([x,10,16],[J],[],{chain:0,ids:['j'],ops:[],warpTo:11}).after,11);continue;}
     const m=inspectMove([x,10,16],[J],[],{chain:0,ids:['j'],ops:[]});assert.equal(m.after,20-x);assert.deepEqual(m.steps,[]);assert.equal(m.warp,true);
   }
   assert.throws(()=>inspectMove([4,10,16],[J,n(1)],[],{chain:0,ids:['j','n1'],ops:[1]}));

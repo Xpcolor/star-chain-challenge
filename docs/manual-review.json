@@ -1,12 +1,12 @@
 {
-  "version": "1.1.9",
-  "reviewedAt": "2026-09-29T00:21:38.479Z",
+  "version": "1.1.10",
+  "reviewedAt": "2026-09-29T00:46:59.774Z",
   "rulesVersion": "flight-records-4",
-  "note": "V1.1.9: replace background with clean, uncluttered, minimalist space backdrop with sparse stars to reduce eye strain, while preserving high contrast and clarity for all HUD elements.",
+  "note": "V1.1.10: PC commander hotkeys, 3D card perspective hover, wide 2-column game-over dialog, and simplified warp rule (20 - before allowing 10 -> 10).",
   "sha256": {
-    "dist/engine.mjs": "1e72484ca15b5382b673c8bc6a69debfd8456e7b7dba0e71a416764d542b48d2",
+    "dist/engine.mjs": "d207c246347ce887c3887bd585c236224a557d0f3395f5280c8fd93023f51e89",
     "dist/tactics.mjs": "77813aa7df30732672f0f72c524f3f0bd726fed73f3c9c21dc97fc9d2ce7e363",
     "dist/challenges.mjs": "6e848111300daa9f90e48fe7e626d5aaaa575ef32ecb298bf8910013a85c1ed0",
-    "dist/manual.mjs": "78e06329a6569f33cf0ced985ed719dc9ff467c53dd2f9f26106b5ae0a5048e2"
+    "dist/manual.mjs": "2bfb79e61dd1f8af7e5c204454e94b53cc99053995a467d7a145f7c714d62d29"
   }
 }

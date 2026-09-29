@@ -20,8 +20,7 @@ export const bestGoalClaims = ids => [...ids].sort((a,b)=>goalById(b).damage-goa
 const legacyRules = version => version === 'flight-records-1' || version === 'flight-records-2';
 export function warpLandings(before, rulesVersion=RULES_VERSION) {
   if(legacyRules(rulesVersion))return before===10?[9,11]:[20-before];
-  const center=20-before;
-  return [center-1,center,center+1].filter(n=>n>=0&&n<=20&&n!==before);
+  return [20-before];
 }
 export const rulesForLevel = level => level>=7
   ? {hp:24,extraZone:true,repairSlots:4,dockCount:2,barterCount:2}
@@ -133,8 +132,8 @@ export function inspectMove(board,hand,goals,move,rulesVersion=RULES_VERSION){
   if(warp){
     insist(cards.length===1,'折跃单独使用');insist(Array.isArray(move.ops)&&move.ops.length===0,'折跃不属于加减法');
     const before=board[move.chain],options=warpLandings(before,rulesVersion);
-    const after=move.warpTo??(before===10?null:20-before);
-    insist(options.includes(after),`请选择折跃落点：${options.join(' 或 ')}（不能停在原位）`);
+    const after=move.warpTo??(20-before);
+    insist(options.includes(after),`请选择折跃落点：${options.join(' 或 ')}`);
     const result=[...board];result[move.chain]=after;
     return{before,after,board:result,steps:[],cards,matches:goals.filter(id=>goalMatches(id,result,move.chain)),expression:`${before} → ${after}`,warp:true};
   }

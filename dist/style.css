@@ -31,6 +31,14 @@
 .card.warp{background:#d2f5ea;color:#146253;border-color:#88cbbc;box-shadow:inset 0 0 0 3px #eafff9,0 3px 6px #0003}
 .card.warp .card-value{font-family:inherit;font-size:32px;font-weight:750}
 .ship-status>span{overflow-wrap:anywhere}.record-controls{padding:16px;background:#213445;border-radius:12px}.record-controls p{margin:12px 0;color:var(--muted)}.result-recap{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}.result-recap p{margin:5px 0}.header-actions{flex-wrap:wrap;justify-content:flex-end}
+dialog:has(.result){width:min(960px,94vw);max-width:960px;max-height:90vh}
+.result-layout{display:grid;grid-template-columns:1fr 1.18fr;gap:24px;align-items:stretch}
+.result-left{display:flex;flex-direction:column;align-items:center;text-align:center;background:rgba(10,24,38,0.7);border:1px solid rgba(80,200,255,0.2);border-radius:14px;padding:16px 18px 20px}
+.result-left .result-ship{width:200px;height:120px;object-fit:contain;margin:-4px auto 6px}
+.result-left .result-actions{display:flex;gap:12px;width:100%;margin-top:auto}
+.result-left .result-actions .btn{flex:1;min-height:44px}
+.result-right{display:flex;flex-direction:column;gap:12px;justify-content:space-between}
+@media(max-width:768px){.result-layout{grid-template-columns:1fr}}
 @media(max-width:700px){.card.warp .card-value{font-size:26px}.header-actions .btn{padding:8px 10px;font-size:.875rem}.opponent-hand>div:first-child{flex-wrap:wrap}.hand .card{height:94px}.hand .card-value{font-size:32px}}
 
 .next-try,.support-offer{margin-top:18px;padding:16px;border:1px solid #6599b8;border-radius:12px;background:#1d3444;text-align:left}.next-try h3,.support-offer h3{font-size:1rem;margin-bottom:8px}.next-try p,.support-offer p{margin-bottom:8px}.support-offer{border-color:var(--gold)}.support-offer small{color:var(--muted)}.support-offer .result-actions{flex-wrap:wrap}.support-offer button{white-space:normal}.level img{transition:filter .2s}.ship-art img.ship-motion{filter:hue-rotate(var(--ship-hue)) drop-shadow(0 8px 8px #0006);animation-duration:var(--ship-time);animation-timing-function:ease-in-out;animation-iteration-count:infinite}.ship-motion.motion-float{animation-name:ship-float}.ship-motion.motion-glide{animation-name:ship-glide}.ship-motion.motion-bank{animation-name:ship-bank}.ship-motion.motion-orbit{animation-name:ship-orbit}.ship-motion.motion-pulse{animation-name:ship-pulse}.firing .ship-motion,.hit .ship-motion{animation-play-state:paused}.ship.victorious .ship-art img.ship-motion{animation:victory-glow 1s .55s both}.ship.defeated .ship-art img.ship-motion{animation:defeat-drift 1s .35s both;filter:grayscale(.9) brightness(.55)}

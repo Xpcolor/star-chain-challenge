@@ -30,14 +30,13 @@ test('endpoint warp forms a sum of 20 for both players, any chain and both level
 
 test('warp sum uses only final landing and another chain, with no double claim for two partners',()=>{
   const hand=[{id:'j',type:'J'}];
-  for(const from of [0,20]){
+  for(const from of [0,10,20]){
     const move={chain:0,ids:['j'],ops:[],warpTo:20-from};
     const info=inspectMove([from,from,from],hand,['L6'],move);
     assert.deepEqual(info.matches,['L6']);
-    // The adjacent alternative is legal, but 19+0 or 1+20 is not 20.
-    const adjacent={...move,warpTo:from===0?19:1};
-    assert.deepEqual(inspectMove([from,from,7],hand,['L6'],adjacent).matches,[]);
     assert.deepEqual(inspectMove([from,7,9],hand,['L6'],move).matches,[]);
-    assert.throws(()=>inspectMove([from,from,7],hand,['L6'],{...move,warpTo:from}));
+    if(from!==10){
+      assert.throws(()=>inspectMove([from,from,7],hand,['L6'],{...move,warpTo:from}));
+    }
   }
 });
